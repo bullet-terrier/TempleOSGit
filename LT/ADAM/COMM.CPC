@@ -745,7 +745,10 @@ void TelnetGuestOpen(LTChnl *chnl)
 	    PutS(st2);
 	    break;
 	  case RMT_RQST_GETMSG:
-	    cmd=GetMsgNoWait(&p1,&p2);
+	    cmd=GetMsgNoWait(&p1,&p2,
+	      1<<MSG_KEY_DOWN|
+	      1<<MSG_CMD|
+	      1<<MSG_KEY_UP);
 	    RmtSendMsg(chnl,cmd,p1,p2);
 	    break;
 	  case RMT_RQST_TX_FILE:

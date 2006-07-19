@@ -1,5 +1,8 @@
 
 
+----07/18/06 10:25:00----
+* Unmask IRQ's during mouse polling.  Might have side-effects.
+
 ----07/16/06 11:44:46----
 * Changed "Message" to "Msg"
 * Expanded serial communication

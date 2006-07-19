@@ -143,7 +143,7 @@ void PollMouse()
   U8 old_flags=GetFlags;
   if (mouse_irqs_working) return;
 
-  Cli;
+//  Cli;
   if (!Bt(&sys_irq_flags,1)) {//not in keybd IRQ
     if (InP(KEYB_CTRL) & 1) {
       KbdCmdSend(KEYB_CTRL,0x60);

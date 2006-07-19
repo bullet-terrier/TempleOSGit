@@ -487,6 +487,8 @@ public U8 PeekMsg(I8 *param1,I8 *param2,U8 mask=-2,TssStruct *tss=NULL)
       result=PeekMsg(param1,param2,mask,tss->parent_tss);
   }
   Preempt(old_preempt);
+  if (old_preempt)
+    SwapInNext;
   return result;
 }
 
@@ -496,47 +498,60 @@ public U8 GetMsgNoWait(I8 *param1,I8 *param2,U8 mask=-2,TssStruct *tss=NULL)
   TssCmdStruct *tempc,*tempc1,*tempc2;
   I8 p1,p2;
   U8 my_GetMsg(LTChnl *chnl,I8 *p1,I8 *p2);
-  BoolU4 old_preempt=Preempt(OFF),rmt_done=FALSE;
+  BoolU4 old_preempt,cont;
   if (!tss) tss=Fs;
   *param1=0;
   *param2=0;
-  while (TRUE) {
-    result=0;
-    if (!rmt_done && tss->rmt_chnl) {
-      if (my_GetMsg=ext[EXT_RMT_GETMSG])
-	result=my_GetMsg(tss->rmt_chnl,&p1,&p2);
-      if (!result)
-	rmt_done=TRUE;
-    }
-    if (!result) {
-      tempc=tss->next_servant_cmd;
-      tempc1=tempc;
-      result=MsgJoin(&tempc,&p1,&p2,tss);
-      while (tempc1!=tempc) {
-	Cli;//TODO: this would seem to get stuck if a non_input was encntered
-	if (!Bt(&tempc1->flags,TSSCf_TEXT)) {
-	  tempc2=tempc1->next;
-	  RemQue(tempc1);
-	  AFree(tempc1);
-	  tempc1=tempc2;
-	} else
-	  tempc1=tempc1->next;
-	SetFlags(old_flags);
+
+  do {
+    cont=FALSE;
+    if (tss->rmt_chnl) {
+      if (jiffies>=tss->rmt_chnl->null_msg_jiffy) {
+	if (my_GetMsg=ext[EXT_RMT_GETMSG]) {
+	  if (result=my_GetMsg(tss->rmt_chnl,&p1,&p2)) {
+	    if (Bt(&mask,result)) {
+	      *param1=p1;
+	      *param2=p2;
+	      return result;
+	    } else
+	      cont=TRUE;
+	  }
+	}
       }
     }
+  } while (cont);
+
+  old_preempt=Preempt(OFF);
+  while (TRUE) {
+    tempc=tss->next_servant_cmd;
+    tempc1=tempc;
+    result=MsgJoin(&tempc,&p1,&p2,tss);
+    while (tempc1!=tempc) {
+      Cli;//TODO: this would seem to get stuck if a non_input was encntered
+      if (!Bt(&tempc1->flags,TSSCf_TEXT)) {
+	tempc2=tempc1->next;
+	RemQue(tempc1);
+	AFree(tempc1);
+	tempc1=tempc2;
+      } else
+	tempc1=tempc1->next;
+      SetFlags(old_flags);
+    }
+    if (!result)
+      break;
     if (Bt(&mask,result)) {
       *param1=p1;
       *param2=p2;
       break;
     }
-    if (!result)
-      break;
   }
   if (!result && tss->parent_tss) {
     if (tss->parent_tss->popup_tss==tss)
       result=GetMsgNoWait(param1,param2,mask,tss->parent_tss);
   }
   Preempt(old_preempt);
+  if (old_preempt)
+    SwapInNext;
   return result;
 }
 
