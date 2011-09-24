@@ -173,11 +173,6 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,BoolI64 debug=FALSE)
   buf++;
   ext=buf;
 
-//Temporary monkey patch only for this ISO, not sure why it can't copy this
-//dat to sub-directiories, works if I manually copy it to the root dir though
-  if (StrStr(out_path,"/LT/Adam/WordStat/WsDefs.DAC"))
-    return;
-
   if (!StrCmp(ext,"BIC") || !StrCmp(ext,"DAC") || !StrCmp(ext,"DTC")) {
     PassThroughFile(in_path,out_path);
     return;

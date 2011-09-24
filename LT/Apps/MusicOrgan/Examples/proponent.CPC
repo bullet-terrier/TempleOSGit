@@ -1,13 +1,7 @@
-//has words,star,star,star
-void EndTsk()
+//8 has words
+U0 Song()
 {
-  Sound(0);
-  Exit;
-}
-
-void Song()
-{
-  Fs->end_task_cb=&EndTsk;
+  Fs->task_end_cb=&SndTaskEndCB;
   music_tempo=2.5;
   while (TRUE) {
     Play("qCqAqAsEDEDqBqBetGGEs2G3C2G3C");

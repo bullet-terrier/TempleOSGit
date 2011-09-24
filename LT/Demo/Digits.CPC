@@ -1,71 +1,43 @@
 //This loads a list of zero terminated
-//strings into the symbol table and
+//strings into the sym table and
 //gives a name to it.  Strings like
-//this are known as SysText entries.
-LoadList("ST_RAINBOW",
-"BLACK\0"
-"BROWN\0"
-"RED\0"
-"LTRED\0" //closest to orange
-"YELLOW\0"
-"GREEN\0"
-"BLUE\0"
-"PURPLE\0"
-"LTGRAY\0"
-"WHITE\0\0");
+//this are known as Define entries.
 
-void ShowDigit(I1 ch)
+//See [::/LT/Adam/Gr/GrScreen.APZ,ST_RAINBOW_10] ST_RAINBOW_10
+
+U0 ShowDigit(U8 ch)
 {
-//The %Z code displays a systext subentry
+//The %Z code displays a Define subentry
   PrintF("$FG,%Z$%d$FG$",ch-'0',
-    "ST_RAINBOW",ch-'0');
+    "ST_RAINBOW_10",ch-'0');
 }
 
-void ShowPattern(I1 *st)
+U0 ShowPattern(U8 *st)
 {
-  I1 ch;
+  U8 ch;
   while (ch=*st++)
     ShowDigit(ch);
   CrLf;
 }
 
-void SongEndTsk()
+U0 Digits()
 {
-  Sound(0);
-  Exit;
-}
-
-void SongTsk()
-{
-  Fs->end_task_cb=&SongEndTsk;
-  ResetMusicSettings;
-  while (TRUE)
-    Play("qRsCECEsDGDGetACBeRGet2G3EReRDqGqRsCECEsDGDGetACBeRGet2G3EReRDqGqGqAetEAFetREAsAGAGsRDRDsCDCDe2G3BqGqAetEAFetREAsAGAGsRDRDsCDCDe2G3B");
-}
-
-void Digits()
-{
-  I8 num,ch,i;
-  I1 answer[1024];
-  TssStruct *song_tss=Spawn(&SongTsk,"Digits Song",Fs);
-  BoolU4 old_mute=music_mute;
+  U64 num,ch,i;
+  U8 answer[1024];
 
   LtfClear;
   //Set default background and foreground
-  coutln "$WW,1$$BD,DKGRAY$$FD,WHITE$"
-    "\r\nThis is a memory game.  "
-    "Try to remember the digits and enter them.  "
-    "They are colored based on electrical "
-    "engineering color codes.";
+  PutS("$WW,1$$BD,DKGRAY$$FD,WHITE$"
+	"\r\nThis is a mem game.  "
+	"Try to remember the digits and enter them.  "
+	"They are colored based on electrical "
+	"engineering color codes.\r\n");
   for (i=0;i<10;i++) {
     PrintF("$FG,%Z$%d: %Z\r\n",
-      i,"ST_RAINBOW",
-      i,
-      i,"ST_RAINBOW"
-      );
+      i,"ST_RAINBOW_10",i,i,"ST_RAINBOW_10");
   }
-  coutln "$FG$"; //set to default background
-  if (!PressAKey) goto exit;
+  PutS("$FG$\r\n"); //set to default background
+  if (!PressAKey) goto dg_done;
 
   while (TRUE) {
 restart:
@@ -74,41 +46,37 @@ restart:
     MemSet(answer,0,sizeof(answer));
     while (TRUE) {
       LtfClear;
-      coutln "$WW,1$$BD,DKGRAY$$FD,WHITE$";
+      PutS("$WW,1$$BD,DKGRAY$$FD,WHITE$\r\n");
       PrintF("Pattern\r\nLength:%d\r\n"
 	     "\r\n",
 	num+1);
-      answer[num++]=RandU4%10+'0';
+      answer[num++]=RandU32%10+'0';
       ShowPattern(answer);
-      if (!PressAKey) goto exit;
+      if (!PressAKey) goto dg_done;
 
       LtfClear;
-      coutln "$WW,1$$BD,DKGRAY$$FD,WHITE$";
+      PutS("$WW,1$$BD,DKGRAY$$FD,WHITE$\r\n");
       PrintF("Guess\r\nLength:%d\r\n"
-	     "\r\n",
-	num);
+	     "\r\n",num);
       for (i=0;i<num;i++) {
 	ch=GetChar(NULL,FALSE);
-	if (ch==CH_CTRLQ || ch==CH_ESC)
+	if (ch==CH_SHIFT_ESC || ch==CH_ESC)
 	  return;
 	ShowDigit(ch);
 	if (ch!=answer[i]) {
-	  music_mute=TRUE;
-	  Sound(0);
+	  Snd(0);
 	  PrintF("\r\nScore:%d\r\n",num);
 	  ShowPattern(answer);
 	  Beep;
 	  Beep;
-	  music_mute=old_mute;
-	  if (!PressAKey) goto exit;
+	  if (!PressAKey) goto dg_done;
 	  goto restart;
 	}
       }
     }
   }
-exit:
-  Kill(song_tss);  //get rid of song task
-  coutln "$CL$";
+dg_done:
+  PutS("$CL$\r\n");
 }
 
 Digits;

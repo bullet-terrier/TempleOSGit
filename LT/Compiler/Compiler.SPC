@@ -1,28 +1,23 @@
+#exe {OptOn(OPTf_PAREN_WARN);};
+
 #include "/LT/OSMain/Static.HPZ"
-#include "CmpDefs.HPZ"
-asm {
-	USE64
-COMPILER_START::
-#include "CmpAsm.ASZ"
-}
-#exe {OptOn(OPTf_IGNORE_OVERFLOW);}
-#include "CmpDefs2.HPZ"
-#include "CmpGlbls.CPZ"
-#include "Lex.CPZ"
-#include "CodeGen.CPZ"
-#include "SPrintF2.CPZ"
-#include "AsmMain.CPZ"
-#include "ExpParser.CPZ"
-#include "StmtParser.CPZ"
-#include "Code.CPZ"
-#include "OptPass1.CPZ"
-#include "OptPass2.CPZ"
-#include "OptPass3.CPZ"
-#include "OptPass4.CPZ"
-#include "OptPass5.CPZ"
-#include "OptPass6.CPZ"
-#include "CmpInit.CPZ"
-#include "CmpMain.CPZ"
-asm {
-COMPILER_END::
-}
+#include "CmpAsm"
+#include "CmpExts"
+#include "CmpGlbls"
+#include "Unassembler"
+#include "Directives"
+#include "Lex"
+#include "CodeGen"
+#include "Hash1b"
+#include "Assembler"
+#include "ExpParser"
+#include "StmtParser"
+#include "BackEnd"
+#include "OptPass012"
+#include "OptPass3"
+#include "OptPass4"
+#include "OptPass5"
+#include "OptPass6"
+#include "OptPass789A"
+#include "CmpInit"
+#include "CmpMain"

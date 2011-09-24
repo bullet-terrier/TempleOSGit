@@ -1,12 +1,7 @@
-void EndTsk()
+//7 has words
+U0 Song()
 {
-  Sound(0);
-  Exit;
-}
-
-void Song()
-{
-  Fs->end_task_cb=&EndTsk;
+  Fs->task_end_cb=&SndTaskEndCB;
   music_tempo=2.5;
   try {
   while (!ScanKey) {
@@ -20,8 +15,8 @@ void Song()
 		" \0 \0 \0 \0 \0 \0 \0I \0won't \0tell.\r\n\0 \0 \0 \0 \0 \0 \0");
   }
   } catch
-    Fs->catch_except=TRUE;
-  Sound(0);
+    CatchAll;
+  Snd(0);
 }
 
 Song;

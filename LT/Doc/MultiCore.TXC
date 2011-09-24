@@ -1,27 +1,23 @@
-One difficulty with Multi-Core is cache.  The cores on my machine have 
-separate caches which means updating an address from one core is not 
-recognized by the other core until it is written to memory and reloaded into 
-the other core's cache.
+                              LoseThos MutliCore
 
-LoseThos offers the ability to allocate either uncached or "write-through" 
-memory with [C:/LT/OSMain/Memory.CPZ,432] AllocUncachedMemBlks() or
-[C:/LT/OSMain/Memory.CPZ,458] AllocWriteThroughMemBlks().  You can 
-set-up a heap after allocating a chunk by passing a pointer and size to 
-[InitHeapCtrl] InitHeapCtrl().  Then, use [MAllocHC] MAllocHC() and [FreeHC]
-FreeHC().  See [::/LT/OSMain/MultiProc.CPZ,InitHeapCtrl:2] InitHeapCtrl.
+LoseThos does master-slave multicore instead of SMP.  Core#0 is the master.  
+The master core hands-off computational jobs to other cores.  It is 
+symmetrical in the sense you can do file access and heap allocations because 
+there are locks.  Call [C:/LT/OSMain/Task1a.CPZ,304] TaskLocalInit to enable
+file access.  See 
+[::/LT/Demo/MultiCore/LoadTest.CPZ]
+::/LT/Demo/MultiCore/LoadTest.CPZ.  LoseThos does not move tasks between 
+cores.
 
-[mp_heap] mp_heap is a 2Meg heap of uncached memory that you can use unless
-you run-out 
-of room.
+Only tasks on core#0 can have windows, but other cores can help render them.
 
-Each core beside the first has a "cain task" which has it's own 2 Meg cached 
-heap accessed through conventional [C:/LT/OSMain/Memory.CPZ,925] MAlloc() and
-[C:/LT/OSMain/Memory.CPZ,919] Free().  The cain task is the 
-father of all tasks on that core.  See
-[::/LT/OSMain/MultiProc.CPZ,InitHeapCtrl:1] InitHeapCtrl.
+Each core has a "seth task" which is the father of all tasks on that core.  
+Adam is the seth task on core 0.
 
-You give a job to a cain task with [C:/LT/OSMain/MultiProc.CPZ,313]
-MPQueueJob().
+You give a job to a seth task with [C:/LT/OSMain/MultiProc.CPZ,351] MPJob()
+and get the result with 
+[C:/LT/OSMain/MultiProc.CPZ,360] MPJobResult().  You spawn a task on another
+core with [C:/LT/OSMain/MultiProc.CPZ,380] MPSpawn().
 
-See [::/LT/Demo/MultiCore.CPZ] ::/LT/Demo/MultiCore.CPZ
-
+See [::/LT/Demo/Graphics/Transform.CPZ] ::/LT/Demo/Graphics/Transform.CPZ.
+See [::/LT/OSMain/MultiProc.CPZ] ::/LT/OSMain/MultiProc.CPZ.

@@ -1,11 +1,17 @@
 #exe {KeepPrivate(ON);}
-#include "/LT/OSMain/AdamK.HPZ"
+
+#include "/LT/OSMain/BootDefs.HPZ"
+#include "/LT/OSMain/Adam1a.HPZ"
 asm {
-#include "/LT/OSMain/OSDefs.ASZ"
-}
-#exe {Externs2Imports(ON);}
-#include "/LT/OSMain/AdamK2.HPZ"
-#include "/LT/OSMain/AdamK3.HPZ"
-#exe {Externs2Imports(OFF);}
-#exe {KeepPrivate(OFF);}
+#include "/LT/OSMain/OSAsmDefs.HPZ"
+};
+#exe {Externs2Imports(ON);};
+#include "/LT/Compiler/CmpDefs.HPZ"
+#include "/LT/OSMain/Adam1b.HPZ"
+#include "/LT/OSMain/Adam1c.HPZ"
+#exe {
+  Externs2Imports(OFF);
+  KeepPrivate(OFF);
+};
+
 

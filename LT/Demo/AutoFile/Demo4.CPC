@@ -6,7 +6,7 @@ windows.
 */
 
 Auto(" ");
-coutln "PopUp #1:",PopUpNoYes;
+PrintF("PopUp #1:%X\r\n",PopUpNoYes);
 
 AutoStr("Msg(MSG_KEY_DOWN,0,SC_CURSOR_RIGHT);PutChar(CH_SPACE);");
-coutln "PopUp #2:",PopUpNoYes;
+PrintF("PopUp #2:%X\r\n",PopUpNoYes);

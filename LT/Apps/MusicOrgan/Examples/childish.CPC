@@ -1,23 +1,22 @@
-void EndTsk()
+//8 has words
+U0 Song()
 {
-  Sound(0);
-  Exit;
-}
-
-void Song()
-{
-  Fs->end_task_cb=&EndTsk;
-  music_tempo=2.5;
+  Fs->task_end_cb=&SndTaskEndCB;
+  MusicSettingsRst;
+  music_tempo= 2.480;
+  music_stacatto_factor= 0.902;
   try {
   while (!ScanKey) {
-	Play("3qEsCDCDqCDeEGsEBEBeCBsDADA");
-	Play("qEsCDCDqCDeEGsEBEBeCBsDADA");
+	Play("W13qEsCDCDqCDeEGsEBEBeCBsDADA",
+		"Be \0like \0 \0a \0 \0child \0 \0 \0 \0some \0 \0re\0 \0spect.\r\n\0 \0 \0 \0 \0 \0");
+	Play("qEsCDCDqCDeEGsEBEBeCBsDADA",
+		"Ma\0tur\0 \0i\0 \0ty \0 \0 \0 \0don't \0 \0ne\0 \0glect.\r\n\0 \0 \0 \0 \0 \0");
 	Play("eBDqF2sG3A2G3AqAAAetDAAsDBDB");
 	Play("eBDqF2sG3A2G3AqAAAetDAAsDBDB");
   }
   } catch
-    Fs->catch_except=TRUE;
-  Sound(0);
+    CatchAll;
+  Snd(0);
 }
 
 Song;

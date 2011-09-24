@@ -1,22 +1,18 @@
-void EndTsk()
+//8 has words
+U0 Song()
 {
-  Sound(0);
-  Exit;
-}
-
-void Song()
-{
-  TssStruct *tss;
-  Fs->end_task_cb=&EndTsk;
+  TaskStruct *task;
+  Fs->task_end_cb=&SndTaskEndCB;
   try {
-  tss=PopUpViewStr(
-    "$LK-A,\"BF:Matthew,19:16\"$\r\n"
+  task=PopUpViewStr(
+    "[Matthew,19:16]\r\n"
     );
-  WaitTskIdle(tss);
-  tss->win_right=Fs->win_right;
-  tss->win_left=Fs->win_left;
-  tss->win_top=Fs->win_bottom+3;
-  tss->win_bottom=tss->win_top+12;
+  TaskWaitIdle(task);
+  task->win_right=Fs->win_right;
+  task->win_left=Fs->win_left;
+  task->win_top=Fs->win_bottom+3;
+  task->win_bottom=task->win_top+12;
+  TaskDerivedValsUpdate(task);
   PutS("$WW+H,1$");
   while (!ScanKey) {
 	Play("3eGAetCCCFFDqAeAAFAAFqG",
@@ -30,8 +26,8 @@ void Song()
 	PutS("$FG,GREEN$(Christ said sell all and follow me.)\r\n$FG$");
   }
   } catch
-    Fs->catch_except=TRUE;
-  Sound(0);
+    CatchAll;
+  Snd(0);
 }
 
 Song;

@@ -1,73 +1,106 @@
-#help_index "Graphics/Char"
-public void PlotScreenStr(I1 *s,U8 attr,I8 x,I8 y)
+#help_index "Graphics/Char;Char/Graphics"
+public U0 PlotScreenStr(U8 *s,U64 attr,I64 x,I64 y)
 {
-  U1 ch;
+  U8 ch;
   attr<<=8;
   while (ch=*s++) {
-    PlotScreenChar(ch+attr,x,y);
+    PlotScreenU8(ch+attr,x,y);
     x++;
   }
 }
 
-public void PlotWinStr(TssStruct *tss,I1 *s,U8 attr,I8 x,I8 y)
+public U0 PlotWinStr(TaskStruct *task,U8 *s,U64 attr,I64 x,I64 y)
 {
-  U1 ch;
+  U8 ch;
   attr<<=8;
   while (ch=*s++) {
-    PlotWinChar(tss,ch+attr,x,y);
+    PlotWinU8(task,ch+attr,x,y);
     x++;
   }
 }
 
-public void PlotBorderStr(TssStruct *tss,I1 *s,U8 attr,I8 x,I8 y)
+public U0 PlotBorderStr(TaskStruct *task,U8 *s,U64 attr,I64 x,I64 y)
 {
-  U1 ch;
+  U8 ch;
   attr<<=8;
   while (ch=*s++) {
-    PlotBorderChar(tss,ch+attr,x,y);
+    PlotBorderU8(task,ch+attr,x,y);
     x++;
   }
 }
 
-public void DrawBorder(TssStruct *tss,BoolU4 solid,I8 l,I8 r,I8 t,I8 b,U8 attr,BoolU4 clip_to_win)
+public U0 DrawBorder(TaskStruct *task,BoolI8 solid,I64 l,I64 r,I64 t,I64 b,U64 attr,BoolI8 clip_to_win)
 {
-  I8 i;
-  solid+=attr<<8;
+  I64 i;
+  attr<<=8;
   if (clip_to_win) {
-    PlotWinChar(tss,132+solid,l-1,t-1);
-    PlotWinChar(tss,134+solid,r+1,t-1);
-    PlotWinChar(tss,136+solid,l-1,b+1);
-    PlotWinChar(tss,138+solid,r+1,b+1);
-    for (i=l;i<=r;i++) {
-      PlotWinChar(tss,130+solid,i,t-1);
-      PlotWinChar(tss,130+solid,i,b+1);
-    }
-    for (i=t;i<=b;i++) {
-      PlotWinChar(tss,128+solid,l-1,i);
-      PlotWinChar(tss,128+solid,r+1,i);
+    if (solid) {
+      PlotWinU8(task,CH_DBL_TL+attr,l-1,t-1);
+      PlotWinU8(task,CH_DBL_TR+attr,r+1,t-1);
+      PlotWinU8(task,CH_DBL_BL+attr,l-1,b+1);
+      PlotWinU8(task,CH_DBL_BR+attr,r+1,b+1);
+      for (i=l;i<=r;i++) {
+	PlotWinU8(task,CH_DBL_HORZ+attr,i,t-1);
+	PlotWinU8(task,CH_DBL_HORZ+attr,i,b+1);
+      }
+      for (i=t;i<=b;i++) {
+	PlotWinU8(task,CH_DBL_VERT+attr,l-1,i);
+	PlotWinU8(task,CH_DBL_VERT+attr,r+1,i);
+      }
+    } else {
+      PlotWinU8(task,CH_SINGLE_TL+attr,l-1,t-1);
+      PlotWinU8(task,CH_SINGLE_TR+attr,r+1,t-1);
+      PlotWinU8(task,CH_SINGLE_BL+attr,l-1,b+1);
+      PlotWinU8(task,CH_SINGLE_BR+attr,r+1,b+1);
+      for (i=l;i<=r;i++) {
+	PlotWinU8(task,CH_SINGLE_HORZ+attr,i,t-1);
+	PlotWinU8(task,CH_SINGLE_HORZ+attr,i,b+1);
+      }
+      for (i=t;i<=b;i++) {
+	PlotWinU8(task,CH_SINGLE_VERT+attr,l-1,i);
+	PlotWinU8(task,CH_SINGLE_VERT+attr,r+1,i);
+      }
     }
   } else {
-    PlotScreenChar(132+solid,l-1,t-1);
-    PlotScreenChar(134+solid,r+1,t-1);
-    PlotScreenChar(136+solid,l-1,b+1);
-    PlotScreenChar(138+solid,r+1,b+1);
-    for (i=l;i<=r;i++) {
-      PlotScreenChar(130+solid,i,t-1);
-      PlotScreenChar(130+solid,i,b+1);
-    }
-    for (i=t;i<=b;i++) {
-      PlotScreenChar(128+solid,l-1,i);
-      PlotScreenChar(128+solid,r+1,i);
+    if (solid) {
+      PlotScreenU8(CH_DBL_TL+attr,l-1,t-1);
+      PlotScreenU8(CH_DBL_TR+attr,r+1,t-1);
+      PlotScreenU8(CH_DBL_BL+attr,l-1,b+1);
+      PlotScreenU8(CH_DBL_BR+attr,r+1,b+1);
+      for (i=l;i<=r;i++) {
+	PlotScreenU8(CH_DBL_HORZ+attr,i,t-1);
+	PlotScreenU8(CH_DBL_HORZ+attr,i,b+1);
+      }
+      for (i=t;i<=b;i++) {
+	PlotScreenU8(CH_DBL_VERT+attr,l-1,i);
+	PlotScreenU8(CH_DBL_VERT+attr,r+1,i);
+      }
+    } else {
+      PlotScreenU8(CH_SINGLE_TL+attr,l-1,t-1);
+      PlotScreenU8(CH_SINGLE_TR+attr,r+1,t-1);
+      PlotScreenU8(CH_SINGLE_BL+attr,l-1,b+1);
+      PlotScreenU8(CH_SINGLE_BR+attr,r+1,b+1);
+      for (i=l;i<=r;i++) {
+	PlotScreenU8(CH_SINGLE_HORZ+attr,i,t-1);
+	PlotScreenU8(CH_SINGLE_HORZ+attr,i,b+1);
+      }
+      for (i=t;i<=b;i++) {
+	PlotScreenU8(CH_SINGLE_VERT+attr,l-1,i);
+	PlotScreenU8(CH_SINGLE_VERT+attr,r+1,i);
+      }
     }
   }
 }
 
-void DrawTaskBorder(TssStruct *tss)
+U0 DrawTaskBorder(TaskStruct *task)
 {
-  DrawBorder(tss,tss==sys_cur_focus_task,
-    tss->win_left,tss->win_right,
-    tss->win_top,tss->win_bottom,
-    tss->border_attribute,FALSE);
+  PushFD;
+  Cli;
+  DrawBorder(task,task==sys_cur_focus_task,
+    task->win_left,task->win_right,
+    task->win_top,task->win_bottom,
+    task->border_attr,FALSE);
+  PopFD;
 }
 
 

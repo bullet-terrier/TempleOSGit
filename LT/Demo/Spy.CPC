@@ -1,23 +1,65 @@
-void Spy(TssStruct *tss)
+//Pass the task structure you
+//wish to spy upon.
+
+U0 SpyStkRep(TaskStruct *task)
 {
-  Ltf *swap,*menu=Fs->cur_ltf->menu_ltf;
-  BoolU4 old_preempt=Preempt(OFF);
-  SysHashTable *old_hash=Fs->hash_table;
-  Fs->cur_ltf->menu_ltf=NULL;
-  Fs->hash_table=tss->hash_table;
-  Fs->double_buf_cur_ltf=LtfNew;
-  while (!ScanKey) {
-    LtfDel(Fs->cur_ltf);
-    Fs->cur_ltf=LtfNew;
-    StackRep(tss->rsp);
-    swap=Fs->double_buf_cur_ltf;
-    Fs->double_buf_cur_ltf=Fs->cur_ltf;
-    Fs->cur_ltf=swap;
+  BoolI8 old_preempt=Preempt(OFF);
+  Ltf *l=LtfDblBufStart;
+  while (!ScanChar && TaskValidate(task)) {
+    StkRep(task);
+    CrLf;
+    PutDefine("ST_PRESS_A_KEY");
+    LtfDblBufSwap;
     WinSync;
   }
-  LtfDel(Fs->double_buf_cur_ltf);
-  Fs->double_buf_cur_ltf=NULL;
-  Fs->hash_table=old_hash;
-  Fs->cur_ltf->menu_ltf=menu;
+  if (LtfCur==l) LtfDblBufSwap;
+  LtfDblBufEnd;
   Preempt(old_preempt);
 }
+
+U0 SpyCallerRep(TaskStruct *task)
+{
+  BoolI8 old_preempt=Preempt(OFF);
+  Ltf *l=LtfDblBufStart;
+  while (!ScanChar && TaskValidate(task)) {
+    CallerRep(task->rbp,task);
+    CrLf;
+    PutDefine("ST_PRESS_A_KEY");
+    LtfDblBufSwap;
+    WinSync;
+  }
+  if (LtfCur==l) LtfDblBufSwap;
+  LtfDblBufEnd;
+  Preempt(old_preempt);
+}
+
+U0 Spy()
+{
+  I64 i;
+  TaskStruct *task;
+
+  while (TRUE) {
+    task=Fs->next_task;
+    while (task!=Fs) {
+      PrintF("$MA+A+X,\"Task:%08X:%16ts\",\"0x%08X\r\"$\r\n",task,task->task_name,task);
+      task=task->next_task;
+    }
+    CrLf;
+    task=PmtI64("Task Addr: ",0);
+    if (TaskValidate(task)) {
+      PutS("\r\n\r\n\t$BT-LE+LM,\"StkRep\",\"1\r\"$\r\n\r\n\r\n");
+      PutS("\r\n\r\n\t$BT-LE+LM,\"CallerRep\",\"2\r\"$\r\n\r\n\r\n");
+      i=PmtI64("",0);
+      if (i==1)
+	SpyStkRep(task);
+      else if (i==2)
+	SpyCallerRep(task);
+      else
+	break;
+    } else
+      break;
+  }
+  CrLf;
+}
+
+Spy;

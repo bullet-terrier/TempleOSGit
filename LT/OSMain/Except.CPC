@@ -1,10 +1,11 @@
-U8 ExceptDepth(TssStruct *tss=NULL)
+/* Project: OSMain */
+U64 ExceptDepth(TaskStruct *task=NULL)
 {
-  U8 result=0;
+  U64 result=0;
   ExceptStruct *tempt;
-  if (!tss) tss=Fs;
-  tempt=tss->next_except;
-  while (tempt!=&tss->next_except) {
+  if (!task) task=Fs;
+  tempt=task->next_except;
+  while (tempt!=&task->next_except) {
     result++;
     tempt=tempt->next;
   }
@@ -12,55 +13,70 @@ U8 ExceptDepth(TssStruct *tss=NULL)
 }
 
 asm {
-	USE64
-CP_TEST_EXCEPT::
-	XOR	EAX,EAX
-	MOV	RAX,FS:TSS_ABSOLUTE_ADDRESS[RAX]
-	MOV	RAX,U8 TSS_LAST_EXCEPT[RAX]
-	MOV	RBP,U8 EXCEPT_RBP[RAX]
-	MOV	RSI,U8 EXCEPT_RSI[RAX]
-	MOV	RDI,U8 EXCEPT_RDI[RAX]
-	MOV	R12,U8 EXCEPT_R12[RAX]
-	MOV	R13,U8 EXCEPT_R13[RAX]
-	MOV	R14,U8 EXCEPT_R14[RAX]
-	MOV	R15,U8 EXCEPT_R15[RAX]
-	PUSH	U8 EXCEPT_RFLAGS[RAX]
+USE64
+#assert !((CREG_NON_PTR_MASK|CREG_VARS_MASK)&~0xFCC0)
+_TEST_EXCEPT::
+	XOR	RAX,RAX
+	MOV	RAX,FS:U64 TASK_LAST_EXCEPT[RAX]
+	MOV	RBP,U64 EXCEPT_RBP[RAX]
+	MOV	RSI,U64 EXCEPT_RSI[RAX]
+	MOV	RDI,U64 EXCEPT_RDI[RAX]
+	MOV	R10,U64 EXCEPT_R10[RAX]
+	MOV	R11,U64 EXCEPT_R11[RAX]
+	MOV	R12,U64 EXCEPT_R12[RAX]
+	MOV	R13,U64 EXCEPT_R13[RAX]
+	MOV	R14,U64 EXCEPT_R14[RAX]
+	MOV	R15,U64 EXCEPT_R15[RAX]
+	PUSH	U64 EXCEPT_RFLAGS[RAX]
 	POPFD
-	JMP	U8 EXCEPT_HANDLER_START[RAX]
+	JMP	U64 EXCEPT_HANDLER_START[RAX]
 
-CP_TAKE_EXCEPT::
-	XOR	EAX,EAX
-	MOV	RAX,FS:TSS_ABSOLUTE_ADDRESS[RAX]
-	MOV	RAX,U8 TSS_LAST_EXCEPT[RAX]
-	MOV	RSP,U8 EXCEPT_RSP[RAX]
-	JMP	U8 EXCEPT_HANDLER_SKIP[RAX]
+_TAKE_EXCEPT::
+	XOR	RAX,RAX
+	MOV	RAX,FS:U64 TASK_LAST_EXCEPT[RAX]
+	MOV	RSP,U64 EXCEPT_RSP[RAX]
+	JMP	U64 EXCEPT_HANDLER_SKIP[RAX]
 
-CP_SAVE_EXCEPT_REGS::
-	PUSH	RBP
-	MOV	RBP,RSP
-	MOV	RAX,U8 SF_PARAM1[RBP]
-	MOV	U8 EXCEPT_RSI[RAX],RSI
-	MOV	U8 EXCEPT_RDI[RAX],RDI
-	MOV	U8 EXCEPT_R12[RAX],R12
-	MOV	U8 EXCEPT_R13[RAX],R13
-	MOV	U8 EXCEPT_R14[RAX],R14
-	MOV	U8 EXCEPT_R15[RAX],R15
-	POP	RBP
-	RET
+_SAVE_EXCEPT_REGS::
+	ENTER	0
+	MOV	RAX,U64 SF_ARG1[RBP]
+	MOV	U64 EXCEPT_RSI[RAX],RSI
+	MOV	U64 EXCEPT_RDI[RAX],RDI
+	MOV	U64 EXCEPT_R10[RAX],R10
+	MOV	U64 EXCEPT_R11[RAX],R11
+	MOV	U64 EXCEPT_R12[RAX],R12
+	MOV	U64 EXCEPT_R13[RAX],R13
+	MOV	U64 EXCEPT_R14[RAX],R14
+	MOV	U64 EXCEPT_R15[RAX],R15
+	LEAVE
+	RET1	8
+}
+
+LTextern _TEST_EXCEPT U0 TestExcept();
+LTextern _TAKE_EXCEPT U0 TakeExcept();
+LTextern _SAVE_EXCEPT_REGS U0 SaveExceptRegs(ExceptStruct *t);
+
+#exe {NoRegVar(ON);};
+
+class SysTryStk
+{
+  U64 var_tempt;
+  U64 var_old_flags;
+  U64 var_rbp;
+  U64 var_rsp;
+  U64 rbp;
+  U64 ret_rip;
+  U64 arg1;
+  U64 arg2;
 };
 
-LTextern CP_TEST_EXCEPT void TestExcept();
-LTextern CP_TAKE_EXCEPT void TakeExcept();
-LTextern CP_SAVE_EXCEPT_REGS void SaveExceptRegs(ExceptStruct *t);
-
-#exe {NoRegVar(ON);}
-void SysTry(U1 *start_label,U1 *skip_label)
+U0 SysTry(U8 *catch_start,U8 *untry_start)
 {
-  U8 *rsp=GetStackPtr,*rbp=GetBasePtr,old_flags=GetFlags;
+  U64 *rsp=GetStkPtr,*rbp=GetBasePtr,old_flags=GetFlags;
   ExceptStruct *tempt=MAlloc(sizeof(ExceptStruct));
-  tempt->handler_start=start_label;
-  tempt->handler_skip=skip_label;
-  tempt->rsp=rsp+0x40;
+  tempt->handler_catch=catch_start;
+  tempt->handler_untry=untry_start;
+  tempt->rsp=rsp><(U8 *)+sizeof(SysTryStk);
   tempt->rbp=*rbp;
   tempt->rflags=old_flags;
   SaveExceptRegs(tempt);
@@ -69,32 +85,67 @@ void SysTry(U1 *start_label,U1 *skip_label)
   SetFlags(old_flags);
 }
 
-void SysCatch()
+U0 SysUntry()
 {
-  U8 old_flags=GetFlags;
   ExceptStruct *tempt=Fs->last_except;
+  PushFD;
+//The adam task sometimes probes except depth,
+//so we lock it out.  A probe from a multicore
+//would fail, but who'd want to do that?
   Cli;
   RemQue(tempt);
-  SetFlags(old_flags);
+  PopFD;
   Free(tempt);
 }
 
-void AdamLogExcept()
+U0 AdamLogExcept(I64 argc,I64 *argv)
 {
-  U8 i;
-  if (!Gs->num) { //TODO
-    AdamLog("Depth:%02X Tsk:%08X throw(",
+  U64 i;
+  if (!Gs->num) { //TODO: Other cores
+    AdamLog("Depth:%02X Task:%08X throw(",
       ExceptDepth(Fs),Fs);
-    for (i=0;i<Fs->except_argc;i++)
-      AdamLog("%X,",Fs->except_argv[i]);
+    for (i=0;i<argc;i++) {
+      AdamLog("%X",argv[i]);
+      if (i<argc-1)
+	AdamLog(",");
+    }
     AdamLog(");\r\n");
   }
 }
 
+U0 PutExcept()
+{
+  I64 i;
+  if (Fs->except_argc>0) {
+    if (Fs->except_argv[0]<DefineSubCnt("ST_EXCEPT_TYPES")) {
+      PrintF("Exception Type :%Z\r\n",Fs->except_argv[0],"ST_EXCEPT_TYPES");
+      if (Fs->except_argv[0]==EXCEPT_UNDEF_DEFINE)
+	PrintF("Name:'%s'\r\n",Fs->except_argv[1]);
+      else if (Fs->except_argv[0]==EXCEPT_DIVIDE_BY_ZERO)
+	PrintF("Addr:%P\r\n",Fs->except_argv[1]);
+      else {
+	for (i=1;i<Fs->except_argc;i++) {
+	  PutHex(Fs->except_argv[i],16);
+	  Spaces;
+	}
+	CrLf;
+      }
+    } else {
+      PutS("Exception:");
+      for (i=0;i<Fs->except_argc;i++) {
+	PutHex(Fs->except_argv[i],16);
+	Spaces;
+      }
+      CrLf;
+    }
+  } else
+    PutS("Generic Exception\r\n");
+}
 
-void throw_join(I8 argc,I8 *argv)
+U0 throw_join(I64 argc,I64 *argv)
 {
   ExceptStruct *tempt=Fs->last_except;
+  BoolI8 was_raw;
 
   Fs->except_argc=argc;
   Fs->except_argv=argv;
@@ -112,43 +163,74 @@ void throw_join(I8 argc,I8 *argv)
     RemQue(tempt);
     Free(tempt);
   }
+  was_raw=Raw(ON);
+  PutExcept;
   if (!Gs->num)
-    Debugger("Unhandled Exception");
+    Dbg("Unhandled Exception");
   else {
-    //TODO
+    DbgStr("Unhandled MP Exception",5000);
     while (TRUE)
       Beep;
   }
+  Raw(was_raw);
 }
 
-void throw_no_log(...)
+U0 throw_no_log(...)
 {
   throw_join(argc,argv);
 }
 
-void throw(...)
+U0 throw(...)
 {
-  AdamLogExcept;
+  if (fp_sprintf_join)
+    AdamLogExcept(argc,argv);
   throw_join(argc,argv);
 }
 
-#exe {NoRegVar(OFF);}
+#exe {NoRegVar(OFF);};
 
-asm {CP_BREAK::}
-void Break()
+U0 SysThrowBreak()
 {
-  ReleaseTaskPartitions;
-  CallExtNum(EXT_FLUSH_MSGS,NULL);
-  throw(EXCEPT_BREAK);
+  if (Bt(&Fs->task_flags,TASKf_BREAK_TO_SHIFT_ESC))
+    Msg(MSG_KEY_DOWN,CH_SHIFT_ESC,0x20100000201);
+  else { //TODO: Might want lock
+    Fs->wake_jiffy=0;
+    TaskRstAwaitingMsg;
+    PrtsRelease();
+    BlkDevsRelease();
+    FlushMsgs;
+    throw(EXCEPT_BREAK);
+  }
 }
 
-void ThrowDivide(void *rip)
+//This can be used to exit an app, but not a task.
+U0 ThrowBreak(TaskStruct *task=NULL)
 {
-  throw(EXCEPT_ARITHMETIC,rip);
+  if (task && task!=Fs) {
+    if (!TaskValidate(task)) return;
+    //TODO: Might want lock
+    sys_cur_focus_task=task;
+    LBts(sys_ctrl_alt_flags,SYSf_CTRL_ALT_C);
+  } else
+    SysThrowBreak;
 }
 
-void ThrowFloating(void *rip)
+BoolI64 BreakLock(TaskStruct *task=NULL)
 {
-  throw(EXCEPT_FLOATING,rip);
+  if (!task) task=Fs;
+  return !LBts(&task->task_flags,TASKf_BREAK_LOCKED);
 }
 
+BoolI64 BreakUnlock(TaskStruct *task=NULL)
+{
+  BoolI8 result;
+  if (!task) task=Fs;
+  result=LBtr(&task->task_flags,TASKf_BREAK_LOCKED);
+  if (LBtr(&task->task_flags,TASKf_PENDING_BREAK)) {
+    if (task==Fs)
+      ThrowBreak;
+    else
+      task->rip=&ThrowBreak;
+  }
+  return result;
+}

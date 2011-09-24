@@ -1,43 +1,68 @@
-#include "AdamK.HPZ"
+//You should compile this by calling
+//[C:/LT/Opt/Boot/InsBoot.APZ,185] InstallBoot(), not doing it directly.
+//See [::/LT/Opt/Boot/InsBoot.APZ,Cmp("OS"] Cmp("OS").
+
+#exe {
+OptOn(OPTf_PAREN_WARN);
+#include "OSCfg"
+OSMainCfg *osmain_cfg;
+osmain_cfg=OSMainCfgNew;
+};
+
+#include "BootDefs.HPZ"
+#include "Adam1a.HPZ"
 asm {
-#include "OSDefs"
-	ALIGN	16,0x90
-SYS_CS_START::
-#include "OSStartUp"
-#include "IRQHandlers"
-#include "SysUtils"
-#include "Scheduler"
-#include "CharUtils"
+#include "OSAsmDefs.HPZ"
 }
-#include "AdamK2.HPZ"
-#exe {OptOn(OPTf_IGNORE_OVERFLOW);}
+#include "OSStartUp"
+#include "SysUtils"
+#include "/LT/Compiler/CmpDefs.HPZ"
+#include "Adam1b.HPZ"
 #include "OSExts"
 #include "OSGlbls"
+#include "Scheduler"
 #include "Font8x8"
 #include "Memory"
+#include "Interrupts"
 #include "FIFO"
-#include "CRT"
-#include "Misc"
-#include "Debug"
-#include "Except"
-#include "Cmd"
-#include "Date"
-#include "KbdInput"
-#include "Strings"
-#include "SysText"
-#include "SPrintF1"
-#include "QSort"
 #include "Compress"
-#include "Disk/DiskCache"
-#include "Disk/DiskFDC"
-#include "Disk/DiskATA"
-#include "Disk/Disk3"
-#include "Disk/DiskAddDev"
-#include "Disk/DiskDir"
-#include "Disk/FileSysISO"
-#include "Disk/FileSysLT"
-#include "Disk/Disk4"
-#include "Disk/DiskLTFile"
-#include "Disk/Disk5"
+#include "Hash1a"
+#include "Str1a"
+#include "Define1a"
+#include "Display"
+#include "Misc1a"
+#include "Dbg1a"
+#include "Except"
+#include "KbdMouse/InputPointer"
+#include "KbdMouse/Keyboard"
+#include "KbdMouse/Mouse"
+#include "KbdMouse/Message"
+
+#include "QSort"
+#include "Task1a"
+#include "TaskCmd"
+#include "Date"
+#include "USB1a"
+
+#exe {Cd("Dsk");};
+#include "DskStr"
+#include "DskCache"
+#include "ATADef.HPZ"
+#include "DskATA"
+#include "Dsk1a"
+#include "DskAddDev"
+#include "DskDir"
+#include "FileSysISO1"
+#include "FileSysISO3"
+#include "FileSysLT"
+#include "FileSysFAT"
+#include "Dsk1b"
+#include "DskLTFile"
+#include "Dsk1c"
+
+#exe {Cd("..");};
 #include "MultiProc"
-#include "OSEnd"
+#include "BIOS32"
+#include "OSMain"
+
+#exe {OSMainCfgDel(osmain_cfg);};

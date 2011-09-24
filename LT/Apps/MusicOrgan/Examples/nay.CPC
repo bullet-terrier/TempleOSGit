@@ -1,14 +1,10 @@
-void EndTsk()
+//7 has words
+U0 Song()
 {
-  Sound(0);
-  Exit;
-}
-
-void Song()
-{
-  Fs->end_task_cb=&EndTsk;
+  Fs->task_end_cb=&SndTaskEndCB;
   music_tempo=2.5;
   try {
+  PutS("$WW+H,1$");
   while (!ScanKey) {
 	Play("3qAAsG2G3G2G3qGF2eG3FqEetCBA",
 		"Let's \0ask \0Mike\0 \0 \0 \0y;  \0Hates \0 \0every\0thing.\r\n\0 \0 \0 \0");
@@ -20,8 +16,8 @@ void Song()
 		"What \0do \0YOU \0 \0 \0know.  \0 \0 \0 \0 \0 \0It's \0 \0kosh\0er!\r\n\0");
   }
   } catch
-    Fs->catch_except=TRUE;
-  Sound(0);
+    CatchAll;
+  Snd(0);
 }
 
 Song;

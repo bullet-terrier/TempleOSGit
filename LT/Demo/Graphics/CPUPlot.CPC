@@ -1,74 +1,64 @@
-#define __BIN_1_TYPE 0x00000002
-#define __BIN_1_SIZE 0x00000040
-#define __BIN_1 "\x05\x00\x00\x00\xFC\xFF\xFF\xFF\x02\x00\x00\x00\xFF\xFF\xFF\xFF\xFC\xFF\xFF\xFF\x05\x00\x00\x00\xFF\xFF\xFF\xFF\xFC\xFF\xFF\xFF\x04\x00\x00\x00\x03\x00\x00\x00\x05\x00\x00\x00\x04\x00\x00\x00\x03\x00\x00\x00\xFD\xFF\xFF\xFF\x01\x00\x00\x00\x00\x00\x00\x00"
-
 #define NUM_DATA_POINTS 256
 
-double CPU0idle[NUM_DATA_POINTS];
-double CPU1idle[NUM_DATA_POINTS];
-double mem[NUM_DATA_POINTS];
-double refresh[NUM_DATA_POINTS];
+F64 CPU_idle[MP_MAX_PROCESSORS][NUM_DATA_POINTS];
+F64 mem[NUM_DATA_POINTS];
+F64 refresh[NUM_DATA_POINTS];
 
-/* <PI2> <1> (image) */
-void DrawIt(TssStruct *tss)
+U0 UpdateWin(TaskStruct *task)
 {
-  GrBitMap *base=GrAlias(grbase2,tss);
-  I8 i,x1,y1,x2,y2;
-  ClearWinText(tss);
+  GrBitMap *base=GrAlias(gr_refreshed_base,task);
+  I64 i,j,x1,y1,x2,y2;
+  U8 buf[32];
   for (i=1;i<NUM_DATA_POINTS;i++) {
-    base->color=RED;
-    x1=(i-1)*(tss->win_pixel_right-tss->win_pixel_left)/(NUM_DATA_POINTS-1);
-    y1=(tss->win_pixel_bottom-tss->win_pixel_top)*CPU0idle[i-1];
-    x2=i*(tss->win_pixel_right-tss->win_pixel_left)/(NUM_DATA_POINTS-1);
-    y2=(tss->win_pixel_bottom-tss->win_pixel_top)*CPU0idle[i];
-    GrLine(base,x1,y1,x2,y2);
-    if (mp_cnt>1) {
-      base->color=BLUE;
-      y1=(tss->win_pixel_bottom-tss->win_pixel_top)*CPU1idle[i-1];
-      y2=(tss->win_pixel_bottom-tss->win_pixel_top)*CPU1idle[i];
+    x1=(i-1)*task->win_pixel_width/(NUM_DATA_POINTS-1);
+    x2=i*task->win_pixel_width/(NUM_DATA_POINTS-1);
+    for (j=0;j<mp_cnt;j++) {
+      base->color=gr_rainbow_10[j];
+      y1=task->win_pixel_height*CPU_idle[j][i-1];
+      y2=task->win_pixel_height*CPU_idle[j][i];
       GrLine(base,x1,y1,x2,y2);
     }
-    base->color=GREEN;
-    y1=(tss->win_pixel_bottom-tss->win_pixel_top)*mem[i-1];
-    y2=(tss->win_pixel_bottom-tss->win_pixel_top)*mem[i];
+    base->color=LTCYAN;
+    y1=task->win_pixel_height*mem[i-1];
+    y2=task->win_pixel_height*mem[i];
     GrLine(base,x1,y1,x2,y2);
-//If you want to get fancy, you mark points with this.
-//    GrElemsPlot(base,x2,y2,0,__BIN_1);
-    base->color=CYAN;
-    y1=(tss->win_pixel_bottom-tss->win_pixel_top)*refresh[i-1];
-    y2=(tss->win_pixel_bottom-tss->win_pixel_top)*refresh[i];
+
+    base->color=LTPURPLE;
+    y1=task->win_pixel_height*refresh[i-1];
+    y2=task->win_pixel_height*refresh[i];
     GrLine(base,x1,y1,x2,y2);
   }
-  if (mp_cnt>1)
-    PlotWinStr(tss,"CPU1 %",BLUE+WHITE<<4,0,tss->win_bottom-tss->win_top-4);
-  PlotWinStr(tss,"CPU0 %",RED+WHITE<<4,0,tss->win_bottom-tss->win_top-3);
-  PlotWinStr(tss,"Memory %",GREEN+WHITE<<4,0,tss->win_bottom-tss->win_top-2);
-  PlotWinStr(tss,"Refresh Hz",CYAN+WHITE<<4,0,tss->win_bottom-tss->win_top-1);
+  for (j=0;j<mp_cnt;j++) {
+    SPrintF(buf,"CPU%d",j);
+    PlotWinStr(task,buf,gr_rainbow_10[j]+WHITE<<4,0,task->win_height-4-j);
+  }
+  PlotWinStr(task,"Mem %",LTCYAN+WHITE<<4,0,task->win_height-3);
+  PlotWinStr(task,"Refresh Hz",LTPURPLE+WHITE<<4,0,task->win_height-2);
   GrDel(base);
 }
 
-void CPUPlot()
+U0 CPUPlot()
 {
-  CPUStruct *c;
-  void *old_update=Fs->update_win;
-  I8 cur_point=0;
-  MemSet(CPU0idle,0,sizeof(double)*NUM_DATA_POINTS);
-  MemSet(mem,0,sizeof(double)*NUM_DATA_POINTS);
-  Fs->update_win=&DrawIt;
-  while (!ScanKey) {
-    c=mp_cpu_structs+sizeof(CPUStruct)*0;
-    CPU0idle[cur_point]=c->idle_factor;
-    if (mp_cnt>1) {
-      c=mp_cpu_structs+sizeof(CPUStruct)*1;
-      CPU1idle[cur_point]=c->idle_factor;
-    }
-    mem[cur_point]=UnusedSysMem*1.0/(sys_heap_limit-sys_heap_base+1);
-    refresh[cur_point]=1.0-win_refresh/100.0;  //This plots on a scale of 0-100 Hz
+  I64 cur_point=0,j;
+  MemSet(CPU_idle,0,sizeof(CPU_idle));
+  MemSet(mem,0,sizeof(F64)*NUM_DATA_POINTS);
+  MemSet(refresh,0,sizeof(F64)*NUM_DATA_POINTS);
+
+  SettingsPush; //See [C:/LT/Adam/TaskSettings.APZ,3] SettingsPush
+  Fs->update_win=&UpdateWin;
+
+  while (!ScanChar) {
+    for (j=0;j<mp_cnt;j++)
+      CPU_idle[j][cur_point]=cpu_structs[j].idle_factor;
+    mem[cur_point]=ToF64(UnusedSysMem)/(sys_heap_limit-sys_heap_base+1);
+    refresh[cur_point]=1.0-win_actual_refresh/100.0;  //This plots on a scale of 0-100 Hz
     Sleep(25);
-    cur_point=(++cur_point) % NUM_DATA_POINTS;
+    cur_point= ++cur_point % NUM_DATA_POINTS;
   }
-  Fs->update_win=old_update;
+  SettingsPop;
 }
 
-
 CPUPlot; //start when #included
+
+//Study [::/LT/Opt/MemRep.APZ] ::/LT/Opt/MemRep.APZ and [C:/LT/Adam/WallPaper.APZ,19] WallPaper() to learn more about
+//how the system resources are put together.

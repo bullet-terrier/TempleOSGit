@@ -1,13 +1,7 @@
-//star star star star
-void EndTsk()
+//9 no nothing
+U0 Song()
 {
-  Sound(0);
-  Exit;
-}
-
-void Song()
-{
-  Fs->end_task_cb=&EndTsk;
+  Fs->task_end_cb=&SndTaskEndCB;
   music_tempo=2.5;
   while (TRUE) {
     Play("eDEqFqFetEEFqDeCDeDEetCGF");

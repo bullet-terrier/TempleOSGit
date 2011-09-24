@@ -1,8 +1,8 @@
-GrBitMap *base=GrAlias(grbase2,Fs);
+GrBitMap *base=GrAlias(gr_refreshed_base,Fs);
 
-void DrawIt(TssStruct *tss)
+U0 UpdateWin(TaskStruct *task)
 {
-  ClearWinText(tss);
+  nounusedwarn task;
   base->pen_width=2;
   base->color=RED;
   GrLine3(base,-100,-100,-100, -100, 100,-100);
@@ -19,39 +19,33 @@ void DrawIt(TssStruct *tss)
   GrLine3(base, 100,-100, 100,	100,-100,-100);
 }
 
-void Box()
+U0 Box()
 {
-  double theta=0,phi=0,zeta=0,s=1,s1=1.05;
-  I8 *r1,*r2,*r3,*r4,*r5,*r6;
-  void *old_update=Fs->update_win;
-  Fs->update_win=&DrawIt;
+  F64 theta=0,phi=0,zeta=0,s=1,s1=1.05;
+
+  SettingsPush; //See [C:/LT/Adam/TaskSettings.APZ,3] SettingsPush
+  Fs->update_win=&UpdateWin;
+  Preempt(OFF); //We don't want matrix used while we're changing it.
 
   base->x=200;
   base->y=200;
   base->flags|=BMF_TRANSFORMATION;
-  while (!ScanKey) {
-    r1=GrTheta(theta);
-    r2=GrPhi(phi);
-    r3=GrTheta(zeta);
-    r4=GrMulMat(r1,r2);
-    r5=GrMulMat(r4,r3);
-    r6=base->r;
-    base->r=GrScaleMat(r5,s);
-    Free(r1);
-    Free(r2);
-    Free(r3);
-    Free(r4);
-    Free(r5);
-    Free(r6);
+  while (!ScanChar) {
+    GrIdentEqu(base->r);
+    GrRotZEqu(base->r,theta);
+    GrRotXEqu(base->r,phi);
+    GrRotZEqu(base->r,zeta);
+    GrScaleMatEqu(base->r,s);
+    GrSetRotMat(base,base->r);
 
-    Sleep(60);
-    theta+=pi2/70;
-    phi  +=pi2/90;
-    zeta +=pi2/110;
+    Sleep(20);
+    theta+=2*pi/70;
+    phi  +=2*pi/90;
+    zeta +=2*pi/110;
     s *=s1;
-    if (s<0.2|| s>1.4) s1=1/s1;
+    if ( !(0.2<s<1.4) ) s1=1/s1;
   }
-  Fs->update_win=old_update;
+  SettingsPop;
 }
 
 Box;
