@@ -170,6 +170,10 @@ BYTE *ExpandBuf(ArcCompressStruct *r)
   ArcCompressStruct *r2=r;
   BYTE *result;
   DWORD text_only;
+
+  if (r->compression_type>CT_8_BIT)
+    return NULL;
+
   result=(BYTE *)malloc(r2->expanded_size+1);
   result[r2->expanded_size]=0; //terminate
 
