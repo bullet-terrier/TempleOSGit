@@ -1,5 +1,5 @@
- 137,965 +] /SparrowOS/*
-     6,832 +] Accts
+ 139,466 +] /SparrowOS/*
+     7,123 +] Accts
          306 +] Install
             41 [C:/SparrowOS/Accts/Install/Adam3fSys.CPP.Z,1] Adam3fSys.CPP.Z
      265 [C:/SparrowOS/Accts/Install/DoItOnce.CPP.Z,1] DoItOnce.CPP.Z
@@ -8,14 +8,14 @@
        2 [C:/SparrowOS/Accts/SafeMode/Adam3cSnd.CPP.Z,1] Adam3cSnd.CPP.Z
       39 [C:/SparrowOS/Accts/SafeMode/Adam3fSys.CPP.Z,1] Adam3fSys.CPP.Z
       10 [C:/SparrowOS/Accts/SafeMode/DoItOnce.CPP.Z,1] DoItOnce.CPP.Z
-       6,128 +] TS
-         4,804 +] TAD
+       6,420 +] TS
+         5,074 +] TAD
              822 +] Archive
                489 [C:/SparrowOS/Accts/TS/TAD/Archive/FileSysISO3.CPP.Z,1]
           FileSysISO3.CPP.Z
      218 [C:/SparrowOS/Accts/TS/TAD/Archive/USB.CPP.Z,1] USB.CPP.Z
      115 [C:/SparrowOS/Accts/TS/TAD/Archive/USB1a.CPP.Z,1] USB1a.CPP.Z
-           3,903 +] MusicOrgan
+           4,211 +] MusicOrgan
                 76 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/abiding.CPP.Z,1]
           abiding.CPP.Z
       45 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/abyss.CPP.Z,1] abyss.CPP.Z
@@ -46,7 +46,7 @@
           dialogue.CPP.Z
       27 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/disputing.CPP.Z,1]
           disputing.CPP.Z
-      63 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/doing.CPP.Z,1] doing.CPP.Z
+      65 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/doing.CPP.Z,1] doing.CPP.Z
       17 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/downfall.CPP.Z,1]
           downfall.CPP.Z
       25 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/dream.CPP.Z,1] dream.CPP.Z
@@ -58,14 +58,15 @@
           epicurus.CPP.Z
       40 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/exalt.CPP.Z,1] exalt.CPP.Z
       63 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/exiled.CPP.Z,1] exiled.CPP.Z
+      21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/exodus.CPP.Z,1] exodus.CPP.Z
       45 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/expedition.CPP.Z,1]
           expedition.CPP.Z
       38 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/fairness.CPP.Z,1]
           fairness.CPP.Z
-      21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/feigned.CPP.Z,1] feigned.CPP.Z
+      26 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/feigned.CPP.Z,1] feigned.CPP.Z
       68 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/finger.CPP.Z,1] finger.CPP.Z
       54 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/first.CPP.Z,1] first.CPP.Z
-      45 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/fishermen.CPP.Z,1]
+      61 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/fishermen.CPP.Z,1]
           fishermen.CPP.Z
       21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/fixing.CPP.Z,1] fixing.CPP.Z
       21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/flung.CPP.Z,1] flung.CPP.Z
@@ -73,7 +74,7 @@
       37 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/forasmuch.CPP.Z,1]
           forasmuch.CPP.Z
       25 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/freaks.CPP.Z,1] freaks.CPP.Z
-      35 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/free.CPP.Z,1] free.CPP.Z
+     156 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/free.CPP.Z,1] free.CPP.Z
       75 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/furnishing.CPP.Z,1]
           furnishing.CPP.Z
       52 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/good.CPP.Z,1] good.CPP.Z
@@ -84,15 +85,15 @@
           honestly.CPP.Z
       55 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/hope.CPP.Z,1] hope.CPP.Z
       36 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/image.CPP.Z,1] image.CPP.Z
-      21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/inwardly.CPP.Z,1]
-          inwardly.CPP.Z
-      23 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/keeping.CPP.Z,1] keeping.CPP.Z
+      49 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/josh.CPP.Z,1] josh.CPP.Z
+      49 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/keeping.CPP.Z,1] keeping.CPP.Z
       34 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/kept.CPP.Z,1] kept.CPP.Z
       56 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/limit.CPP.Z,1] limit.CPP.Z
       60 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/mary.CPP.Z,1] mary.CPP.Z
       53 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/mightest.CPP.Z,1]
           mightest.CPP.Z
       81 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/mildly.CPP.Z,1] mildly.CPP.Z
+      21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/myrrh.CPP.Z,1] myrrh.CPP.Z
       24 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/nay.CPP.Z,1] nay.CPP.Z
       80 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/night.CPP.Z,1] night.CPP.Z
       21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/o.CPP.Z,1] o.CPP.Z
@@ -106,14 +107,14 @@
       17 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/proponent.CPP.Z,1]
           proponent.CPP.Z
       55 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/prosper.CPP.Z,1] prosper.CPP.Z
-      22 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/psalm.CPP.Z,1] psalm.CPP.Z
+      26 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/psalm.CPP.Z,1] psalm.CPP.Z
       37 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/purpose.CPP.Z,1] purpose.CPP.Z
       23 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/reasoning.CPP.Z,1]
           reasoning.CPP.Z
       40 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/reliance.CPP.Z,1]
           reliance.CPP.Z
       25 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/reposes.CPP.Z,1] reposes.CPP.Z
-      20 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/restless.CPP.Z,1]
+      33 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/restless.CPP.Z,1]
           restless.CPP.Z
       22 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/rifled.CPP.Z,1] rifled.CPP.Z
       90 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/risen.CPP.Z,1] risen.CPP.Z
@@ -123,7 +124,7 @@
           scriptures.CPP.Z
       36 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/service.CPP.Z,1] service.CPP.Z
       56 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/shield.CPP.Z,1] shield.CPP.Z
-      21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/signifies.CPP.Z,1]
+      35 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/signifies.CPP.Z,1]
           signifies.CPP.Z
       26 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/silver.CPP.Z,1] silver.CPP.Z
       93 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/small.CPP.Z,1] small.CPP.Z
@@ -139,27 +140,29 @@
       41 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/valued.CPP.Z,1] valued.CPP.Z
       70 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/vengeance.CPP.Z,1]
           vengeance.CPP.Z
-      50 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/verses.CPP.Z,1] verses.CPP.Z
+      64 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/verses.CPP.Z,1] verses.CPP.Z
       23 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/villa.CPP.Z,1] villa.CPP.Z
       51 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/wisdom.CPP.Z,1] wisdom.CPP.Z
       36 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/witherto.CPP.Z,1]
           witherto.CPP.Z
-      21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/worship.CPP.Z,1] worship.CPP.Z
+      23 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/worship.CPP.Z,1] worship.CPP.Z
+      21 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/yesterday.CPP.Z,1]
+          yesterday.CPP.Z
       27 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/you.CPP.Z,1] you.CPP.Z
       69 [C:/SparrowOS/Accts/TS/TAD/MusicOrgan/zip.CPP.Z,1] zip.CPP.Z
               21 [C:/SparrowOS/Accts/TS/TAD/Adam3aLocalize.CPP.Z,1]
         Adam3aLocalize.CPP.Z
        4 [C:/SparrowOS/Accts/TS/TAD/Registry.CPP.Z,1] Registry.CPP.Z
-      54 [C:/SparrowOS/Accts/TS/TAD/Test.CPP.Z,1] Test.CPP.Z
+      16 [C:/SparrowOS/Accts/TS/TAD/Test.CPP.Z,1] Test.CPP.Z
              0 +] Wb2
-                    10 [C:/SparrowOS/Accts/TS/Adam3bPkgs.CPP.Z,1]
-      Adam3bPkgs.CPP.Z
+                    14 [C:/SparrowOS/Accts/TS/Adam3.CPP.Z,1] Adam3.CPP.Z
+      10 [C:/SparrowOS/Accts/TS/Adam3bPkgs.CPP.Z,1] Adam3bPkgs.CPP.Z
      267 [C:/SparrowOS/Accts/TS/Adam3dKeyPlugIns.CPP.Z,1]
       Adam3dKeyPlugIns.CPP.Z
       10 [C:/SparrowOS/Accts/TS/Adam3eWrappers.CPP.Z,1] Adam3eWrappers.CPP.Z
       50 [C:/SparrowOS/Accts/TS/Adam3fSys.CPP.Z,1] Adam3fSys.CPP.Z
       13 [C:/SparrowOS/Accts/TS/DoItOnce.CPP.Z,1] DoItOnce.CPP.Z
-     414 [C:/SparrowOS/Accts/TS/TSAdam.CPP.Z,1] TSAdam.CPP.Z
+     422 [C:/SparrowOS/Accts/TS/TSAdam.CPP.Z,1] TSAdam.CPP.Z
      544 [C:/SparrowOS/Accts/TS/TSDistribute.CPP.Z,1] TSDistribute.CPP.Z
        8 [C:/SparrowOS/Accts/TS/TSIDComputer.CPP.Z,1] TSIDComputer.CPP.Z
        8 [C:/SparrowOS/Accts/TS/TSIDDft.CPP.Z,1] TSIDDft.CPP.Z
@@ -167,12 +170,12 @@
                 10 [C:/SparrowOS/Accts/Adam3.CPP.Z,1] Adam3.CPP.Z
       22 [C:/SparrowOS/Accts/Adam3aLocalize.CPP.Z,1] Adam3aLocalize.CPP.Z
       25 [C:/SparrowOS/Accts/Adam3bPkgs.CPP.Z,1] Adam3bPkgs.CPP.Z
-      12 [C:/SparrowOS/Accts/Adam3cSnd.CPP.Z,1] Adam3cSnd.CPP.Z
+      11 [C:/SparrowOS/Accts/Adam3cSnd.CPP.Z,1] Adam3cSnd.CPP.Z
      180 [C:/SparrowOS/Accts/Adam3dKeyPlugIns.CPP.Z,1] Adam3dKeyPlugIns.CPP.Z
       28 [C:/SparrowOS/Accts/Adam3eWrappers.CPP.Z,1] Adam3eWrappers.CPP.Z
       43 [C:/SparrowOS/Accts/Adam3fSys.CPP.Z,1] Adam3fSys.CPP.Z
       17 [C:/SparrowOS/Accts/DoItOnce.CPP.Z,1] DoItOnce.CPP.Z
-    39,412 +] Adam
+    39,517 +] Adam
          859 +] Boot
            158 [C:/SparrowOS/Adam/Boot/BootCD.CPP.Z,1] BootCD.CPP.Z
       93 [C:/SparrowOS/Adam/Boot/BootHD.CPP.Z,1] BootHD.CPP.Z
@@ -184,12 +187,12 @@
      394 [C:/SparrowOS/Adam/Ctrls/Ctrls2a.CPP.Z,1] Ctrls2a.CPP.Z
       95 [C:/SparrowOS/Adam/Ctrls/CtrlsButton.CPP.Z,1] CtrlsButton.CPP.Z
      218 [C:/SparrowOS/Adam/Ctrls/CtrlsSlider.CPP.Z,1] CtrlsSlider.CPP.Z
-      11,701 +] Doc
+      11,692 +] Doc
            100 [C:/SparrowOS/Adam/Doc/Doc.CPP.Z,1] Doc.CPP.Z
      193 [C:/SparrowOS/Adam/Doc/DocBible.CPP.Z,1] DocBible.CPP.Z
      434 [C:/SparrowOS/Adam/Doc/DocCodeTools.CPP.Z,1] DocCodeTools.CPP.Z
    1,186 [C:/SparrowOS/Adam/Doc/DocCtrlL.CPP.Z,1] DocCtrlL.CPP.Z
-   2,487 [C:/SparrowOS/Adam/Doc/DocEd.CPP.Z,1] DocEd.CPP.Z
+   2,476 [C:/SparrowOS/Adam/Doc/DocEd.CPP.Z,1] DocEd.CPP.Z
      456 [C:/SparrowOS/Adam/Doc/DocFile.CPP.Z,1] DocFile.CPP.Z
      386 [C:/SparrowOS/Adam/Doc/DocHighlight.CPP.Z,1] DocHighlight.CPP.Z
      521 [C:/SparrowOS/Adam/Doc/DocIDE.CPP.Z,1] DocIDE.CPP.Z
@@ -198,42 +201,42 @@
      898 [C:/SparrowOS/Adam/Doc/DocNew.CPP.Z,1] DocNew.CPP.Z
    1,277 [C:/SparrowOS/Adam/Doc/DocPlain.CPP.Z,1] DocPlain.CPP.Z
      881 [C:/SparrowOS/Adam/Doc/DocPopUp.CPP.Z,1] DocPopUp.CPP.Z
-   1,841 [C:/SparrowOS/Adam/Doc/DocRecalc.CPP.Z,1] DocRecalc.CPP.Z
+   1,843 [C:/SparrowOS/Adam/Doc/DocRecalc.CPP.Z,1] DocRecalc.CPP.Z
      176 [C:/SparrowOS/Adam/Doc/DocTree.CPP.Z,1] DocTree.CPP.Z
-       2,581 +] Dsk
+       2,576 +] Dsk
            233 [C:/SparrowOS/Adam/Dsk/ChkDsk.CPP.Z,1] ChkDsk.CPP.Z
        6 [C:/SparrowOS/Adam/Dsk/Dsk2.CPP.Z,1] Dsk2.CPP.Z
-     427 [C:/SparrowOS/Adam/Dsk/Dsk2a.CPP.Z,1] Dsk2a.CPP.Z
+     422 [C:/SparrowOS/Adam/Dsk/Dsk2a.CPP.Z,1] Dsk2a.CPP.Z
      550 [C:/SparrowOS/Adam/Dsk/Dsk2b.CPP.Z,1] Dsk2b.CPP.Z
      599 [C:/SparrowOS/Adam/Dsk/DskCDDVD.CPP.Z,1] DskCDDVD.CPP.Z
      766 [C:/SparrowOS/Adam/Dsk/FileMgr.CPP.Z,1] FileMgr.CPP.Z
-      12,266 +] Gr
+      12,242 +] Gr
            604 [C:/SparrowOS/Adam/Gr/CSpriteBitMap.CPP.Z,1]
       CSpriteBitMap.CPP.Z
    1,222 [C:/SparrowOS/Adam/Gr/CSpriteEd.CPP.Z,1] CSpriteEd.CPP.Z
    1,384 [C:/SparrowOS/Adam/Gr/CSpriteMesh.CPP.Z,1] CSpriteMesh.CPP.Z
      236 [C:/SparrowOS/Adam/Gr/CSpriteNew.CPP.Z,1] CSpriteNew.CPP.Z
    1,282 [C:/SparrowOS/Adam/Gr/CSpriteVect.CPP.Z,1] CSpriteVect.CPP.Z
-     128 [C:/SparrowOS/Adam/Gr/Gr.CPP.Z,1] Gr.CPP.Z
+     130 [C:/SparrowOS/Adam/Gr/Gr.CPP.Z,1] Gr.CPP.Z
      766 [C:/SparrowOS/Adam/Gr/GrAsm.CPP.Z,1] GrAsm.CPP.Z
    1,682 [C:/SparrowOS/Adam/Gr/GrBitMap.CPP.Z,1] GrBitMap.CPP.Z
       11 [C:/SparrowOS/Adam/Gr/GrCfg.CPP.Z,1] GrCfg.CPP.Z
      107 [C:/SparrowOS/Adam/Gr/GrChar.CPP.Z,1] GrChar.CPP.Z
      181 [C:/SparrowOS/Adam/Gr/GrComposites.CPP.Z,1] GrComposites.CPP.Z
      305 [C:/SparrowOS/Adam/Gr/GrDC.CPP.Z,1] GrDC.CPP.Z
-   1,498 [C:/SparrowOS/Adam/Gr/GrPrimatives.CPP.Z,1] GrPrimatives.CPP.Z
+   1,469 [C:/SparrowOS/Adam/Gr/GrPrimatives.CPP.Z,1] GrPrimatives.CPP.Z
      786 [C:/SparrowOS/Adam/Gr/GrScreen.CPP.Z,1] GrScreen.CPP.Z
-     524 [C:/SparrowOS/Adam/Gr/GrSpritePlot.CPP.Z,1] GrSpritePlot.CPP.Z
+     527 [C:/SparrowOS/Adam/Gr/GrSpritePlot.CPP.Z,1] GrSpritePlot.CPP.Z
      487 [C:/SparrowOS/Adam/Gr/GrVectMap.CPP.Z,1] GrVectMap.CPP.Z
    1,063 [C:/SparrowOS/Adam/Gr/MathGr.CPP.Z,1] MathGr.CPP.Z
-       2,202 +] Snd
-           611 [C:/SparrowOS/Adam/Snd/HDAudio.CPP.Z,1] HDAudio.CPP.Z
+       2,258 +] Snd
+           652 [C:/SparrowOS/Adam/Snd/HDAudio.CPP.Z,1] HDAudio.CPP.Z
      639 [C:/SparrowOS/Adam/Snd/HDCfg.CPP.Z,1] HDCfg.CPP.Z
-     240 [C:/SparrowOS/Adam/Snd/MathAudio.CPP.Z,1] MathAudio.CPP.Z
+     254 [C:/SparrowOS/Adam/Snd/MathAudio.CPP.Z,1] MathAudio.CPP.Z
      261 [C:/SparrowOS/Adam/Snd/Music.CPP.Z,1] Music.CPP.Z
-      65 [C:/SparrowOS/Adam/Snd/Snd.CPP.Z,1] Snd.CPP.Z
+      67 [C:/SparrowOS/Adam/Snd/Snd.CPP.Z,1] Snd.CPP.Z
       69 [C:/SparrowOS/Adam/Snd/SndEffects.CPP.Z,1] SndEffects.CPP.Z
-     317 [C:/SparrowOS/Adam/Snd/SndFile.CPP.Z,1] SndFile.CPP.Z
+     316 [C:/SparrowOS/Adam/Snd/SndFile.CPP.Z,1] SndFile.CPP.Z
        1,344 +] WordStat
            307 [C:/SparrowOS/Adam/WordStat/WSDict.CPP.Z,1] WSDict.CPP.Z
      220 [C:/SparrowOS/Adam/WordStat/WSDictGen.CPP.Z,1] WSDictGen.CPP.Z
@@ -241,13 +244,13 @@
       94 [C:/SparrowOS/Adam/WordStat/WordStat.CPP.Z,1] WordStat.CPP.Z
           73 [C:/SparrowOS/Adam/Adam2.CPP.Z,1] Adam2.CPP.Z
      139 [C:/SparrowOS/Adam/AutoFile2a.CPP.Z,1] AutoFile2a.CPP.Z
-      86 [C:/SparrowOS/Adam/BinRep.CPP.Z,1] BinRep.CPP.Z
+      83 [C:/SparrowOS/Adam/BinRep.CPP.Z,1] BinRep.CPP.Z
      399 [C:/SparrowOS/Adam/Dbg2a.CPP.Z,1] Dbg2a.CPP.Z
      326 [C:/SparrowOS/Adam/DevInfo.CPP.Z,1] DevInfo.CPP.Z
-     270 [C:/SparrowOS/Adam/Diff.CPP.Z,1] Diff.CPP.Z
+     282 [C:/SparrowOS/Adam/Diff.CPP.Z,1] Diff.CPP.Z
       56 [C:/SparrowOS/Adam/DocDefines.CPP.Z,1] DocDefines.CPP.Z
-     214 [C:/SparrowOS/Adam/FileBMP.CPP.Z,1] FileBMP.CPP.Z
-     259 [C:/SparrowOS/Adam/Grep.CPP.Z,1] Grep.CPP.Z
+     288 [C:/SparrowOS/Adam/FileBMP.CPP.Z,1] FileBMP.CPP.Z
+     257 [C:/SparrowOS/Adam/Grep.CPP.Z,1] Grep.CPP.Z
      545 [C:/SparrowOS/Adam/Hash2a.CPP.Z,1] Hash2a.CPP.Z
      160 [C:/SparrowOS/Adam/HeapLog.CPP.Z,1] HeapLog.CPP.Z
      114 [C:/SparrowOS/Adam/LineCnt.CPP.Z,1] LineCnt.CPP.Z
@@ -266,17 +269,17 @@
      147 [C:/SparrowOS/Adam/ToTXT.CPP.Z,1] ToTXT.CPP.Z
      243 [C:/SparrowOS/Adam/Training.CPP.Z,1] Training.CPP.Z
      444 [C:/SparrowOS/Adam/Utils2a.CPP.Z,1] Utils2a.CPP.Z
-     241 [C:/SparrowOS/Adam/WallPaper.CPP.Z,1] WallPaper.CPP.Z
-   1,554 [C:/SparrowOS/Adam/Window.CPP.Z,1] Window.CPP.Z
+     246 [C:/SparrowOS/Adam/WallPaper.CPP.Z,1] WallPaper.CPP.Z
+   1,555 [C:/SparrowOS/Adam/Window.CPP.Z,1] Window.CPP.Z
      106 [C:/SparrowOS/Adam/AdamExt.HPP.Z,1] AdamExt.HPP.Z
-    14,970 +] Apps
-       1,071 +] AfterEgypt
+    15,928 +] Apps
+       1,104 +] AfterEgypt
              0 +] Comics
-                   284 [C:/SparrowOS/Apps/AfterEgypt/AfterEgypt.CPP.Z,1]
+                   283 [C:/SparrowOS/Apps/AfterEgypt/AfterEgypt.CPP.Z,1]
       AfterEgypt.CPP.Z
      136 [C:/SparrowOS/Apps/AfterEgypt/Battle.CPP.Z,1] Battle.CPP.Z
       28 [C:/SparrowOS/Apps/AfterEgypt/Comics.CPP.Z,1] Comics.CPP.Z
-     271 [C:/SparrowOS/Apps/AfterEgypt/Horeb.CPP.Z,1] Horeb.CPP.Z
+     305 [C:/SparrowOS/Apps/AfterEgypt/Horeb.CPP.Z,1] Horeb.CPP.Z
       17 [C:/SparrowOS/Apps/AfterEgypt/Load.CPP.Z,1] Load.CPP.Z
       78 [C:/SparrowOS/Apps/AfterEgypt/Map.CPP.Z,1] Map.CPP.Z
       95 [C:/SparrowOS/Apps/AfterEgypt/Quail.CPP.Z,1] Quail.CPP.Z
@@ -299,8 +302,8 @@
              2 [C:/SparrowOS/Apps/Logic/Load.CPP.Z,1] Load.CPP.Z
      612 [C:/SparrowOS/Apps/Logic/Logic.CPP.Z,1] Logic.CPP.Z
        3 [C:/SparrowOS/Apps/Logic/Run.CPP.Z,1] Run.CPP.Z
-       6,291 +] MusicOrgan
-         3,903 +] Examples
+       6,577 +] MusicOrgan
+         4,148 +] Examples
               76 [C:/SparrowOS/Apps/MusicOrgan/Examples/abiding.CPP.Z,1]
         abiding.CPP.Z
       45 [C:/SparrowOS/Apps/MusicOrgan/Examples/abyss.CPP.Z,1] abyss.CPP.Z
@@ -331,7 +334,7 @@
         dialogue.CPP.Z
       27 [C:/SparrowOS/Apps/MusicOrgan/Examples/disputing.CPP.Z,1]
         disputing.CPP.Z
-      63 [C:/SparrowOS/Apps/MusicOrgan/Examples/doing.CPP.Z,1] doing.CPP.Z
+      65 [C:/SparrowOS/Apps/MusicOrgan/Examples/doing.CPP.Z,1] doing.CPP.Z
       17 [C:/SparrowOS/Apps/MusicOrgan/Examples/downfall.CPP.Z,1]
         downfall.CPP.Z
       25 [C:/SparrowOS/Apps/MusicOrgan/Examples/dream.CPP.Z,1] dream.CPP.Z
@@ -347,10 +350,10 @@
         expedition.CPP.Z
       38 [C:/SparrowOS/Apps/MusicOrgan/Examples/fairness.CPP.Z,1]
         fairness.CPP.Z
-      21 [C:/SparrowOS/Apps/MusicOrgan/Examples/feigned.CPP.Z,1] feigned.CPP.Z
+      26 [C:/SparrowOS/Apps/MusicOrgan/Examples/feigned.CPP.Z,1] feigned.CPP.Z
       68 [C:/SparrowOS/Apps/MusicOrgan/Examples/finger.CPP.Z,1] finger.CPP.Z
       54 [C:/SparrowOS/Apps/MusicOrgan/Examples/first.CPP.Z,1] first.CPP.Z
-      45 [C:/SparrowOS/Apps/MusicOrgan/Examples/fishermen.CPP.Z,1]
+      61 [C:/SparrowOS/Apps/MusicOrgan/Examples/fishermen.CPP.Z,1]
         fishermen.CPP.Z
       21 [C:/SparrowOS/Apps/MusicOrgan/Examples/fixing.CPP.Z,1] fixing.CPP.Z
       21 [C:/SparrowOS/Apps/MusicOrgan/Examples/flung.CPP.Z,1] flung.CPP.Z
@@ -358,7 +361,7 @@
       37 [C:/SparrowOS/Apps/MusicOrgan/Examples/forasmuch.CPP.Z,1]
         forasmuch.CPP.Z
       25 [C:/SparrowOS/Apps/MusicOrgan/Examples/freaks.CPP.Z,1] freaks.CPP.Z
-      35 [C:/SparrowOS/Apps/MusicOrgan/Examples/free.CPP.Z,1] free.CPP.Z
+     156 [C:/SparrowOS/Apps/MusicOrgan/Examples/free.CPP.Z,1] free.CPP.Z
       75 [C:/SparrowOS/Apps/MusicOrgan/Examples/furnishing.CPP.Z,1]
         furnishing.CPP.Z
       52 [C:/SparrowOS/Apps/MusicOrgan/Examples/good.CPP.Z,1] good.CPP.Z
@@ -369,9 +372,8 @@
         honestly.CPP.Z
       55 [C:/SparrowOS/Apps/MusicOrgan/Examples/hope.CPP.Z,1] hope.CPP.Z
       36 [C:/SparrowOS/Apps/MusicOrgan/Examples/image.CPP.Z,1] image.CPP.Z
-      21 [C:/SparrowOS/Apps/MusicOrgan/Examples/inwardly.CPP.Z,1]
-        inwardly.CPP.Z
-      23 [C:/SparrowOS/Apps/MusicOrgan/Examples/keeping.CPP.Z,1] keeping.CPP.Z
+      49 [C:/SparrowOS/Apps/MusicOrgan/Examples/josh.CPP.Z,1] josh.CPP.Z
+      49 [C:/SparrowOS/Apps/MusicOrgan/Examples/keeping.CPP.Z,1] keeping.CPP.Z
       34 [C:/SparrowOS/Apps/MusicOrgan/Examples/kept.CPP.Z,1] kept.CPP.Z
       56 [C:/SparrowOS/Apps/MusicOrgan/Examples/limit.CPP.Z,1] limit.CPP.Z
       60 [C:/SparrowOS/Apps/MusicOrgan/Examples/mary.CPP.Z,1] mary.CPP.Z
@@ -391,14 +393,14 @@
       17 [C:/SparrowOS/Apps/MusicOrgan/Examples/proponent.CPP.Z,1]
         proponent.CPP.Z
       55 [C:/SparrowOS/Apps/MusicOrgan/Examples/prosper.CPP.Z,1] prosper.CPP.Z
-      22 [C:/SparrowOS/Apps/MusicOrgan/Examples/psalm.CPP.Z,1] psalm.CPP.Z
+      26 [C:/SparrowOS/Apps/MusicOrgan/Examples/psalm.CPP.Z,1] psalm.CPP.Z
       37 [C:/SparrowOS/Apps/MusicOrgan/Examples/purpose.CPP.Z,1] purpose.CPP.Z
       23 [C:/SparrowOS/Apps/MusicOrgan/Examples/reasoning.CPP.Z,1]
         reasoning.CPP.Z
       40 [C:/SparrowOS/Apps/MusicOrgan/Examples/reliance.CPP.Z,1]
         reliance.CPP.Z
       25 [C:/SparrowOS/Apps/MusicOrgan/Examples/reposes.CPP.Z,1] reposes.CPP.Z
-      20 [C:/SparrowOS/Apps/MusicOrgan/Examples/restless.CPP.Z,1]
+      33 [C:/SparrowOS/Apps/MusicOrgan/Examples/restless.CPP.Z,1]
         restless.CPP.Z
       22 [C:/SparrowOS/Apps/MusicOrgan/Examples/rifled.CPP.Z,1] rifled.CPP.Z
       90 [C:/SparrowOS/Apps/MusicOrgan/Examples/risen.CPP.Z,1] risen.CPP.Z
@@ -408,7 +410,7 @@
         scriptures.CPP.Z
       36 [C:/SparrowOS/Apps/MusicOrgan/Examples/service.CPP.Z,1] service.CPP.Z
       56 [C:/SparrowOS/Apps/MusicOrgan/Examples/shield.CPP.Z,1] shield.CPP.Z
-      21 [C:/SparrowOS/Apps/MusicOrgan/Examples/signifies.CPP.Z,1]
+      35 [C:/SparrowOS/Apps/MusicOrgan/Examples/signifies.CPP.Z,1]
         signifies.CPP.Z
       26 [C:/SparrowOS/Apps/MusicOrgan/Examples/silver.CPP.Z,1] silver.CPP.Z
       93 [C:/SparrowOS/Apps/MusicOrgan/Examples/small.CPP.Z,1] small.CPP.Z
@@ -424,19 +426,19 @@
       41 [C:/SparrowOS/Apps/MusicOrgan/Examples/valued.CPP.Z,1] valued.CPP.Z
       70 [C:/SparrowOS/Apps/MusicOrgan/Examples/vengeance.CPP.Z,1]
         vengeance.CPP.Z
-      50 [C:/SparrowOS/Apps/MusicOrgan/Examples/verses.CPP.Z,1] verses.CPP.Z
+      64 [C:/SparrowOS/Apps/MusicOrgan/Examples/verses.CPP.Z,1] verses.CPP.Z
       23 [C:/SparrowOS/Apps/MusicOrgan/Examples/villa.CPP.Z,1] villa.CPP.Z
       51 [C:/SparrowOS/Apps/MusicOrgan/Examples/wisdom.CPP.Z,1] wisdom.CPP.Z
       36 [C:/SparrowOS/Apps/MusicOrgan/Examples/witherto.CPP.Z,1]
         witherto.CPP.Z
-      21 [C:/SparrowOS/Apps/MusicOrgan/Examples/worship.CPP.Z,1] worship.CPP.Z
+      23 [C:/SparrowOS/Apps/MusicOrgan/Examples/worship.CPP.Z,1] worship.CPP.Z
       27 [C:/SparrowOS/Apps/MusicOrgan/Examples/you.CPP.Z,1] you.CPP.Z
       69 [C:/SparrowOS/Apps/MusicOrgan/Examples/zip.CPP.Z,1] zip.CPP.Z
              2 [C:/SparrowOS/Apps/MusicOrgan/Install.CPP.Z,1] Install.CPP.Z
      149 [C:/SparrowOS/Apps/MusicOrgan/JukeBox.CPP.Z,1] JukeBox.CPP.Z
        8 [C:/SparrowOS/Apps/MusicOrgan/Load.CPP.Z,1] Load.CPP.Z
-     156 [C:/SparrowOS/Apps/MusicOrgan/MakeSong.CPP.Z,1] MakeSong.CPP.Z
-   1,981 [C:/SparrowOS/Apps/MusicOrgan/Organ.CPP.Z,1] Organ.CPP.Z
+     198 [C:/SparrowOS/Apps/MusicOrgan/MakeSong.CPP.Z,1] MakeSong.CPP.Z
+   1,980 [C:/SparrowOS/Apps/MusicOrgan/Organ.CPP.Z,1] Organ.CPP.Z
       88 [C:/SparrowOS/Apps/MusicOrgan/OrganCtrls.CPP.Z,1] OrganCtrls.CPP.Z
        4 [C:/SparrowOS/Apps/MusicOrgan/Run.CPP.Z,1] Run.CPP.Z
          759 +] Pilgrims
@@ -452,6 +454,10 @@
      505 [C:/SparrowOS/Apps/Span/SpanMain.CPP.Z,1] SpanMain.CPP.Z
      128 [C:/SparrowOS/Apps/Span/SpanNew.CPP.Z,1] SpanNew.CPP.Z
       55 [C:/SparrowOS/Apps/Span/Span.HPP.Z,1] Span.HPP.Z
+         640 +] Strut
+             7 [C:/SparrowOS/Apps/Strut/Load.CPP.Z,1] Load.CPP.Z
+       4 [C:/SparrowOS/Apps/Strut/Run.CPP.Z,1] Run.CPP.Z
+     629 [C:/SparrowOS/Apps/Strut/Strut.CPP.Z,1] Strut.CPP.Z
        1,969 +] Tanks
            234 +] AIs
              157 [C:/SparrowOS/Apps/Tanks/AIs/Human.CPP.Z,1] Human.CPP.Z
@@ -460,10 +466,10 @@
        2 [C:/SparrowOS/Apps/Tanks/Load.CPP.Z,1] Load.CPP.Z
        3 [C:/SparrowOS/Apps/Tanks/Run.CPP.Z,1] Run.CPP.Z
    1,727 [C:/SparrowOS/Apps/Tanks/Tanks.CPP.Z,1] Tanks.CPP.Z
-         165 +] TimeClock
+         164 +] TimeClock
              6 [C:/SparrowOS/Apps/TimeClock/Install.CPP.Z,1] Install.CPP.Z
        2 [C:/SparrowOS/Apps/TimeClock/Load.CPP.Z,1] Load.CPP.Z
-     157 [C:/SparrowOS/Apps/TimeClock/TimeClk.CPP.Z,1] TimeClk.CPP.Z
+     156 [C:/SparrowOS/Apps/TimeClock/TimeClk.CPP.Z,1] TimeClk.CPP.Z
          609 +] Timeout
              6 [C:/SparrowOS/Apps/Timeout/Load.CPP.Z,1] Load.CPP.Z
        3 [C:/SparrowOS/Apps/Timeout/Run.CPP.Z,1] Run.CPP.Z
@@ -477,13 +483,13 @@
        3 [C:/SparrowOS/Apps/X-Caliber/Run.CPP.Z,1] Run.CPP.Z
    1,140 [C:/SparrowOS/Apps/X-Caliber/X-Caliber.CPP.Z,1] X-Caliber.CPP.Z
      141 [C:/SparrowOS/Apps/X-Caliber/XCCtrls.CPP.Z,1] XCCtrls.CPP.Z
-        21,560 +] Compiler
+        21,584 +] Compiler
        1,488 [C:/SparrowOS/Compiler/Assembler.CPP.Z,1] Assembler.CPP.Z
    5,121 [C:/SparrowOS/Compiler/BackEnd.CPP.Z,1] BackEnd.CPP.Z
-     694 [C:/SparrowOS/Compiler/CmpAsm.CPP.Z,1] CmpAsm.CPP.Z
+     695 [C:/SparrowOS/Compiler/CmpAsm.CPP.Z,1] CmpAsm.CPP.Z
       55 [C:/SparrowOS/Compiler/CmpExts.CPP.Z,1] CmpExts.CPP.Z
       21 [C:/SparrowOS/Compiler/CmpGlbls.CPP.Z,1] CmpGlbls.CPP.Z
-     741 [C:/SparrowOS/Compiler/CmpInit.CPP.Z,1] CmpInit.CPP.Z
+     742 [C:/SparrowOS/Compiler/CmpInit.CPP.Z,1] CmpInit.CPP.Z
      689 [C:/SparrowOS/Compiler/CmpMain.CPP.Z,1] CmpMain.CPP.Z
       68 [C:/SparrowOS/Compiler/CmpQueVect.CPP.Z,1] CmpQueVect.CPP.Z
      510 [C:/SparrowOS/Compiler/CodeGen.CPP.Z,1] CodeGen.CPP.Z
@@ -491,19 +497,19 @@
    1,298 [C:/SparrowOS/Compiler/ExpParser.CPP.Z,1] ExpParser.CPP.Z
      159 [C:/SparrowOS/Compiler/Hash1b.CPP.Z,1] Hash1b.CPP.Z
    1,700 [C:/SparrowOS/Compiler/Lex.CPP.Z,1] Lex.CPP.Z
-   2,210 [C:/SparrowOS/Compiler/OptPass012.CPP.Z,1] OptPass012.CPP.Z
-     651 [C:/SparrowOS/Compiler/OptPass3.CPP.Z,1] OptPass3.CPP.Z
-     852 [C:/SparrowOS/Compiler/OptPass4.CPP.Z,1] OptPass4.CPP.Z
+   2,211 [C:/SparrowOS/Compiler/OptPass012.CPP.Z,1] OptPass012.CPP.Z
+     652 [C:/SparrowOS/Compiler/OptPass3.CPP.Z,1] OptPass3.CPP.Z
+     853 [C:/SparrowOS/Compiler/OptPass4.CPP.Z,1] OptPass4.CPP.Z
      172 [C:/SparrowOS/Compiler/OptPass5.CPP.Z,1] OptPass5.CPP.Z
      267 [C:/SparrowOS/Compiler/OptPass6.CPP.Z,1] OptPass6.CPP.Z
-   1,336 [C:/SparrowOS/Compiler/OptPass789A.CPP.Z,1] OptPass789A.CPP.Z
+   1,340 [C:/SparrowOS/Compiler/OptPass789A.CPP.Z,1] OptPass789A.CPP.Z
    2,057 [C:/SparrowOS/Compiler/StmtParser.CPP.Z,1] StmtParser.CPP.Z
-     880 [C:/SparrowOS/Compiler/Unassembler.CPP.Z,1] Unassembler.CPP.Z
-     400 [C:/SparrowOS/Compiler/CmpDefs.HPP.Z,1] CmpDefs.HPP.Z
+     894 [C:/SparrowOS/Compiler/Unassembler.CPP.Z,1] Unassembler.CPP.Z
+     401 [C:/SparrowOS/Compiler/CmpDefs.HPP.Z,1] CmpDefs.HPP.Z
       85 [C:/SparrowOS/Compiler/Compiler.HPP.Z,1] Compiler.HPP.Z
       26 [C:/SparrowOS/Compiler/Compiler.PRJ.Z,1] Compiler.PRJ.Z
-    26,971 +] Demo
-       2,171 +] AcctExample
+    27,035 +] Demo
+       2,193 +] AcctExample
            847 +] TAD
              822 +] Archive
                489
@@ -514,15 +520,15 @@
               21 [C:/SparrowOS/Demo/AcctExample/TAD/Adam3aLocalize.CPP.Z,1]
         Adam3aLocalize.CPP.Z
        4 [C:/SparrowOS/Demo/AcctExample/TAD/Registry.CPP.Z,1] Registry.CPP.Z
-            10 [C:/SparrowOS/Demo/AcctExample/Adam3bPkgs.CPP.Z,1]
-      Adam3bPkgs.CPP.Z
+            14 [C:/SparrowOS/Demo/AcctExample/Adam3.CPP.Z,1] Adam3.CPP.Z
+      10 [C:/SparrowOS/Demo/AcctExample/Adam3bPkgs.CPP.Z,1] Adam3bPkgs.CPP.Z
      267 [C:/SparrowOS/Demo/AcctExample/Adam3dKeyPlugIns.CPP.Z,1]
       Adam3dKeyPlugIns.CPP.Z
       10 [C:/SparrowOS/Demo/AcctExample/Adam3eWrappers.CPP.Z,1]
       Adam3eWrappers.CPP.Z
       50 [C:/SparrowOS/Demo/AcctExample/Adam3fSys.CPP.Z,1] Adam3fSys.CPP.Z
       13 [C:/SparrowOS/Demo/AcctExample/DoItOnce.CPP.Z,1] DoItOnce.CPP.Z
-     414 [C:/SparrowOS/Demo/AcctExample/TSAdam.CPP.Z,1] TSAdam.CPP.Z
+     422 [C:/SparrowOS/Demo/AcctExample/TSAdam.CPP.Z,1] TSAdam.CPP.Z
      544 [C:/SparrowOS/Demo/AcctExample/TSDistribute.CPP.Z,1]
       TSDistribute.CPP.Z
        8 [C:/SparrowOS/Demo/AcctExample/TSIDComputer.CPP.Z,1]
@@ -603,7 +609,7 @@
      174 [C:/SparrowOS/Demo/GameStarters/Whap.CPP.Z,1] Whap.CPP.Z
      201 [C:/SparrowOS/Demo/GameStarters/Zing.CPP.Z,1] Zing.CPP.Z
      322 [C:/SparrowOS/Demo/GameStarters/ZoneOut.CPP.Z,1] ZoneOut.CPP.Z
-       5,958 +] Graphics
+       5,962 +] Graphics
            118 [C:/SparrowOS/Demo/Graphics/3DPoly.CPP.Z,1] 3DPoly.CPP.Z
       33 [C:/SparrowOS/Demo/Graphics/BSpline.CPP.Z,1] BSpline.CPP.Z
      243 [C:/SparrowOS/Demo/Graphics/Bling.CPP.Z,1] Bling.CPP.Z
@@ -634,10 +640,9 @@
       52 [C:/SparrowOS/Demo/Graphics/Logo.CPP.Z,1] Logo.CPP.Z
       83 [C:/SparrowOS/Demo/Graphics/LowPassFilter.CPP.Z,1]
       LowPassFilter.CPP.Z
-     101 [C:/SparrowOS/Demo/Graphics/MathAudioDemo.CPP.Z,1]
+     105 [C:/SparrowOS/Demo/Graphics/MathAudioDemo.CPP.Z,1]
       MathAudioDemo.CPP.Z
       98 [C:/SparrowOS/Demo/Graphics/Mountain.CPP.Z,1] Mountain.CPP.Z
-     119 [C:/SparrowOS/Demo/Graphics/MyWallPaper.CPP.Z,1] MyWallPaper.CPP.Z
       22 [C:/SparrowOS/Demo/Graphics/NeatTrick.CPP.Z,1] NeatTrick.CPP.Z
       28 [C:/SparrowOS/Demo/Graphics/Palette.CPP.Z,1] Palette.CPP.Z
      102 [C:/SparrowOS/Demo/Graphics/Pic2ASCII.CPP.Z,1] Pic2ASCII.CPP.Z
@@ -662,6 +667,8 @@
      220 [C:/SparrowOS/Demo/Graphics/Transform.CPP.Z,1] Transform.CPP.Z
      104 [C:/SparrowOS/Demo/Graphics/WallPaperCtrl.CPP.Z,1]
       WallPaperCtrl.CPP.Z
+     119 [C:/SparrowOS/Demo/Graphics/WallPaperFish.CPP.Z,1]
+      WallPaperFish.CPP.Z
       23 [C:/SparrowOS/Demo/Graphics/WinZBuf.CPP.Z,1] WinZBuf.CPP.Z
        1,442 +] Lectures
             54 [C:/SparrowOS/Demo/Lectures/AndNotMod.CPP.Z,1] AndNotMod.CPP.Z
@@ -718,10 +725,12 @@
                 26 +] Shared
             26 [C:/SparrowOS/Demo/Shared/TreeDemoJoin.CPP.Z,1]
       TreeDemoJoin.CPP.Z
-       1,145 +] Snd
+       1,180 +] Snd
             52 [C:/SparrowOS/Demo/Snd/ASCIIOrgan.CPP.Z,1] ASCIIOrgan.CPP.Z
       69 [C:/SparrowOS/Demo/Snd/BeatFreq.CPP.Z,1] BeatFreq.CPP.Z
+      17 [C:/SparrowOS/Demo/Snd/Chords.CPP.Z,1] Chords.CPP.Z
       97 [C:/SparrowOS/Demo/Snd/Echo.CPP.Z,1] Echo.CPP.Z
+      18 [C:/SparrowOS/Demo/Snd/Guitar.CPP.Z,1] Guitar.CPP.Z
      182 [C:/SparrowOS/Demo/Snd/MorseCode.CPP.Z,1] MorseCode.CPP.Z
       42 [C:/SparrowOS/Demo/Snd/OhGreat.CPP.Z,1] OhGreat.CPP.Z
       99 [C:/SparrowOS/Demo/Snd/PolyPhonic.CPP.Z,1] PolyPhonic.CPP.Z
@@ -736,7 +745,7 @@
       WebLogScramble.CPP.Z
           82 [C:/SparrowOS/Demo/ClassMeta.CPP.Z,1] ClassMeta.CPP.Z
       38 [C:/SparrowOS/Demo/CompileDemo.CPP.Z,1] CompileDemo.CPP.Z
-      43 [C:/SparrowOS/Demo/DateTime.CPP.Z,1] DateTime.CPP.Z
+      46 [C:/SparrowOS/Demo/DateTime.CPP.Z,1] DateTime.CPP.Z
       30 [C:/SparrowOS/Demo/DbgDemo.CPP.Z,1] DbgDemo.CPP.Z
       41 [C:/SparrowOS/Demo/Define.CPP.Z,1] Define.CPP.Z
       78 [C:/SparrowOS/Demo/Digits.CPP.Z,1] Digits.CPP.Z
@@ -763,7 +772,7 @@
      168 [C:/SparrowOS/Demo/WinMgr2.CPP.Z,1] WinMgr2.CPP.Z
      156 [C:/SparrowOS/Demo/WordSearch.CPP.Z,1] WordSearch.CPP.Z
          0 +] Doc
-         3,147 +] Misc
+         3,143 +] Misc
          696 +] Tour
             40 [C:/SparrowOS/Misc/Tour/Tour.AUT.Z,1] Tour.AUT.Z
      109 [C:/SparrowOS/Misc/Tour/Tour1.AUT.Z,1] Tour1.AUT.Z
@@ -777,15 +786,15 @@
       29 [C:/SparrowOS/Misc/Tour/Tour9.AUT.Z,1] Tour9.AUT.Z
       11 [C:/SparrowOS/Misc/Tour/TourA.AUT.Z,1] TourA.AUT.Z
           32 [C:/SparrowOS/Misc/Dollar.CPP.Z,1] Dollar.CPP.Z
-   2,419 [C:/SparrowOS/Misc/OSTestSuite.CPP.Z,1] OSTestSuite.CPP.Z
-    25,073 +] OSMain
-       5,699 +] Dsk
+   2,415 [C:/SparrowOS/Misc/OSTestSuite.CPP.Z,1] OSTestSuite.CPP.Z
+    25,136 +] OSMain
+       5,678 +] Dsk
            653 [C:/SparrowOS/OSMain/Dsk/Dsk1a.CPP.Z,1] Dsk1a.CPP.Z
-     469 [C:/SparrowOS/OSMain/Dsk/Dsk1b.CPP.Z,1] Dsk1b.CPP.Z
+     467 [C:/SparrowOS/OSMain/Dsk/Dsk1b.CPP.Z,1] Dsk1b.CPP.Z
      387 [C:/SparrowOS/OSMain/Dsk/Dsk1c.CPP.Z,1] Dsk1c.CPP.Z
      656 [C:/SparrowOS/OSMain/Dsk/DskATA.CPP.Z,1] DskATA.CPP.Z
      362 [C:/SparrowOS/OSMain/Dsk/DskAddDev.CPP.Z,1] DskAddDev.CPP.Z
-     282 [C:/SparrowOS/OSMain/Dsk/DskCFile.CPP.Z,1] DskCFile.CPP.Z
+     263 [C:/SparrowOS/OSMain/Dsk/DskCFile.CPP.Z,1] DskCFile.CPP.Z
      178 [C:/SparrowOS/OSMain/Dsk/DskCache.CPP.Z,1] DskCache.CPP.Z
      269 [C:/SparrowOS/OSMain/Dsk/DskDir.CPP.Z,1] DskDir.CPP.Z
      380 [C:/SparrowOS/OSMain/Dsk/DskStr.CPP.Z,1] DskStr.CPP.Z
@@ -800,9 +809,9 @@
      234 [C:/SparrowOS/OSMain/KbdMouse/Message.CPP.Z,1] Message.CPP.Z
      353 [C:/SparrowOS/OSMain/KbdMouse/Mouse.CPP.Z,1] Mouse.CPP.Z
           13 [C:/SparrowOS/OSMain/Adam1.CPP.Z,1] Adam1.CPP.Z
-     401 [C:/SparrowOS/OSMain/BIOS32.CPP.Z,1] BIOS32.CPP.Z
+     407 [C:/SparrowOS/OSMain/BIOS32.CPP.Z,1] BIOS32.CPP.Z
      325 [C:/SparrowOS/OSMain/Compress.CPP.Z,1] Compress.CPP.Z
-     198 [C:/SparrowOS/OSMain/Date.CPP.Z,1] Date.CPP.Z
+     484 [C:/SparrowOS/OSMain/Date.CPP.Z,1] Date.CPP.Z
      559 [C:/SparrowOS/OSMain/Dbg1a.CPP.Z,1] Dbg1a.CPP.Z
      130 [C:/SparrowOS/OSMain/Define1a.CPP.Z,1] Define1a.CPP.Z
      280 [C:/SparrowOS/OSMain/Display.CPP.Z,1] Display.CPP.Z
@@ -811,27 +820,27 @@
      170 [C:/SparrowOS/OSMain/FIFO.CPP.Z,1] FIFO.CPP.Z
      262 [C:/SparrowOS/OSMain/Font8x8.CPP.Z,1] Font8x8.CPP.Z
      801 [C:/SparrowOS/OSMain/Hash1a.CPP.Z,1] Hash1a.CPP.Z
-     242 [C:/SparrowOS/OSMain/Interrupts.CPP.Z,1] Interrupts.CPP.Z
+     211 [C:/SparrowOS/OSMain/Interrupts.CPP.Z,1] Interrupts.CPP.Z
      622 [C:/SparrowOS/OSMain/Math1a.CPP.Z,1] Math1a.CPP.Z
      227 [C:/SparrowOS/OSMain/Math1b.CPP.Z,1] Math1b.CPP.Z
-   1,425 [C:/SparrowOS/OSMain/Memory.CPP.Z,1] Memory.CPP.Z
+   1,426 [C:/SparrowOS/OSMain/Memory.CPP.Z,1] Memory.CPP.Z
      385 [C:/SparrowOS/OSMain/Misc1a.CPP.Z,1] Misc1a.CPP.Z
-     522 [C:/SparrowOS/OSMain/MultiProc.CPP.Z,1] MultiProc.CPP.Z
+     526 [C:/SparrowOS/OSMain/MultiProc.CPP.Z,1] MultiProc.CPP.Z
      234 [C:/SparrowOS/OSMain/OSCfg.CPP.Z,1] OSCfg.CPP.Z
-     258 [C:/SparrowOS/OSMain/OSEnd.CPP.Z,1] OSEnd.CPP.Z
+     249 [C:/SparrowOS/OSMain/OSEnd.CPP.Z,1] OSEnd.CPP.Z
      105 [C:/SparrowOS/OSMain/OSExts.CPP.Z,1] OSExts.CPP.Z
-     133 [C:/SparrowOS/OSMain/OSGlbls.CPP.Z,1] OSGlbls.CPP.Z
+     134 [C:/SparrowOS/OSMain/OSGlbls.CPP.Z,1] OSGlbls.CPP.Z
      536 [C:/SparrowOS/OSMain/OSStart.CPP.Z,1] OSStart.CPP.Z
      257 [C:/SparrowOS/OSMain/PSect.CPP.Z,1] PSect.CPP.Z
      248 [C:/SparrowOS/OSMain/QSort.CPP.Z,1] QSort.CPP.Z
-     415 [C:/SparrowOS/OSMain/Scheduler.CPP.Z,1] Scheduler.CPP.Z
-   2,666 [C:/SparrowOS/OSMain/Str1a.CPP.Z,1] Str1a.CPP.Z
-     587 [C:/SparrowOS/OSMain/Task1a.CPP.Z,1] Task1a.CPP.Z
+     411 [C:/SparrowOS/OSMain/Scheduler.CPP.Z,1] Scheduler.CPP.Z
+   2,400 [C:/SparrowOS/OSMain/Str1a.CPP.Z,1] Str1a.CPP.Z
+     589 [C:/SparrowOS/OSMain/Task1a.CPP.Z,1] Task1a.CPP.Z
      423 [C:/SparrowOS/OSMain/TaskCmd.CPP.Z,1] TaskCmd.CPP.Z
      331 [C:/SparrowOS/OSMain/Utils1a.CPP.Z,1] Utils1a.CPP.Z
-   3,608 [C:/SparrowOS/OSMain/Adam1a.HPP.Z,1] Adam1a.HPP.Z
-     302 [C:/SparrowOS/OSMain/Adam1b.HPP.Z,1] Adam1b.HPP.Z
-     809 [C:/SparrowOS/OSMain/Adam1c.HPP.Z,1] Adam1c.HPP.Z
+   3,702 [C:/SparrowOS/OSMain/Adam1a.HPP.Z,1] Adam1a.HPP.Z
+     303 [C:/SparrowOS/OSMain/Adam1b.HPP.Z,1] Adam1b.HPP.Z
+     808 [C:/SparrowOS/OSMain/Adam1c.HPP.Z,1] Adam1c.HPP.Z
       31 [C:/SparrowOS/OSMain/BootDefs.HPP.Z,1] BootDefs.HPP.Z
       15 [C:/SparrowOS/OSMain/Static.HPP.Z,1] Static.HPP.Z
        3 [C:/SparrowOS/OSMain/StaticAdam.HPP.Z,1] StaticAdam.HPP.Z
