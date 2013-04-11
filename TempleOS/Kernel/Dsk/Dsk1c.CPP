@@ -1,7 +1,31 @@
+#exe {
+  if (kernel_cfg->opts[CFG_LOW_RAM_DRV])
+StreamPrintF("
+U0 MountLowRAMDrv()
+{
+  CBlkDev *bdev=BlkDevNextFree('%C',BDT_RAM);
+  I64 num_blks;
+  bdev->unit=0;
+  bdev->RAM_dsk=(*SYS_KERNEL_END_PTR(U64 *)+BLK_SIZE+BLK_SIZE-1)&~(BLK_SIZE-1);
+  num_blks=(LOW_RAM_DRV_LIMIT-bdev->RAM_dsk)>>BLK_SIZE_BITS;
+  bdev->max_blk=num_blks-1;
+  BlkDevAdd(bdev,FALSE,TRUE);
+}",kernel_cfg->low_RAM_drv_dst_let);
+}
+
 U0 DrvDftSelect()
 {
   Fs->cur_prt=INVALID_PTR;  //Null screws-up cache
   Fs->cur_dir=StrNew("/");
+#exe {
+  if (kernel_cfg->opts[CFG_LOW_RAM_DRV])
+    StreamPrintF(
+  "if (sys_boot_code.u16[0]==BOOT_CODE_CDROM &&"
+  "    !cdrom_boot_is_good) {"
+  "  MountLowRAMDrv;"
+  "  *sys_acct='%C';"
+  "}",kernel_cfg->low_RAM_drv_dst_let);
+}
   ChgDsk(':');
 }
 
@@ -155,7 +179,7 @@ I64 SysDel(U8 *wild,Bool make_mask)	//this is dangerous
 }
 
 U0 Fmt(I64 drv_let,Bool quick=TRUE,Bool confirm=TRUE,I64 type=PT_FAT32)
-{//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,2538] PT_FAT32 for a lst of supported file system types.
+{//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,2541] PT_FAT32 for a lst of supported file system types.
 
   CPrt *p=Drv2Prt(drv_let);
   Bool old_silent=IsSilent;

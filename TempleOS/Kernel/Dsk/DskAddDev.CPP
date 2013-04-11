@@ -185,7 +185,7 @@ U0 Mount(Bool repartition=FALSE)
 {
   CBlkDev *bdev;
   I64 first_prt_num,type,unit,num_hints;
-  U8 blks_buf[32],base0_buf[128],base1_buf[128];
+  U8 blks_buf[128],addr_buf[128],base0_buf[128],base1_buf[128];
   Bool add;
   CATARep *root,*tempha;
 
@@ -201,7 +201,7 @@ U0 Mount(Bool repartition=FALSE)
 
       unit=0;
       if (type==BDT_ATA || type==BDT_ATAPI) {
-	num_hints=ATARep(TRUE,,&root);
+	num_hints=ATARep(,,&root);
 	do {
 	  if (num_hints)
 	    PutDefine("ST_MOUNT_BASE0_HINT");
@@ -231,15 +231,20 @@ U0 Mount(Bool repartition=FALSE)
 	LinkedLstDel(root);
       }
       if (type==BDT_RAM) {
+	PutDefine("ST_MOUNT_ADDR");
+	GetS(addr_buf,128);
 	PutDefine("ST_MOUNT_BLKS");
-	GetS(blks_buf,32);
+	GetS(blks_buf,128);
       }
 
       if (BDT_NULL<type<BDT_NUM_TYPES && 0<=unit<=1) {
 	bdev=BlkDevNextFree(first_prt_num+'A',type);
 	bdev->unit=unit;
-	if (type==BDT_RAM)
+	if (type==BDT_RAM) {
+	  if (!*addr_buf) StrCpy(addr_buf,"0");
+	  bdev->RAM_dsk=A2I(addr_buf);
 	  bdev->max_blk=A2I(blks_buf)-1;
+	}
 	if (type==BDT_ATA ||
 	    type==BDT_ATAPI) {
 	  bdev->base0=A2I(base0_buf);
@@ -269,7 +274,10 @@ I64 SysPmtI64()
   U8 st[136];
   StrCpy(st,"0x");
   GetS(st+2,134,FALSE);
-  return A2I(st);
+  if (!st[2])
+    return 0;
+  else
+    return A2I(st);
 }
 
 Bool PmtBaseUnit(CBlkDev *bdev)
@@ -287,12 +295,19 @@ Bool PmtBaseUnit(CBlkDev *bdev)
     PutDefine("ST_CDROM_PORTS_PMT1");
     bdev->base0=SysPmtI64;
     bdev->base1=0;
-    "\nUnit (0 or 1): ";
-    do ch=GetChar(NULL,FALSE);
-    while (!('0'<=ch<='1'));
-    '' ch;
-    bdev->unit=ch-'0';
-    return TRUE;
+    bdev->unit =0;
+    if (bdev->base0) {
+      "\nUnit (0 or 1): ";
+      do ch=GetChar(NULL,FALSE);
+      while (!('0'<=ch<='1'));
+      '' ch;
+      bdev->unit=ch-'0';
+      cdrom_boot_is_good=BootCdProbe(bdev);
+      return TRUE;
+    } else {
+      cdrom_boot_is_good=FALSE;
+      return FALSE;
+    }
   }
   return FALSE;
 }
@@ -307,11 +322,11 @@ U0 BlkDevsInitAll()
     drv_to_prt[i]=&sys_prts[i];
   sys_raw_dc_col=0;
 #exe {
-   if (kernel_cfg->opts[CFG_AUTO_MOUNT_IDE])
-     StreamPutS("AutoMountIDE;");
-   StreamPutS("#exe {OptOff(OPTf_WARN_PAREN);}");
-   StreamDoc(kernel_cfg->add_dev);
-   StreamPutS("#exe {OptOn(OPTf_WARN_PAREN);}");
+  if (kernel_cfg->opts[CFG_AUTO_MOUNT_IDE])
+    StreamPutS("AutoMountIDE;");
+  StreamPutS("#exe {OptOff(OPTf_WARN_PAREN);}");
+  StreamDoc(kernel_cfg->add_dev);
+  StreamPutS("#exe {OptOn(OPTf_WARN_PAREN);}");
 };
   PrtRep;
 }

@@ -14,7 +14,7 @@ cludeing [C:/TempleOS/Kernel/AOTAdam.HPP.Z,1] or whatever to import syms.
 
 When a sym is placed into a table, older syms with identical names will be 
 overshadowed if they exist, unless you use the compiler option 
-[C:/TempleOS/Kernel/Adam1a.HPP.Z,1595] OPTf_REPLACE_SYMS.  Duplicates are not
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,1586] OPTf_REPLACE_SYMS.  Duplicates are not
 allowed in many cases, especially in 
 asm blks.  Dupicates are allowed, by design in other cases, so that you can 
 repeatedly #include the same file from the cmd line while developing it.  Or, 
@@ -31,9 +31,9 @@ be used to generate a fwd reference.
 import binds a new [C:/TempleOS/Kernel/Adam1a.HPP.Z,707] HTT_FUN or
 [C:/TempleOS/Kernel/Adam1a.HPP.Z,704] HTT_GLBL_VAR sym to a sym of the same
 name 
-imported from the task's sym table at [C:/TempleOS/Kernel/Hash1a.CPP.Z,735]
+imported from the task's sym table at [C:/TempleOS/Kernel/Hash1a.CPP.Z,733]
 Load() time.  If no sym exists to bind 
-to at [C:/TempleOS/Kernel/Hash1a.CPP.Z,735] Load() time, the code using this
+to at [C:/TempleOS/Kernel/Hash1a.CPP.Z,733] Load() time, the code using this
 sym will be left incomplete until the 
 sym is defined.
 
@@ -47,9 +47,9 @@ asm.
 _import binds a new [C:/TempleOS/Kernel/Adam1a.HPP.Z,707] HTT_FUN or
 [C:/TempleOS/Kernel/Adam1a.HPP.Z,704] HTT_GLBL_VAR sym to a sym, of a
 **different** name 
-imported from the task's sym table at [C:/TempleOS/Kernel/Hash1a.CPP.Z,735]
+imported from the task's sym table at [C:/TempleOS/Kernel/Hash1a.CPP.Z,733]
 Load() time.  If no sym exists to bind 
-to at [C:/TempleOS/Kernel/Hash1a.CPP.Z,735] Load() time, the code using this
+to at [C:/TempleOS/Kernel/Hash1a.CPP.Z,733] Load() time, the code using this
 sym will be left incomplete until the 
 sym is defined.  Basically, this binds C to asm from elsewhere.
 
@@ -154,10 +154,10 @@ to noreg.
 
 * Note: static function vars do not go on the data heap, no matter the
 setting 
-of the [C:/TempleOS/Kernel/Adam1a.HPP.Z,1596] OPTf_GLBLS_ON_DATA_HEAP.  They
+of the [C:/TempleOS/Kernel/Adam1a.HPP.Z,1587] OPTf_GLBLS_ON_DATA_HEAP.  They
 may in the future.
 
-* [C:/TempleOS/Kernel/Adam1a.HPP.Z,1592] OPTf_EXTERNS_TO_IMPORTS will treat
+* [C:/TempleOS/Kernel/Adam1a.HPP.Z,1583] OPTf_EXTERNS_TO_IMPORTS will treat
 _extern as _import and extern as import.  
 This allows a header to be used either as a JIT compiled or AOT compiled 
 header.

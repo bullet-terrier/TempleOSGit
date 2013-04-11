@@ -14,4 +14,3 @@ editing with <CTRL-T> and setting to the original num.
 
 See [C:/TempleOS/Adam/Gr/GrSpritePlot.CPP.Z,1]
 ::/TempleOS/Adam/Gr/GrSpritePlot.CPP for how CSprite are stored.
-

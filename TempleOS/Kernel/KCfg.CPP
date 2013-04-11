@@ -1,7 +1,7 @@
 //This is run in a #exe{}.
 
 U8 *kernel_cfg_options="ProtectLow\0Deterministic\0MemInit\0HeapInit\0VarInit\0"
-"NoMP\0TextMode\0GrMode\0DontProbe\0AutoMountIDE\0Help\0";
+"NoMP\0TextMode\0GrMode\0DontProbe\0AutoMountIDE\0LowRAMDrv\0Help\0";
 
 #define CFG_PROTECT_LOW		0
 #define CFG_DETERMINISTIC	1
@@ -13,9 +13,10 @@ U8 *kernel_cfg_options="ProtectLow\0Deterministic\0MemInit\0HeapInit\0VarInit\0"
 #define CFG_GR_MODE		7
 #define CFG_DONT_PROBE		8
 #define CFG_AUTO_MOUNT_IDE	9
-#define CFG_NUM_OPTIONS		10
+#define CFG_LOW_RAM_DRV		10
+#define CFG_NUM_OPTIONS		11
 
-#define CFG_HELP		10
+#define CFG_HELP		11
 
 
 class CKernelCfg
@@ -23,18 +24,19 @@ class CKernelCfg
   I64 bios_gr_mode;
   U8 *acct_name;
   U8 *dsk_cache_size_exp;
+  U8 *low_RAM_drv_src_dir;
   CDoc *add_dev;
-
   Bool opts[CFG_NUM_OPTIONS];
   U8 mem_init_val,heap_init_val,var_init_val,
-     dft_drv,auto_mount_ide_hd_let,auto_mount_ide_cd_let;
+     sys_acct_drv,auto_mount_ide_hd_let,auto_mount_ide_cd_let,
+     low_RAM_drv_dst_let;
   Bool cdrom_ports_pmt;
 };
 
 CDoc *KernelCfgAddDev(CKernelCfg *c)
 {
   I64 num_hints,first_prt_num,type,unit,cnt=0;
-  U8 blks_buf[256],base0_buf[128],base1_buf[128],drv_let;
+  U8 blks_buf[256],addr_buf[256],base0_buf[128],base1_buf[128],drv_let;
   CATARep *root=NULL,*tempha;
   CDoc *doc=DocNew;
 
@@ -50,11 +52,13 @@ CDoc *KernelCfgAddDev(CKernelCfg *c)
 
       unit=0;
       if (type==BDT_RAM) {
+	PutDefine("ST_MOUNT_ADDR");
+	GetS(addr_buf,256);
 	PutDefine("ST_MOUNT_BLKS");
 	GetS(blks_buf,256);
       } else if (type==BDT_ATA ||
 	  type==BDT_ATAPI) {
-	num_hints=ATARep(TRUE,,&root);
+	num_hints=ATARep(,,&root);
 	if (type==BDT_ATAPI) {
 	  PutDefine("ST_MOUNT_BOOTED_CDROM");
 	  if (num_hints)
@@ -94,8 +98,11 @@ CDoc *KernelCfgAddDev(CKernelCfg *c)
       if (BDT_NULL<type<BDT_NUM_TYPES && 0<=unit<=1) {
 	DocPrintF(doc,"bdev=BlkDevNextFree(%d,%d);"
 		      "bdev->unit=%d;",first_prt_num+'A',type,unit);
-	if (type==BDT_RAM)
+	if (type==BDT_RAM) {
+	  if (!*addr_buf) StrCpy(addr_buf,"0");
+	  DocPrintF(doc,"bdev->RAM_dsk=%s;",addr_buf);
 	  DocPrintF(doc,"bdev->max_blk=(%s)-1;",blks_buf);
+	}
 	if (type==BDT_ATA || type==BDT_ATAPI) {
 	  if (type==BDT_ATAPI && !*base0_buf) {
 	    c->cdrom_ports_pmt=TRUE;
@@ -114,7 +121,7 @@ CDoc *KernelCfgAddDev(CKernelCfg *c)
   //See [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,1] InsBootDstDrv
   if (!(drv_let=NamedFramePtr("InsBootDstDrv")))
     drv_let=Fs->cur_prt->drv_let;
-  c->dft_drv=drv_let;
+  c->sys_acct_drv=drv_let;
   return doc;
 }
 
@@ -142,6 +149,7 @@ U0 KernelCfgOptions(CKernelCfg *c)
 "$FG,PURPLE$GrMode$FG$ Graphics Mode (requires hard reboot).\n"
 "$FG,PURPLE$DontProbe$FG$ Just prompt CD-ROM ports, don't probe.\n"
 "$FG,PURPLE$AutoMountIDE$FG$ AutoMount IDE drives to 'C' and 'T'.\n"
+"$FG,PURPLE$LowRAMDrv$FG$ Make Low 640K drive 'S' from 'B'.\n"
 "\n",PROTECTED_LOW_PAGE_LIMIT; //Should be stream val of prot_low_limit
     else
       if (0<=i<CFG_NUM_OPTIONS) {
@@ -191,10 +199,100 @@ U0 KernelCfgOptions(CKernelCfg *c)
 	    c->auto_mount_ide_hd_let=0;
 	    c->auto_mount_ide_cd_let=0;
 	  }
+	  break;
+	case CFG_LOW_RAM_DRV:
+	  if (state) {
+	    Free(c->low_RAM_drv_src_dir);
+	    c->low_RAM_drv_src_dir=PmtStr("Src Drv Dir:","B:/LowRAMDrv");
+	    "Low RAM Drive Src Dir:'%s'\n",c->low_RAM_drv_src_dir;
+
+	    "Dst Drive Let:";
+	    c->low_RAM_drv_dst_let=ToUpper(GetChar);
+	    if (!('A'<=c->low_RAM_drv_dst_let<='Z'))
+	      c->low_RAM_drv_dst_let=0;
+	    NewLine;
+	    if (c->low_RAM_drv_dst_let)
+	      "Low RAM Drive Dst:%C\n",c->low_RAM_drv_dst_let;
+	    else
+	      "Low RAM Drive Dst:%C\n",'S';
+	  } else {
+	    Free(c->low_RAM_drv_src_dir);
+	    c->low_RAM_drv_src_dir=NULL;
+	    c->low_RAM_drv_dst_let=0;
+	  }
+	  break;
       }
     }
   } while (*st);
   Free(st);
+}
+
+U0 KernelLowRAMDrv(CKernelCfg *c)
+{
+  U8 *cur_dir=CurDir,buf[8],*sys_kernel_end,*base,*_dst,*dst;
+  I64 i,k,blks,*src,cnt,val;
+  CTask *task;
+  CBlkDev *bdev;
+
+  sys_kernel_end=StreamExePutS("BOOT_RAM_BASE+SYS_KERNEL_END-SYS_KERNEL_START1+sizeof(CBinFile);");
+  base=(sys_kernel_end+BLK_SIZE+BLK_SIZE-1)&~(BLK_SIZE-1);
+  blks=(StreamExePutS("LOW_RAM_DRV_LIMIT;")-base)>>BLK_SIZE_BITS;
+  "Low RAM Drv:%X-%X\n",base,base+blks<<BLK_SIZE_BITS-1;
+
+  if (!c->low_RAM_drv_src_dir)
+    c->low_RAM_drv_src_dir=StrNew("B:/LowRAMDrv");
+  if (!c->low_RAM_drv_dst_let)
+    c->low_RAM_drv_dst_let='S';
+
+  try bdev=Drv2BlkDev(c->low_RAM_drv_dst_let);
+  catch {
+    bdev=NULL;
+    Fs->catch_except=TRUE;
+  }
+  if (bdev && bdev->type==BDT_RAM && bdev->RAM_dsk>=sys_heap_base)
+    Free(bdev->RAM_dsk);
+
+  task=SpawnUser;
+  XTalkWait(task,"Mount;\n%C1\n0x%X\n\n",c->low_RAM_drv_dst_let,blks);
+  Fmt(c->low_RAM_drv_dst_let,,FALSE,PT_NATIVE);
+  bdev=Drv2BlkDev(c->low_RAM_drv_dst_let);
+
+  //Recreate it because original was MSize2
+  XTalkWait(task,"Mount;\n%C10x%X\n0x%X\n\n",c->low_RAM_drv_dst_let,bdev->RAM_dsk,blks);
+  XTalk(task,"Exit;\n");
+  Fmt(c->low_RAM_drv_dst_let,FALSE,FALSE,PT_NATIVE);
+
+  SPrintF(buf,"%C:/",c->low_RAM_drv_dst_let);
+  CopyTree(c->low_RAM_drv_src_dir,buf);
+
+  _dst=dst=MAlloc(0x10000);
+  src=bdev->RAM_dsk;
+  StreamPutS("asm {ALIGN BLK_SIZE,OC_NOP\nDU8 BLK_SIZE-sizeof(CBinFile) DUP(0);\n DU64 ");
+  k=blks<<BLK_SIZE_BITS/sizeof(I64);
+  for (i=0;i<k;i+=cnt) {
+    cnt=1;
+    val=*src++;
+    while (i+cnt<k && *src==val) {
+      cnt++;
+      src++;
+    }
+    if (cnt==1)
+      SPrintF(dst,"0x%X,",val);
+    else
+      SPrintF(dst,"%d DUP(0x%X),",cnt,val);
+    dst+=StrLen(dst);
+    if (dst-_dst>0x10000-128) {
+      StreamPutS(_dst);
+      dst=_dst;
+      *dst=0;
+    }
+  }
+  StreamPutS(_dst);
+  StreamPutS(";}\n");
+  Free(_dst);
+
+  Cd(cur_dir);
+  Free(cur_dir);
 }
 
 CKernelCfg *KernelCfgNew()
@@ -214,7 +312,10 @@ CKernelCfg *KernelCfgNew()
  
 U0 KernelCfgDel(CKernelCfg *c)
 {
+  if (c->opts[CFG_LOW_RAM_DRV])
+    KernelLowRAMDrv(c);
   DocDel(c->add_dev);
+  Free(c->low_RAM_drv_src_dir);
   Free(c->acct_name);
   Free(c->dsk_cache_size_exp);
   Free(c);

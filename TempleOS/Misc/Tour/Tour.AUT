@@ -36,4 +36,5 @@ U0 TourMenu()
 
 "DocClear;WinMax;\n";
 TourMenu;
-"Cd(\"HOME\");\n";
+Msg(MSG_KEY_DOWN,0,SC_CURSOR_DOWN|SCF_CTRL);
+"Cd(\"HOME\");Dir;\n";

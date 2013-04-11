@@ -27,7 +27,7 @@ U8 *gr_font;
 U8 *sys_fix_file_line=NULL;
 
 CTask *sys_winmgr_task=NULL,
-	   *sys_task_being_screen_updated=NULL;
+   *sys_task_being_screen_updated=NULL;
 I64 sys_rnd_seed;
 CDoc *sys_clipboard_doc;
 U8 *sys_dft_iso_name;
@@ -40,10 +40,10 @@ I64 sys_auto_mount_ide_cnt=0;
     kernel_cfg->auto_mount_ide_hd_let='C';
   if (!kernel_cfg->auto_mount_ide_cd_let)
     kernel_cfg->auto_mount_ide_cd_let='T';
-  StreamPrintF("U8 dft_drv=%d,sys_first_hd_drv_let=%d,sys_first_cd_drv_let=%d;",
-    ToUpper(kernel_cfg->dft_drv),kernel_cfg->auto_mount_ide_hd_let,kernel_cfg->auto_mount_ide_cd_let);
+  StreamPrintF("U8 sys_first_hd_drv_let=%d,sys_first_cd_drv_let=%d;",
+    kernel_cfg->auto_mount_ide_hd_let,kernel_cfg->auto_mount_ide_cd_let);
 }
-Bool boot_drv_pmt=FALSE;
+Bool boot_drv_pmt=FALSE,cdrom_boot_is_good=TRUE;
 CPrt *drv_to_prt[32];
 U8 *sys_acct;
 U8 *reverse_bits_table,*set_bits_table;
@@ -131,10 +131,10 @@ U0 (*fp_snd_copy_buf)(SND_IN_CONTAINER *buf,I64 buf_num)=NULL;
 U8  *(*fp_mgets)(I64 flags=0)=NULL;
 U0 (*fp_prs_stream_blk)(CLex *lx)=NULL;
 U0 (*fp_update_ctrls)(CTask *task)=NULL;
-CDoc *(*fp_doc_cur)(CTask *task=NULL)=NULL;
+CDoc *(*fp_doc_put)(CTask *task=NULL)=NULL;
 U0 (*fp_set_std_palette)()=NULL;
 
 CPSectCache *psect_cache;
 I64 psect_cache_index;
-//These are for [C:/TempleOS/Kernel/Str1a.CPP.Z,1337] SPrintF()
+//These are for [C:/TempleOS/Kernel/Str1a.CPP.Z,1325] SPrintF()
 U8 *date_fmt_map,*time_fmt_map;

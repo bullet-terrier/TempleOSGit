@@ -492,14 +492,6 @@ U0 RotateMan(F64 d)
 U0 FPS()
 {
   I64 sc;
-
-  PopUpOk(
-	"I refuse to rip-off the original\n"
-	"so this is intentionally crappy\n"
-	"and included for demonstration\n"
-	"purposes.\n\n"
-	"Write games, don't play them.\n");
-
   MenuPush(
   "File {"
   "  Abort(,CH_SHIFT_ESC);"

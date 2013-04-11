@@ -24,14 +24,14 @@ public U0 DocCenter(CDoc *doc=NULL,I64 recalc=DOC_RECALC_ALL)
   Bool unlock;
   CTask *task;
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return;
   }
   unlock=DocLock(doc);
   task=doc->win_task;
   DocRecalc(doc,FALSE,recalc);
-  if (!(doc->flags&DOCF_AUX_DOC))
+  if (!(doc->flags&DOCF_BORDER_DOC))
     doc->cur_top_line_num=doc->y-(task->win_height+1)>>1;
   LockToPage(doc);
   if (unlock)
@@ -188,7 +188,7 @@ Bool DocRecalc(CDoc *doc,Bool has_cursor=FALSE,I64 recalc=DOC_RECALC_ALL)
   left_margin=left;
   right_margin=right;
   PopFD;
-  if (doc->flags&DOCF_AUX_DOC) {
+  if (doc->flags&DOCF_BORDER_DOC) {
     scroll_x=0;
     scroll_y=0;
   }
@@ -214,7 +214,7 @@ Bool DocRecalc(CDoc *doc,Bool has_cursor=FALSE,I64 recalc=DOC_RECALC_ALL)
 
   hss=&win_task->horz_scroll;
   vss=&win_task->vert_scroll;
-  if (doc->flags&DOCF_AUX_DOC) {
+  if (doc->flags&DOCF_BORDER_DOC) {
     doc->cur_top_line_num=0;
     doc->line_start_col=0;
     has_cursor=FALSE;
@@ -248,7 +248,7 @@ Bool DocRecalc(CDoc *doc,Bool has_cursor=FALSE,I64 recalc=DOC_RECALC_ALL)
   if (recalc==DOC_RECALC_TO_SCREEN) {
     y_plot_top=y0-scroll_y/FONT_HEIGHT;
     y_plot_bottom=y0+height-1-scroll_y/FONT_HEIGHT;
-    if (!(doc->flags&DOCF_AUX_DOC) && !Bt(&win_task->display_flags,DISPLAYf_NO_BORDER))
+    if (!(doc->flags&DOCF_BORDER_DOC) && !Bt(&win_task->display_flags,DISPLAYf_NO_BORDER))
       DocBorderLstDraw(doc);
   }
 
@@ -1526,11 +1526,9 @@ skip:
       doc->cur_entry=best_do_e;
       doc->cur_data_col=best_col;
       DocFormBackward(doc);
-
       //We need this because text coordinates are used
       if (best_d<FONT_WIDTH)
 	best_d=0;
-
       doc->best_d=best_d;
     }
 
@@ -1650,7 +1648,7 @@ public U0 DocInsSafe(CDoc *doc,U8 *st)
   Bool unlock;
   I64 old_flags;
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return;
   }
@@ -1668,7 +1666,7 @@ public U0 DocBottom(CDoc *doc=NULL)
 {
   Bool unlock;
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return;
   }
@@ -1684,7 +1682,7 @@ public U0 DocTop(CDoc *doc=NULL)
 {
   Bool unlock;
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return;
   }
@@ -1700,7 +1698,7 @@ public U0 DocClear(CDoc *doc=NULL)
 {
   Bool unlock;
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return;
   }
@@ -1715,7 +1713,7 @@ public U0 DocClear(CDoc *doc=NULL)
 public Bool DocCursor(Bool show=OFF,CDoc *doc=NULL)
 {
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return FALSE;
   }
@@ -1725,7 +1723,7 @@ public Bool DocCursor(Bool show=OFF,CDoc *doc=NULL)
 public Bool DocScroll(Bool val=OFF,CDoc *doc=NULL)
 {
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return FALSE;
   }
@@ -1743,13 +1741,13 @@ I64 DocBkColor(CDoc *doc,I64 col)
   return result;
 }
 
-public I64 DocCurAttr(I64 attr=WHITE<<4+BLUE,CTask *task=NULL)
+public I64 DocPutAttr(I64 attr=WHITE<<4+BLUE,CTask *task=NULL)
 {
   CDoc *doc;
   I64 result=0;
   if (!task) task=Fs;
   result=task->text_attr;
-  if (doc=DocCur(task)) {
+  if (doc=DocPut(task)) {
     result=doc->start_text_attr;
     doc->start_text_attr=attr;
     DocBkColor(doc,attr>>4);
@@ -1758,15 +1756,15 @@ public I64 DocCurAttr(I64 attr=WHITE<<4+BLUE,CTask *task=NULL)
   return result;
 }
 
-public I64 DocAuxAttr(I64 attr=WHITE<<4+BLUE,CTask *task=NULL)
+public I64 DocBorderAttr(I64 attr=WHITE<<4+BLUE,CTask *task=NULL)
 { //This will probably be ineffective since the
-  //[C:/TempleOS/Kernel/Adam1a.HPP.Z,1430] DOCF_ATTR_BY_PRT or [C:/TempleOS/Kernel/Adam1a.HPP.Z,1431] DOCF_ATTR_BY_FILENAME flag is probably set
+  //[C:/TempleOS/Kernel/Adam1a.HPP.Z,1422] DOCF_ATTR_BY_PRT or [C:/TempleOS/Kernel/Adam1a.HPP.Z,1423] DOCF_ATTR_BY_FILENAME flag is probably set
   //which means [C:/TempleOS/Adam/Dsk/Dsk2a.CPP.Z,317] SetDrvTextAttr() is overriding it.
   CDoc *doc;
   I64 result=0;
   if (!task) task=Fs;
   result=task->border_attr;
-  if (doc=DocAux(task)) {
+  if (doc=DocBorder(task)) {
     result=doc->start_text_attr;
     doc->start_text_attr=attr;
     DocBkColor(doc,attr>>4);
@@ -1780,7 +1778,7 @@ public U0 DocCollapse(Bool collapse=TRUE,CDoc *doc=NULL)
   CDocEntry *doc_e;
   Bool unlock;
   if (!doc) {
-    doc=DocCur;
+    doc=DocPut;
     if (!doc)
       return;
   }
@@ -1801,42 +1799,36 @@ U0 DocUpdateTaskDocs(CTask *task)
 {
   CPrt *p;
   I64 attr=task->border_attr;
-  CDoc *doc=task->last_doc;
+  CDoc *doc;
   CD3I64 saved_scroll;
-  Bool old_preempt=Preempt(OFF),okay=TRUE;
-  while (doc!=(&task->next_doc)(U8 *)-offset(CDoc.next_doc)) {
-    if (!(doc->flags&DOCF_DONT_SHOW)) {
-      if (doc->flags&DOCF_AUX_DOC) {
-	if (attr&0xF!=attr>>4)
-	  doc->start_text_attr=attr;
-	WinScrollNull(task,&saved_scroll);
-	okay=DocRecalc(doc,FALSE,DOC_RECALC_TO_SCREEN);
-	WinScrollRestore(task,&saved_scroll);
-      } else {
-	if (doc->flags&DOCF_ATTR_BY_PRT) {
-	  p=task->cur_prt;
-	  attr=p->text_attr;
-	}
-	if (doc->flags&DOCF_ATTR_BY_FILENAME) {
-	  try
-	    p=Drv2Prt(doc->filename.name[0]);
-	  catch {
-	    p=NULL;
-	    Fs->catch_except=TRUE;
-	  }
-	  if (p)
-	    attr=p->text_attr;
-	}
-	if (attr&0xF!=attr>>4)
-	  task->border_attr=attr;
-	Preempt(old_preempt);
-	okay=DocRecalc(doc,TRUE,DOC_RECALC_TO_SCREEN);
-	Preempt(OFF);
-      }
+  Bool old_preempt=Preempt(OFF);
+  if ((doc=DocDisplay(task)) && !(doc->flags&DOCF_DONT_SHOW)) {
+    if (doc->flags&DOCF_ATTR_BY_PRT) {
+      p=task->cur_prt;
+      attr=p->text_attr;
     }
-    if (!okay || doc->doc_in_que_signature!=DOC_IN_QUE_SIGNATURE_VAL)
-      break;
-    doc=doc->last_doc;
+    if (doc->flags&DOCF_ATTR_BY_FILENAME) {
+      try
+	  p=Drv2Prt(doc->filename.name[0]);
+      catch {
+	p=NULL;
+	Fs->catch_except=TRUE;
+      }
+      if (p)
+	attr=p->text_attr;
+    }
+    if (attr&0xF!=attr>>4)
+      task->border_attr=attr;
+    Preempt(old_preempt);
+    DocRecalc(doc,TRUE,DOC_RECALC_TO_SCREEN);
+    Preempt(OFF);
+  }
+  if ((doc=DocBorder(task)) && !(doc->flags&DOCF_DONT_SHOW)) {
+    if (attr&0xF!=attr>>4)
+      doc->start_text_attr=attr;
+    WinScrollNull(task,&saved_scroll);
+    DocRecalc(doc,FALSE,DOC_RECALC_TO_SCREEN);
+    WinScrollRestore(task,&saved_scroll);
   }
   Preempt(old_preempt);
 }

@@ -953,7 +953,7 @@ U0 EdInsBinary(I64 bin_num,I64 type)
 	"$%Z+BP,\"%Q\",%d,\"%s,%d\"$",type,"ST_DOC_CMDS",dt->tag,dt->bin_num,
 	  dt->bin_ptr_link_file,dt->bin_ptr_link_bin_num;
     } else {
-      if (DocBinFindNum(DocCur,dt->bin_num))
+      if (DocBinFindNum(DocPut,dt->bin_num))
 	"$%Z,\"%Q\",%d$",type,"ST_DOC_CMDS",dt->tag,dt->bin_num;
       else
 	PopUpOk("Invalid Binary Num");
@@ -981,7 +981,7 @@ U0 EdInsTree()
     st=MSPrintF("%q",dt->label);
     st2=MSPrintF("$TR%s,\"%Q\"$\n$ID,%d$*\n$ID,%d$",
       buf,st,dt->indent,-dt->indent);
-    DocInsSafe(DocCur,st2);
+    DocInsSafe(DocPut,st2);
     Free(st);
     Free(st2);
   }
@@ -990,7 +990,7 @@ U0 EdInsTree()
 
 U0 EdInsHidden()
 {
-  DocInsSafe(DocCur,"$HS$*$HE$");
+  DocInsSafe(DocPut,"$HS$*$HE$");
 }
 
 U0 EdInsDollarCmd()
@@ -1060,7 +1060,7 @@ I64 PopUpSpriteType()
 {
   I64 i;
   CDoc *doc=DocNew;
-  DocPutS(doc,"A sprite is composed of an ordered lst of elements\n"
+  DocPutS(doc,"A sprite is composed of an ordered list of elements\n"
 	"such as lines and color changes.  You can create an icon\n"
 	"by placing a sprite with a payload of C+ code to execute.\n"
 	"This is a called a \"sprite macro\".  Check \"Pop-Up\" for\n"

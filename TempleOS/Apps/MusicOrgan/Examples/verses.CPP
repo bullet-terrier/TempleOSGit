@@ -45,7 +45,7 @@ U0 Song()
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);
   SetWinVert(Fs->win_bottom+3,Fs->win_bottom+15,task);
-  DocRecalc(DocCur(task)); //Reformat word-wrap with new window size.
+  DocRecalc(DocPut(task)); //Reformat word-wrap with new window size.
   while (!ScanKey) {
 	PutVerse;
 	Play("3qAeABCBqCetABBqCetAAREE2G");

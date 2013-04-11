@@ -79,7 +79,7 @@ public _extern _BIT_FIELD_OR_U32 U0 BFieldOrU32(
 public _extern _BIT_FIELD_EXTRACT_U32 U32 BFieldExtU32(
 	 U8 *bit_field,I64 bit,I64 size);
 
-#help_index "Circular Queue"
+#help_index "Data Types/Circular Queue"
 #help_file "::/TempleOS/Doc/Que"
 public _intern IC_QUE_INIT U0 QueInit(CQue *root);
 //Ins item into que after predicessor.
@@ -94,12 +94,12 @@ public _intern IC_QUE_REM U0 QueRem(CQue *entry);
 public _intern IC_PREEMPT Bool Preempt(Bool val);
 
 #help_index "I/O;Processor/IO Port"
-public _intern IC_INU8	I64 InU8(I64 port);
-public _intern IC_INU16 I64 InU16(I64 port);
-public _intern IC_INU32 I64 InU32(I64 port);
-public _intern IC_OUTU8  U0 OutU8(I64 port, I64 val);
-public _intern IC_OUTU16 U0 OutU16(I64 port, I64 val);
-public _intern IC_OUTU32 U0 OutU32(I64 port, I64 val);
+public _intern IC_IN_U8	I64 InU8(I64 port);
+public _intern IC_IN_U16 I64 InU16(I64 port);
+public _intern IC_IN_U32 I64 InU32(I64 port);
+public _intern IC_OUT_U8  U0 OutU8(I64 port, I64 val);
+public _intern IC_OUT_U16 U0 OutU16(I64 port, I64 val);
+public _intern IC_OUT_U32 U0 OutU32(I64 port, I64 val);
 public _extern _REP_IN_U8  U0 RepInU8(U8 *buf,I64 cnt,I64 port);
 public _extern _REP_IN_U16 U0 RepInU16(U8 *buf,I64 cnt,I64 port);
 public _extern _REP_IN_U32 U0 RepInU32(U8 *buf,I64 cnt,I64 port);

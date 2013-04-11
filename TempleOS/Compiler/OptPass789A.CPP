@@ -30,8 +30,8 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
     dbg=NULL;
 
   if (Bt(&lx->flags,Lf_OPT_TRACE_PRESENT) &&
-      Bt(&lx->pass_trace_mask,lx->pass))
-      "$BK,1$$FG,LTRED$$IV,1$This code gets merged together and patched.\n$FG$$IV,0$$BK,0$";
+	Bt(&lx->pass_trace_mask,lx->pass))
+    "$BK,1$$FG,LTRED$$IV,1$This code gets merged together and patched.\n$FG$$IV,0$$BK,0$";
 
   lx->last_float_op_ic=NULL;
 
@@ -60,7 +60,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	MemCpy(saved_p123,&tempi->p1,3*sizeof(CICArg));
 	if (cmp_arg_cnt[code]==2) {
 	  if (tempi->p1.type&TY_MASK==TY_REG &&
-	      tempi->p1.reg==CREG_RAX)
+		tempi->p1.reg==CREG_RAX)
 	    tempi->ic_flags|=ICF_P1_FIRST;
 	}
 	tempi->ic_cnt=0;
@@ -85,7 +85,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    if (tempi->ic_flags & ICF_P2_TO_F64) {
 	      if (tempi->ic_flags&ICF_P1_FIRST) {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 		tempi->p1.type=TY_REG+IT_I64;
 		tempi->p1.reg=CREG_RDX;
 		tempi->p1.disp=0;
@@ -98,7 +98,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    } else if (tempi->ic_flags & ICF_P2_TO_INT) {
 	      if (tempi->ic_flags&ICF_P1_FIRST) {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 		tempi->p1.type=TY_REG+IT_I64;
 		tempi->p1.reg=CREG_RDX;
 		tempi->p1.disp=0;
@@ -169,7 +169,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    } else
 	      goto p2_RAX_p1_RDX;
 	  } else {
-	    p2_RAX_p1_RDX:
+p2_RAX_p1_RDX:
 	    if (tempi->p2.type&TY_MASK) {
 	      if (tempi->ic_flags & ICF_P2_TO_F64) {
 		ICFCvt(lx,tempi,CREG_RAX,tempi->p2.type,tempi->p2.reg,tempi->p2.disp,FALSE,CN_P2,ip2);
@@ -203,7 +203,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    ICU16(tempi,0xB848);
 	    ICU64(tempi,tempi->ic_data);
 	    if (buf && lx->flags&LF_AOT_COMPILE &&
-	      !(lx->flags&(LF_NO_ABSS|LF_ASM_EXPRESSIONS))) {
+		  !(lx->flags&(LF_NO_ABSS|LF_ASM_EXPRESSIONS))) {
 	      tempa=CAlloc(sizeof(CExeAbsAddr));
 	      tempa->next=a->abss;
 	      tempa->type=EAA_ADD_U64;
@@ -211,7 +211,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	      tempa->ip=ip2+tempi->ic_cnt-8;
 	    }
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_REG+IT_I64,CREG_RAX,0,ip2);
+		  TY_REG+IT_I64,CREG_RAX,0,ip2);
 	    tempi->ic_flags&=~ICF_CODE_FINAL;
 	    break;
 	  case IC_HEAP_GLBL:
@@ -219,14 +219,14 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    ICU64(tempi,0);
 	    temphg=tempi->ic_data;
 	    if (buf && lx->flags&LF_AOT_COMPILE &&
-	      !(lx->flags&(LF_NO_ABSS|LF_ASM_EXPRESSIONS))) { //is this necessary--flags?
+		  !(lx->flags&(LF_NO_ABSS|LF_ASM_EXPRESSIONS))) { //is this necessary--flags?
 	      temphgr=CAlloc(sizeof(CExeHeapGlblRef));
 	      temphgr->next=temphg->references;
 	      temphg->references=temphgr;
 	      temphgr->ip=ip2+tempi->ic_cnt-8;
 	    }
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_REG+IT_I64,CREG_RAX,0,ip2);
+		  TY_REG+IT_I64,CREG_RAX,0,ip2);
 	    tempi->ic_flags&=~ICF_CODE_FINAL;
 	    break;
 	  case IC_ADDR_IMPORT:
@@ -242,7 +242,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    }
 	    ICU24(tempi,0xC06348);
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_REG+IT_I64,CREG_RAX,0,ip2);
+		  TY_REG+IT_I64,CREG_RAX,0,ip2);
 	    tempi->ic_flags&=~ICF_CODE_FINAL;
 	    break;
 	  case IC_STR_CONST:
@@ -253,7 +253,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    else
 	      i=lb->addr+buf;
 	    ICLea(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_RIP_DISP32+IT_PTR,0,i,lx,buf,ip2);
+		  TY_RIP_DISP32+IT_PTR,0,i,lx,buf,ip2);
 	    tempi->ic_flags&=~ICF_CODE_FINAL;
 	    break;
 	  case IC_ASM:
@@ -285,14 +285,14 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    ICU8(tempi,0x64);
 	    //It's ugly to use ic_class here
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_DISP+CmpType(tempi->ic_class),CREG_RAX,tempi->ic_data,ip2);
+		  TY_DISP+CmpType(tempi->ic_class),CREG_RAX,tempi->ic_data,ip2);
 	    break;
 	  case IC_MOV_GS:
 	    ICZero(tempi,CREG_RAX);
 	    ICU8(tempi,0x65);
 	    //It's ugly to use ic_class here
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_DISP+CmpType(tempi->ic_class),CREG_RAX,tempi->ic_data,ip2);
+		  TY_DISP+CmpType(tempi->ic_class),CREG_RAX,tempi->ic_data,ip2);
 	    break;
 	  case IC_RIP:
 	    ICU16(tempi,0xB848);
@@ -305,12 +305,12 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	      tempa->ip=ip2+tempi->ic_cnt-8;
 	    }
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_REG+IT_I64,CREG_RAX,0,ip2);
+		  TY_REG+IT_I64,CREG_RAX,0,ip2);
 	    tempi->ic_flags&=~ICF_CODE_FINAL;
 	    break;
 	  case IC_NATIVE_TYPECAST:
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    break;
 	  case IC_COM:
 	    ICUnaries(tempi,SLASH_OP_NOT,ip2);
@@ -327,7 +327,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	  case IC_ADDR:
 	  case IC_MOV:
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    break;
 	  case IC_DEREF:
 	    ICDeref(tempi,ip2);
@@ -364,20 +364,20 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_LEA:
 	    ICLea(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,lx,buf,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,lx,buf,ip2);
 	    break;
 	  case IC_POWER:
 	    ICFPow(lx,tempi,buf,ip2);
 	    break;
 	  case IC_SHL:
 	    ICShift(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE0D1E0D3E0C1,0xE0D1E0D3E0C1,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE0D1E0D3E0C1,0xE0D1E0D3E0C1,ip2);
 	    break;
 	  case IC_SHR:
 	    ICShift(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE8D1E8D3E8C1,0xF8D1F8D3F8C1,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE8D1E8D3E8C1,0xF8D1F8D3F8C1,ip2);
 	    break;
 	  case IC_MUL:
 	    if (tempi->ic_flags&ICF_USE_INT)
@@ -399,32 +399,32 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_AND:
 	    ICAddEct(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x23,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x23,ip2);
 	    break;
 	  case IC_OR:
 	    ICAddEct(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x0B,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x0B,ip2);
 	    break;
 	  case IC_XOR:
 	    ICAddEct(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x33,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x33,ip2);
 	    break;
 	  case IC_ADD:
 	    if (tempi->ic_flags&ICF_USE_INT)
 	      ICAddEct(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x03,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x03,ip2);
 	    else
 	      ICFAdd(lx,tempi,buf,ip2);
 	    break;
 	  case IC_SUB:
 	    if (tempi->ic_flags&ICF_USE_INT)
 	      ICSub(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
 	    else
 	      ICFSub(lx,tempi,buf,ip2);
 	    break;
@@ -481,15 +481,15 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_SHL_EQUAL:
 	    ICShiftEqual(tempi,tempi->p1.ptype,
-		tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE0D1E0D3E0C1,0xE0D1E0D3E0C1,ip2);
+		  tempi->r.type,tempi->r.reg,tempi->r.disp,
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE0D1E0D3E0C1,0xE0D1E0D3E0C1,ip2);
 	    break;
 	  case IC_SHR_EQUAL:
 	    ICShiftEqual(tempi,tempi->p1.ptype,
-		tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE8D1E8D3E8C1,0xF8D1F8D3F8C1,ip2);
+		  tempi->r.type,tempi->r.reg,tempi->r.disp,
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0xE8D1E8D3E8C1,0xF8D1F8D3F8C1,ip2);
 	    break;
 	  case IC_MUL_EQUAL:
 	    if (tempi->ic_flags&ICF_USE_INT)
@@ -521,38 +521,38 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	  case IC_ADD_EQUAL:
 	    if (tempi->ic_flags&ICF_USE_INT)
 	      ICAddSubEctEqual(tempi,tempi->p1.ptype,
-		  tempi->r.type,tempi->r.reg,tempi->r.disp,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x010000000003,ip2);
+		    tempi->r.type,tempi->r.reg,tempi->r.disp,
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x010000000003,ip2);
 	    else
 	      ICFOpEqual(lx,tempi,SLASH_OP_FADD,buf,ip2);
 	    break;
 	  case IC_SUB_EQUAL:
 	    if (tempi->ic_flags&ICF_USE_INT)
 	      ICAddSubEctEqual(tempi,tempi->p1.ptype,
-		  tempi->r.type,tempi->r.reg,tempi->r.disp,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		  tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x29000000052B,ip2);
+		    tempi->r.type,tempi->r.reg,tempi->r.disp,
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,0x29000000052B,ip2);
 	    else
 	      ICFOpEqual(lx,tempi,SLASH_OP_FSUB,buf,ip2);
 	    break;
 	  case IC_SHL_CONST:
 	    ICShift(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		TY_IMM+IT_I64,0,tempi->ic_data,0xE0D1E0D3E0C1,0xE0D1E0D3E0C1,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  TY_IMM+IT_I64,0,tempi->ic_data,0xE0D1E0D3E0C1,0xE0D1E0D3E0C1,ip2);
 	    break;
 	  case IC_SHR_CONST:
 	    ICShift(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-	    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
-		TY_IMM+IT_I64,0,tempi->ic_data,0xE8D1E8D3E8C1,0xF8D1F8D3F8C1,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,
+		  TY_IMM+IT_I64,0,tempi->ic_data,0xE8D1E8D3E8C1,0xF8D1F8D3F8C1,ip2);
 	    break;
 	  case IC_ADD_CONST:
 	    ICAddConst(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,tempi->ic_data,0x0003,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,tempi->ic_data,0x0003,ip2);
 	    break;
 	  case IC_SUB_CONST:
 	    ICAddConst(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,tempi->ic_data,0x052B,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,tempi->ic_data,0x052B,ip2);
 	    break;
 	  case IC_ENTER:
 	    if (tempi->ic_data<=MAX_I16)
@@ -560,7 +560,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    else {
 	      ICPush(tempi,TY_REG+IT_I64,CREG_RBP,0,ip2);
 	      ICMov(tempi,TY_REG+IT_I64,CREG_RBP,0,
-		  TY_REG+IT_I64,CREG_RSP,0,ip2);
+		    TY_REG+IT_I64,CREG_RSP,0,ip2);
 	      ICAddRSP(tempi,-tempi->ic_data);
 	    }
 	    if (fun_class) {
@@ -573,11 +573,9 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	      }
 	      for (i=0;i<NUM_REGS;i++)
 		if (register_offsets[i]>0 && register_offsets[i].offset!=MAX_I64) {
-		  tempc=register_offsets[i].m->member_class;
-		  while (tempc->fwd_class)
-		    tempc=tempc->fwd_class;
+		  tempc=OptClassFwd(register_offsets[i].m->member_class);
 		  ICMov(tempi,TY_REG+IT_I64,i,0,
-		      TY_DISP+tempc->sub_type,CREG_RBP,register_offsets[i].offset,ip2);
+			TY_DISP+tempc->sub_type,CREG_RBP,register_offsets[i].offset,ip2);
 		}
 	    }
 	    break;
@@ -688,12 +686,12 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_INVLPG:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    ICU24(tempi,0x38010F);
 	    break;
 	  case IC_CLFLUSH:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    ICU24(tempi,0x38AE0F);
 	    break;
 	  case IC_PAUSE:
@@ -719,47 +717,47 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_GET_BASE_PTR:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		TY_REG+IT_I64,CREG_RBP,0,ip2);
+		  TY_REG+IT_I64,CREG_RBP,0,ip2);
 	    break;
 	  case IC_SET_BASE_PTR:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RBP,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    break;
 	  case IC_GET_STK_PTR:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		TY_REG+IT_I64,CREG_RSP,0,ip2);
+		  TY_REG+IT_I64,CREG_RSP,0,ip2);
 	    break;
 	  case IC_SET_STK_PTR:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RSP,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    break;
 	  case IC_RETURN_VAL2:
 	    break;
 	  case IC_RETURN_VAL:
 	  case IC_SET_RAX:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    break;
 	  case IC_GET_RAX:
 	    break;
 	  case IC_BT:
 	    ICBitOps(tempi,&tempi->p1,&tempi->p2,tempi+1,
-		0xA30F,0x20BA0F,ip2);
+		  0xA30F,0x20BA0F,ip2);
 	    break;
 	  case IC_BTS:
 	  case IC_LBTS:
 	    ICBitOps(tempi,&tempi->p1,&tempi->p2,tempi+1,
-		0xAB0F,0x28BA0F,ip2);
+		  0xAB0F,0x28BA0F,ip2);
 	    break;
 	  case IC_BTR:
 	  case IC_LBTR:
 	    ICBitOps(tempi,&tempi->p1,&tempi->p2,tempi+1,
-		0xB30F,0x30BA0F,ip2);
+		  0xB30F,0x30BA0F,ip2);
 	    break;
 	  case IC_BTC:
 	  case IC_LBTC:
 	    ICBitOps(tempi,&tempi->p1,&tempi->p2,tempi+1,
-		0xBB0F,0x38BA0F,ip2);
+		  0xBB0F,0x38BA0F,ip2);
 	    break;
 	  case IC_BEQU:
 	  case IC_LBEQU:
@@ -767,21 +765,21 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_BSF:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    ICU32(tempi,0xC0BC0F48);
 	    ICU16(tempi,0x0375);
 	    ICU24(tempi,0xD0F748);
 	    break;
 	  case IC_BSR:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    ICU32(tempi,0xC0BD0F48);
 	    ICU16(tempi,0x0375);
 	    ICU24(tempi,0xD0F748);
 	    break;
 	  case IC_SIGN_I64:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    ICCopyTemplate(lx,tempi,CMP_TEMPLATE_SIGN_I64,TRUE,FALSE,FALSE,CN_MAIN);
 	    break;
 	  case IC_PREEMPT:
@@ -822,7 +820,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_ABS_I64:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    ICU24(tempi,0xC00B48);
 	    ICU16(tempi,0x0379);
 	    ICU24(tempi,0xD8F748);
@@ -883,10 +881,10 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    break;
 	  case IC_STRLEN:
 	    ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	    ICCopyTemplate(lx,tempi,CMP_TEMPLATE_STRLEN,TRUE,FALSE,FALSE,CN_MAIN);
 	    break;
-	  case IC_INU32:
+	  case IC_IN_U32:
 	    if (tempi->p1.type&TY_MASK==TY_IMM) {
 	      ICU16(tempi,0xC033);
 	      if (tempi->p1.disp<=MAX_U8)
@@ -897,12 +895,12 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	      }
 	    } else {
 	      ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      ICU16(tempi,0xC033);
 	      ICU8(tempi,0xED);
 	    }
 	    break;
-	  case IC_INU16:
+	  case IC_IN_U16:
 	    if (tempi->p1.type&TY_MASK==TY_IMM) {
 	      ICU16(tempi,0xC033);
 	      if (tempi->p1.disp<=MAX_U8)
@@ -913,12 +911,12 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	      }
 	    } else {
 	      ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      ICU16(tempi,0xC033);
 	      ICU16(tempi,0xED00+OC_OP_SIZE_PREFIX);
 	    }
 	    break;
-	  case IC_INU8:
+	  case IC_IN_U8:
 	    if (tempi->p1.type&TY_MASK==TY_IMM) {
 	      ICU16(tempi,0xC033);
 	      if (tempi->p1.disp<=MAX_U8)
@@ -929,15 +927,15 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	      }
 	    } else {
 	      ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      ICU16(tempi,0xC033);
 	      ICU8(tempi,0xEC);
 	    }
 	    break;
-	  case IC_OUTU32:
+	  case IC_OUT_U32:
 	    if (tempi->p2.type&TY_MASK==TY_IMM) {
 	      ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      if (tempi->p2.disp<=MAX_U8)
 		ICU16(tempi,0xE7+tempi->p2.disp<<8);
 	      else {
@@ -947,22 +945,22 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    } else {
 	      if (tempi->ic_flags & ICF_P1_FIRST) {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
+		      tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
 	      } else {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
+		      tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
 		ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      }
 	      ICU8(tempi,0xEF);
 	    }
 	    break;
-	  case IC_OUTU16:
+	  case IC_OUT_U16:
 	    if (tempi->p2.type&TY_MASK==TY_IMM) {
 	      ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      if (tempi->p2.disp<=MAX_U8)
 		ICU24(tempi,0xE700+OC_OP_SIZE_PREFIX+tempi->p2.disp<<16);
 	      else {
@@ -972,22 +970,22 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    } else {
 	      if (tempi->ic_flags & ICF_P1_FIRST) {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
+		      tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
 	      } else {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
+		      tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
 		ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      }
 	      ICU16(tempi,0xEF00+OC_OP_SIZE_PREFIX);
 	    }
 	    break;
-	  case IC_OUTU8:
+	  case IC_OUT_U8:
 	    if (tempi->p2.type&TY_MASK==TY_IMM) {
 	      ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		  tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      if (tempi->p2.disp<=MAX_U8)
 		ICU16(tempi,0xE6+tempi->p2.disp<<8);
 	      else {
@@ -997,14 +995,14 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    } else {
 	      if (tempi->ic_flags & ICF_P1_FIRST) {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
+		      tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
 	      } else {
 		ICMov(tempi,TY_REG+IT_I64,CREG_RDX,0,
-		    tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
+		      tempi->p2.type,tempi->p2.reg,tempi->p2.disp,ip2);
 		ICMov(tempi,TY_REG+IT_I64,CREG_RAX,0,
-		    tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
+		      tempi->p1.type,tempi->p1.reg,tempi->p1.disp,ip2);
 	      }
 	      ICU8(tempi,0xEE);
 	    }
@@ -1166,17 +1164,11 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    ICU8(tempi,0xC3);
 	    break;
 	  case IC_JMP:
+	    lb=OptLabelFwd(tempi->ic_data);
 	    short_jmp=ToBool(tempi->ic_flags&ICF_SHORT_JMP);
-	    lb=tempi->ic_data;
-	    while (lb1=lb->fwd)
-	      lb=lb1;
-	    if (!buf) {
-	      if (lb->addr!=INVALID_PTR) {
-		i=lb->addr-ip;
-		    if (MIN_I8+5<i<MAX_I8-5)
-		  short_jmp=TRUE;
-	      }
-	    }
+	    if (!buf && lb->addr!=INVALID_PTR &&
+		MIN_I8+5<lb->addr-ip<MAX_I8-5)
+	      short_jmp=TRUE;
 	    if (short_jmp) {
 	      tempi->ic_flags|=ICF_SHORT_JMP;
 	      i=lb->addr-(ip+2);
@@ -1205,8 +1197,8 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    ICU8(tempi,0xCD);
 	    ICU8(tempi,tempi->ic_data);
 	    break;
-	  case IC_NOP:
 	  case IC_NOP1:
+	  case IC_NOP2:
 	  case IC_PUSH_CMP:
 	    break;
 	  case IC_CALL_START:
@@ -1219,7 +1211,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    ICPopRegs(tempi,tempi->ic_data);
 	    if (tempi->r.type&TY_MASK)
 	      ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		  TY_REG+IT_I64,CREG_RAX,0,ip2);
+		    TY_REG+IT_I64,CREG_RAX,0,ip2);
 	    break;
 	  case IC_POP_REGS:
 	    ICPopRegs(tempi,tempi->ic_data);
@@ -1240,12 +1232,12 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	    } else {
 	      ICFCvt(lx,tempi,CREG_RAX,tempi->r.type,tempi->r.reg,tempi->r.disp,FALSE,CN_R,ip2);
 	      ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		  TY_REG+IT_I64,CREG_RAX,0,ip2);
+		    TY_REG+IT_I64,CREG_RAX,0,ip2);
 	    }
 	  } else if (tempi->ic_flags & ICF_R_TO_INT) {
 	    ICFCvt(lx,tempi,CREG_RAX,tempi->r.type,tempi->r.reg,tempi->r.disp,TRUE,CN_R,ip2);
 	    ICMov(tempi,tempi->r.type,tempi->r.reg,tempi->r.disp,
-		TY_REG+IT_I64,CREG_RAX,0,ip2);
+		  TY_REG+IT_I64,CREG_RAX,0,ip2);
 	  }
 	}
       }
@@ -1264,7 +1256,7 @@ I64 OptPass789A(CLex *lx,CHashFun *fun_class,
 	  MemCpy(buf+ip,tempi->ic_body,cnt);
       }
 
-skip_copy:
+      skip_copy:
       if (dbg && lx->min_line<=tempi->ic_line<=lx->max_line) {
 	i=tempi->ic_line-lx->min_line;
 	if (!dbg->body[i])

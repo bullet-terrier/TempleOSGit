@@ -821,7 +821,7 @@ U8 *Doc2PlainText(CDoc *doc,CDocEntry *doc_e)
 
 
 CDocEntry *PrsDollarCmd(CDoc *doc,U8 *st)
-{//This uses [C:/TempleOS/Compiler/Lex.CPP.Z,796] Lex() to parse a string and make Doc entries.
+{//This uses [C:/TempleOS/Compiler/Lex.CPP.Z,789] Lex() to parse a string and make Doc entries.
   I64 i,j,flags1,flags2;
   U8 *ptr,*st2;
   CDocEntry *doc_e=NULL;
@@ -1116,7 +1116,7 @@ public CDocEntry *DocPutS(CDoc *doc,U8 *st)
   Bool unlock;
   I64 j;
   CDocEntry *doc_e=NULL,*result=NULL,*doc_ce;
-  if (!st || !doc || doc->doc_signature!=DOC_SIGNATURE_VAL)
+  if (!st || !doc && !(doc=DocPut) || doc->doc_signature!=DOC_SIGNATURE_VAL)
     return NULL;
   unlock=DocLock(doc);
   if (doc->flags & DOCF_PLAIN_TEXT_WITH_TABS)
@@ -1248,12 +1248,12 @@ public CDocEntry *DocPutS(CDoc *doc,U8 *st)
 	  doc_e=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	  doc_e->type=DOCT_NEW_LINE | doc->settings_root.dft_text_attr << 8;
 	  DocIns(doc,doc_e);
-	  if (ch==CH_CARRIAGE_RETURN)
-	    while (*ptr==CH_CARRIAGE_RETURN)
+	  if (ch=='\r')
+	    while (*ptr=='\r')
 	      ptr++;
 	  if (*ptr=='\n')
 	    ptr++;
-	  while (*ptr==CH_CARRIAGE_RETURN)
+	  while (*ptr=='\r')
 	    ptr++;
       }
     }

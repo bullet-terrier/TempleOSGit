@@ -305,7 +305,7 @@ have to make all my men taller.
 This is a little simpler, and faster,
 but adds lots of factor 2 vals.
 
-I also didn't use the [C:/TempleOS/Kernel/Adam1a.HPP.Z,335] CMathODE feat,
+I also didn't use the [C:/TempleOS/Kernel/Adam1a.HPP.Z,336] CMathODE feat,
 just to be different.
 */
 
@@ -671,7 +671,7 @@ U0 KeepAway()
   WinMax;
   WinBorder;
   Preempt(OFF);
-  DocCurAttr(BLACK+YELLOW<<4);
+  DocPutAttr(BLACK+YELLOW<<4);
 
   Fs->win_inhibit|=WIF_DBL_CLICK;
   WordStat;

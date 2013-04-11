@@ -346,7 +346,7 @@ I64 MagicPairs(I64 N)
 
   k=2;
   for (i=0;i<mp_cnt;i++) {
-    rj[i].doc=DocCur;
+    rj[i].doc=DocPut;
     rj[i].lo=k;
     k+=n;
     if (k>N) k=N;

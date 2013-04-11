@@ -10,7 +10,7 @@ U0 MPPrintFDemo()
 {
   I64 i;
   for (i=0;i<1000;i++)
-    MPJob(&Job,DocCur,1+i%(mp_cnt-1));
+    MPJob(&Job,DocPut,1+i%(mp_cnt-1));
   Sleep(1000);
   "$FG$\n";
 }

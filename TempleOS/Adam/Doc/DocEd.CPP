@@ -90,7 +90,7 @@ public Bool DocAnchorFind(CDoc *doc,U8 *pattern)
 
 public I64 EdCurU8(CDoc *doc)
 {
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,152] EdRenumAsm for an example.
+//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   CDocEntry *doc_ce=doc->cur_entry;
   I64 result=-1;
@@ -107,7 +107,7 @@ public I64 EdCurU8(CDoc *doc)
 
 public U0 EdCursorLeft(CDoc *doc,I64 sc=MIN_I64)
 {//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,152] EdRenumAsm for an example.
+//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
   U8 *dst;
   Bool unlock=DocLock(doc);
   CDocEntry *doc_ce=doc->cur_entry,*original_cl=doc_ce,*doc_ne;
@@ -224,7 +224,7 @@ public U0 EdCursorLeft(CDoc *doc,I64 sc=MIN_I64)
 
 public U0 EdCursorRight(CDoc *doc,I64 sc=MIN_I64)
 {//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,152] EdRenumAsm for an example.
+//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   U8 *dst;
   CDocEntry *doc_ce=doc->cur_entry,*original_cl=doc_ce,*doc_ne;
@@ -337,7 +337,7 @@ public U0 EdCursorRight(CDoc *doc,I64 sc=MIN_I64)
 
 public U0 EdLineUp(CDoc *doc,I64 sc=MIN_I64)
 {//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,152] EdRenumAsm for an example.
+//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   U8 *dst;
   I64 y,x;
@@ -489,7 +489,7 @@ public U0 EdLineUp(CDoc *doc,I64 sc=MIN_I64)
 
 public U0 EdLineDown(CDoc *doc,I64 sc=MIN_I64)
 {//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,152] EdRenumAsm for an example.
+//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   U8 *dst;
   I64 y,x,old_flags1=0,old_flags2=0,old_color;
@@ -717,7 +717,7 @@ U0 EdInsChar(I64 ch,I64 sc,CDoc *doc)
       goto ic_done;
     }
   }
-  if (ch==CH_CARRIAGE_RETURN) goto ic_done;
+  if (ch=='\r') goto ic_done;
 
 ic_cont:
   if ((ch==CH_SPACE || ch=='\n') &&
@@ -1506,7 +1506,7 @@ public U0 DocPutKey(CDoc *doc,I64 ch,I64 sc)
   U8 *st,*st2;
   Bool unlock;
 
-  if (!doc || doc->doc_signature!=DOC_SIGNATURE_VAL)
+  if (!doc && !(doc=DocPut) || doc->doc_signature!=DOC_SIGNATURE_VAL)
     return;
   if (doc->user_put_key)
     if ((*doc->user_put_key)(doc,doc->user_put_data,ch,sc))
@@ -2195,19 +2195,16 @@ public U0 DocPutKey(CDoc *doc,I64 ch,I64 sc)
     Yield;
 }
 
+U0 DocNewLine(CDoc *doc=NULL,I64 cnt=1)
+{
+  while (cnt-->0)
+    DocPutKey(doc,'\n',0);
+}
+
 Bool AKDDocPutKey(I64 ch,I64 scancode)
 {
   CDoc *doc;
-  doc=Fs->next_doc;
-  while (doc!=(&Fs->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-  doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-    if (!(doc->flags&DOCF_DONT_SHOW) && doc->flags&DOCF_AUX_DOC && !doc->best_d) {
-      DocPutKey(doc,ch,scancode);
-      return FALSE;
-    }
-    doc=doc->next_doc;
-  }
-  if (doc=DocCur)
+  if (doc=DocPut)
     DocPutKey(doc,ch,scancode);
   return FALSE;
 }
@@ -2291,8 +2288,7 @@ Bool DocFileEd(I64 type,U8 *filename,
   CDocEntry *doc_e;
   CDoc *doc;
   Bool old_silent=Bt(&Fs->display_flags,DISPLAYf_SILENT),
-	 result=FALSE;
- 
+	result=FALSE;
   try {
     switch (type) {
       case LK_PLAIN:
@@ -2315,7 +2311,7 @@ Bool DocFileEd(I64 type,U8 *filename,
     flags|=DOCF_ALLOW_UNDO;
  
     if (!*filename)
-      doc=DocCur;
+      doc=DocPut;
     else {
       Silent(ON);
       if (Bt(&ed_flags,EDf_BAIL)) //if bail, scan parents
@@ -2360,7 +2356,7 @@ Bool DocFileEd(I64 type,U8 *filename,
       DocUnlock(doc);
       DocWrite(doc);
     }
-    if (Fs->last_doc!=doc)
+    if (DocPut!=doc)
       DocDel(doc);
     else
       result=FALSE;

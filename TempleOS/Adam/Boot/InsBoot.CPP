@@ -4,19 +4,14 @@
 //Kernel module: Kernel.BIN.Z
 #define KERNEL_BIN_C	"Kernel.BIN.C"
 
-//Must be first dir on CD.
 #define BOOT_DIR	"/0000Boot"
-//Must be first file on CD.
 #define BOOT_DIR_KERNEL_BIN_C BOOT_DIR "/0000" KERNEL_BIN_C
 
 //Stage 2 of master boot loader
-#define BOOTMHD2_BIN_C	"/0000Boot/BootMHD2.BIN.C"
+#define BOOTMHD2_BIN_C	BOOT_DIR "/BootMHD2.BIN.C"
 
 //Old master boot record
-#define OLDMBR_BIN_C	"/0000Boot/OldMBR.BIN.C"
-
-//CD-ROM patched Boot Loader
-#define BOOTCD_BIN_Z	"/0000Boot/BootCD.BIN.Z"
+#define OLDMBR_BIN_C	BOOT_DIR "/OldMBR.BIN.C"
 
 if (IsDrvWritable)
   MkDir("/Temp"); //Good to have a Temp
@@ -25,30 +20,7 @@ if (IsDrvWritable)
 #include "BootHD"
 #include "BootMHD"
 #include "BootMHD2"
-
-#help_index "Install;File/Install Related;File/CD DVD"
-public Bool CDBootFileCreate()
-{
-  U8 *br;
-  I64 size=FileSize(BOOT_DIR_KERNEL_BIN_C);
-
-  br=CAlloc(CD_BOOT_LOADER_SIZE);
-  *BCD_BLK_CNT(U16 *)=(size+CD_BLK_SIZE-1)/CD_BLK_SIZE;
-
-  //[C:/TempleOS/Adam/Dsk/DskCDDVD.CPP.Z,1] CDBOOT writes the following blocks:
-  //0x14 Preboot
-  //0x15 Boot-loader ([C:/TempleOS/Adam/Boot/BootCD.CPP.Z,1] BootCD.BIN.C stored uncompressed in a non-file block)
-  //0x16 0000Kernel.BIN.C.
-
-  //No emulation
-  //This trick assumes 0000Kernel is first file in first dir.
-  *BCD_BLK_LO(U32 *)=1+(CD_FILE_OFFSET+CD_BOOT_LOADER_SIZE/BLK_SIZE)/(CD_BLK_SIZE>>BLK_SIZE_BITS);
-
-  MemCpy(br,BCD_START,BCD_END-BCD_START);
-  FileWrite(BOOTCD_BIN_Z,br,CD_BOOT_LOADER_SIZE);
-  Free(br);
-  return TRUE;
-}
+#include "DskCDDVD"
 
 #help_index "Call"
 asm {
@@ -146,7 +118,7 @@ U8 ChkWritable(U8 drv_let=0)
 
 #help_index "Install"
 public U0 MakeAll()
-//Call from [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,164] MakeOSInstallPrtBootLoader()  because loader must be patched with block address.
+//Call from [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,136] MakeOSInstallPrtBootLoader()  because loader must be patched with block address.
 
 //These 2 modules (and bootloaders at top) are the only AOT
 //compiled code in TempleOS.  Everything else is JIT.
@@ -202,7 +174,6 @@ public Bool MakeOSInstallPrtBootLoader(U8 src_drv=0,U8 dst_drv=0)
     switch (bdev->type) {
       case BDT_ATAPI:
 	Move("/TempleOS/Kernel/Kernel.BIN.Z",BOOT_DIR_KERNEL_BIN_C);
-	CDBootFileCreate;
 	result=TRUE;
 	break;
       case BDT_RAM:
@@ -214,9 +185,9 @@ public Bool MakeOSInstallPrtBootLoader(U8 src_drv=0,U8 dst_drv=0)
 	  Free(de.full_name);
 	  "Modifying partition boot record.\n";
 	  RBlks(p,&br,p->offset,1);
-	  br.jump_and_nop[0]=0xEB;
-	  br.jump_and_nop[1]=0x58;
-	  br.jump_and_nop[2]=0x90;
+	  br.jump_and_nop[0]=OC_JMP_REL8;
+	  br.jump_and_nop[1]=offset(CFAT32Boot.code)-2;
+	  br.jump_and_nop[2]=OC_NOP;
 	  *BHD_BLK_CNT(U16 *)=(de.size+BLK_SIZE-1)>>BLK_SIZE_BITS;
 	  *BHD_DAP_BLK(I64 *)=p->data+de.cluster*p->spc;
 	  for (i=0;i<BHD_END-BHD_CODE;i++)

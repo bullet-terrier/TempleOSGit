@@ -91,7 +91,7 @@ U0 HoldCourt()
 {
   I64 i;
   I64 accused,crime,victim;
-  Bool old_form=LBts(&(DocCur)->flags,DOCf_FORM);
+  Bool old_form=LBts(&(DocPut)->flags,DOCf_FORM);
 
   FlushMsgs;
   DocDblBufStart;
@@ -120,9 +120,9 @@ U0 HoldCourt()
   "\n\n$BT,\"Really Punish\",3$\n\n"
   "$LM,0$";
   DocDblBufEnd;
-  i=DocMenuDo(DocCur);
+  i=DocMenuDo(DocPut);
 
-  LBEqu(&(DocCur)->flags,DOCf_FORM,old_form);
+  LBEqu(&(DocPut)->flags,DOCf_FORM,old_form);
   DocBottom;
 }
 
@@ -143,7 +143,7 @@ U0 HoldCourt()
 Bool TakeTurn()
 {
   I64 i;
-  Bool result,old_form=LBts(&(DocCur)->flags,DOCf_FORM);
+  Bool result,old_form=LBts(&(DocPut)->flags,DOCf_FORM);
   num_people*=1.0+0.01*((RandU16%100)-30);
   if (num_people>MAX_PEOPLE)
     num_people=MAX_PEOPLE;
@@ -166,9 +166,9 @@ Bool TakeTurn()
 	"\n\n$BT,\"Quit\",T_QUIT$\n\n"
 	"$LM,0$";
   DocDblBufEnd;
-  i=DocMenuDo(DocCur);
+  i=DocMenuDo(DocPut);
 
-  LBEqu(&(DocCur)->flags,DOCf_FORM,old_form);
+  LBEqu(&(DocPut)->flags,DOCf_FORM,old_form);
   DocBottom;
 
   if (i<0 || i==T_QUIT)

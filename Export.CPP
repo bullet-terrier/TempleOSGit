@@ -13,9 +13,9 @@ OptOn(OPTf_WARN_PAREN);
 //Just in case the filesystem gets corrupted while I develop it
 U0 BackupExport()
 {
-  Copy("E:/Export.CPP","D:/Export.CPP");
-  Copy("E:/Export.CPP","E:/ExportB.CPP");
-  Copy("E:/Export.CPP","D:/ExportB.CPP");
+  Copy("D:/Export.CPP","C:/Export.CPP");
+  Copy("D:/Export.CPP","D:/ExportB.CPP");
+  Copy("D:/Export.CPP","C:/ExportB.CPP");
 }
 
 //Appears to hang on this version...
@@ -43,7 +43,7 @@ U0 ExportBinary(U8 *src_file,CDocBin *b)
 }
 
 U8 *ResolveLink(U8 *link_st)
-{ //Adapted from [MN:EdJoin] EdJoin. Resolves stuff like MN:Func to the file
+{ //Adapted from [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,3] Ed. Resolves stuff like MN:Func to the file
   U8 *res,*filename=NULL,*pattern=NULL;
   I64 num;
   if (EdLinkCvt(link_st,&filename,&pattern,&num,0)==-1)
@@ -54,9 +54,6 @@ U8 *ResolveLink(U8 *link_st)
     res=MSPrintF("%s,%s",filename,pattern);
   Free(filename);
   Free(pattern);
-//Temporary hack to prevent random diff's on every file link
-  if (!StrNCmp(res,"D:/",3))
-    res[0]='C';
   return res;
 }
 
@@ -493,7 +490,7 @@ U0 PutExportTree(CDirEntry *ent,U64 src_dir_len,U64 dst_dir_len,
 }
 
 //Adapted from [C:/TempleOS/Adam/Dsk/Dsk2a.CPP.Z,148] CopyTree
-U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="E:/Git",
+U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="D:/Git",
   Bool debug=FALSE)
 {
   CFileAccess *fa;
@@ -525,9 +522,9 @@ U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="E:/Git",
 //to start the export.
 
 U0 ExportTree() {
-  CTask *task=SpawnUser("#include \"E:/Export.CPP\"
+  CTask *task=SpawnUser("#include \"D:/Export.CPP\"
 ExportTreeImpl;
-ExportSingle(\"E:/Export.CPP\",\"E:/Git/Export.CPP\");
+ExportSingle(\"D:/Export.CPP\",\"D:/Git/Export.CPP\");
 ");
   WinToTop(task);
 }

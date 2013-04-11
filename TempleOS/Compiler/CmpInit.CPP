@@ -89,8 +89,8 @@ U0 AsmHashLoad(Bool first)
   size1=offset(CHashOpcode.ins)+sizeof(CInstruction)<<5;
   tempo=MAlloc(size1);
 
-  lx=LexNew(TextFileRead("OpCodes.TXT"),0,StrNew("OpCodes.TXT.Z"));
-  lx->hash_table_lst=NULL;
+  lx=LexNew(TextFileRead("OpCodes.TXT"),0,"OpCodes.TXT.Z");
+  lx->htc.hash_table_lst=NULL;
   Lex(lx);
   while (lx->token) {
     if (lx->token!=TK_IDENT)
@@ -315,6 +315,7 @@ U0 CmpLoadDefines()
   DefineLoad("ST_UNNECESSARY_PARENTHESIS","Unnecessary parenthesis");
   DefineLoad("ST_STATIC_UNION","Static unions are not implemented");
   DefineLoad("ST_IMPORT_HASH_TABLE_NOT_ALLOWED","import_hash_table only allowed in AOT compiled #exe{} mode.");
+  DefineLoad("ST_STREAM_EXE_PUTS_NOT_ALLOWED","StreamExePutS only allowed in AOT compiled #exe{} mode.");
   DefineLoad("ST_CANT_INIT_GLBL_ON_HEAP","Can't init glbl var on data heap in AOT module");
   DefineLoad("ST_INVALID_ARRAY_SIZE","Invalid array size at ");
   DefineLoad("ST_NO_FUN_ASM_ALIGN","ALIGN not allowed in fun asm blk ");
@@ -365,17 +366,17 @@ Anchor for inserting Compiler Defines
 // arg cnt,result cnt,deref/assign/cmp,nonconst,might not fill result
 "00..END\0"
 "00..START\0"
-"00..NOP\0"
-"10..END_EXP\0"
 "00..NOP1\0"
+"10..END_EXP\0"
+"00..NOP2\0"
 "00..LABEL\0"
 "00..CALL_START\0"
 "01..CALL_END\0"
 "00..CALL_END2\0"
 "10..RETURN_VAL\0"
 "00..RETURN_VAL2\0"
-"01..IMM\0"
-"01..F64\0"
+"01..IMM_U64\0"
+"01..IMM_F64\0"
 "01.NSTR_CONST\0"
 "01.NABS_ADDR\0"
 "01.NADDR_IMPORT\0"
@@ -477,12 +478,12 @@ Anchor for inserting Compiler Defines
 "00.NPAUSE\0"
 "10.NCLFLUSH\0"
 "10.NINVLPG\0"
-"10.NINU8\0"
-"10.NINU16\0"
-"10.NINU32\0"
-"20.NOUTU8\0"
-"20.NOUTU16\0"
-"20.NOUTU32\0"
+"10.NIN_U8\0"
+"10.NIN_U16\0"
+"10.NIN_U32\0"
+"20.NOUT_U8\0"
+"20.NOUT_U16\0"
+"20.NOUT_U32\0"
 "00.NGET_FLAGS\0"
 "00.NCARRY\0"
 "10.NSET_FLAGS\0"

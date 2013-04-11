@@ -3,10 +3,10 @@ This uses four types of ctrls
 
   1) The pull-down menu.
 
-  2) The [C:/TempleOS/Kernel/Adam1a.HPP.Z,2812] CCtrl type for the
+  2) The [C:/TempleOS/Kernel/Adam1a.HPP.Z,2834] CCtrl type for the
 tempo/stacatto sliders.
 
-  3) The active [C:/TempleOS/Kernel/Adam1a.HPP.Z,1518] CDoc sprite buttons
+  3) The active [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc sprite buttons
 with macros for left/record/play/right.
 
   4) Hand-made ctrls for the kbdgraphic, notes and staff.
@@ -16,7 +16,7 @@ with macros for left/record/play/right.
 
 This uses four types of output
 
-  1) The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1518] CDoc for the text and buttons
+  1) The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc for the text and buttons
 and kbdgraphic.
 
   2) The Fs->draw_it() for the staff region, drawn every refresh.
@@ -484,7 +484,7 @@ U0 OrgRightClick(I64 x,I64 y)
   U8 *st,*st2;
   OrgNote *tempo,*tempo1;
   I64 i,old_doc_flags;
-  if (DocCur) old_doc_flags=DocCur->flags;
+  if (DocPut) old_doc_flags=DocPut->flags;
   oc.cur_note=tempo=OrgFindNote(x,y);
   if (tempo!=&oc.root) {
     Fs->win_inhibit=0;
@@ -542,7 +542,7 @@ U0 OrgRightClick(I64 x,I64 y)
 	  break;
 	case ORGR_SET_WORD:
 	  if (tempo->type==OT_NOTE) {
-	    if (DocCur) DocCur->flags&=~DOCF_FORM;
+	    if (DocPut) DocPut->flags&=~DOCF_FORM;
 	    if (OrgHasWords(tempo->word))
 	      st2=MSPrintF("\nWord(\"%Q\"):",tempo->word);
 	    else
@@ -556,7 +556,7 @@ U0 OrgRightClick(I64 x,I64 y)
 	      Free(st);
 	    } else
 	      tempo->word=StrNew(" ");
-	    if (DocCur) DocCur->flags=DocCur->flags&~DOCF_FORM|old_doc_flags&DOCF_FORM;
+	    if (DocPut) DocPut->flags=DocPut->flags&~DOCF_FORM|old_doc_flags&DOCF_FORM;
 	  }
 	  break;
 	case ORGR_INS_NOTE:
@@ -1042,7 +1042,7 @@ U0 OrgLoadSong(U8 *filename,I64 *org_octave,F64 *org_duration)
 {
   U8 *st;
   OrgNote *tempo;
-  CLex *lx=LexNew(TextFileRead(filename),0,StrNew(filename));
+  CLex *lx=LexNew(TextFileRead(filename),0,filename);
   Lex(lx);
   if (FileOcc("incomplete",filename,""))
     oc.incomplete_entry->checked=TRUE;
@@ -1460,7 +1460,7 @@ U0 MusicOrgan(U8 *dirname=NULL)
       d,evt_time=tT,note_down_time=tT;
   CCtrl *c=TempoNew;
 
-  if (DocCur) old_doc_flags=DocCur->flags;
+  if (DocPut) old_doc_flags=DocPut->flags;
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinBorder;
   WordStat;
@@ -1471,7 +1471,7 @@ U0 MusicOrgan(U8 *dirname=NULL)
   tempo_state.tempo=Round(TEMPO_RANGE*(music_tempo-0.5)/4.4);
   tempo_state.stacatto=Round(TEMPO_RANGE*(music_stacatto_factor-0.12)/0.88);
 
-  if (DocCur) DocCur->flags|=DOCF_FORM;
+  if (DocPut) DocPut->flags|=DOCF_FORM;
 
   MemSet(&oc,0,sizeof(OrgCtrl));
   oc.screen_x=0;
@@ -1561,7 +1561,7 @@ got_msg:
       }
       if (msg_code!=MSG_IP_MOVE) {
 	DocBottom;
-	if (was_playing || DocCur->cur_entry->y>=Fs->win_height-2) {
+	if (was_playing || DocPut->cur_entry->y>=Fs->win_height-2) {
 	  OrgMenu(org_octave,org_waveform);
 	  col=0;
 	}
@@ -1976,7 +1976,7 @@ got_msg:
   DCFill;
   DCDel(oc.dc2);
   SettingsPop;
-  if (DocCur) DocCur->flags=DocCur->flags&~DOCF_FORM|old_doc_flags&DOCF_FORM;
+  if (DocPut) DocPut->flags=DocPut->flags&~DOCF_FORM|old_doc_flags&DOCF_FORM;
   Free(dirname);
   "$CL$\n";
   MenuPop;

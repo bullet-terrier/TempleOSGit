@@ -69,6 +69,23 @@ U8 *tent_img=__BIN_4;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* <6> <6> (image) */ //Used as <6> in quail, clouds, and squirt.
+
+
+
 I64 num_objs;
 Obj objs[MAX_PEOPLE+MAX_TENTS];
 Obj camp_view_pt;
@@ -161,7 +178,6 @@ U0 DrawMeeting(CTask *task,CDC *dc)
 
   DCAllocDepthBuf(dc);
   depth_buf=dc->depth_buf;
-  dc->flags|=DCF_TRANSFORMATION;
   r1=GrRotX(30.0*pi/180.0,task);
   old_r=dc->r;
 
@@ -174,12 +190,10 @@ U0 DrawMeeting(CTask *task,CDC *dc)
 
   x=0;y=0;z=-16*CAMP_WIDTH;
   dc->transform(dc,&x,&y,&z);
-  dc->color=LTCYAN;
-  GrRect(dc,0,0,task->win_pixel_width,y);
+  SpritePlot3(dc,0,y,0,__BIN_6);
+  dc->flags|=DCF_TRANSFORMATION;
 
   dc->color=BLACK;
-  GrLine3(dc,-32*CAMP_WIDTH,0,-16*CAMP_WIDTH,32*CAMP_WIDTH,0,-16*CAMP_WIDTH);
-
   GrLine3(dc,-CAMP_WIDTH/2,0,0	  ,CAMP_WIDTH/2,0,0);
   GrLine3(dc,-CAMP_WIDTH/2,0,-CAMP_WIDTH,CAMP_WIDTH/2,0,-CAMP_WIDTH);
   GrLine3(dc,-CAMP_WIDTH/2,0,0,-CAMP_WIDTH/2,0,-CAMP_WIDTH);
@@ -319,5 +333,7 @@ U0 Camp(I64 num_people=100)
 //This is so I can use this file stand alone
 //or as a component of a program.
 #if IncludeDepth<2
+WinMax;
+WinBorder;
 Camp;
 #endif

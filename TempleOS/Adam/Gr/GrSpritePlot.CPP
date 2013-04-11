@@ -6,7 +6,7 @@ each operation.  The types available are lsted
 here, [C:/TempleOS/Adam/Gr/Gr.CPP.Z,19] GRST_PT.  They are stored, one after another,
 in a chunk of memory terminated by a type [C:/TempleOS/Adam/Gr/Gr.CPP.Z,15] GRST_END.
 
-[C:/TempleOS/Adam/Gr/GrSpritePlot.CPP.Z,27] SpritePlot3() and [C:/TempleOS/Adam/Gr/CSpriteVect.CPP.Z,207] SpriteVect() shows how the
+[C:/TempleOS/Adam/Gr/GrSpritePlot.CPP.Z,27] SpritePlot3() and [C:/TempleOS/Adam/Gr/CSpriteVect.CPP.Z,233] SpriteVect() shows how the
 unions are used.  It's kind-of a mess using a union.
 
 [C:/TempleOS/Adam/Gr/CSpriteNew.CPP.Z,119] SpriteSize() will return the size of a single
@@ -491,7 +491,7 @@ public CDocEntry *DocPutSprite(CDoc *doc=NULL,U8 *elems,U8 *txt=NULL)
   Bool unlock;
   CDocEntry *doc_e;
   CDocBin *tempb;
-  if (!doc && !(doc=DocCur)) return NULL;
+  if (!doc && !(doc=DocPut)) return NULL;
   unlock=DocLock(doc);
   size=SpriteSize(elems);
   tempb=CAlloc(sizeof(CDocBin),doc->mem_task);
@@ -523,7 +523,7 @@ public CDocEntry *PutSprite(U8 *elems,U8 *txt=NULL)
 //and leave a %d for the number.
 
   CDoc *doc;
-  if (doc=DocCur)
+  if (doc=DocPut)
     return DocPutSprite(doc,elems,txt);
   return NULL;
 }

@@ -13,39 +13,38 @@
 
 
 
-/* <tiny_rock> <5> (image) */
-
-
-/* <tiny_rock2> <6> (image) */
-
-
-/* <small_rock> <7> (image) */
-
-
-/* <small_rock2> <8> (image) */
-
-
-
-/* <medium_rock> <9> (image) */
-
-
-/* <medium_rock2> <10> (image) */
+/* <Cargo> <5> (image) */
 
 
 
 
-/* <large_rock> <11> (image) */
+/* <Bullet> <6> (image) */
+
+/* <tiny_rock> <7> (image) */
 
 
-/* <large_rock2> <12> (image) */
+/* <tiny_rock2> <8> (image) */
 
 
-/* <Bullet> <13> (image) */
+/* <small_rock> <9> (image) */
+
+
+/* <small_rock2> <10> (image) */
+
+
+
+/* <medium_rock> <11> (image) */
+
+
+/* <medium_rock2> <12> (image) */
 
 
 
 
-/* <Cargo> <14> (image) */
+/* <large_rock> <13> (image) */
+
+
+/* <large_rock2> <14> (image) */
 
 
 
@@ -64,13 +63,28 @@ I64 stars_x[NUM_STARS],stars_y[NUM_STARS];
 
 Bool bounce;
 
-#define OT_SHIP		1
-#define OT_CARGO	2
-#define OT_BULLET	3
-#define OT_TINY_ROCK	4
-#define OT_SMALL_ROCK	5
-#define OT_MEDIUM_ROCK	6
-#define OT_LARGE_ROCK	7
+#define OT_SHIELD_SHIP		0
+#define OT_NO_SHIELD_SHIP	1
+#define OT_CARGO		2
+#define OT_BULLET		3
+#define OT_TINY_ROCK		4
+#define OT_SMALL_ROCK		5
+#define OT_MEDIUM_ROCK		6
+#define OT_LARGE_ROCK		7
+#define OT_NUM_TYPES		8
+
+F64 radii[OT_NUM_TYPES]={15,15,30,7,5,11,20,26};
+
+U8 *imgs[OT_NUM_TYPES*2]=
+{__BIN_1,	__BIN_2,
+__BIN_3,	__BIN_4,
+__BIN_5,	__BIN_5,
+__BIN_6,	__BIN_6,
+__BIN_7,	__BIN_8,
+__BIN_9,	__BIN_10,
+__BIN_11,	__BIN_12,
+__BIN_13,	__BIN_14
+};
 
 #define A_TRANSITION	-1
 #define A_INACTIVE	0
@@ -91,7 +105,10 @@ class Obj
   F64 timeout;
 };
 
-#define NUM_OBJECTS	256
+
+#define O_SHIP		0
+#define O_CARGO		1
+#define O_NUM_OBJS	256
 
 CMathODE *ode;
 Order2D2theta *o_state;
@@ -102,62 +119,18 @@ U0 ObjInit(I64 i, I64 type)
   objs[i].active=A_ACTIVE;
   objs[i].timeout=0;
   objs[i].type=type;
-  switch (type) {
-    case OT_SHIP:
-      if (bounce)
-	objs[i].img=__BIN_1;
-      else
-	objs[i].img=__BIN_3;
-      objs[i].radius=15;
-      break;
-    case OT_CARGO:
-      objs[i].img=__BIN_14;
-      objs[i].radius=30;
-      break;
-    case OT_BULLET:
-      objs[i].img=__BIN_15;
-      objs[i].radius=7;
-      break;
-    case OT_TINY_ROCK:
-      if (i&1)
-	objs[i].img=__BIN_5;
-      else
-	objs[i].img=__BIN_6;
-      objs[i].radius=5;
-      break;
-    case OT_SMALL_ROCK:
-      if (i&1)
-	objs[i].img=__BIN_16;
-      else
-	objs[i].img=__BIN_8;
-      objs[i].radius=11;
-      break;
-    case OT_MEDIUM_ROCK:
-      if (i&1)
-	objs[i].img=__BIN_17;
-      else
-	objs[i].img=__BIN_10;
-      objs[i].radius=20;
-      break;
-    case OT_LARGE_ROCK:
-      if (i&1)
-	objs[i].img=__BIN_18;
-      else
-	objs[i].img=__BIN_12;
-      objs[i].radius=26;
-      break;
-  }
+  objs[i].radius=radii[type];
+  objs[i].img=imgs[type*2+i&1];
   objs[i].mass=objs[i].radius*objs[i].radius*objs[i].radius;
 }
 
+I64 last_obj_allocated=0;
 I64 ObjAlloc(I64 type)
 {
-  I64 i;
-  for (i=0;i<NUM_OBJECTS-1;i++)
-    if (objs[i].active==A_INACTIVE)
-      break;
-  ObjInit(i,type);
-  return i;
+  while (objs[last_obj_allocated].active!=A_INACTIVE)
+    last_obj_allocated=(last_obj_allocated+1)%O_NUM_OBJS;
+  ObjInit(last_obj_allocated,type);
+  return last_obj_allocated;
 }
 
 U0 DrawIt(CTask *task,CDC *dc)
@@ -170,7 +143,7 @@ U0 DrawIt(CTask *task,CDC *dc)
   for (i=0;i<NUM_STARS;i++)
     GrPlot(dc,stars_x[i],stars_y[i]);
 
-  for (i=0;i<NUM_OBJECTS;i++) {
+  for (i=0;i<O_NUM_OBJS;i++) {
     if (objs[i].active==A_ACTIVE) {
       if (objs[i].timeout && objs[i].timeout<tT)
 	objs[i].active=A_INACTIVE;
@@ -193,18 +166,17 @@ U0 DrawIt(CTask *task,CDC *dc)
 	  o_state[i].y=y;
 	}
 	switch (objs[i].type) {
-	  case OT_SHIP:
-	    if (bounce) {
-	      if (cmd_code==CMD_THRUST && RandU16&0x8000)
-		SpritePlotRotZ3b(dc,x,y,0,__BIN_2,o_state[i].theta);
-	      else
-		SpritePlotRotZ3b(dc,x,y,0,__BIN_1,o_state[i].theta);
-	    } else {
-	      if (cmd_code==CMD_THRUST && RandU16&0x8000)
-		SpritePlotRotZ3b(dc,x,y,0,__BIN_4,o_state[i].theta);
-	      else
-		SpritePlotRotZ3b(dc,x,y,0,__BIN_3,o_state[i].theta);
-	    }
+	  case OT_SHIELD_SHIP:
+	    if (cmd_code==CMD_THRUST && RandU16&0x8000)
+	      SpritePlotRotZ3b(dc,x,y,0,imgs[OT_SHIELD_SHIP*2+1],o_state[i].theta);
+	    else
+	      SpritePlotRotZ3b(dc,x,y,0,imgs[OT_SHIELD_SHIP*2],o_state[i].theta);
+	    break;
+	  case OT_NO_SHIELD_SHIP:
+	    if (cmd_code==CMD_THRUST && RandU16&0x8000)
+	      SpritePlotRotZ3b(dc,x,y,0,imgs[OT_NO_SHIELD_SHIP*2+1],o_state[i].theta);
+	    else
+	      SpritePlotRotZ3b(dc,x,y,0,imgs[OT_NO_SHIELD_SHIP*2],o_state[i].theta);
 	    break;
 	  case OT_BULLET:
 	  case OT_TINY_ROCK:
@@ -233,15 +205,21 @@ U0 Init()
     stars_y[i]=RandU16%GR_HEIGHT;
   }
 
-  MemSet(objs,0,sizeof(Obj)*NUM_OBJECTS);
-  MemSet(o_state,0,sizeof(Order2D2theta)*NUM_OBJECTS);
+  MemSet(objs,0,sizeof(Obj)*O_NUM_OBJS);
+  MemSet(o_state,0,sizeof(Order2D2theta)*O_NUM_OBJS);
 
-  i=ObjAlloc(OT_SHIP); //always #0
+  last_obj_allocated=0;
+  //Always #0=O_SHIP
+  if (bounce)
+    i=ObjAlloc(OT_SHIELD_SHIP);
+  else
+    i=ObjAlloc(OT_NO_SHIELD_SHIP);
   objs[i].mass=2.0*objs[i].radius*objs[i].radius*objs[i].radius;
   o_state[i].x=GR_WIDTH/2;
   o_state[i].y=GR_HEIGHT/2;
 
-  i=ObjAlloc(OT_CARGO); //always #1
+  //Always #1=O_CARGO
+  i=ObjAlloc(OT_CARGO);
   objs[i].mass=0.5*objs[i].radius*objs[i].radius*objs[i].radius;
   o_state[i].x=0;
   o_state[i].DxDt=16.0;
@@ -264,13 +242,13 @@ U0 MyDerivative(CMathODE *,F64,Order2D2theta *state,Order2D2theta *DstateDt)
   I64 i,j;
   F64 f,d,d1,dd,dx,dy;
 
-  MemSet(DstateDt,0,sizeof(Order2D2theta)*NUM_OBJECTS);
-  for (i=0;i<NUM_OBJECTS;i++) {
+  MemSet(DstateDt,0,sizeof(Order2D2theta)*O_NUM_OBJS);
+  for (i=0;i<O_NUM_OBJS;i++) {
     if (objs[i].active==A_ACTIVE) {
       DstateDt[i].x=state[i].DxDt;
       DstateDt[i].y=state[i].DyDt;
       DstateDt[i].theta=state[i].DthetaDt;
-      for (j=0;j<NUM_OBJECTS;j++) {
+      for (j=0;j<O_NUM_OBJS;j++) {
 	if (i!=j && objs[j].active==A_ACTIVE) {
 	  dx=state[i].x-state[j].x;
 	  dy=state[i].y-state[j].y;
@@ -303,26 +281,27 @@ U0 MyDerivative(CMathODE *,F64,Order2D2theta *state,Order2D2theta *DstateDt)
   }
   switch (cmd_code) {
     case CMD_SPIN_LEFT:
-      DstateDt[0].DthetaDt-=10.0;
+      DstateDt[O_SHIP].DthetaDt-=10.0;
       break;
     case CMD_SPIN_RIGHT:
-      DstateDt[0].DthetaDt+=10.0;
+      DstateDt[O_SHIP].DthetaDt+=10.0;
       break;
     case CMD_THRUST:
-      DstateDt[0].DxDt+=100.0*Cos(state[0].theta-pi/2.0);
-      DstateDt[0].DyDt+=100.0*Sin(state[0].theta-pi/2.0);
+      DstateDt[O_SHIP].DxDt+=100.0*Cos(state[O_SHIP].theta-pi/2.0);
+      DstateDt[O_SHIP].DyDt+=100.0*Sin(state[O_SHIP].theta-pi/2.0);
       break;
   }
 
-  DstateDt[1].DxDt+=2.0*Cos(state[1].theta-pi/2.0);
-  DstateDt[1].DyDt+=2.0*Sin(state[1].theta-pi/2.0);
+  DstateDt[O_CARGO].DxDt+=2.0*Cos(state[O_CARGO].theta-pi/2.0);
+  DstateDt[O_CARGO].DyDt+=2.0*Sin(state[O_CARGO].theta-pi/2.0);
 }
 
 U0 Collision(I64 i,I64 j)
 {
   I64 i2;
   switch (objs[i].type) {
-    case OT_SHIP:
+    case OT_SHIELD_SHIP:
+    case OT_NO_SHIELD_SHIP:
       if (!bounce) {
 	cmd_code=CMD_GAME_OVER;
 	objs[i].active=A_INACTIVE;
@@ -404,7 +383,8 @@ U0 Collision(I64 i,I64 j)
   }
 
   switch (objs[j].type) {
-    case OT_SHIP:
+    case OT_SHIELD_SHIP:
+    case OT_NO_SHIELD_SHIP:
       if (!bounce) {
 	cmd_code=CMD_GAME_OVER;
 	objs[j].active=A_INACTIVE;
@@ -492,9 +472,9 @@ U0 CheckCollisions()
   I64 i,j;
   F64 d,d1,dd,dx,dy;
   CDC *dc;
-  for (i=0;i<NUM_OBJECTS;i++) {
+  for (i=0;i<O_NUM_OBJS;i++) {
     if (objs[i].active==A_ACTIVE) {
-      for (j=i+1;j<NUM_OBJECTS;j++) {
+      for (j=i+1;j<O_NUM_OBJS;j++) {
 	if (objs[j].active==A_ACTIVE) {
 	  dx=o_state[i].x-o_state[j].x;
 	  dy=o_state[i].y-o_state[j].y;
@@ -526,7 +506,7 @@ U0 CheckCollisions()
       }
     }
   }
-  for (i=0;i<NUM_OBJECTS;i++)
+  for (i=0;i<O_NUM_OBJS;i++)
     if (objs[i].active==A_TRANSITION)
       objs[i].active=A_ACTIVE;
 }
@@ -535,26 +515,26 @@ U0 CheckCollisions()
 
 U0 Fire()
 {
-  F64 theta=o_state[0].theta;
+  F64 theta=o_state[O_SHIP].theta;
   I64 i=ObjAlloc(OT_BULLET);
   objs[i].timeout=tT+0.5;
   objs[i].mass*=10.0;
-  o_state[i].x=o_state[0].x+(objs[0].radius+objs[i].radius+1.0)*Cos(theta-pi/2.0);
-  o_state[i].y=o_state[0].y+(objs[0].radius+objs[i].radius+1.0)*Sin(theta-pi/2.0);
-  o_state[i].DxDt=o_state[0].DxDt+MUZZLE_VELOCITY*Cos(theta-pi/2.0);
-  o_state[i].DyDt=o_state[0].DyDt+MUZZLE_VELOCITY*Sin(theta-pi/2.0);
+  o_state[i].x=o_state[O_SHIP].x+(objs[O_SHIP].radius+objs[i].radius+1.0)*Cos(theta-pi/2.0);
+  o_state[i].y=o_state[O_SHIP].y+(objs[O_SHIP].radius+objs[i].radius+1.0)*Sin(theta-pi/2.0);
+  o_state[i].DxDt=o_state[O_SHIP].DxDt+MUZZLE_VELOCITY*Cos(theta-pi/2.0);
+  o_state[i].DyDt=o_state[O_SHIP].DyDt+MUZZLE_VELOCITY*Sin(theta-pi/2.0);
   o_state[i].DthetaDt=RandI16/3000.0;
 
 //not real physics with the 0.005 factor
-  o_state[0].DxDt-=0.005*MUZZLE_VELOCITY*Cos(theta-pi/2.0)*objs[i].mass/objs[0].mass;
-  o_state[0].DyDt-=0.005*MUZZLE_VELOCITY*Sin(theta-pi/2.0)*objs[i].mass/objs[0].mass;
+  o_state[O_SHIP].DxDt-=0.005*MUZZLE_VELOCITY*Cos(theta-pi/2.0)*objs[i].mass/objs[O_SHIP].mass;
+  o_state[O_SHIP].DyDt-=0.005*MUZZLE_VELOCITY*Sin(theta-pi/2.0)*objs[i].mass/objs[O_SHIP].mass;
 }
 
 U0 CheckCrazy()
 {
   I64 i;
   F64 d;
-  for (i=0;i<NUM_OBJECTS;i++)
+  for (i=0;i<O_NUM_OBJS;i++)
     if (objs[i].active==A_ACTIVE) {
       d=Sqrt(Sqr(o_state[i].DxDt)+Sqr(o_state[i].DyDt));
       if (d>MUZZLE_VELOCITY*5.0)
@@ -609,11 +589,11 @@ U0 Rocks()
   tempse=MenuEntryFind(Fs->cur_menu,"Play/ToggleBounce");
   tempse->checked=bounce=TRUE;
 
-  ode=ODENew(NUM_OBJECTS*6,0.01);
+  ode=ODENew(O_NUM_OBJS*6,0.01);
   ode->derivative=&MyDerivative;
   ode->min_tolerance=0.001*ode->max_tolerance;
   o_state=ode->state;
-  objs=MAlloc(NUM_OBJECTS*sizeof(Obj));
+  objs=MAlloc(O_NUM_OBJS*sizeof(Obj));
 
   WinMax;
 
@@ -653,6 +633,10 @@ U0 Rocks()
 	    case 'b':
 	      tempse=MenuEntryFind(Fs->cur_menu,"Play/ToggleBounce");
 	      tempse->checked=bounce=!bounce;
+	      if (bounce)
+		objs[O_SHIP].type=OT_SHIELD_SHIP;
+	       else
+		objs[O_SHIP].type=OT_NO_SHIELD_SHIP;
 	      break;
 	  }
 	else //MSG_KEY_UP

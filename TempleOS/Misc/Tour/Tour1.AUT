@@ -94,7 +94,7 @@ PopUpOk(
 "behind it.  TempleOS documents can include graphics.\n\n"
 "\"$FG,GREEN$<CTRL-T>$FG$\" after clicking $FG,GREEN$[OKAY]$FG$ to toggle\n"
 "to plain text mode.\n");
-AFGetChar(20);
+AFGetChar(CH_CTRLT);
 Sleep(1000);
 
 PopUpOk(
@@ -103,6 +103,7 @@ PopUpOk(
 "stands for \"macro\".\n\n"
 "Now, \"$FG,GREEN$<CTRL-T>$FG$\" to toggle back to\n"
 "regular mode.\n");
-AFGetChar(20);
+AFGetChar(CH_CTRLT);
+Msg(MSG_KEY_DOWN,0,SC_CURSOR_DOWN|SCF_CTRL);
 Sleep(1000);
 

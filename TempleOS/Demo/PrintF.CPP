@@ -1,4 +1,4 @@
-//TempleOS supports standard [C:/TempleOS/Kernel/Str1a.CPP.Z,2363] PrintF()
+//TempleOS supports standard [C:/TempleOS/Kernel/Str1a.CPP.Z,2351] PrintF()
 //codes and extended ones.
 //See [C:/TempleOS/Doc/Differences.TXT.Z,1] printF codes.
 

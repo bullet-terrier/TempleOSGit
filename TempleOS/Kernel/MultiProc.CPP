@@ -286,7 +286,7 @@ U0 MPSethServerTask()
     if (my_ctrl->next_waiting==my_ctrl &&
 	mp_ctrl->next_waiting==mp_ctrl) {
       LBts(&Gs->cpu_flags,CPUf_SETH_SLEEP);
-      Sleep(20); //We don't want this too long because of need for [C:/TempleOS/Kernel/Task1a.CPP.Z,545] TaskFinishOffDying().
+      Sleep(20); //We don't want this too long because of need for [C:/TempleOS/Kernel/Task1a.CPP.Z,539] TaskFinishOffDying().
       LBtr(&Gs->cpu_flags,CPUf_SETH_SLEEP);
     }
   }
@@ -457,12 +457,10 @@ U0 MPStart()
 
   for (i=1;i<my_mp_cnt;i++) {
     c =&cpu_structs[i];
-    //SPrintF not available yet.
-    StrCpy(buf,"Seth Task CPU#0");
-    buf[14]+=i;
+    SPrintF(buf,"Seth Task CPU#%d",i);
     task=Spawn(&MPCPUTaskInit,NULL,buf,NULL,SETH_STK,0);
     task->rflags=SYS_START_RFLAGS;
-    //[C:/TempleOS/Kernel/Adam1a.HPP.Z,2987] CTask allocated off this core's seth_task's heap (Which is Adam)
+    //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3009] CTask allocated off this core's seth_task's heap (Which is Adam)
     task->task_in_que_signature=TASK_IN_QUE_SIGNATURE_VAL;
     CPUStructInit(i,c);
     c->tss=TSSNew(i);

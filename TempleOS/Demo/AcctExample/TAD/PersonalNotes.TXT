@@ -1,10 +1,16 @@
-* Cursor is not solid [C:/TempleOS/Kernel/Dbg1a.CPP.Z,691] Dbg when entered in Adam2.
+* I use fixed-point in [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,526] Circle(),
+[C:/TempleOS/Adam/Gr/MathGr.CPP.Z,569] Ellipse(),
+[C:/TempleOS/Adam/Gr/MathGr.CPP.Z,144] GrRot(),
+[C:/TempleOS/Adam/Gr/MathGr.CPP.Z,220] GrMulMat() and others.
+God says I might want to change to float. 
+[C:/TempleOS/Demo/Lectures/FixedPoint.CPP.Z,1].
+[C:/TempleOS/Demo/Lectures/FixedPointAdvanced.CPP.Z,1].
 
-* ata base- base1 temp blkdev
+
+* DOCF_DBL_DOLLARS in reindention
+* # in reindention
 
 * clean-up addDev pmt
-
-* indent
 
 * TestSuite Strut
 
@@ -16,17 +22,19 @@
 * Crashes after back-up-script.  Went away maybe after spurious IRQ fix.
 * Music organ hangs when cursoring around.  Haven't seen in while.
 
-* [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1800] DocUpdateTaskDocs() used to skips locked docs. [C:/TempleOS/Adam/Window.CPP.Z,614] WinMgrSync() needs to check?
+* [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1798] DocUpdateTaskDocs() used to
+skips locked docs. [C:/TempleOS/Adam/Window.CPP.Z,614] WinMgrSync() needs to
+check?
 
 * Why was wordstat so slow on "OldMasterBootWrite" for example.
 
-* [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,46] Plain() might be better not saving [C:/TempleOS/Kernel/Adam1a.HPP.Z,3193] CH_CURSOR.
+* [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,46] Plain() might be better not saving
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,3216] CH_CURSOR.
 
 * TRANSPARENT might not work with line ROPF_DITHER
 
-* It would be nice if [C:/TempleOS/Compiler/Unassembler.CPP.Z,866] U() NOP were better.
-
-* Autoindent is very bad.
+* It would be nice if [C:/TempleOS/Compiler/Unassembler.CPP.Z,866] U() NOP
+were better.
 
 * Make native file system expanded size set in Copy.
 
@@ -51,8 +59,6 @@
 * collisions for grrect, grblot, grputchar?
 
 * 32-bit devices should be in free spot address space of E820.
-
-* RAM drive too small for TempleOSCD.ISO
 
 * Race condition in Navy.CPP.Z torpedo
 
@@ -129,7 +135,7 @@ or whatever. S081130-0001.BMP crashed windows--two identical short names.
 
 * lock{} warning on invalid modes.
 * Local array vars-->reg.
-* [C:/TempleOS/Kernel/Adam1a.HPP.Z,3303] DCF_SYMMETRY, before transformation?
+* [C:/TempleOS/Kernel/Adam1a.HPP.Z,3325] DCF_SYMMETRY, before transformation?
 (Currently it's after) 
 * all graphics clipping -- screen y+top<0 for top<0
 * Maybe convert graphics to float
@@ -175,7 +181,7 @@ registry-like routines... or registry I guess.
 * Look for mem leaks.
 * Move stuff out of Kernel module.
 
-* [C:/TempleOS/Kernel/Adam1a.HPP.Z,2749] ROP_XOR with pen_width>1 is broken.
+* [C:/TempleOS/Kernel/Adam1a.HPP.Z,2771] ROP_XOR with pen_width>1 is broken.
 
 * use width and height in line clipping for pen_width>1 or blot.
 * SIMD transformation
@@ -207,7 +213,7 @@ assignments.  Is ShiftNoPush fully implemented?
 * maybe inline functions?
 * Use of more floating-point stk?
 
-* More aggressive in this routine [C:/TempleOS/Compiler/OptPass3.CPP.Z,29]
+* More aggressive in this routine [C:/TempleOS/Compiler/OptPass3.CPP.Z,27]
 CmpF2PushPop() with types besides MOV and 
 F64. 
 * !dbl ~dbl

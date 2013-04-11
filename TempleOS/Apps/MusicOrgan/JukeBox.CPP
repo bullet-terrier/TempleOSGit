@@ -9,7 +9,7 @@ CTask *SingleSong(U8 *msg,U8 *name)
   SetWinVert(2,2+8,task);
   Preempt(old_preempt);
   TaskRqstQue(task,NULL,msg,1<<TASKCf_EXIT_ON_COMPLETE);
-  DocCur(task)->max_entries=100;
+  DocPut(task)->max_entries=100;
   return task;
 }
 

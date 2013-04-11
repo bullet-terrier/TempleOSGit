@@ -55,7 +55,7 @@ public I64 LineCntRep(U8 *files_find_mask="/TempleOS/*",U8 *fu_flags=NULL)
     DocPutS(doc,"$ID,-2$");
     CDirLstDel(tempm1);
   }
-  DocInsDoc(DocCur,doc);
+  DocInsDoc(DocPut,doc);
   DocDel(doc);
   return result;
 }
@@ -105,7 +105,7 @@ public I64 TreeSizeRep(U8 *files_find_mask="/TempleOS/*",U8 *fu_flags=NULL)
     DocPutS(doc,"$ID,-2$");
     CDirLstDel(tempm1);
   }
-  DocInsDoc(DocCur,doc);
+  DocInsDoc(DocPut,doc);
   DocDel(doc);
   return result;
 }

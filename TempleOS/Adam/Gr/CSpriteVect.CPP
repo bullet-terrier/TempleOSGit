@@ -58,9 +58,35 @@ I64 PopUpSpriteVect(Bool new_sprite,CSprite **_root,I64 snap,F64 ip_scaler,I64 *
   Free(st);
   i=PopUpMenu(doc);
   if (TaskValidate(pu_task)) {
-    *_root=SpriteDoc2Que(DocCur(pu_task),*_root,cur_num);
+    *_root=SpriteDoc2Que(DocPut(pu_task),*_root,cur_num);
     Kill(pu_task);
   }
+  DocDel(doc);
+  return i;
+}
+
+Bool PopUpExtents(I64 *_x1,I64 *_x2,I64 *_y1,I64 *_y2)
+{
+  I64 i;
+  CDoc *doc=DocNew;
+  CDocEntry *doc_e;
+  doc_e=DocPutS(doc,"  $DA,32,\"x1:%d\"$\n");
+  doc_e->data=_x1;
+  DocDataFmt(doc_e);
+  doc_e=DocPutS(doc,"  $DA,32,\"x2:%d\"$\n");
+  doc_e->data=_x2;
+  DocDataFmt(doc_e);
+  doc_e=DocPutS(doc,"  $DA,32,\"y1:%d\"$\n");
+  doc_e->data=_y1;
+  DocDataFmt(doc_e);
+  doc_e=DocPutS(doc,"  $DA,32,\"y2:%d\"$\n\n");
+  doc_e->data=_y2;
+  DocDataFmt(doc_e);
+
+  DocPutS(doc," $BT,\"Use These Extents\",TRUE$");
+  DocPutS(doc,"$CM,3,0$$BT,\"Drag-Out New Extents\",FALSE$\n\n");
+  do i=PopUpMenu(doc);
+  while (i!=FALSE && i!=TRUE);
   DocDel(doc);
   return i;
 }
@@ -384,15 +410,17 @@ I64 SpriteVect(CDoc *doc,CDocEntry *doc_e,CSprite **_root,I64 *cur_num,I64 x,I64
 	  if (eletype!=GRST_INS_TRANSPARENT_SCREEN_BITMAP) {
 	    GrEdUpdate(doc,tempb,*_root);
 	    SpriteExtents(tempb->data,&xx1,&xx2,&yy1,&yy2);
-	    if (xx1<=xx2 && yy1<=yy2 && PopUpNoYes("Use extents of the CSprite?\n")) {
+	    if (!(xx1<=xx2 && yy1<=yy2))
+	      xx1=xx2=yy1=yy2=0;
+	    if (PopUpExtents(&xx1,&xx2,&yy1,&yy2)) {
 	      doc_e->flags1=old_ce_flags1;
 	      old_width=dc->pen_width;
 	      xx1+=x; yy1+=y;
 	      xx2+=x; yy2+=y;
 	      goto ei_bitmap;
 	    }
-	  }
-	  PopUpOk("Drag-out a rect for the extents of the\n"
+	  } else
+	    PopUpOk("Drag-out a rect for the extents of the\n"
 		"bitmap.\n");
 	}
 	doc_e->flags1=old_ce_flags1;

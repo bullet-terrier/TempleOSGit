@@ -486,13 +486,11 @@ U0 HashDel(CHashSrcSym *temph)
     Free(temph->index);
     Free(temph->import_name);
     LinkedLstDel(temph->ie_lst);
-    if (temph->type & (HTT_FUN | HTT_EXPORT_SYS_SYM)) {
+    if (temph->type & (HTT_FUN | HTT_EXPORT_SYS_SYM))
       Free(temph->debug);
-      Free(temph->indent);
-    }
     if (temph->type & (HTT_FUN | HTT_CLASS))
     //Assumes code not on heap, so doesn't Free.
-    //[C:/TempleOS/Compiler/Lex.CPP.Z,606] MemberLstDel() is an import to the Kernel module
+    //[C:/TempleOS/Compiler/Lex.CPP.Z,599] MemberLstDel() is an import to the Kernel module
       MemberLstDel(temph);
     else if (temph->type&HTT_DEFINE_STR)
       Free(temph(CHashDefineStr *)->data);
@@ -801,7 +799,7 @@ U0 LoadKernel()
 {
   HashGenericAdd(KERNEL_MODULE_NAME,HTT_MODULE|HTF_PUBLIC,sys_boot_base-sizeof(CBinFile));
 
-//Abs patches done here [C:/TempleOS/Kernel/KStart.CPP.Z,1] CBinFilePatchTableWithoutOrg.
+//Abs patches done here [D:/TempleOS/Kernel/KStart.CPP.Z,1] CBinFilePatchTableWithoutOrg.
   LoadPass1(sys_boot_patch_table_base,sys_boot_base,LDF_NO_ABSS|LDF_SILENT);
 
 //No main routines

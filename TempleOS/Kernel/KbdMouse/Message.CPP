@@ -143,10 +143,10 @@ I64 GetKey(I64 *_scancode=NULL,Bool echo=FALSE,Bool raw_cursor=FALSE)
 
   while (!ScanKey(&ch,&sc,FALSE)) {
     if (IsRaw && raw_cursor) {
-      if (!cursor_on && Blink) {
+      if (!cursor_on && ToI64(GetTimeStamp*5/time_stamp_freq)&1) {
 	'_';
 	cursor_on=TRUE;
-      } else if (cursor_on && !Blink) {
+      } else if (cursor_on && !(ToI64(GetTimeStamp*5/time_stamp_freq)&1)) {
 	'' CH_BACKSPACE;
 	cursor_on=FALSE;
       }
@@ -189,7 +189,7 @@ I64 GetChar(I64 *_scancode=NULL,Bool echo=TRUE,Bool raw_cursor=FALSE)
 }
 
 U8 *MGetS(I64 flags=0)
-//[C:/TempleOS/Kernel/Adam1a.HPP.Z,1576] Flags
+//[C:/TempleOS/Kernel/Adam1a.HPP.Z,1567] Flags
 {
 //Returns a [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc()ed prompted string.
   return (*fp_mgets)(flags);

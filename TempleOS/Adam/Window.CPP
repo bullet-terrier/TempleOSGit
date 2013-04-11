@@ -620,7 +620,7 @@ public U0 WinMgrSync(I64 cnt=1,Bool force=FALSE)
   Bool old_preempt=Preempt(OFF),
   old_full_refresh,
   old_idle=LBts(&Fs->task_flags,TASKf_IDLE);
-  CDoc *old_doc=DocCur;
+  CDoc *old_doc=DocPut;
   I64 update_cnt;
   while (Bt(&sys_semas[SYS_SEMA_REFRESH_IN_PROGRESS],0)) {
     if (force) {
@@ -799,57 +799,38 @@ public Bool SetWinVert(I64 top,I64 bottom,CTask *task=NULL)
   }
 }
 
-Bool SetCursorPos(CTask *task,I64 iptx,I64 ipty,Bool set_cursor=TRUE)
+CDoc *SetCursorPos(CTask *task,I64 iptx,I64 ipty,Bool set_cursor=TRUE)
 {
-  CDoc *doc;
+  CDoc *result=NULL;
   Bool unlock;
   I64 x0,y0;
   if (!task) task=Fs;
   if (!TaskValidate(task)) return FALSE;
-  if (task->win_top<=ipty<=task->win_bottom &&
-    task->win_left <=iptx<=task->win_right) {
-    doc=task->next_doc;
-    while (doc!=(&task->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-	   doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-      if (set_cursor) {
-	unlock=DocLock(doc);
-	if (doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-	  if (doc->flags&DOCF_AUX_DOC) {
-	    doc->x=iptx-task->win_left;
-	    doc->y=ipty-task->win_top;
-	    DocRecalc(doc,FALSE,DOC_RECALC_FIND_CURSOR);
-	  } else {
-	    x0=doc->line_start_col;
-	    y0=doc->cur_top_line_num;
-	    DocRecalc(doc,TRUE);
-
-	    doc->x=iptx-task->win_left-task->win_scroll_x/FONT_WIDTH +x0;
-	    doc->y=ipty-task->win_top -task->win_scroll_y/FONT_HEIGHT+y0;
-	    DocRecalc(doc,FALSE,DOC_RECALC_FIND_CURSOR);
-	    task->win_scroll_x=0;
-	    task->win_scroll_y=0;
-	    task->win_scroll_z=0;
-	  }
-	  if (!(doc->flags&DOCF_DONT_SHOW) &&
-	    (!doc->best_d || !(doc->flags&DOCF_AUX_DOC))) {
-	    if (unlock)
-	      DocUnlock(doc);
-	    break;
-	  }
-	  if (unlock)
-	    DocUnlock(doc);
-	} else {
-	  if (unlock)
-	    DocUnlock(doc);
-	  break;
-	}
+  if (task->win_top <=ipty<=task->win_bottom &&
+      task->win_left<=iptx<=task->win_right) {
+    if ((result=DocDisplay(task)) && result->flags&DOCF_DONT_SHOW)
+      result=NULL;
+    else if (set_cursor) {
+      unlock=DocLock(result);
+      if (result->doc_signature!=DOC_SIGNATURE_VAL)
+	result=NULL;
+      else {
+	x0=result->line_start_col;
+	y0=result->cur_top_line_num;
+	DocRecalc(result,TRUE);
+	result->x=iptx-task->win_left-task->win_scroll_x/FONT_WIDTH +x0;
+	result->y=ipty-task->win_top -task->win_scroll_y/FONT_HEIGHT+y0;
+	DocRecalc(result,FALSE,DOC_RECALC_FIND_CURSOR);
+	task->win_scroll_x=0;
+	task->win_scroll_y=0;
+	task->win_scroll_z=0;
+	if (unlock)
+	  DocUnlock(result);
       }
-      doc=doc->next_doc;
     }
     WinToTop(task);
-    return TRUE;
   }
-  return FALSE;
+  return result;
 }
 
 public U0 WinTileHorz()
@@ -1321,26 +1302,16 @@ wmt_start:
 
       if (!WinInhibit(WIf_IP_L)) {
 	if (!old_ip_lb && ip_lb) {
-	  if (SetCursorPos(task,iptx,ipty)) {
-	    doc=task->next_doc;
-	    while (doc!=(&task->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-		doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-	      DocLock(doc);
-	      if (!(doc->flags&DOCF_DONT_SHOW) &&
-		  (!doc->best_d || !(doc->flags&DOCF_AUX_DOC))) {
-		if (doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-		  doc_e=doc->cur_entry;
-		  if (doc_e!=doc) {
-		    if (doc_e->flags1 & DOCEF1_HAS_BORDER)
-		      doc_e->flags1|=DOCEF1_SOLID_BORDER;
-		  }
-		}
-		DocUnlock(doc);
-		break;
+	  if (doc=SetCursorPos(task,iptx,ipty)) {
+	    DocLock(doc);
+	    if (doc->doc_signature==DOC_SIGNATURE_VAL) {
+	      doc_e=doc->cur_entry;
+	      if (doc_e!=doc) {
+		if (doc_e->flags1 & DOCEF1_HAS_BORDER)
+		  doc_e->flags1|=DOCEF1_SOLID_BORDER;
 	      }
-	      DocUnlock(doc);
-	      doc=doc->next_doc;
 	    }
+	    DocUnlock(doc);
 	    old_ip_lb=TRUE;
 	    goto wmt_start;
 	  }
@@ -1363,7 +1334,7 @@ wmt_start:
 	      goto wmt_start;
 	    } else if (task->win_right-2<=iptx<=task->win_right) {
 	      if (Bt(&task->display_flags,DISPLAYf_HAS_CLOSE_WIN)) {
-		if (DocCur(task))
+		if (DocPut(task))
 		  QueMsg(task,0,MSG_KEY_DOWN,CH_SHIFT_ESC,0,0);
 		else
 		  Kill(task,FALSE);
@@ -1376,39 +1347,30 @@ wmt_start:
       }
       if (!WinInhibit(WIf_IP_L)) {
 	if (old_ip_lb && !ip_lb) {
-	  if (SetCursorPos(task,iptx,ipty,FALSE)) {
-	    doc=task->next_doc;
-	    while (doc!=(&task->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-		doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-	      if (!(doc->flags&DOCF_DONT_SHOW) &&
-		  (!doc->best_d || !(doc->flags&DOCF_AUX_DOC))) {
-		do msg_code=WinMgrSleep;
-		while (TaskValidate(task) &&
-		    (ip_lb || left_ip_dbl_time));
-		if (TaskValidate(task)) {
-		  if (msg_code==MSG_IP_L_UP) {
-		    if (doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-		      DocLock(doc);
-		      if (TaskValidate(task)) {
-			if (doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-			  doc_e=doc->cur_entry;
-			  if (doc_e!=doc) {
-			    if (doc_e->flags1 & DOCEF1_HAS_BORDER)
-			      doc_e->flags1&=~DOCEF1_SOLID_BORDER;
-			    if (doc_e->flags1 & (DOCEF1_TREE|DOCEF1_LINK|DOCEF1_CHECK_COLLAPSABLE|
-			    DOCEF1_LEFT_CB|DOCEF1_LEFT_MACRO|DOCEF1_LEFT_EXP))
-			      QueMsg(task,0,MSG_KEY_DOWN,CH_SPACE,0,0);
-			  }
-			}
-			DocUnlock(doc);
+	  if (doc=SetCursorPos(task,iptx,ipty,FALSE)) {
+	    do msg_code=WinMgrSleep;
+	    while (TaskValidate(task) &&
+		(ip_lb || left_ip_dbl_time));
+	    if (TaskValidate(task)) {
+	      if (msg_code==MSG_IP_L_UP) {
+		if (doc->doc_signature==DOC_SIGNATURE_VAL) {
+		  DocLock(doc);
+		  if (TaskValidate(task)) {
+		    if (doc->doc_signature==DOC_SIGNATURE_VAL) {
+		      doc_e=doc->cur_entry;
+		      if (doc_e!=doc) {
+			if (doc_e->flags1 & DOCEF1_HAS_BORDER)
+			  doc_e->flags1&=~DOCEF1_SOLID_BORDER;
+			if (doc_e->flags1 & (DOCEF1_TREE|DOCEF1_LINK|DOCEF1_CHECK_COLLAPSABLE|
+			DOCEF1_LEFT_CB|DOCEF1_LEFT_MACRO|DOCEF1_LEFT_EXP))
+			  QueMsg(task,0,MSG_KEY_DOWN,CH_SPACE,0,0);
 		      }
 		    }
-		  } else if (msg_code==MSG_IP_L_D_UP)
-		    QueMsg(task,0,MSG_KEY_DOWN,CH_ESC,0,0);
+		    DocUnlock(doc);
+		  }
 		}
-		break;
-	      }
-	      doc=doc->next_doc;
+	      } else if (msg_code==MSG_IP_L_D_UP)
+		QueMsg(task,0,MSG_KEY_DOWN,CH_ESC,0,0);
 	    }
 	    old_ip_lb=FALSE;
 	    goto wmt_start;
@@ -1418,37 +1380,28 @@ wmt_start:
 
       if (!WinInhibit(WIf_IP_R)) {
 	if (old_ip_rb && !ip_rb) {
-	  if (SetCursorPos(task,iptx,ipty,FALSE)) {
-	    doc=task->next_doc;
-	    while (doc!=(&task->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-		doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-	      if (!(doc->flags&DOCF_DONT_SHOW) &&
-		  (!doc->best_d || !(doc->flags&DOCF_AUX_DOC))) {
-		do msg_code=WinMgrSleep;
-		while (TaskValidate(task) &&
-		    (ip_rb || right_ip_dbl_time));
-		if (TaskValidate(task)) {
-		  if (msg_code==MSG_IP_R_UP) {
-		    if (doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-		      DocLock(doc);
-		      if (TaskValidate(task)) {
-			if (doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-			  doc_e=doc->cur_entry;
-			  if (doc_e!=doc) {
-			    if (doc_e->flags1&(DOCEF1_LINK|
-			    DOCEF1_RIGHT_CB|DOCEF1_RIGHT_MACRO|DOCEF1_RIGHT_EXP))
-			      QueMsg(task,0,MSG_KEY_DOWN,'\n',0,0);
-			  }
-			}
-			DocUnlock(doc);
+	  if (doc=SetCursorPos(task,iptx,ipty,FALSE)) {
+	    do msg_code=WinMgrSleep;
+	    while (TaskValidate(task) &&
+		(ip_rb || right_ip_dbl_time));
+	    if (TaskValidate(task)) {
+	      if (msg_code==MSG_IP_R_UP) {
+		if (doc->doc_signature==DOC_SIGNATURE_VAL) {
+		  DocLock(doc);
+		  if (TaskValidate(task)) {
+		    if (doc->doc_signature==DOC_SIGNATURE_VAL) {
+		      doc_e=doc->cur_entry;
+		      if (doc_e!=doc) {
+			if (doc_e->flags1&(DOCEF1_LINK|
+			  DOCEF1_RIGHT_CB|DOCEF1_RIGHT_MACRO|DOCEF1_RIGHT_EXP))
+			  QueMsg(task,0,MSG_KEY_DOWN,'\n',0,0);
 		      }
 		    }
-		  } else if (msg_code==MSG_IP_R_D_UP)
-		    QueMsg(task,0,MSG_KEY_DOWN,CH_SHIFT_ESC,0,0);
+		    DocUnlock(doc);
+		  }
 		}
-		break;
-	      }
-	      doc=doc->next_doc;
+	      } else if (msg_code==MSG_IP_R_D_UP)
+		QueMsg(task,0,MSG_KEY_DOWN,CH_SHIFT_ESC,0,0);
 	    }
 	    old_ip_rb=FALSE;
 	    goto wmt_start;

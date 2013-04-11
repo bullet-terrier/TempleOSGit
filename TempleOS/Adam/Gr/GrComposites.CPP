@@ -96,7 +96,7 @@ public Bool GrTextDiamond3(CDC *dc,I64 x1,I64 y1,I64 z1,U8 *_s,I64 border=2)
 
   ptr=s=StrNew(_s);
   while (ch=*ptr) {
-    if (ch==CH_CARRIAGE_RETURN||ch=='\t')
+    if (ch=='\r'||ch=='\t')
       *ptr=CH_SPACE;
     if (ch=='\n') {
       *ptr=0;

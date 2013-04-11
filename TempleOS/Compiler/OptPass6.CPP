@@ -1,7 +1,7 @@
 Bool OptIC6(CIntermediateCode *tempi)
 {
   CIntermediateCode *tempil1,*tempil2;
-  if (tempi->ic_opcode<IC_IMM) return FALSE;
+  if (tempi->ic_opcode<IC_IMM_U64) return FALSE;
   tempil1=tempi;
   if (!(tempil2=OptLag1(tempil1)))
     return FALSE;
@@ -15,14 +15,11 @@ Bool OptIC6(CIntermediateCode *tempi)
     if (tempil2->p1.type&TY_MASK==TY_REG) {
       tempil1->ic_flags= tempil1->ic_flags & ~ICF_P1_WAS_STK |
 			 tempil2->ic_flags;
-      tempil2->ic_opcode=IC_NOP1;
-      tempil2->p1.type=TY_NULL+tempil2->p1.type&IT_MASK;
-      tempil2->r.type=TY_NULL+tempil2->r.type&IT_MASK;
       tempil1->ic_opcode=IC_MOV;
       tempil1->p1.type=TY_DISP+tempil1->p1.ptype;
       tempil1->p1.reg=tempil2->p1.reg;
       tempil1->p1.disp=tempil2->ic_data;
-      tempil2->ic_data=-1;
+      OptSetNOP2(tempil2,-1);
       return TRUE;
     } else {
       tempil2->ic_opcode=IC_MOV;
@@ -41,7 +38,7 @@ U0 OptPass6Lag(CLex *lx,
   I64 i=*i_,j,k,l,code,clobbered_reg_mask=*_clobbered_reg_mask;
   CHashFun *tempf;
   code=tempi->ic_opcode;
-  if (code<=IC_NOP1)
+  if (code<=IC_NOP2)
     return;
   else {
     if (tempi->ic_flags&ICF_TRACE) {
@@ -167,7 +164,7 @@ U0 OptPass6(CLex *lx,CHashFun *fun_class)
     OptNext3(tempi,temp_lag);
     tempil1=temp_lag[1];
     if (tempil1->ic_opcode==IC_END_EXP) {
-      if (code!=IC_RETURN_VAL2 && code!=IC_NOP) {
+      if (code!=IC_RETURN_VAL2 && code!=IC_NOP1) {
 	if (!(temp_lag[2]->ic_flags&
 	(ICF_R_TO_F64|ICF_R_TO_INT|ICF_PUSH_RESULT|ICF_DEPEND_RESULT))) {
 	  temp_lag[2]->ic_flags|=ICF_NO_DEPEND_RESULT;
@@ -177,7 +174,7 @@ U0 OptPass6(CLex *lx,CHashFun *fun_class)
 	}
       }
     }
-    if (code<=IC_NOP1) {
+    if (code<=IC_NOP2) {
       } else {
       if (tempi->p3.type&TY_MASK) {
 	if (tempi->p3.type&TY_MASK==TY_STK) {
@@ -209,7 +206,6 @@ U0 OptPass6(CLex *lx,CHashFun *fun_class)
 		if (tempif2=OptLead1(lx,tempif1))
 		  if (tempif1->ic_opcode==IC_END_EXP &&
 		      tempif2->ic_opcode!=IC_RETURN_VAL2) {
-		    tempi->ic_opcode=IC_NOP;
 		    tempil1->r.type =tempi->p1.type&TY_MASK+tempi->p1.ptype;
 		    tempil1->r.ptype=tempi->p1.ptype;
 		    tempil1->r.reg  =tempi->p1.reg;
@@ -217,6 +213,7 @@ U0 OptPass6(CLex *lx,CHashFun *fun_class)
 		    tempil1->ic_flags=tempil1->ic_flags&~(ICF_NO_DEPEND_RESULT|ICF_R_WAS_STK)|
 			tempi->ic_flags&~(ICF_NOT_ADDR|ICF_P1_WAS_STK|ICF_P2_WAS_STK)|ICF_DEPEND_RESULT;
 		    old_tempil1=NULL;
+		    OptSetNOP1(tempi);
 		  } else
 		    tempif2=NULL;
 	    }

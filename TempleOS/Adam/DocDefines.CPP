@@ -3,7 +3,7 @@
 U0 LoadDocDefines()
 {
 //These are used in documents such as [C:/TempleOS/Doc/TrivialSolutions.TXT.Z,1]
-//The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1518] CDoc framework will search the sym table for define string
+//The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc framework will search the sym table for define string
 //constants if you specify that.
   CBinFile *bfh=sys_boot_base-sizeof(CBinFile);
 
@@ -29,7 +29,7 @@ U0 LoadDocDefines()
   //This is cut and replaced when I generate a distro.
   //See [C:/TempleOS/Demo/AcctExample/TSDistro.CPP.Z,1] DD_TEMPLEOS_LOC.
   -] LineCnt
-    DefinePrintF("DD_TEMPLEOS_LOC","139,640");
+    DefinePrintF("DD_TEMPLEOS_LOC","142,985");
     
   DefinePrintF(
     "DD_PAGE_TABLE_BASE","%08X",PAGE_TABLE_BASE);

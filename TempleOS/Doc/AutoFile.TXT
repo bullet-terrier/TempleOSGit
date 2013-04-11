@@ -1,7 +1,7 @@
 AutoFiles are used to generate user input to automate operations.  The 
 TempleOS tour is done with an AutoFile.
 
-When an AutoFile runs, a child task is [C:/TempleOS/Kernel/Task1a.CPP.Z,228]
+When an AutoFile runs, a child task is [C:/TempleOS/Kernel/Task1a.CPP.Z,224]
 Spawn()ed which intercepts real user 
 input and generates fake input.  AutoFiles are C+ programs run by the child 
 who's stdout goes to the parent's input buffer. 
@@ -21,6 +21,5 @@ probably use [C:/TempleOS/Kernel/TaskCmd.CPP.Z,354] Auto() a lot and not
 [C:/TempleOS/Kernel/TaskCmd.CPP.Z,384] AutoStr().  
 With [C:/TempleOS/Kernel/TaskCmd.CPP.Z,354] Auto(), for example, you can
 place answers to the prompts for recompiling 
-the Kernel module during [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,164]
+the Kernel module during [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,136]
 MakeOSInstallPrtBootLoader().
-

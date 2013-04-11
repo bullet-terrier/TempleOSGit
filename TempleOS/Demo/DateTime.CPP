@@ -1,5 +1,5 @@
 /*
-  An [C:/TempleOS/Kernel/Adam1a.HPP.Z,285] CDate is a signed 64-bit date/time num
+  An [C:/TempleOS/Kernel/Adam1a.HPP.Z,286] CDate is a signed 64-bit date/time num
   representing how many 49710ths of a second
   since Christ.  The reason it is this crazy
   num is so that 32bits is exactly one day.
@@ -11,7 +11,7 @@
   is stored in the lower 32-bits.  The upper
   32-bits hold the num of days since Christ.
 
-  [C:/TempleOS/Kernel/Str1a.CPP.Z,2363] PrintF() and the file datetimes use
+  [C:/TempleOS/Kernel/Str1a.CPP.Z,2351] PrintF() and the file datetimes use
   this format, otherwise you might want to
   use [C:/TempleOS/Kernel/Adam1b.HPP.Z,199] GetTimeStamp() for a higher frequency
   timing, divide by [C:/TempleOS/Kernel/KGlbls.CPP.Z,57] time_stamp_freq,
@@ -40,6 +40,6 @@ for (i=0;i<TF_NUM;i++)
   them.
 */
 
-//Example of how to use with [C:/TempleOS/Kernel/Adam1a.HPP.Z,279] DF_NUM, [C:/TempleOS/Kernel/Adam1a.HPP.Z,220] TF_NUM #define's
+//Example of how to use with [C:/TempleOS/Kernel/Adam1a.HPP.Z,280] DF_NUM, [C:/TempleOS/Kernel/Adam1a.HPP.Z,221] TF_NUM #define's
 "%h*D\n",DF_MM_DD_YYYY,spdt;
 "%h*T\n",TF_HH24_MM,spdt;

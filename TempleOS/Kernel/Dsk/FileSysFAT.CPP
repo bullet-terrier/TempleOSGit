@@ -71,9 +71,9 @@ U0 FAT32Fmt(U8 drv_let,Bool quick=TRUE)
     PrtLock(p);
     SetDrvType(drv_let,PT_FAT32);
     p->type=PT_FAT32;
-    br->jump_and_nop[0]=0xEB;
-    br->jump_and_nop[1]=0x58;
-    br->jump_and_nop[2]=0x90;
+    br->jump_and_nop[0]=OC_JMP_REL8;
+    br->jump_and_nop[1]=offset(CFAT32Boot.code)-2;
+    br->jump_and_nop[2]=OC_NOP;
     MemCpy(br->oem_name,"MSWIN4.1",8);
     br->bytes_per_sect=BLK_SIZE;
     if	  (p->size<= 500000)
@@ -297,7 +297,7 @@ Bool FAT32DirFill(CFAT32DirEntry *de,CDirEntry *tempm,I64 *_de_cnt=NULL)
 
 
 Bool FAT32FileFind(CPrt *p,I64 cur_dir_cluster,U8 *name,CDirEntry *_result,I64 fuf_flags=0)
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3591] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3592] FUF_JUST_FILES
+{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3613] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3614] FUF_JUST_FILES
   Bool result=FALSE,unlock;
   CFAT32DirEntry *buf;
   I64 xsum=0,attr,cur_dir_entry,entries_per_cluster;

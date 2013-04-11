@@ -12,7 +12,7 @@ use.  You're welcome to add it, or some variation to your start-up scripts if
 you like it.  It's not fully debugged.
 
 I had to cheat to make this work.  I added
-[C:/TempleOS/Kernel/Adam1a.HPP.Z,2968] DISPLAYf_USER_HAS_BEEN_RESIZED and 
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,2990] DISPLAYf_USER_HAS_BEEN_RESIZED and 
 modified [C:/TempleOS/Adam/Window.CPP.Z,1].
 
 The differential equation stuff was overkill and made it overly complicated.  

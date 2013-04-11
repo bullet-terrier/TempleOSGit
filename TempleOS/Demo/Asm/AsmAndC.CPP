@@ -39,7 +39,7 @@ _extern _BEEPS U0 Beeps(I64 cnt);
 I64 AsmAndC()
 {
   I64 noreg i;	//Normally this would be stored in a reg
-		//Check with [C:/TempleOS/Adam/Dbg2a.CPP.Z,239] Uf("AsmAndC").
+		//Check with [C:/TempleOS/Adam/Dbg2a.CPP.Z,236] Uf("AsmAndC").
 
   i=PmtI64("Num of beeps 1-5 (%d):",3,1,5);
   Beeps(i);

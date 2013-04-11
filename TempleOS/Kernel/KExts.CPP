@@ -5,7 +5,8 @@ before import is resolved, you can use
 var and check it before calling.
 */
 import U0 MemberLstDel(CHashClass *tempc);
-import I64 ExePutS(U8 *buf,U8 *filename=NULL,Bool just_load=FALSE);
+import I64 ExePutS(U8 *buf,U8 *filename=NULL,
+		   Bool just_load=FALSE,CLexHashTableContext *htc=NULL);
 import I64 ExeFile(U8 *name,Bool just_load=FALSE);
 import U0 DisplaySpecialKeys(I64 sc);
 import Bool DocUnlock(CDoc *doc);
@@ -75,7 +76,7 @@ extern U0 TaskInitExt(Bool from_dbg=FALSE);
 extern I64 ServantCmdsHandler(CTask *task=NULL);
 extern U0 PrintF(U8 *fmt,...);
 extern U0 PutS(U8 *st);
-extern U0 PutChar(I64 ch);
+extern U0 PutChar(U64 ch);
 extern U0 PutDefine(U8 *name);
 extern U0 NewLine(I64 cnt=1);
 extern I64 GetChar(I64 *scancode=NULL,Bool echo=TRUE,Bool raw_cursor=FALSE);

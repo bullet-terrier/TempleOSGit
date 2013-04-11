@@ -7,7 +7,7 @@ PopUpOk(
 
 AFGetChar(CH_CTRLF);
 
-"<SHIFT-ESC>";
+AFDelayedPutS("GREEN",500);
 
 PopUpOk("Cursor down 8 times.\n");
 I64 i;

@@ -58,7 +58,7 @@ U0 DiffSelect(CDoc *doc,I64 *_df_flags,I64 j1_lo,I64 j1_hi,
     "---------------------$FG$\n";
     i= j1_lo<=0 ? 0:j1_lo-1;
     while (i<j1_hi) {
-      if (cur_l=DocCur) {
+      if (cur_l=DocPut) {
 	old_flags=cur_l->flags&DOCF_PLAIN_TEXT;
 	cur_l->flags|=DOCF_PLAIN_TEXT;
       }
@@ -70,7 +70,7 @@ U0 DiffSelect(CDoc *doc,I64 *_df_flags,I64 j1_lo,I64 j1_hi,
     "$FG,CYAN$";
     i= j2_lo<=0 ? 0:j2_lo-1;
     while (i<j2_hi) {
-      if (cur_l=DocCur) {
+      if (cur_l=DocPut) {
 	old_flags=cur_l->flags&DOCF_PLAIN_TEXT;
 	cur_l->flags|=DOCF_PLAIN_TEXT;
       }

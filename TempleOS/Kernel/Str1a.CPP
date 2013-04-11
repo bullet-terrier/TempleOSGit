@@ -336,7 +336,7 @@ _extern _STRCAT U0 StrCat(U8 *dst,U8 *src);
 
 /*
 These bitmaps go to 0-511 so that
-[C:/TempleOS/Compiler/Lex.CPP.Z,796] Lex() can use them with [C:/TempleOS/Kernel/Adam1a.HPP.Z,2006] Token Codes.
+[C:/TempleOS/Compiler/Lex.CPP.Z,789] Lex() can use them with [C:/TempleOS/Kernel/Adam1a.HPP.Z,2007] Token Codes.
 */
 U32 alpha_bitmap[16]=
 {0x0000000,0x00000000,0x87FFFFFF,0x07FFFFFE,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,
@@ -535,7 +535,7 @@ U0 GetOutOfDollar()
     if (sys_raw_dc_flags&RDCF_IN_DOLLAR)
       '$';
   } else {
-    if (fp_doc_cur && (doc=(*fp_doc_cur)(Fs)) && doc->flags&DOCF_IN_DOLLAR)
+    if (fp_doc_put && (doc=(*fp_doc_put)(Fs)) && doc->flags&DOCF_IN_DOLLAR)
       '$';
   }
 }
@@ -603,18 +603,6 @@ Bool YorN()
 Bool PressAKey()
 {
   I64 ch;
-  PutDefine("ST_PRESS_A_KEY");
-  ch=GetChar(NULL,FALSE);
-  if (ch==CH_SHIFT_ESC || ch==CH_ESC)
-    return FALSE;
-  else
-    return TRUE;
-}
-
-Bool ExitAllApplications()
-{
-  I64 ch;
-  PutDefine("ST_EXIT_ALL_APPLICATIONS");
   PutDefine("ST_PRESS_A_KEY");
   ch=GetChar(NULL,FALSE);
   if (ch==CH_SHIFT_ESC || ch==CH_ESC)
@@ -791,7 +779,7 @@ U8 *ScaleIndent(U8 *src,F64 indent_scale_factor)
 }
 
 U8 *StrUtil(U8 *_src,I64 flags)
-{//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3495] flags
+{//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3517] flags
   U8 *src=_src,*dst=_src;
   I64 ch;
 
@@ -1019,7 +1007,7 @@ I64 A2I(U8 *st,I64 radix=10,U8 **_end_ptr=NULL)
   Bool neg=FALSE;
   U8 ch;
   I64 result=0,k=0;
-  if (radix<2||radix>36) return 0;
+  if (!(2<=radix<=36)) return 0;
   while (Bt(white_space_bitmap,*st))
     st++;
   if (*st=='-') {
@@ -1187,7 +1175,7 @@ U8 *MSPrintFQ(U8 *ptr,Bool dollar_flag)
 	  SPrintFPutChar(_dst,'\\',_buf);
 	  SPrintFPutChar(_dst,'n',_buf);
 	  break;
-	case CH_CARRIAGE_RETURN:
+	case '\r':
 	  SPrintFPutChar(_dst,'\\',_buf);
 	  SPrintFPutChar(_dst,'r',_buf);
 	  break;
@@ -1234,7 +1222,7 @@ U8 *MSPrintFq(U8 *ptr)
 	    ptr++;
 	    break;
 	  case 'r':
-	    SPrintFPutChar(_dst,CH_CARRIAGE_RETURN,_buf);
+	    SPrintFPutChar(_dst,'\r',_buf);
 	    ptr++;
 	    break;
 	  case '"':
@@ -2053,7 +2041,7 @@ sp_out_eng: //Engineering notation
 }
 
 U8 *SPrintF(U8 *dst,U8 *fmt,...)
-{ //See [C:/TempleOS/Kernel/Str1a.CPP.Z,1337] SPrintFJoin()
+{ //See [C:/TempleOS/Kernel/Str1a.CPP.Z,1325] SPrintFJoin()
   return SPrintFJoin(dst,fmt,argc,argv);
 }
 
@@ -2362,14 +2350,14 @@ U8 *GetF(U8 *src,U8 *fmt,...)
 
 U0 PrintF(U8 *fmt,...)
 {//[C:/TempleOS/Doc/Differences.TXT.Z,1] PrintF Extended Codes
- //See [C:/TempleOS/Kernel/Str1a.CPP.Z,1337] SPrintFJoin()
+ //See [C:/TempleOS/Kernel/Str1a.CPP.Z,1325] SPrintFJoin()
   U8 *buf=SPrintFJoin(NULL,fmt,argc,argv);
   "" buf;
   Free(buf);
 }
 
 U8 *MSPrintF(U8 *fmt,...)
-{ //See [C:/TempleOS/Kernel/Str1a.CPP.Z,1337] SPrintFJoin()
+{ //See [C:/TempleOS/Kernel/Str1a.CPP.Z,1325] SPrintFJoin()
   U8 *result,*buf=SPrintFJoin(NULL,fmt,argc,argv);
   result=StrNew(buf);
   Free(buf);

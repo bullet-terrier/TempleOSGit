@@ -78,7 +78,7 @@ U0 WatchLocals()
       if (!TaskValidate(dbg_task=task->dbg_task))
 	Exit;
       DocDblBufStart;
-      if (doc=DocCur(dbg_task)) {
+      if (doc=DocPut(dbg_task)) {
 	if (tempf=DbgFunFind(doc,0)) {
 	  "$WW,1$";
 	  rbp=task->rbp;
@@ -410,7 +410,7 @@ U0 IDEEdTask(I64)
     st=MSPrintF("Preempt(OFF);Ed(\"%s\");\n",rip_filename);
     XTalkWait(ed_task,st);
     Free(st);
-    doc=DocCur(ed_task);
+    doc=DocPut(ed_task);
     if (TaskValidate(dbg_task=task->dbg_task)) {
       SetWinHorz(dbg_task->win_left,dbg_task->win_right, ed_task);
       SetWinVert(dbg_task->win_top, dbg_task->win_bottom,ed_task);

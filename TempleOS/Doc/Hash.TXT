@@ -8,4 +8,3 @@ generate the same num, a linked-list is built.  Usually, newer entries
 overshadow older ones unless otherwise specified, in which case old entries 
 are removed.  There are various types of entries.  See
 [C:/TempleOS/Kernel/Adam1a.HPP.Z,701] Hash Entry Types.
-

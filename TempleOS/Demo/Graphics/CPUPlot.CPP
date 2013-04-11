@@ -60,5 +60,5 @@ U0 CPUPlot()
 
 CPUPlot; //start when #included
 
-//Study [C:/TempleOS/Adam/MemRep.CPP.Z,1] and [C:/TempleOS/Adam/WallPaper.CPP.Z,21] WallPaper() to learn more about
+//Study [C:/TempleOS/Adam/MemRep.CPP.Z,1] and [C:/TempleOS/Adam/WallPaper.CPP.Z,29] WallPaper() to learn more about
 //how the system resources are put together.

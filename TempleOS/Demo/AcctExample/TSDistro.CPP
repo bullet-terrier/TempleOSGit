@@ -29,9 +29,28 @@ U8 TSPmtDrv()
   return result;
 }
 
+U0 RAMDrvPrep(U8 src_drv_let)
+{
+  if (ts_has_ram_drv) {
+    DelTree(TS_LOW_RAM_DRV_DIR);
+    MkDir(TS_LOW_RAM_DRV_DIR);
+    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS");
+    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS/Adam");
+    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
+    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS/Kernel");
+    Drv(src_drv_let);
+    Copy("/TempleOS/Compiler/Compiler.BIN.Z",TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
+    Copy("/TempleOS/Compiler/OpCodes.TXT.Z", TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
+    Copy("/TempleOS/Compiler/*.HPP*",TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
+    Copy("/TempleOS/Kernel/*.HPP*",TS_LOW_RAM_DRV_DIR "/TempleOS/Kernel");
+    Copy("/TempleOS/Accts/TS/DbgAdam1.CPP.Z",TS_LOW_RAM_DRV_DIR "/TempleOS/Kernel/Adam1.CPP.Z");
+  }
+}
+
 U0 TSMakeOSInstallPrtBootLoader(U8 drv_let)
 {
   drv_let=ToUpper(drv_let);
+  RAMDrvPrep(drv_let);
   Auto(TS_CFG);
   MakeOSInstallPrtBootLoader(drv_let);
   if (StrOcc(TS_MASTER_BOOT_DRVS,drv_let))
@@ -79,12 +98,6 @@ U0 TSCopyDrv(U8 src,U8 dst)
   SPrintF(buf_d,"%c:/Temp/ScreenShots",dst);
   MkDir(buf_d);
 
-  if (ts_has_bak_drv && dst==TS_BAK_DRV_LET) {
-    SPrintF(buf_d,"%c:/Logs",dst);
-    MkDir(buf_d);
-    SPrintF(buf_d,"%c:/Logs/TEMPLEOSLogs",dst);
-    MkDir(buf_d);
-  }
   DocClear;
   Drv(dst);
   TSMakeOSInstallPrtBootLoader(dst);
@@ -178,12 +191,14 @@ U0 Uncollapse(U8 *files_find_mask=FILENAME_MASK_TXT,U8 *fu_flags=NULL)
   UncollapseLst(FilesFind(files_find_mask,f),&f);
 }
 
-U0 CopySongDir(U8 *files_find_mask,U8 threshold)
+public U0 CopySongs(U8 threshold='7')
 {
   CDoc *s;
   CDocEntry *doc_e;
   CDirEntry *tempm,*tempm1;
-  tempm1=tempm=FilesFind(files_find_mask);
+  DelTree("/TempleOS/Apps/MusicOrgan/Examples");
+  MkDir("/TempleOS/Apps/MusicOrgan/Examples");
+  tempm1=tempm=FilesFind("/TempleOS/Accts/TS/TAD/MusicOrgan/*.CPP*");
   while (tempm1) {
     s=DocRead(tempm1->full_name);
     doc_e=s->root.next;
@@ -192,13 +207,6 @@ U0 CopySongDir(U8 *files_find_mask,U8 threshold)
     tempm1=tempm1->next;
   }
   CDirLstDel(tempm);
-}
-
-public U0 CopySongs(U8 threshold='7')
-{
-  DelTree("/TempleOS/Apps/MusicOrgan/Examples");
-  MkDir("/TempleOS/Apps/MusicOrgan/Examples");
-  CopySongDir("/TempleOS/Accts/TS/TAD/MusicOrgan/*.CPP*",threshold);
 }
 
 U0 DistroPrep()
@@ -238,22 +246,6 @@ U0 DistroPrep()
   Move(WSD_DEF_FILENAME,WSD_DEF_FILENAME_Z);
 }
 
-U0 TSDistroPrep()
-{
-  Drv(TS_MAIN_DRV_LET);
-  DistroPrep;
-  Auto(TS_CDROM_CFG);
-  MakeOSInstallPrtBootLoader(TS_MAIN_DRV_LET,TS_CDROM_DRV_LET);
-  Fmt(TS_IMG_DRV_LET,TRUE,FALSE,PT_NATIVE);
-  Drv(TS_IMG_DRV_LET);
-  CopyTree(TS_MAIN_DRV ":/TempleOS","/TempleOS");
-  CopyTree(TS_MAIN_DRV ":/Windows","/Windows");
-  CopyTree(TS_MAIN_DRV ":/Linux","/Linux");
-  MkDir("/Temp");
-  MkDir("/Temp/ScreenShots");
-  CopyTree(TS_MAIN_DRV ":/0000Boot","/0000Boot");
-}
-
 U0 MakeSymFiles()
 {
   CDoc *doc;
@@ -262,7 +254,7 @@ U0 MakeSymFiles()
     DocClear;
     DocMax;
     HashRep(Fs->hash_table,HTG_ALL,NULL,"-p",0,NULL);
-    if (doc=DocCur) {
+    if (doc=DocPut) {
       st=StrNew(doc->filename.name);
       StrCpy(doc->filename.name,TS_BAK_DRV ":/Wb/Accts/TS/Wb2/SymsAlpha.TXT.Z");
       DocWrite(doc);
@@ -272,7 +264,7 @@ U0 MakeSymFiles()
     DocClear;
     DocMax;
     HashRep(Fs->hash_table,HTG_ALL,NULL,"-p+m",0,NULL);
-    if (doc=DocCur) {
+    if (doc=DocPut) {
       st=StrNew(doc->filename.name);
       StrCpy(doc->filename.name,TS_BAK_DRV ":/Wb/Accts/TS/Wb2/SymsAddress.TXT.Z");
       DocWrite(doc);
@@ -298,7 +290,7 @@ I64 MakeLineCntFile()
   DocClear;
   Cd(TS_MAIN_DRV ":/TempleOS");
   result=LineCntRep;
-  if (doc=DocCur) {
+  if (doc=DocPut) {
     st=StrNew(doc->filename.name);
     StrCpy(doc->filename.name,TS_MAIN_DRV ":/TempleOS/Accts/TS/Wb2/LineCnt.TXT.Z");
     DocWrite(doc);
@@ -325,35 +317,50 @@ I64 MakeLineCntFile()
   return result;
 }
 
-U0 StdDistroPrep(U8 *auto_cfg)
+U0 TSDistroPrep()
 {
   Drv(TS_MAIN_DRV_LET);
   DistroPrep;
-  Auto(auto_cfg);
+  RAMDrvPrep(TS_MAIN_DRV_LET);
+  Auto(TS_CDROM_CFG);
   MakeOSInstallPrtBootLoader(TS_MAIN_DRV_LET,TS_CDROM_DRV_LET);
-  Fmt(TS_IMG_DRV_LET,TRUE,FALSE,PT_NATIVE);
-  Drv(TS_IMG_DRV_LET);
-  CopyTree(TS_MAIN_DRV ":/TempleOS","/TempleOS");
-  CopyTree(TS_MAIN_DRV ":/Windows","/Windows");
-  CopyTree(TS_MAIN_DRV ":/Linux","/Linux");
-  MkDir("/Temp");
-  DelTree("/TempleOS/Accts/TS");
-  CopyTree(TS_MAIN_DRV ":/0000Boot","/0000Boot");
-  Del("/0000Boot/OldMBR.BIN.C");
-  Del("/0000Boot/BootMHD2.BIN.C");
+  DelTree(TS_DISTRO_DIR);
+  CopyTree(TS_MAIN_DRV ":/TempleOS",TS_DISTRO_DIR "/TempleOS");
+  CopyTree(TS_MAIN_DRV ":/Windows",TS_DISTRO_DIR "/Windows");
+  CopyTree(TS_MAIN_DRV ":/Linux",TS_DISTRO_DIR "/Linux");
+  MkDir(TS_DISTRO_DIR "/Temp");
+  MkDir(TS_DISTRO_DIR "/Temp/ScreenShots");
+  CopyTree(TS_MAIN_DRV ":/0000Boot",TS_DISTRO_DIR "/0000Boot");
+}
+
+U0 StdDistroPrep()
+{
+  Drv(TS_MAIN_DRV_LET);
+  DistroPrep;
+  Auto(STD_DISTRO_CDROM_CFG);
+  MakeOSInstallPrtBootLoader(TS_MAIN_DRV_LET,TS_CDROM_DRV_LET);
+  DelTree(TS_DISTRO_DIR);
+  CopyTree(TS_MAIN_DRV ":/TempleOS",TS_DISTRO_DIR "/TempleOS");
+  CopyTree(TS_MAIN_DRV ":/Windows",TS_DISTRO_DIR "/Windows");
+  CopyTree(TS_MAIN_DRV ":/Linux",TS_DISTRO_DIR "/Linux");
+  MkDir(TS_DISTRO_DIR "/Temp");
+  DelTree(TS_DISTRO_DIR "/TempleOS/Accts/TS");
+  CopyTree(TS_MAIN_DRV ":/0000Boot",TS_DISTRO_DIR "/0000Boot");
+  Del(TS_DISTRO_DIR "/0000Boot/OldMBR.BIN.C");
+  Del(TS_DISTRO_DIR "/0000Boot/BootMHD2.BIN.C");
 }
 
 U0 MakeTSDistro()
 {
   TSDistroPrep;
-  CDFileCreate(TS_ISO_NAME,TS_IMG_DRV ":/*",NULL,BOOTCD_BIN_Z);
+  CDFileCreate(TS_ISO_NAME,TS_DISTRO_DIR "/*",,TS_DISTRO_DIR BOOT_DIR_KERNEL_BIN_C);
   Drv(TS_MAIN_DRV_LET);
 }
 
 U0 MakeStdDistro()
 {
-  StdDistroPrep(STD_DISTRO_CDROM_CFG);
-  CDFileCreate(TS_ISO_NAME,TS_IMG_DRV ":/*",NULL,BOOTCD_BIN_Z);
+  StdDistroPrep;
+  CDFileCreate(TS_ISO_NAME,TS_DISTRO_DIR "/*",,TS_DISTRO_DIR BOOT_DIR_KERNEL_BIN_C);
   Drv(TS_MAIN_DRV_LET);
 }
 
@@ -491,7 +498,7 @@ U0 TSPrtDsk()
   CATARep *root=NULL,*ata_drv=NULL,*atapi_drv=NULL;
   if (ts_cid==CID_DFT) {//Dangerous! don't do on my main machine
     ATARep(FALSE,TRUE,&root);
-    ATAIDDrvs(root,dft_drv,&ata_drv,&atapi_drv);
+    ATAIDDrvs(root,*sys_acct,&ata_drv,&atapi_drv);
     if (ata_drv) {
       XTalkWait(task,"PrtDsk;\nY%C2p%d\nYYY",TS_MAIN_DRV_LET,ata_drv->num);
       XTalkWait(task,"%d\nY\nY\n",(prt_dsk_dsk_size-PRT_HEADER)/2);

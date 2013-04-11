@@ -163,7 +163,7 @@ U8 scan_code_map[0x100]={
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,SC_CARRIAGE_RETURN,SC_CTRL,0,0,
+  0,0,0,0,0,0,0,0,0,0,0,0,SC_ENTER,SC_CTRL,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0x35,0,0,SC_ALT,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,SC_HOME,SC_CURSOR_UP,SC_PAGE_UP,0,SC_CURSOR_LEFT,0,SC_CURSOR_RIGHT,0,SC_END,
@@ -184,7 +184,7 @@ U8 num_lock_map[0x100]={
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,SC_CARRIAGE_RETURN,SC_CTRL,0,0,
+  0,0,0,0,0,0,0,0,0,0,0,0,SC_ENTER,SC_CTRL,0,0,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0,0,0,0,0x35,0,0,SC_ALT,0,0,0,0,0,0,0,
   0,0,0,0,0,0,0,SC_HOME,SC_CURSOR_UP,SC_PAGE_UP,0,SC_CURSOR_LEFT,0,SC_CURSOR_RIGHT,0,SC_END,
@@ -251,12 +251,12 @@ U8 *ScanCode2KeyName(I64 sc)
     StrCat(buf,"ALT ");
   if (sc&SCF_SHIFT)
     StrCat(buf,"SHIFT ");
-  if (ch=ScanCode2A(sc.u8[0])) {
+  if (ch=ScanCode2A(sc&255)) {
     st=A2KeyName(ch,FALSE);
     StrCpy(buf+StrLen(buf),st);
     Free(st);
   } else {
-    switch (sc.u8[0]) {
+    switch (sc&255) {
       case SC_BACKSPACE:StrCat(buf,"BACK"); break;
       case SC_CAPS:	StrCat(buf,"CAPS"); break;
       case SC_NUM:	StrCat(buf,"NUM"); break;
@@ -402,15 +402,15 @@ U0 KbdPktRead()
   sc=KbdBuildSC(raw_byte,&last_raw_byte,&last_sc,&set_LEDs,&ctrl_alt);
   if (ctrl_alt && sc) {
     if (!(sc & SCF_KEY_UP)) {
-      if (sc.u8[0]==SC_DELETE)
+      if (sc&255==SC_DELETE)
 	CtrlAltDel(last_sc);
       else {
-	if (sc.u8[0]==SC_ESC)
+	if (sc&255==SC_ESC)
 	  ch='e';
-	else if (sc.u8[0]==SC_TAB)
+	else if (sc&255==SC_TAB)
 	  ch='t';
 	else
-	  ch=ScanCode2A(sc.u8[0]);
+	  ch=ScanCode2A(sc&255);
 	if ('a'<=ch<='z' && fp_ctrl_alt_let_cbs[ch-'a'] &&
 	    Bt(&ctrl_alt_let_in_irq_flags,ch-'a')) {
 	  (*fp_ctrl_alt_let_cbs[ch-'a'])(last_sc);
@@ -489,12 +489,12 @@ U0 KbdHandler()
   }
   if (ctrl_alt) {
     if (!(sc & SCF_KEY_UP)) {
-      if (sc.u8[0]==SC_ESC)
+      if (sc&255==SC_ESC)
 	ch='e';
-      else if (sc.u8[0]==SC_TAB)
+      else if (sc&255==SC_TAB)
 	ch='t';
       else
-	ch=ScanCode2A(sc.u8[0]);
+	ch=ScanCode2A(sc&255);
       if ('a'<=ch<='z' && fp_ctrl_alt_let_cbs[ch-'a'] &&
 	!Bt(&ctrl_alt_let_in_irq_flags,ch-'a'))
 	(*fp_ctrl_alt_let_cbs[ch-'a'])(sys_cur_scan_code);

@@ -81,7 +81,6 @@ be used as a tutorial if you start at the beginning and work your way fwd.
     [C:/TempleOS/Demo/GameStarters/Zing.CPP.Z,1]
     [C:/TempleOS/Demo/GameStarters/ChessNet.CPP.Z,1]
     [C:/TempleOS/Demo/GameStarters/Chess.CPP.Z,1]
-    [C:/TempleOS/Demo/Graphics/Flowers.CPP.Z,1]
     [C:/TempleOS/Demo/MultiCore/Palindrome.CPP.Z,1]
     [C:/TempleOS/Demo/MultiCore/MPAdd.CPP.Z,1]
     [C:/TempleOS/Demo/MultiCore/Lock.CPP.Z,1]
@@ -178,7 +177,6 @@ be used as a tutorial if you start at the beginning and work your way fwd.
   [C:/TempleOS/Demo/Lectures/MiniGrLib.CPP.Z,1]
   [C:/TempleOS/Demo/Lectures/MiniCompiler.CPP.Z,1]
   [C:/TempleOS/Demo/MagicPairs.CPP.Z,1]
-  [C:/TempleOS/Demo/Graphics/Circuit.CPP.Z,1]
   [C:/TempleOS/Demo/Graphics/PoleZeros.CPP.Z,1]
   [C:/TempleOS/Demo/WebLogExample/WebLogRep.CPP.Z,1]
   [C:/TempleOS/Demo/WebLogExample/WebLogScramble.CPP.Z,1]
@@ -225,9 +223,8 @@ be used as a tutorial if you start at the beginning and work your way fwd.
   [C:/TempleOS/Demo/Doc/Data.CPP.Z,1]
   [C:/TempleOS/Demo/Doc/DefineStr.CPP.Z,1]
   [C:/TempleOS/Demo/Doc/CallBack.CPP.Z,1]
-  [C:/TempleOS/Demo/Doc/CallBackAux2.CPP.Z,1]
   [C:/TempleOS/Demo/Define.CPP.Z,1]
-  [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,152] EdRenumAsm
+  [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm
   [C:/TempleOS/Demo/Doc/UnusedDefine.CPP.Z,1]
   [C:/TempleOS/Demo/Asm/AsmHelloWorld.CPP.Z,1]
   [C:/TempleOS/Demo/Asm/BuzzFizz.CPP.Z,1]
@@ -244,11 +241,4 @@ be used as a tutorial if you start at the beginning and work your way fwd.
 `
 
   
-  +] HD Audio
-  [C:/TempleOS/Demo/Snd/BeatFreq.CPP.Z,1]
-  [C:/TempleOS/Demo/Snd/PolyPhonic.CPP.Z,1]
-  [C:/TempleOS/Demo/Snd/SndScope.CPP.Z,1]
-  [C:/TempleOS/Demo/Snd/Synth.CPP.Z,1]
-  [C:/TempleOS/Demo/Snd/Record.CPP.Z,1]
-  [C:/TempleOS/Demo/Snd/Echo.CPP.Z,1]
   

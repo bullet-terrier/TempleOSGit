@@ -13,6 +13,23 @@
 /* <3> <3> (image) */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* <4> <4> (image) */ //Pointer to sprite <6> in Camp.CPP.Z file
+
 #define NUM_QUAIL	128
 #define SKY_HEIGHT	(0.6*GR_HEIGHT)
 class QuailStruct
@@ -28,6 +45,7 @@ U0 DrawQuail(CTask *,CDC *dc)
   I64 i;
   U8 *inter;
   F64 tt,t1=tT-t0;
+  SpritePlot3(dc,0,SKY_HEIGHT,0,__BIN_4);
   for (i=0;i<NUM_QUAIL;i++) {
     tt=Tri(t1+q[i].phase,1.0);
     if (q[i].dead) {

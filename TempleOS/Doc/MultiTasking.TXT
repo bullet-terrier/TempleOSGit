@@ -11,7 +11,7 @@ have multiple tasks modifying data structures simultaneously.  Interrupts
 still occur when preemption is off.   
 
 **Preemption is turned-off by default when a task is
-[C:/TempleOS/Kernel/Task1a.CPP.Z,228] Spawn()ed.**
+[C:/TempleOS/Kernel/Task1a.CPP.Z,224] Spawn()ed.**
 
 The time-slice rate is set by [C:/TempleOS/Kernel/Adam1a.HPP.Z,612]
 JIFFY_FREQ.

@@ -8,7 +8,7 @@ Doc is taken off-line by disabling preemption so there
 are no screen updates until all data has been inserted.
 
 There is a special Doc function which is also
-available to take an Doc off-line.  See [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1647] DocInsSafe.
+available to take an Doc off-line.  See [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1645] DocInsSafe.
 For this example, however, I wanted to use DocPrintF
 and disabled Preemption myself.
 */
@@ -24,7 +24,7 @@ U0 TreeDemo()
   DocPutS(doc,"$ID,+2$");
   TreeSub(doc,FilesFind("/TempleOS/*",fuf_flags));
   DocPutS(doc,"$ID,-2$");
-  DocInsDoc(DocCur,doc);
+  DocInsDoc(DocPut,doc);
   DocDel(doc);
 }
  

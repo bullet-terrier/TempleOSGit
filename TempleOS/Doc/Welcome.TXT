@@ -13,7 +13,7 @@ count down, so it's easy to tinker with.
  As it turns-out, simplicity makes it faster in some ways, too.  It never 
 switches privilege levels, never changes address maps, tends to load whole 
 contiguous files and other, similar things which boost speed.  It's only 
-139,640 lines of code including the kernel, the 64-bit compiler, the graphics 
+142,985 lines of code including the kernel, the 64-bit compiler, the graphics 
 library and all the tools.  More importantly, it's designed to keep the
 user's 
 line count down -- you can do a "hello world" application in one line of code 
@@ -124,7 +124,7 @@ leOS runs all programs in kernel mode, ring 0, so no instructions are
 off-limits.  Turning-off and on preemption with
 [C:/TempleOS/Kernel/Adam1b.HPP.Z,94] Preempt() is a less drastic 
 measure that is usually sufficient.  A newly
-[C:/TempleOS/Kernel/Task1a.CPP.Z,228] Spawn()ed task begins with 
+[C:/TempleOS/Kernel/Task1a.CPP.Z,224] Spawn()ed task begins with 
 preemption off.
 
 The graphic resolution is poor, 640x480 16 color, but that's all I feel 
@@ -148,10 +148,10 @@ so this is possible.  See [C:/TempleOS/Doc/MultiCore.TXT.Z,1] TempleOS
 MultiCore.
 
 There is no distinction between the terms "task", "process" or "thread".  All 
-have a task record, [C:/TempleOS/Kernel/Adam1a.HPP.Z,2987] CTask(), pointed
+have a task record, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3009] CTask(), pointed
 to by the FS segment register and are 
 accessed with Fs-> while Gs-> points to a
-[C:/TempleOS/Kernel/Adam1a.HPP.Z,3614] CCPU for the current CPU core.  Each 
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,3636] CCPU for the current CPU core.  Each 
 task can have just one window, but a task can have children with windows.  
 (The segment registers are just used as extra registers -- there is nothing 
 segmented about TempleOS' memory.)
@@ -169,10 +169,10 @@ task and even had a "/TempleOS/Root" directory ;-)  Adam executes
 For easy back-ups, place everything you author in your HOME directory and 
 subdirectories.  Then, use [C:/TempleOS/Adam/Dsk/Dsk2a.CPP.Z,148] CopyTree().
  That should make upgrading easy, too.  
-To make an account use [C:/TempleOS/Kernel/Dsk/Dsk1c.CPP.Z,96] MkDir() to
+To make an account use [C:/TempleOS/Kernel/Dsk/Dsk1c.CPP.Z,120] MkDir() to
 create a directory under /TempleOS/Accts.  
 It will be HOME if you boot to it.  Recompile with
-[C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,164] MakeOSInstallPrtBootLoader(
+[C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,136] MakeOSInstallPrtBootLoader(
 ) and make it boot your acct.  Customizable start-up scripts go in your HOME 
 directory.  The default start-up scripts are in /TempleOS/Accts, the parent
 of 
@@ -204,12 +204,12 @@ it very often, believe it or not.
 You'll do these periodically.
 
 [C:/TempleOS/Adam/Grep.CPP.Z,163] Grep() is your best friend.  There's a
-wrapper function called [C:/TempleOS/Accts/Adam3eWrappers.CPP.Z,8] F() in
+wrapper function called [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,8] F() in
 your HOM
 E/Adam3eWrappers.CPP.Z file.  Feel free to make wrapper functions for 
 functions you use often and customize the args.  By the way,
 [C:/TempleOS/Adam/Grep.CPP.Z,163] Grep() or
-[C:/TempleOS/Accts/Adam3eWrappers.CPP.Z,13] R() can 
+[C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R() can 
 be used to replace strings across multiple files.  You can access
 [C:/TempleOS/Adam/Grep.CPP.Z,163] Grep() using 
 <CTRL-SHIFT-F>.

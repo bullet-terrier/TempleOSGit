@@ -31,7 +31,7 @@ U0 KeyDownBitMapDemo()
 //merged scan code.  (left shift and
 //right shift combined for example.)
 //[C:/TempleOS/Kernel/KGlbls.CPP.Z,126] key_down_bitmap2 is indexed with the
-//distinct scan code.  See [Char,1] Char and [C:/TempleOS/Kernel/Adam1a.HPP.Z,3254] Scan Codes.
+//distinct scan code.  See [Char,1] Char and [C:/TempleOS/Kernel/Adam1a.HPP.Z,3276] Scan Codes.
 
   while (Bt(key_down_bitmap,i_sc)) {
     x++;

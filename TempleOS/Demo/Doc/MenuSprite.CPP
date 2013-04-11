@@ -9,7 +9,7 @@
 U0 MenuSprite()
 {
   I64 i;
-  DocCur->flags|=DOCF_FORM; //Cursor navigation will skip empty locations.
+  DocPut->flags|=DOCF_FORM; //Cursor navigation will skip empty locations.
   do {
     DocClear;
     NewLine(1);
@@ -22,13 +22,13 @@ U0 MenuSprite()
     "$MU,\"100 Hz\",100$\n";
     "$MU,\"200 Hz\",200$\n";
     "$MU,\"CANCEL\",DOCM_CANCEL$\n";
-    i=DocMenuDo(DocCur);
+    i=DocMenuDo(DocPut);
     if (i>0) Snd(i);
   } while (i>=0);
   Snd(0);
   DocClear;
   NewLine(1);
-  DocCur->flags&=~DOCF_FORM;
+  DocPut->flags&=~DOCF_FORM;
 }
 
 MenuSprite;

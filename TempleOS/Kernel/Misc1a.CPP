@@ -189,8 +189,6 @@ U0 Sleep(I64 mS)
 U0 Snd(F64 freq,I64 waveform=WF_SQUARE,F64 amp=1.0)
 // The internal PC speaker only does square waves.
 // waveform and amp are for HDAudio.
-// Use [C:/TempleOS/Adam/Snd/SndFile.CPP.Z,263] SndFilePlay() or [C:/TempleOS/Demo/Snd/PolyPhonic.CPP.Z,1] as a template for
-// doing polyphonic or fancy HD Audio snd.
 {
   I64 p;
   if (!Bt(&sys_semas[SYS_SEMA_MUTE],0) && snd_vol &&

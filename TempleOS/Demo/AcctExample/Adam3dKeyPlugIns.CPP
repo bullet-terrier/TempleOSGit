@@ -157,7 +157,7 @@ Bool MyPutKey(I64 ch,I64 sc)
 	    SetKeyDesc("Misc/Insert Datetime");
 	} else {
 	  if (sc & SCF_SHIFT)
-	    DocInsSafe(DocCur,
+	    DocInsSafe(DocPut,
 		"$HS+C$$FG$$HE$");
 	  else
 	    FillInTime();
@@ -202,7 +202,7 @@ Bool MyPutKey(I64 ch,I64 sc)
 	    else {
 	      ClipBoardDel;
 	      DocPrintF(sys_clipboard_doc,"$LK-A,\"FL:%s,%d\"$",
-		DocCur->filename.name,DocCur->cur_entry->y+1);
+		DocPut->filename.name,DocPut->cur_entry->y+1);
 	    }
 	    return TRUE;
 	  case 'L':
@@ -212,7 +212,7 @@ Bool MyPutKey(I64 ch,I64 sc)
 	      i=RandU32;
 	      ClipBoardDel;
 	      DocPrintF(sys_clipboard_doc,"$LK,\"<TODO>\",\"FA:%s,ANC%d\"$",
-		DocCur->filename.name,i);
+		DocPut->filename.name,i);
 	      "$AN,\"<TODO>\",\"ANC%d\"$",i;
 	    }
 	    return TRUE;

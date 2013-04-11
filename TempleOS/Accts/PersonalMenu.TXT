@@ -75,7 +75,7 @@ Cd("::/TempleOS/Demo/AcctExample");Dir;
 `
 
 
-MakeAll with [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,164]
+MakeAll with [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,136]
 MakeOSInstallPrtBootLoader().
 Cd("::/TempleOS/Kernel");Dir;
 

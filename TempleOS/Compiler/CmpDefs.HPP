@@ -1,17 +1,17 @@
 //Intermediate compiler codes
 #define IC_END			0x00
 #define IC_START		0x01
-#define IC_NOP			0x02
+#define IC_NOP1			0x02
 #define IC_END_EXP		0x03
-#define IC_NOP1			0x04
+#define IC_NOP2			0x04
 #define IC_LABEL		0x05
 #define IC_CALL_START		0x06
 #define IC_CALL_END		0x07
 #define IC_CALL_END2		0x08
 #define IC_RETURN_VAL		0x09
 #define IC_RETURN_VAL2		0x0A
-#define IC_IMM			0x0B
-#define IC_F64			0x0C
+#define IC_IMM_U64		0x0B
+#define IC_IMM_F64		0x0C
 #define IC_STR_CONST		0x0D
 #define IC_ABS_ADDR		0x0E
 #define IC_ADDR_IMPORT		0x0F
@@ -134,12 +134,12 @@
 #define IC_CLFLUSH		0x70
 #define IC_INVLPG		0x71
 
-#define IC_INU8			0x72
-#define IC_INU16		0x73
-#define IC_INU32		0x74
-#define IC_OUTU8		0x75
-#define IC_OUTU16		0x76
-#define IC_OUTU32		0x77
+#define IC_IN_U8			0x72
+#define IC_IN_U16		0x73
+#define IC_IN_U32		0x74
+#define IC_OUT_U8		0x75
+#define IC_OUT_U16		0x76
+#define IC_OUT_U32		0x77
 
 #define IC_GET_FLAGS		0x78
 #define IC_CARRY		0x79

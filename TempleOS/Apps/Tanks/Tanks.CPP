@@ -30,7 +30,7 @@ Alteration Ideas:
 This is an advantage of just-in-time compilation.
 You can't change them when you start a
 game over, however.  A down-side of this
-is you can't use the <CTRL-SHIFT-L> auto-indent feature.
+is you can't use the <CTRL-SHIFT-L> compile chk feature.
 */
 
 #define HEX_SIDE	11

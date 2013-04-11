@@ -9,7 +9,7 @@ Press <CTRL-ALT-D> to enter Dbg.
 
 
 Press <CTRL-ALT-D> to enter Dbg.
-> [C:/TempleOS/Adam/Dbg2a.CPP.Z,239] Uf("DbgDemo");
+> [C:/TempleOS/Adam/Dbg2a.CPP.Z,236] Uf("DbgDemo");
 > [C:/TempleOS/Compiler/Unassembler.CPP.Z,866] U(RIP);
 
 See [Debugging,1] Debugging

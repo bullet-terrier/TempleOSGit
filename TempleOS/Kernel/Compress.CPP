@@ -1,5 +1,5 @@
 //See [C:/TempleOS/Doc/Acknowledgements.TXT.Z,1] (4).
-//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3487] CArcCompress, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3454] CArcEntry, and [C:/TempleOS/Kernel/Adam1a.HPP.Z,3462] CArcCtrl
+//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3509] CArcCompress, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3476] CArcEntry, and [C:/TempleOS/Kernel/Adam1a.HPP.Z,3484] CArcCtrl
 
 asm {
 USE64

@@ -29,6 +29,22 @@ class MySpring:CSpring
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* <4> <4> (image) */ //Pointer to sprite <6> in Camp.CPP.Z file
+
 #define HOSE_RADIUS	3
 #define LINK_SIZE	6
 #define NOZZLE_START_Y	(GR_HEIGHT-15*FONT_HEIGHT)
@@ -53,6 +69,7 @@ U0 DrawIt(CTask *task,CDC *dc)
   MySpring *temps;
   CD3I32 poly[4];
 
+  SpritePlot3(dc,0,GROUND_Y,0,__BIN_4);
   if (start_up_timeout>tT) {
     ode->drag_v2=0.01; //Let hose settle during start-up
     ode->drag_v3=0.0001;

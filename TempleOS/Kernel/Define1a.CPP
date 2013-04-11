@@ -8,6 +8,7 @@ U0 LoadSysStrs()
   DefineLoad("ST_FILE_NOT_FOUND","File not found.\n");
   DefineLoad("ST_INVALID_FILENAME","Invalid File Name.\n");
   DefineLoad("ST_PRESS_A_KEY","$BK,1$PRESS A KEY$BK,0$\n");
+  DefineLoad("ST_PROBE_OR_SKIP","Press '$FG,PURPLE$p$FG$' to probe or '$FG,PURPLE$s$FG$' to skip.\n");
   DefineLoad("ST_EXIT_ALL_APPLICATIONS","$FG,RED$Exit all other applications.$FG$\n");
   DefineLoad("ST_GOING_TO_PROBE_HARDWARE","\nWe're going to probe hardware.\n");
   DefineLoad("ST_ARE_YOU_SURE","ARE YOU SURE ");
@@ -52,21 +53,21 @@ U0 LoadSysStrs()
 	"If more than one partition is present\n"
 	"they will be lettered in sequence.\n"
 	"\n"
-	"First Drive Letter($FG,PURPLE$<ENTER>$FG$ to exit):");
+	"First Drive Letter ($FG,PURPLE$<ENTER>$FG$ to exit):");
   DefineLoad("ST_MOUNT_DRV_TYPE",
 	"\t$FG,PURPLE$1$FG$=RAM\n\t$FG,PURPLE$2$FG$=ATA(Harddisk)\n"
 	"\t$FG,PURPLE$3$FG$=ATAPI(CD-ROM)\n"
 	"Type:");
   DefineLoad("ST_MOUNT_BLKS",
 	"Blks of 512 bytes:");
+  DefineLoad("ST_MOUNT_ADDR",
+	"Addr of RAM disk ($FG,PURPLE$<ENTER>$FG$ to MAlloc):");
   DefineLoad("ST_MOUNT_UNIT",
 	"\t$FG,PURPLE$0$FG$=Master\n\t$FG,PURPLE$1$FG$=Slave\nUnit:");
   DefineLoad("ST_MOUNT_FMT_WHOLE_DRV",
 	"\nReformat WHOLE drive!");
   DefineLoad("ST_MOUNT_BOOTED_CDROM",
 	"<ENTER> to use booted CD-ROM\n");
-  DefineLoad("ST_INCLUDE_0X",
-	"Include $FG,PURPLE$0x$FG$ prefix\n");
   DefineLoad("ST_MOUNT_BASE0",
 	"Include $FG,PURPLE$0x$FG$ prefix.\n"
 	"I/O Port Base0:\n");

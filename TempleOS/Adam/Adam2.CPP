@@ -4,7 +4,7 @@
 
 //Use Dbg("Type 'G;'"); to debug before window mgr is running.
 
-public F64 os_version=1.00;
+public F64 os_version=1.01;
 
 #include "AdamExt.HPP"
 

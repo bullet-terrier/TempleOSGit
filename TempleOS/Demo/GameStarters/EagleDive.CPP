@@ -947,11 +947,11 @@ U0 EagleDive(I64 _mp_cnt=MP_MAX_PROCESSORS)
 	  case 0:
 	    switch (sc.u8[0]) {
 	      case SC_CURSOR_DOWN:
-		phi	+=-CTRLS_SCALE*Cos(tt1);
+		phi +=-CTRLS_SCALE*Cos(tt1);
 		theta2+=-CTRLS_SCALE*Sin(tt1)*Sin(phi);
 		break;
 	      case SC_CURSOR_UP:
-		phi	-=-CTRLS_SCALE*Cos(tt1);
+		phi -=-CTRLS_SCALE*Cos(tt1);
 		theta2-=-CTRLS_SCALE*Sin(tt1)*Sin(phi);
 		break;
 	      case SC_CURSOR_RIGHT:
@@ -971,7 +971,7 @@ U0 EagleDive(I64 _mp_cnt=MP_MAX_PROCESSORS)
 	    break;
 	  }
 	theta1=Wrap(theta1);
-	phi	=Wrap(phi);
+	phi =Wrap(phi);
 	theta2=Wrap(theta2);
       } else
 	BSPEagleDive;

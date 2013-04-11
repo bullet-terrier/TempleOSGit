@@ -4,7 +4,7 @@ I64 LinkChkDoc(CDoc *doc,I64 *_fuf_flags)
 {
   U8 *st;
   Bool found,unlock=DocLock(doc);
-  CDoc *old_doc=DocCur;
+  CDoc *old_doc;
   CDocEntry *doc_e=doc->root.next;
   I64 result=0;
   while (doc_e!=doc) {
@@ -13,12 +13,11 @@ I64 LinkChkDoc(CDoc *doc,I64 *_fuf_flags)
       break;
     }
     if (st=DocEntryLink(doc,doc_e)) {
+      old_doc=DocPut;
       DocLock(old_doc);
-      DocQueRem(old_doc);
-      DocQueIns(doc,Fs->last_doc);
+      Fs->put_doc=doc;
       found=DocLinkChk(st);
-      DocQueRem(doc);
-      DocQueIns(old_doc,Fs->last_doc);
+      Fs->put_doc=old_doc;
       DocUnlock(old_doc);
       if (!found) {
 	PutFileLink(doc->filename.name,doc_e->y);

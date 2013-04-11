@@ -176,7 +176,7 @@ U0 NativeFSFmt(U8 drv_let,Bool quick=TRUE)
 }
 
 Bool NativeFSFileFind(CPrt *p,I64 cur_dir_cluster,U8 *name,CDirEntry *_result,I64 fuf_flags=0)
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3591] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3592] FUF_JUST_FILES
+{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3613] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3614] FUF_JUST_FILES
   CDirEntry *buf,*buf2,*ptr;
   U8 dname[CDIR_FILENAME_LEN];
   I64 ch;

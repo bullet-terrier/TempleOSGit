@@ -1,6 +1,6 @@
 /* There is no FPrintF type function and no
 way to grow files. Therefore, use mem to
-hold the file until you are done.  The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1518] CDoc
+hold the file until you are done.  The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc
 framework is convenient for this.
 */
 

@@ -1,5 +1,22 @@
 //This uses [C:/TempleOS/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* <1> <1> (image) */ //Pointer to sprite <6> in Camp.CPP.Z file
+
 #define NUM_CLOUDS		16
 #define SKY_LINES		30
 #define CLOUD_PTS		512
@@ -57,9 +74,10 @@ U0 MPDrawClouds(CTask *task)
   LBts(&mp_done_flags,Gs->num);
 }
 
-U0 DrawIt(CTask *task,CDC *)
+U0 DrawIt(CTask *task,CDC *dc)
 {
   I64 i;
+  SpritePlot3(dc,0,SKY_LINES*FONT_HEIGHT,0,__BIN_1);
   mp_done_flags=0;
   for (i=1;i<mp_cnt;i++)
     MPJob(&MPDrawClouds,task,i);

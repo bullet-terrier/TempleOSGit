@@ -66,16 +66,16 @@ Bool BlkDevInit(CBlkDev *bdev)
     bdev->flags|=BDF_INIT_IN_PROGRESS;
     switch(bdev->type) {
       case BDT_RAM:
-	bdev->RAM_dsk=AMAlloc((bdev->max_blk+1)<<BLK_SIZE_BITS);
-	bdev->max_blk=MSize(bdev->RAM_dsk)>>BLK_SIZE_BITS-1;
-	p->type=PT_NATIVE;
-	if (sys_boot_code.u8[0]!=BOOT_CODE_RAM ||
-	    !NativeFSDrvValidate(bdev->first_drv_let))
-	  NativeFSFmt(bdev->first_drv_let);
-	else {
-	  p->size=bdev->max_blk+1;
-	  NativeFSPrtInit(p);
+	if (!bdev->RAM_dsk) {
+	  bdev->RAM_dsk=AMAlloc((bdev->max_blk+1)<<BLK_SIZE_BITS);
+	  bdev->max_blk=MSize(bdev->RAM_dsk)>>BLK_SIZE_BITS-1;
 	}
+	p->type=PT_NATIVE;
+	p->size=bdev->max_blk+1;
+	if (NativeFSDrvValidate(bdev->first_drv_let))
+	  NativeFSPrtInit(p);
+	else
+	  NativeFSFmt(bdev->first_drv_let);
 	result=TRUE;
 	break;
       case BDT_ATA:
@@ -464,7 +464,7 @@ U0 PrtRep()
       drv_let=Prt2Drv(p);
       if (Bt(&p->type,PTf_DISABLE))
 	"$FG,RED$X";
-      else if (drv_let==dft_drv)
+      else if (drv_let==*sys_acct)
 	"$FG,GREEN$:";
       else
 	'' CH_SPACE;

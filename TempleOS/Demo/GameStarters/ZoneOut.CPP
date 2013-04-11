@@ -68,6 +68,19 @@ AcctRegExecuteBranch("TempleOS/ZoneOut");
 		   /* <3> <3> (image) */
 
 
+/*  <4> (image) */
+
+
+
+
+
+
+
+
+
+
+
+
 
 #define NUM_THEM	16
 
@@ -102,9 +115,15 @@ U0 DrawIt(CTask *task,CDC *dc)
   Obj *tempo;
   I64 i,dd,y,w=task->win_pixel_width,h=task->win_pixel_height,cx=w>>1,cy=h>>1;
   U8 *img;
-  F64 tt;
+  F64 tt,theta;
   Bool old_preempt=Preempt(OFF);
   task->text_attr=BLACK<<4;
+
+  theta=640*Wrap(2*us.theta)/pi;
+  SpritePlot3(dc,theta-1280,90,0,__BIN_4);
+  SpritePlot3(dc,theta     ,90,0,__BIN_4);
+  SpritePlot3(dc,theta+1280,90,0,__BIN_4);
+
   DCAllocDepthBuf(dc);
   dc->transform=&ZOTransform;
   dc->x=cx;
@@ -112,6 +131,7 @@ U0 DrawIt(CTask *task,CDC *dc)
   GrSetTranslation(dc->r,-us.x,-us.y,-us.z);
   GrRotYEqu(dc->r,us.theta-pi/2);
   GrRotXEqu(dc->r,pi/16);
+
   dc->flags|=DCF_TRANSFORMATION;
   for (i=0;i<NUM_THEM;i++) {
     y=them[i].y;

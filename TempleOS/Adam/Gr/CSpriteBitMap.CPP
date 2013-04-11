@@ -80,17 +80,6 @@ U0 GrBMEdPrepPersistentDC(CDC *dc,I64 xx1,I64 yy1,CDC *img)
   GrBlot(dc,xx1,yy1,img);
 }
 
-U0 GrBMEFindReplaceColor(CDC *img,I64 pattern,I64 replace)
-{
-  U8 *dst=img->body;
-  I64 d0=img->height*img->width_internal;
-  while (d0--) {
-    if (*dst==pattern)
-      *dst=replace;
-    dst++;
-  }
-}
-
 U0 GrBMETrimToExtents(CDC **_img,I64 *_xx1,I64 *_yy1,I64 *_xx2,I64 *_yy2,CColorROPU32 bkcolor)
 {
   CDC *img=*_img;
@@ -200,7 +189,7 @@ bm_menu:
 	      if (i>=0) {
 		j=PopUpColor("Replace Color\n",,FALSE);
 		if (j>=0) {
-		  GrBMEFindReplaceColor(img,i,j);
+		  DCColorChg(img,i,j);
 		  GrBMEdPrepPersistentDC(dc,xx1,yy1,img);
 		}
 	      }

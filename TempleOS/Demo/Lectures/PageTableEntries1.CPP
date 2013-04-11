@@ -44,5 +44,5 @@ U0 PageTableDemo1()
 PageTableDemo1;
 
 //See [C:/TempleOS/Kernel/Memory.CPP.Z,321] MemBlks2MegAlloc(), [C:/TempleOS/Kernel/Memory.CPP.Z,480] MemBlks2MegFree() for page aligned allocations.
-//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,2719] CBlkPool, [C:/TempleOS/Kernel/Adam1a.HPP.Z,2735] CHeapCtrl, [C:/TempleOS/Kernel/Adam1b.HPP.Z,120] sys_code_bp, [C:/TempleOS/Kernel/Adam1b.HPP.Z,121] sys_data_bp.
+//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,2741] CBlkPool, [C:/TempleOS/Kernel/Adam1a.HPP.Z,2757] CHeapCtrl, [C:/TempleOS/Kernel/Adam1b.HPP.Z,120] sys_code_bp, [C:/TempleOS/Kernel/Adam1b.HPP.Z,121] sys_data_bp.
 //See [Memory,1] Memory

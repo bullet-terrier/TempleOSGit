@@ -4,7 +4,7 @@
 U0 StadiumGen()
 {
   U0 (*fp_old_update)(CDC *dc);
-  CDC *dc;
+  CDC *dc,*dc2;
 
   WinMax;
   WinBorder;
@@ -16,7 +16,9 @@ U0 StadiumGen()
   fp_final_screen_update=NULL;
 
   WinMgrSync(2,TRUE);
-  dc=DCExtract(gr_screen_image,0,FONT_HEIGHT,GR_WIDTH,GR_HEIGHT);
+  dc2=DCCaptureScreen;
+  dc=DCExtract(dc2,0,FONT_HEIGHT,GR_WIDTH,GR_HEIGHT);
+  DCDel(dc2);
 
   GRAWrite("::/TempleOS/Demo/GameStarters/Stadium/Stadium",dc);
   DCDel(dc);

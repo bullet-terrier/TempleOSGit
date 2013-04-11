@@ -85,7 +85,7 @@
 
 
 //These are indexed by color #.
-//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3280] COLORS.
+//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3302] COLORS.
 
 U8 *tiles1[16]=
 {NULL,__BIN_7 ,__BIN_5 ,NULL,
@@ -159,7 +159,7 @@ U0 DrawIt(CTask *task,CDC *dc)
 
   //You could make it much more efficient
   //if you did it like [C:/TempleOS/Demo/GameStarters/BigGuns.CPP.Z,1]
-  //with a [C:/TempleOS/Kernel/Adam1a.HPP.Z,3335] CDC.
+  //with a [C:/TempleOS/Kernel/Adam1a.HPP.Z,3357] CDC.
 
   for (y=-SCREEN_HEIGHT/2;y<SCREEN_HEIGHT/2;y++) {
     yy=y+screen_y;

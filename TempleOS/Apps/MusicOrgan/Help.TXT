@@ -36,7 +36,7 @@ and set it to FALSE.  Then, call
 make a <CTRL-ALT-key> to toggle this 
 system level recording feat.  See [C:/TempleOS/Kernel/Misc1a.CPP.Z,189]
 Snd().  Add this code to your 
-[C:/TempleOS/Accts/TS/TAD/Adam3dKeyPlugIns.CPP,1] file.
+[C:/TempleOS/Accts/TAD/Adam3dKeyPlugIns.CPP,1] file.
 
 
 U0 CtrlAltR(I64)
@@ -48,7 +48,7 @@ SetCtrlAltLetCB('R',&CtrlAltR,"Toggle snd_record");
 
 * The note accent feature only works when exporting songs.  When calling 
 [C:/TempleOS/Adam/Snd/SndFile.CPP.Z,19] SndFileCreate() you can set a
-waveform.  The PC speaker is [C:/TempleOS/Kernel/Adam1a.HPP.Z,3718]
+waveform.  The PC speaker is [C:/TempleOS/Kernel/Adam1a.HPP.Z,3740]
 WF_SQUARE.  You can 
 select reverb and averaging, also.
 

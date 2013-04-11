@@ -71,7 +71,7 @@ I64 BlkDevsSize()
     if (bdev->bd_signature==BD_SIGNATURE_VAL) {
       if (bdev->type==BDT_RAM)
 	"RAMDsk %C\t:%010X Unused:%010X\n",
-	  bdev->first_drv_let,MSize2(bdev->RAM_dsk),
+	  bdev->first_drv_let,(bdev->max_blk+1)<<BLK_SIZE_BITS,
 	  UnusedDrvSpace(bdev->first_drv_let);
       result+=MSize2(bdev->dev_id_record);
     }
@@ -92,7 +92,7 @@ Bool MemRepTask(CTask *task,Bool override_validate=FALSE)
 {
   I64 i,j,k,m,n;
   U8 *st;
-  CDoc *doc;
+  CDoc *pdoc,*ddoc,*bdoc;
   CLex *lx;
   CMathODE *o;
   CCPU *c;
@@ -109,30 +109,30 @@ Bool MemRepTask(CTask *task,Bool override_validate=FALSE)
       TaskAllocatedMem(task,override_validate),
       TaskUsedMem(task,override_validate),
       TaskUnusedAllocatedMem(task,override_validate);
-  "HashTable:%010X\n",HashTableSize2(task->hash_table);
+  "HashTable\t:%010X\n",HashTableSize2(task->hash_table);
 
   i=UnusedStk(task);
   if (0<=i<=task->stk->stk_size)
-    "Stk Size :%010X Unused:%010X\n",TaskStkSize(task),i;
+    "Stk Size\t:%010X Unused:%010X\n",TaskStkSize(task),i;
   else
-    "Stk Size :%010X $FG,RED$$BK,1$Overflow$BK,0$$FG$\n",TaskStkSize(task);
+    "Stk Size\t:%010X $FG,RED$$BK,1$Overflow$BK,0$$FG$\n",TaskStkSize(task);
 
-  doc=task->last_doc;
-  while (doc!=(&task->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-      doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
-    "Doc      :%010X\n",DocSize(doc);
-    doc=doc->last_doc;
-  }
+  if (pdoc=DocPut(task))
+    "PutDoc\t:%010X\n",DocSize(pdoc);
+  if ((ddoc=DocDisplay(task)) && pdoc!=ddoc)
+    "DisplayDoc\t:%010X\n",DocSize(ddoc);
+  if (bdoc=DocBorder(task))
+    "BorderDoc\t:%010X\n",DocSize(bdoc);
 
   lx=task->next_lex;
   while (lx!=&task->next_lex) {
-    "Lex      :%010X\n",LexSize(lx);
+    "Lex\t\t:%010X\n",LexSize(lx);
     lx=lx->next;
   }
 
   o=task->next_ode;
   while (o!=&task->next_ode) {
-    "CMathODE      :%010X\n",ODESize(o);
+    "CMathODE\t:%010X\n",ODESize(o);
     o=o->next;
   }
 

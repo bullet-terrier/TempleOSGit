@@ -23,7 +23,7 @@ public I64 SndFileCreate(U8 *base_filename,F64 normalized_vol=1.0,F64 averaging=
 
 //Averaging should be a num from 0.0 to 0.999.
 //Vol should be from 0.0 to 1.0.
-//If waveform is [C:/TempleOS/Kernel/Adam1a.HPP.Z,3717] WF_NULL, the original passed to [C:/TempleOS/Kernel/Misc1a.CPP.Z,189] Snd() will be used.
+//If waveform is [C:/TempleOS/Kernel/Adam1a.HPP.Z,3739] WF_NULL, the original passed to [C:/TempleOS/Kernel/Misc1a.CPP.Z,189] Snd() will be used.
 
 //Set reverb_delay to like 0.3 sec and reverb_intensity to like 0.4.
 
@@ -294,21 +294,21 @@ public U0 SndFilePlaySeq(U8 *snz_filename,I64 num)
 { //This has gaps between files.  I might fix it someday.  You fix it;-)
   I64 i;
   Bool old_preempt=Preempt(OFF),old_idle;
-  U8 *fname=StrNew(snz_filename),*fname2;
-  FileExtRem(fname);
+  U8 *filename=StrNew(snz_filename),*filename2;
+  FileExtRem(filename);
   old_idle=LBts(&Fs->task_flags,TASKf_IDLE);
   for (i=0;i<num;i++) {
-    fname2=MSPrintF("%s%04d.SNZ",fname,i);
+    filename2=MSPrintF("%s%04d.SNZ",filename,i);
     while (!snd_play_done)
       Yield;
     snd_play_single_done=FALSE;
-    Spawn(&SndFilePlay,fname2,"Play .SNZ",Fs);
+    Spawn(&SndFilePlay,filename2,"Play .SNZ",Fs);
     while (!snd_play_single_done)
       Yield;
-    Free(fname2);
+    Free(filename2);
   }
   old_idle=LBEqu(&Fs->task_flags,TASKf_IDLE,old_idle);
-  Free(fname);
+  Free(filename);
   Preempt(old_preempt);
 }
 

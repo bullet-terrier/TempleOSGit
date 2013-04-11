@@ -864,7 +864,7 @@ U0 AIMove(GameState *state)
 
 U0 Init()
 {
-  chess_doc=DocCur;
+  chess_doc=DocPut;
   DocClear;
   "$FD,BLACK$$BD,YELLOW$";
   game_over=FALSE;

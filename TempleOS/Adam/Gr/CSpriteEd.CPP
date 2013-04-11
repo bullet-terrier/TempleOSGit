@@ -552,7 +552,7 @@ U0 SpriteSideBarTask2(CTask *grand_parent)
 U0 SpriteSideBarTask(CTask *parent,CSprite **_root,I64 *cur_num)
 {
   CDocEntry *doc_e;
-  CDoc *doc=DocCur;
+  CDoc *doc=DocPut;
   Spawn(&SpriteSideBarTask2,parent,"CSpriteTask",Fs);
   doc->flags|=DOCF_MIN_SIZE|DOCF_FORM;
   while (TRUE) {
@@ -672,7 +672,7 @@ I64 PopUpSpriteEd(CSprite **_root,I64 snap,F64 ip_scaler,I64 *cur_num)
   Free(st);
   i=PopUpMenu(doc);
   if (TaskValidate(pu_task)) {
-    *_root=SpriteDoc2Que(DocCur(pu_task),*_root,cur_num);
+    *_root=SpriteDoc2Que(DocPut(pu_task),*_root,cur_num);
     Kill(pu_task);
   }
   DocDel(doc);

@@ -3,7 +3,7 @@
 TempleOS does master-slave multicore instead of SMP.  Core#0 is the master.  
 The master core assigns computational jobs to other cores.  It is symmetrical 
 in the sense that you can do file access and heap allocations because there 
-are locks.  Call [C:/TempleOS/Kernel/Task1a.CPP.Z,297] TaskInitExt to enable
+are locks.  Call [C:/TempleOS/Kernel/Task1a.CPP.Z,293] TaskInitExt to enable
 file access.  See 
 [C:/TempleOS/Demo/MultiCore/LoadTest.CPP.Z,1].  TempleOS does not move tasks
 between 

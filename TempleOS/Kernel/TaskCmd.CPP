@@ -238,7 +238,7 @@ start_over:
       SetFlags(old_flags);
       try {
 	if (tempc->cmd_code==TASKCT_EXECUTE_STR)
-	  tempc->result=ExePutS(tempc->data,sys_temp_filename);
+	  tempc->result=ExePutS(tempc->data);
 	else
 	  tempc->result=ExeFile(tempc->data);
       } catch

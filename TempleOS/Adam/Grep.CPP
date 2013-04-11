@@ -57,7 +57,7 @@ I64 GrepFile(U8 *pattern,U8 *name,I64 *_fuf_flags,U8 *replace_text)
 	    first_on_line=FALSE;
 	    PutFileLink(name,doc_e->y+1,TRUE);
 	    name_buf=MSPrintF("%s,%d",name,doc_e->y+1);
-	    if (cur_l=DocCur) {
+	    if (cur_l=DocPut) {
 	      old_flags=cur_l->flags&DOCF_PLAIN_TEXT;
 	      cur_l->flags|=DOCF_PLAIN_TEXT;
 	    }
@@ -96,7 +96,7 @@ I64 GrepFile(U8 *pattern,U8 *name,I64 *_fuf_flags,U8 *replace_text)
 		*dst++=doc_e->tag[i];
 	      Free(doc_e->tag);
 	      doc_e->tag=dst2;
-	      if (cur_l=DocCur) {
+	      if (cur_l=DocPut) {
 		old_flags=cur_l->flags&DOCF_PLAIN_TEXT;
 		cur_l->flags|=DOCF_PLAIN_TEXT;
 	      }
@@ -166,14 +166,16 @@ This does not do regular expressions--my bad.
 Anyway, it's good for searching and replacing.
 Let's say it stands for global replace ;-)
 
-"+r"=recurse
-"+i"=ignore case
-"+l"=whole labels only.
-     This will check for a nonlabel character before
-     and after.  If you have a var, "doc_e" and don't
-     want to match words like "will" and "wallow", you
-     set this flag and it will see that the characters
-     before or after "doc_e" are label characters.
+"+r" =recurse
+"+i" =ignore case
+"+l" =whole labels only.
+      This will check for a nonlabel character before
+      and after.  If you have a var, "dd" and don't
+      want to match words like "Add", you
+      set this flag and it will see that the characters
+      before or after "ll" are label characters.
+"+lf"=only checks for label chars in front
+"+lb"=only checks for label chars behind (after).
 */
 
 {
@@ -222,7 +224,7 @@ I64 GrepWiz()
   I64 result=0;
   g->recurse=TRUE;
   StrCpy(g->filemask,FILENAME_MASK_TXT);
-  if (doc=DocCur) {
+  if (doc=DocPut) {
     StrCpy(g->find_text,doc->find_replace->find_text);
     StrCpy(g->replace_text,doc->find_replace->replace_text);
     g->replace=doc->find_replace->replace;

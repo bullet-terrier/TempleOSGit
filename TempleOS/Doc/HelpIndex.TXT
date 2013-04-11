@@ -38,58 +38,16 @@ Double-Right Abort
 Top of Screen Pull-down menu
 
   [C:/TempleOS/Doc/Glossary.TXT.Z,1] Glossary
+[C:/TempleOS/Doc/GuideLines.TXT.Z,1] Acct Files
 [C:/TempleOS/Doc/TSZ.TXT.Z,1] TSZ Window's Utility
 [C:/TempleOS/Doc/Tips.TXT.Z,1] Tips on Using TempleOS
 [C:/TempleOS/Doc/Quirks.TXT.Z,1] TempleOS Quirks
+[C:/TempleOS/Doc/GuideLines.TXT.Z,1] Directory Structure
 
  <1> (image)	This button on the wall paper
 	starts a terminal window.
 
-
-+] DIRECTORY STRUCTURE
-    
-/TempleOS/Accts Each subdirectory is an acct.  When you boot, you can select
-    an acct to login to, unless you compile Kernel soas to pick one.  Your acct
-    directory is your HOME directory and all your user data should be placed in
-    here to ease backing-up your data.  When you Install an application it will
-    create a subdirectory of your HOME directory for storage.
-
-/TempleOS/Apps Applications are placed in subdirectories of /TempleOS/Apps. 
-    Applications should have a file called Install.CPP.Z which will install the
-    app for the current user acct.  The file, Load.CPP.Z will load the
-    application into mem.  The file, Run.CPP.Z, will usually load and execute the
-    app.  To add an app to your personal menu, use <CTRL-L>, insert a macro with
-    the PopUp option checked and invoke the Run.CPP.Z file.
-
-/TempleOS/Demo Here you can find lots of sample code to do various things.
-
-/TempleOS/Doc Here you can find documentation.
-
-/TempleOS/Kernel The core of the operating system is found here.  Since
-    priviledge levels are not used, calling it a "kernel" is deceptive.  It is
-    AOT compiled by [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,164]
-    MakeOSInstallPrtBootLoader().  It is loaded by the boot loader and must fit
-    in 640K.
-
-/TempleOS/Compiler The compiler module src code is found here.  The compiler
-    is AOT compiled to produce a binary file which is loaded at boot.  It is also
-    AOT compiled by [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,164]
-    MakeOSInstallPrtBootLoader().
-
-/TempleOS/Adam The non-kernel part of the operating system is found here.  It
-    is JIT compiled during boot.
-
-/0000Boot directory and the 0000Kernel.BIN.C file are named so that they are
-    first in alphabetical order and, therefore, at a predictable CD/DVD block
-    address.  The [C:/TempleOS/Adam/Boot/BootCD.CPP.Z,1] CD/DVD Boot Loader will
-    find 0000Kernel.BIN.C at [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,30] Block
-    #0x16.  The TempleOS boot loader can be used with http://www.magiciso.com if
-    you place 0000Kernel.BIN.C in the right spot.  OldMBR.BIN.C and
-    BootMHD2.BIN.C will be found in /0000Boot if you run
-    [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,292] InstallMasterBootLoader() to
-    install a hard-drive master boot loader.
-
-  +] DOLLAR SIGN CMDS
++] DOLLAR SIGN CMDS
     
 [C:/TempleOS/Doc/Dollar.TXT.Z,1] Dollar Sign Cmds are rich-text cmds.  The
     editor, compiler, assembler and operating system are seamlessly equiped to
@@ -135,26 +93,26 @@ Some cmds like [C:/TempleOS/Adam/Grep.CPP.Z,163] Grep() take a
 
 Grep("pattern","/TempleOS/Demo/*.CPP.Z;*.TXT.Z;");
 
-Be aware of [C:/TempleOS/Kernel/Adam1a.HPP.Z,2209] FILENAME_MASK_TXT and
-    [C:/TempleOS/Kernel/Adam1a.HPP.Z,2208] FILENAME_MASK_SRC.
+Be aware of [C:/TempleOS/Kernel/Adam1a.HPP.Z,2212] FILENAME_MASK_TXT and
+    [C:/TempleOS/Kernel/Adam1a.HPP.Z,2211] FILENAME_MASK_SRC.
 
   +] BURNING CD-ROMs/DVDs
     
 0) Prepare a directory with the files you wish to burn.
-1) Use [C:/TempleOS/Adam/Dsk/DskCDDVD.CPP.Z,324] CDFileCreate() to make an
+1) Use [C:/TempleOS/Adam/Boot/DskCDDVD.CPP.Z,328] CDFileCreate() to make an
     ISO image file.
-2) Use [C:/TempleOS/Kernel/Dsk/Dsk1c.CPP.Z,282] CDImageWrite() to burn an ISO
+2) Use [C:/TempleOS/Kernel/Dsk/Dsk1c.CPP.Z,306] CDImageWrite() to burn an ISO
     file onto a CD or DVD.
 
-  [C:/TempleOS/Demo/MakeDistro.CPP.Z,1] Making a Distro ISO
+Or, see [C:/TempleOS/Demo/MakeDistro.CPP.Z,1] Making a Distro ISO.
 
+  
 +] Level 2: ADMIN HELP
   
 Use [C:/TempleOS/Kernel/Dsk/DskAddDev.CPP.Z,184] Mount() to mount disk
   drives.  
 
 [C:/TempleOS/Doc/Install.TXT.Z,1] Installing
-[C:/TempleOS/Doc/GuideLines.TXT.Z,1] Acct Files
 
 [C:/TempleOS/Kernel/Adam1.CPP.Z,1] the TempleOS equivalent of the
   AUTOEXEC.BAT.
@@ -178,7 +136,6 @@ Use [C:/TempleOS/Kernel/Dsk/DskAddDev.CPP.Z,184] Mount() to mount disk
 
 +] Level 4: SYSTEM PROGRAMMER HELP
   
-[C:/TempleOS/Doc/SysPgmGuide.TXT.Z,1] System Programming Guide-Lines
 [C:/TempleOS/Demo/Lectures/64BitAsmQuiz.TXT.Z,1] 64BitAsmQuiz
 [C:/TempleOS/Kernel/Hash1a.CPP.Z,1] Hash Tables
 [C:/TempleOS/Doc/KeyBoard.TXT.Z,1] Keyboard Handling
@@ -200,16 +157,16 @@ Use [C:/TempleOS/Kernel/Dsk/DskAddDev.CPP.Z,184] Mount() to mount disk
 [Boot,1] Boot
 [Call,1] Call
 [Char,1] Char
-[Circular Queue,1] Circular Queue
+[Data Types/Circular Queue,1] Circular Queue
 [Cmd Line (Typically),1] Cmd Line (Typically)
 [Compiler,1] Compiler
 [Compression,1] Compression
 [Ctrls,1] Ctrls
+[Data Types,1] Data Types
 [Debugging,1] Debugging
 [Device,1] Device
 [Doc,1] Doc
 [Exceptions,1] Exceptions
-[Fifo,1] Fifo
 [File,1] File
 [C:/TempleOS/Doc/Graphics.TXT.Z,1] Graphics Overview
 [Graphics,1] Graphic Routines

@@ -38,7 +38,7 @@ _BEEPS2::
 	POP	RCX
 	LOOP	@@05
 
-	PUSH	RSI	//we must preserve this register.
+	PUSH	RSI	//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3700] CREG_VARS_MASK & [C:/TempleOS/Kernel/Adam1a.HPP.Z,3701] CREG_NON_PTR_MASK
 	MOV	RSI,JIFFIES_MSG
 	CALL	PUT_STR
 	POP	RSI

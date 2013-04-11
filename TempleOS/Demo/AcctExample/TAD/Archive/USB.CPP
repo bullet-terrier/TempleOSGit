@@ -66,7 +66,7 @@ U0 PutStat()
   for (i=0;i<sys_num_usb;i++) {
     u=&sys_usb_devs[i];
     "$FG,LTRED$Dev%d:%X:",i,u->ports;
-    doc_e=DocPutS(DocCur,"$TX+TC,\" \"$");
+    doc_e=DocPutS(DocPut,"$TX+TC,\" \"$");
     doc_e->user_data=&sys_usb_devs[i];
     doc_e->tag_cb=&StatCB;
     "$FG$\n";

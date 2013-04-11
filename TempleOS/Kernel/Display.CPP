@@ -80,7 +80,7 @@ See also [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,752] GrUpdateScreen().
       ptr=ptr1=col+row*gr_width;
       ptr+=VGA_GRAPHIC_MEM_BASE;
       ptr1+=sys_dc_screen_image; //Write to cached image as well
-      ptr2=&gr_font[ch.u8[0]*FONT_HEIGHT];
+      ptr2=&gr_font[(ch&255)*FONT_HEIGHT];
       for (i=0;i<FONT_HEIGHT;i++) {
 	*ptr=*ptr1=reverse_bits_table[*ptr2++];
 	ptr+=gr_width>>3;
@@ -197,9 +197,12 @@ U0 PutKey(I64 ch,I64 sc)
   }
 }
 
-U0 PutChar(I64 ch)
+U0 PutChar(U64 ch)
 {
-  PutKey(ch,0);
+  while (ch) {
+    PutKey(ch&255,0);
+    ch>>=8;
+  }
 }
 
 U0 PutS(U8 *st)

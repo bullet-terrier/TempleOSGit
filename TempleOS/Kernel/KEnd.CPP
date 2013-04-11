@@ -13,7 +13,7 @@ U0 SysGlblsInit()
   sys_dft_iso_name="::/Temp/CDDVD.ISO";
   MemSet(mp_apic_ids,0,MP_MAX_PROCESSORS*sizeof(U8));
 
-  LBts(&adam_task->task_flags,TASKf_INIT_EXT);//So dbgger doesn't call [C:/TempleOS/Kernel/Task1a.CPP.Z,297] TaskInitExt().
+  LBts(&adam_task->task_flags,TASKf_INIT_EXT);//So dbgger doesn't call [C:/TempleOS/Kernel/Task1a.CPP.Z,293] TaskInitExt().
   InDbg(ON);
 
   reverse_bits_table=CAlloc(256);
@@ -44,9 +44,9 @@ U0 SysGlblsInit()
   KeyDevAdd(&AKDRawDisplayPutKey,&AKDRawDisplayPutS,0x60000000,FALSE);
   #exe {
     if (*kernel_cfg->acct_name)
-      StreamPrintF("sys_acct=StrNew(\"%C:/TempleOS/Accts/%s\");",kernel_cfg->dft_drv,kernel_cfg->acct_name);
+      StreamPrintF("sys_acct=StrNew(\"%C:/TempleOS/Accts/%s\");",kernel_cfg->sys_acct_drv,kernel_cfg->acct_name);
     else
-      StreamPrintF("sys_acct=StrNew(\"%C:/TempleOS/Accts\");",kernel_cfg->dft_drv);
+      StreamPrintF("sys_acct=StrNew(\"%C:/TempleOS/Accts\");",kernel_cfg->sys_acct_drv);
     StreamPutS("#exe{OptOff(OPTf_WARN_PAREN);}");
     StreamPrintF("DskCacheInit(%s);",kernel_cfg->dsk_cache_size_exp);
     StreamPutS("#exe{OptOn(OPTf_WARN_PAREN);}");
@@ -68,7 +68,7 @@ U0 SysGlblsInit()
 
 U0 SysGrInit()
 {
-//See [C:/TempleOS/Kernel/KStart.CPP.Z,2] SYS_BIOS_GR_MODE
+//See [D:/TempleOS/Kernel/KStart.CPP.Z,2] SYS_BIOS_GR_MODE
 //See [C:/TempleOS/Adam/Gr/GrCfg.CPP.Z,1]
   gr_font=sys_font_8x8;
   if (bios_gr_mode==0x12 || bios_gr_mode==0x6A) {
@@ -150,7 +150,7 @@ U0 Reboot()
   SysHlt;
 }
 
-U0 Kernel()
+U0 KernelMain()
 { //Continued from [C:/TempleOS/Kernel/KStart.CPP.Z,1] Kernel
   adam_task=Fs;
   HeapsInit;
@@ -233,7 +233,7 @@ U0 Kernel()
 
   Cd("/TempleOS/Kernel");
   try
-    ExeFile("Adam1"); //Continues [E:/TempleOS/Kernel/Adam1.CPP,1] /TempleOS/Kernel/Adam1.CPP
+    ExeFile("Adam1"); //Continues [D:/TempleOS/Kernel/Adam1.CPP.Z,1] /TempleOS/Kernel/Adam1.CPP
   catch {
     CatchAll;
     Dbg;
@@ -244,4 +244,5 @@ U0 Kernel()
 }
 
 asm {	ALIGN	16,OC_NOP
-SYS_KERNEL_END::}
+SYS_KERNEL_END::
+}

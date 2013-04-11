@@ -264,28 +264,24 @@ SoftBootMenu(TS_MAIN_DRV_LET);
 `SoftBootMenu(TS_MAIN_DRV_LET);
 `
 
-Burn TS Distro CD 
-`MakeTSDistro;   CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME);
-`
-
-Burn TS Distro DVD
-`MakeTSDistro;   CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME,MT_DVD);
-`
-
 Make TS Distro ISO
 `MakeTSDistro;   Copy(TS_ISO_NAME,TS_BAK_DRV ":TempleOSTS.ISO");
 `
-
-Burn Std Distro CD 
-`MakeStdDistro;CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME);
+  Burn TS Distro CD 
+`MakeTSDistro;   CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME);
 `
-
-Burn Std Distro DVD
-`MakeStdDistro;CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME,MT_DVD);
+  Burn TS Distro DVD
+`MakeTSDistro;   CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME,MT_DVD);
 `
 
 Make Std Distro ISO
 `MakeStdDistro;Copy(TS_ISO_NAME,TS_BAK_DRV ":TempleOSCD.ISO");
+`
+ Burn Std Distro CD 
+`MakeStdDistro;CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME);
+`
+ Burn Std Distro DVD
+`MakeStdDistro;CDImageWrite(TS_CDROM_DRV_LET,TS_ISO_NAME,MT_DVD);
 `
 
   

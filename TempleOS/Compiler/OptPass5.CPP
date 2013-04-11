@@ -8,7 +8,7 @@ U0 OptPass5(CLex *lx)
   if (tempi->ic_opcode==IC_START)
     tempi++;
   while (code=tempi->ic_opcode) {
-    if (code>IC_NOP1) {
+    if (code>IC_NOP2) {
       if (tempi->ic_flags&ICF_TRACE) {
 	if (Bt(&lx->pass_trace_mask,5)) {
 	  "%2d:",ps->ptr;
@@ -65,10 +65,7 @@ U0 OptPass5(CLex *lx)
 	  tempi->p3.reg=tempi1->p1.reg;
 	  tempi->p3.disp=tempi1->p1.disp;
 	  tempi->ic_flags|=tempi1->ic_flags&ICF_NO_CVT_MASK;
-	  tempi1->ic_opcode=IC_NOP1;
-	  tempi1->ic_data=1;
-	  tempi1->p1.type=TY_NULL+tempi1->p1.type&IT_MASK;
-	  tempi1->r.type=TY_NULL+tempi1->r.type&IT_MASK;
+	  OptSetNOP2(tempi1);
 	}
       }
 
@@ -109,10 +106,7 @@ U0 OptPass5(CLex *lx)
 	  tempi->p2.reg=tempi1->p1.reg;
 	  tempi->p2.disp=tempi1->p1.disp;
 	  tempi->ic_flags|=tempi1->ic_flags&ICF_NO_CVT_MASK;
-	  tempi1->ic_opcode=IC_NOP1;
-	  tempi1->ic_data=1;
-	  tempi1->p1.type=TY_NULL+tempi1->p1.type&IT_MASK;
-	  tempi1->r.type=TY_NULL+tempi1->r.type&IT_MASK;
+	  OptSetNOP2(tempi1);
 	}
       }
 
@@ -156,10 +150,7 @@ U0 OptPass5(CLex *lx)
 	  tempi->p1.reg=tempi1->p1.reg;
 	  tempi->p1.disp=tempi1->p1.disp;
 	  tempi->ic_flags|=tempi1->ic_flags&ICF_NO_CVT_MASK;
-	  tempi1->ic_opcode=IC_NOP1;
-	  tempi1->ic_data=1;
-	  tempi1->p1.type=TY_NULL+tempi1->p1.type&IT_MASK;
-	  tempi1->r.type=TY_NULL+tempi1->r.type&IT_MASK;
+	  OptSetNOP2(tempi1);
 	}
       }
       if (tempi->r.type&TY_MASK==TY_STK)

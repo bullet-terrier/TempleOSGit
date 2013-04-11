@@ -13,7 +13,7 @@ kernel."  This lowest 2 Gig I call the "code heap".
 You can create new independent heaps by first allocating mem with 
 [C:/TempleOS/Kernel/Memory.CPP.Z,428] MemBlksUncachedAlloc() or
 [C:/TempleOS/Kernel/Memory.CPP.Z,215] MemBlksNonTaskAlloc(), then calling 
-[C:/TempleOS/Kernel/Memory.CPP.Z,1167] HeapCtrlIndependentInit() and, then,
+[C:/TempleOS/Kernel/Memory.CPP.Z,1081] HeapCtrlIndependentInit() and, then,
 using [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc().
 
 Memory allocated by a task will be freed when the task is killed.
@@ -24,11 +24,11 @@ See [C:/TempleOS/Adam/MemRep.CPP.Z,192] MemRep().
 
                           Single System-wide Mem Map
 
- 0x0000007C00- 0x000003E2BF
+ 0x0000007C00- 0x000003E59F
   Kernel module, placed here by the boot-loader,
   [C:/TempleOS/Kernel/BootDefs.HPP.Z,6] BOOT_RAM_BASE.
 
- 0x000007F000- 0x000007F02E
+ 0x0000097000- 0x000009702E
   Multicore start-up vect code, [C:/TempleOS/Kernel/Adam1a.HPP.Z,576]
   MPN_VECT.
 
@@ -61,13 +61,13 @@ memory starting at 0xF0000000 going up.
   64-bit devices are mapped counting backward from 128 Gig.
   
 
-                                      [C:/TempleOS/Kernel/Adam1a.HPP.Z,2719] CBlkPools [C:/TempleOS/Kernel/Adam1a.HPP.Z,2735] CHeapCtrls
+                                      [C:/TempleOS/Kernel/Adam1a.HPP.Z,2741] CBlkPools [C:/TempleOS/Kernel/Adam1a.HPP.Z,2757] CHeapCtrls
  <1> (image)
 
 0000,0000,0000,0000                   Core 0   
 
 0000,0000,0000,7C00 Kernel
-0000,0000,0003,E2BF 
+0000,0000,0003,E59F 
 
 0000,0000,0010,0000 Page_Tables                    AdamTask
 
@@ -121,7 +121,6 @@ Gig machine.
 
 * Note: For systems with less than 2 Gig RAM, the code and data heap block 
 pools are the same.  For systems with 2-4 Gig of RAM, the code heap is 1/4 of 
-the total.  See [C:/TempleOS/Kernel/Memory.CPP.Z,1371] HeapsInit().
+the total.  See [C:/TempleOS/Kernel/Memory.CPP.Z,1285] HeapsInit().
 
 * See [C:/TempleOS/Kernel/KEnd.CPP.Z,1] Independent Heap Ctrl Example.
-

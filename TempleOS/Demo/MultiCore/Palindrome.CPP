@@ -83,7 +83,7 @@ U0 Palindrome(U8 *filename)
   buf=FileRead(filename,&size);
   PDNormalize;
 
-  doc=DocCur;
+  doc=DocPut;
   mp_done_flags=0;
   for (i=1;i<mp_cnt;i++)
     MPJob(&MPPalindrome,NULL,i);

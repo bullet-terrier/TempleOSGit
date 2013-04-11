@@ -1,4 +1,4 @@
-I64 ts_num;
+ /* Unknown token: 8 */ I64 ts_num;
 U0 TSStart()
 {
   ts_num=0;
@@ -6,7 +6,7 @@ U0 TSStart()
 U0 TS()
 {
   progress4=ts_num++;
-  progress4_max=156;
+  progress4_max=153;
   *progress4_desc=0;
 }
 U0 TSEnd()
@@ -443,7 +443,7 @@ U0 DoVaroom()
 {
   I64 i;
   CTask *task=SpawnUser;
-  XTalk(task,"#include \"::/TempleOS/Demo/GameStarters/Varoom\";\n");
+  XTalkWait(task,"#include \"::/TempleOS/Demo/GameStarters/Varoom\";\n");
   for (i=0;i<15;i++) {
     SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_UP);
     Sleep(50);
@@ -751,33 +751,6 @@ U0 DoTicTacToe()
 }
 */
 
-U0 DoCircuit()
-{
-  CTask *task=SpawnUser;
-  XTalk(task,"#include \"::/TempleOS/Demo/Graphics/Circuit\";\n");
-  while (!TaskValidate(task->popup_task))
-    Yield;
-  TaskWait(task->popup_task);
-  SendMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  while (TaskValidate(task->popup_task))
-    Yield;
-  SetIP(300,350);
-  SendMsg(task,MSG_KEY_DOWN_UP,'r',0);
-  SetIP(400,350);
-  SendMsg(task,MSG_KEY_DOWN_UP,'l',0);
-  SetIP(350,400);
-  SendMsg(task,MSG_KEY_DOWN_UP,'c',0);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  SendMsg(task,MSG_IP_L_DOWN,350,385);
-  SendMsg(task,MSG_IP_L_UP,390,350);
-  Sleep(500);
-  SendMsg(task,MSG_IP_L_DOWN,350,385);
-  SendMsg(task,MSG_IP_L_UP,310,350);
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
-  XTalk(task,"Exit;\n");
-}
-
 U0 DoSpaceShip()
 {
   CTask *task=SpawnUser;
@@ -1001,15 +974,6 @@ U0 DoZing()
 }
 
 */
-
-U0 DoFlowers()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/Flowers\";\n");
-  Sleep(3000);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
-  XTalk(task,"Exit;\n");
-}
 
 U0 DoCommonAncestor()
 {
@@ -1514,15 +1478,6 @@ U0 DoKeepAway()
   XTalk(task,"Exit;\n");
 }
 
-U0 DoCamp()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/Camp\";\n");
-  Sleep(1250);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
 U0 DoRocket()
 {
   CTask *task=SpawnUser;
@@ -1647,13 +1602,7 @@ U0 DoFPS()
 {
   I64 i;
   CTask *task=SpawnUser;
-  XTalk(task,"#include \"::/TempleOS/Demo/GameStarters/FPS\";\n");
-  while (!TaskValidate(task->popup_task))
-    Yield;
-  TaskWait(task->popup_task);
-  SendMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  while (TaskValidate(task->popup_task))
-    Yield;
+  XTalkWait(task,"#include \"::/TempleOS/Demo/GameStarters/FPS\";\n");
   for (i=0;i<15;i++) {
     SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_UP);
     Sleep(50);
@@ -2084,14 +2033,6 @@ U0 DoCallBack()
   XTalk(task,"Exit;\n");
 }
 
-U0 DoCallBackAux2()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Doc/CallBackAux2\";\n");
-  Sleep(1500);
-  XTalk(task,"Exit;\n");
-}
-
 U0 DoDefine()
 {
   CTask *task=SpawnUser;
@@ -2162,6 +2103,14 @@ U0 DoDivByHand()
   XTalk(task,"Exit;\n");
 }
 
+U0 DoPutDec()
+{
+  CTask *task=SpawnUser;
+  XTalkWait(task,"#include \"::/TempleOS/Demo/Asm/PutDec\";\n");
+  Sleep(1000);
+  XTalk(task,"Exit;\n");
+}
+
 U0 DoGlblVars()
 {
   CTask *task=SpawnUser;
@@ -2179,226 +2128,179 @@ U0 Do()
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalk(task,"Exit;\n");
 }
-
-U0 Do()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Snd/PolyPhonic\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
-U0 Do()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Snd/SndScope\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
-U0 Do()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Snd/Synth\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
-U0 Do()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Snd/Record\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
-U0 Do()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Snd/Echo\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
 */
 
 
 U0 DoReps()
 {
   CTask *task=SpawnUser;
-TS; XTalkWait(task,"DocMax;ProfAll;HeapLog(ON);\n");
-TS; XTalkWait(task,"PCIRep;Sleep(1000);\n");
-TS; XTalkWait(task,"MemBIOSRep;Sleep(1000);\n");
-TS; XTalkWait(task,"MemRep;Sleep(1000);\n");
-TS; XTalkWait(task,"ProfRep;Sleep(1000);\n");
-TS; XTalkWait(task,"HeapLogRep; HeapLog(OFF);Sleep(1000);\n");
-TS; XTalkWait(task,"BlkDevRep;Sleep(1000);\n");
-TS; XTalkWait(task,"ChkDsk;Sleep(1000);\n");
-TS; XTalkWait(task,"DrvView;\n");
+  TS; XTalkWait(task,"DocMax;ProfAll;HeapLog(ON);\n");
+  TS; XTalkWait(task,"PCIRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"MemBIOSRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"MemRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"ProfRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"HeapLogRep; HeapLog(OFF);Sleep(1000);\n");
+  TS; XTalkWait(task,"BlkDevRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"ChkDsk;Sleep(1000);\n");
+  TS; XTalkWait(task,"DrvView;\n");
   Sleep(1500);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalkWait(task,"DskView;\n");
   Sleep(1500);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-TS; XTalkWait(task,"ATARep;\npSleep(1000);\n");
-TS; XTalkWait(task,"HashDepthRep(adam_task->hash_table);Sleep(1000);\n");
-TS; XTalkWait(task,"HAllRep;Sleep(1000);\n");
-TS; XTalkWait(task,"PrtRep;Sleep(1000);\n");
-TS; XTalkWait(task,"TaskRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"ATARep;\npSleep(1000);\n");
+  TS; XTalkWait(task,"HashDepthRep(adam_task->hash_table);Sleep(1000);\n");
+  TS; XTalkWait(task,"HAllRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"PrtRep;Sleep(1000);\n");
+  TS; XTalkWait(task,"TaskRep;Sleep(1000);\n");
   XTalk(task,"Exit;\n");
 }
 
+  
 U0 OSTestSuite()
 {
-TSStart;
-TS; DoSpaceShip;
-TS; DoBlackDiamond;
-TS; if (IsDrvWritable(':')) DoEagleDive;
-TS; DoRocks;
-TS; DoNavy;
-TS; DoDunGen;
-TS; DoFPS;
-TS; DoZoneOut;
-TS; DoVaroom;
-TS; DoRocket;
-TS; DoRocketScience;
-TS; DoMissileDefense;
-TS; DoWarGame;
-TS; DoBigGuns;
-TS; DoBirdLand;
-TS; DoTimeOut;
-TS; DoPilgrims;
-TS; if (!sys_heap_init_flag) /* FloodFill */ DoSpan;
-TS; DoRawHide;
-TS; DoKeepAway;
-TS; DoAfterEgypt;
-TS; DoXCaliber;
-TS; DoWenceslas;
-TS; DoBomber;
-TS; DoTheDead;
-TS; DoChess;
-TS; DoChessNet;
-TS; DoMPAdd;
-TS; DoPrimes;
-TS; DoPalindrome;
-TS; DoClouds;
-TS; DoNoise;
-TS; if (mp_cnt>1) DoRadixSort;
-TS; if (mp_cnt>1) DoLoadTest;
-TS; if (mp_cnt>1) DoMPPrintF;
-TS; if (mp_cnt>1) DoLayers3DJob;
-TS; if (mp_cnt>1) DoLock;
-TS; if (mp_cnt>1) DoLayersSpawn;
-TS; if (mp_cnt>1) DoInterrupts;
-TS; if (mp_cnt>1) DoSort;
-TS; DoSpritePlot;
-TS; DoSpritePlot3D;
-TS; DoSpritePut;
-TS; DoSpritePutExt;
-TS; DoSpriteText;
-TS; DoEdCSprite;
-TS; DoExtents;
-TS; DoDotNet;
-TS; DoLowPassFilter;
-TS; DoMathAudioDemo;
-TS; DoLines;
-TS; if (!IsSysDeterministic) DoBounce;
-TS; DoMsgLoop;
-TS; DoASCIIOrgan;
-TS; DoMorseCode;
-TS; DoDoodle;
-TS; DoMassSpring;
-TS; DoSpeedLine;
-TS; DoKeyBitMap;
-TS; DoGolf;
-TS; DoMountain;
-TS; DoCoach;
-TS; DoCPUPlot;
-TS; DoDither;
-TS; DoBSpline;
-TS; DoGrModels;
-TS; DoBlot;
-TS; if (IsDrvWritable(':')) DoCaptureScreen;
-TS; DoPick;
-TS; DoPick3D;
-TS; DoWhap;
-TS; DoPalette;
-TS; DoPrintF;
-TS; DoCamp;
-TS; DoShading;
-TS; DoRotateTank;
-TS; Do3DPoly;
-TS; DoBox;
-TS; DoSymmetry;
-TS; DoShadow;
-TS; DoPredatorPrey;
-TS; DoPoleZeros;
-TS; DoDateTime;
-TS; DoDigits;
-TS; DoStadium;
-TS; DoHalogen;
-TS; DoMaze;
-TS; DoFontEd;
-TS; DoCtrlR1;
-TS; DoLogo;
-TS; DoSubIntAccess;
-TS; DoDemoDoc;
-TS; DoTreeDemo;
-TS; DoTextDemo;
-TS; DoCursorMove;
-TS; DoMiniCompiler;
-TS; DoMiniGrLib;
-TS; DoPhoneNumWords;
-TS; DoUnusedSpaceRep;
-TS; DoExceptions;
-TS; DoScreenCodes;
-TS; DoExtendedChars;
-TS; DoNeatTrick;
-TS; DoCharGraphics;
-TS; DoMagicPairs;
-TS; DoHanoi;
-TS; DoSquirt;
-TS; DoFlowers;
-TS; DoCommonAncestor;
-TS; DoCartesian;
-TS; DoBling;
-TS; DoRainDrops;
-TS; DoCollision;
-TS; DoOrderedIO;
-TS; DoLogic;
-TS; DoCircuit;
-TS; DoCompileDemo;
-TS; DoPrompt;
-TS; if (IsDrvWritable(':')) DoWebLog;
-TS; DoDefine;
-TS; DoGlblVars;
-TS; DoFileRead;
-TS; DoParenWarn;
-TS; DoDefineStr;
-TS; DoData;
-TS; DoCallBack;
-TS; DoCallBackAux2;
-TS; DoClassMeta;
-TS; DoForm;
-TS; DoMenuButton;
-TS; DoMenuSprite;
-TS; DoSuggestedSpelling;
-TS; DoWordSearch;
-TS; DoStkGrow;
-TS; DoWaterFowl;
-TS; DoAsmHelloWorld;
-TS; DoAsmAndC;
-TS; DoAsmAndC2;
-TS; DoMulByHand;
-TS; DoDivByHand;
-TS; DoBuzzFizz;
-TS; DoPageTableEntries2;
-DoReps;
-TSEnd;
+  TSStart;
+  TS; DoSpaceShip;
+  TS; DoBlackDiamond;
+  TS; if (IsDrvWritable(':')) DoEagleDive;
+  TS; DoRocks;
+  TS; DoNavy;
+  TS; DoDunGen;
+  TS; DoFPS;
+  TS; DoZoneOut;
+  TS; DoVaroom;
+  TS; DoRocket;
+  TS; DoRocketScience;
+  TS; DoMissileDefense;
+  TS; DoWarGame;
+  TS; DoBigGuns;
+  TS; DoBirdLand;
+  TS; DoTimeOut;
+  TS; DoPilgrims;
+  TS; if (!sys_heap_init_flag) /* FloodFill */ DoSpan;
+  TS; DoRawHide;
+  TS; DoKeepAway;
+  TS; DoAfterEgypt;
+  TS; DoXCaliber;
+  TS; DoWenceslas;
+  TS; DoBomber;
+  TS; DoTheDead;
+  TS; DoChess;
+  TS; DoChessNet;
+  TS; DoMPAdd;
+  TS; DoPrimes;
+  TS; DoPalindrome;
+  TS; DoClouds;
+  TS; DoNoise;
+  TS; if (mp_cnt>1) DoRadixSort;
+  TS; if (mp_cnt>1) DoLoadTest;
+  TS; if (mp_cnt>1) DoMPPrintF;
+  TS; if (mp_cnt>1) DoLayers3DJob;
+  TS; if (mp_cnt>1) DoLock;
+  TS; if (mp_cnt>1) DoLayersSpawn;
+  TS; if (mp_cnt>1) DoInterrupts;
+  TS; if (mp_cnt>1) DoSort;
+  TS; DoSpritePlot;
+  TS; DoSpritePlot3D;
+  TS; DoSpritePut;
+  TS; DoSpritePutExt;
+  TS; DoSpriteText;
+  TS; DoEdCSprite;
+  TS; DoExtents;
+  TS; DoDotNet;
+  TS; DoLowPassFilter;
+  TS; DoMathAudioDemo;
+  TS; DoLines;
+  TS; if (!IsSysDeterministic) DoBounce;
+  TS; DoMsgLoop;
+  TS; DoASCIIOrgan;
+  TS; DoMorseCode;
+  TS; DoDoodle;
+  TS; DoMassSpring;
+  TS; DoSpeedLine;
+  TS; DoKeyBitMap;
+  TS; DoGolf;
+  TS; DoMountain;
+  TS; DoCoach;
+  TS; DoCPUPlot;
+  TS; DoDither;
+  TS; DoBSpline;
+  TS; DoGrModels;
+  TS; DoBlot;
+  TS; if (IsDrvWritable(':')) DoCaptureScreen;
+  TS; DoPick;
+  TS; DoPick3D;
+  TS; DoWhap;
+  TS; DoPalette;
+  TS; DoPrintF;
+  TS; DoShading;
+  TS; DoRotateTank;
+  TS; Do3DPoly;
+  TS; DoBox;
+  TS; DoSymmetry;
+  TS; DoShadow;
+  TS; DoPredatorPrey;
+  TS; DoPoleZeros;
+  TS; DoDateTime;
+  TS; DoDigits;
+  TS; DoStadium;
+  TS; DoHalogen;
+  TS; DoMaze;
+  TS; DoFontEd;
+  TS; DoCtrlR1;
+  TS; DoLogo;
+  TS; DoSubIntAccess;
+  TS; DoDemoDoc;
+  TS; DoTreeDemo;
+  TS; DoTextDemo;
+  TS; DoCursorMove;
+  TS; DoMiniCompiler;
+  TS; DoMiniGrLib;
+  TS; DoPhoneNumWords;
+  TS; DoUnusedSpaceRep;
+  TS; DoExceptions;
+  TS; DoScreenCodes;
+  TS; DoExtendedChars;
+  TS; DoNeatTrick;
+  TS; DoCharGraphics;
+  TS; DoMagicPairs;
+  TS; DoHanoi;
+  TS; DoSquirt;
+  TS; DoCommonAncestor;
+  TS; DoCartesian;
+  TS; DoBling;
+  TS; DoRainDrops;
+  TS; DoCollision;
+  TS; DoOrderedIO;
+  TS; DoLogic;
+  TS; DoCompileDemo;
+  TS; DoPrompt;
+  TS; if (IsDrvWritable(':')) DoWebLog;
+  TS; DoDefine;
+  TS; DoGlblVars;
+  TS; DoFileRead;
+  TS; DoParenWarn;
+  TS; DoDefineStr;
+  TS; DoData;
+  TS; DoCallBack;
+  TS; DoClassMeta;
+  TS; DoForm;
+  TS; DoMenuButton;
+  TS; DoMenuSprite;
+  TS; DoSuggestedSpelling;
+  TS; DoWordSearch;
+  TS; DoStkGrow;
+  TS; DoWaterFowl;
+  TS; DoAsmHelloWorld;
+  TS; DoAsmAndC;
+  TS; DoAsmAndC2;
+  TS; DoMulByHand;
+  TS; DoDivByHand;
+  TS; DoBuzzFizz;
+  TS; DoPutDec;
+  TS; DoPageTableEntries2;
+  DoReps;
+  TSEnd;
 }
 
 OSTestSuite;

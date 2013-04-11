@@ -108,57 +108,57 @@ public U8 *DocLinkFile(U8 *link_st,CTask *mem_task=NULL)
 }
 
 #help_index "Doc/Task"
-public CDoc *SysAuxDocInit()
+public CDoc *SysBorderDocInit()
 {
   CDocEntry *doc_e;
-  CDoc *aux,*doc=DocCur;
+  CDoc *bdoc,*doc=DocPut;
 
-  aux=DocNew;
-  aux->flags|=DOCF_AUX_DOC;
+  bdoc=DocNew;
+  bdoc->flags|=DOCF_BORDER_DOC;
 
   if (doc) {
-    DocPutS(aux,"$CM+H+BY+RX+NC,-7,1$");
-    doc_e=DocPutS(aux,"$TX+H+BD+TC,\" \"$");
+    DocPutS(bdoc,"$CM+H+BY+RX+NC,-7,1$");
+    doc_e=DocPutS(bdoc,"$TX+H+BD+TC,\" \"$");
     doc_e->user_data=doc;
     doc_e->tag_cb=&EdFilterCB;
-    doc_e=DocPutS(aux,"$TX+H+BD+TC,\" \"$");
+    doc_e=DocPutS(bdoc,"$TX+H+BD+TC,\" \"$");
     doc_e->user_data=doc;
     doc_e->tag_cb=&EdOverStrikeCB;
-    doc_e=DocPutS(aux,"$TX+H+BD+TC,\" \"$");
+    doc_e=DocPutS(bdoc,"$TX+H+BD+TC,\" \"$");
     doc_e->user_data=doc;
     doc_e->tag_cb=&EdDollarCB;
   }
 
-  DocPutS(aux,"$CM+H+BY+RX+NC,-4,1$");
-  doc_e=DocPutS(aux,"$TX+H+BD+TC,\" \"$");
+  DocPutS(bdoc,"$CM+H+BY+RX+NC,-4,1$");
+  doc_e=DocPutS(bdoc,"$TX+H+BD+TC,\" \"$");
   doc_e->tag_cb=&EdQuotesCB;
-  doc_e=DocPutS(aux,"$TX+H+BD+TC,\" \"$");
+  doc_e=DocPutS(bdoc,"$TX+H+BD+TC,\" \"$");
   doc_e->tag_cb=&EdBracesCB;
-  doc_e=DocPutS(aux,"$TX+H+BD+TC,\" \"$");
+  doc_e=DocPutS(bdoc,"$TX+H+BD+TC,\" \"$");
   doc_e->tag_cb=&EdSemicolonCB;
 
   if (doc) {
-    DocPutS(aux,"$CM+H+BY+RX+NC,-18,1$");
-    doc_e=DocPutS(aux,"$TX+BD+TC,\"     \"$");
+    DocPutS(bdoc,"$CM+H+BY+RX+NC,-18,1$");
+    doc_e=DocPutS(bdoc,"$TX+BD+TC,\"     \"$");
     doc_e->user_data=doc;
     doc_e->tag_cb=&EdMoreCB;
-    doc_e=DocPutS(aux,"$TX+H+BD+TC,\" \"$");
+    doc_e=DocPutS(bdoc,"$TX+H+BD+TC,\" \"$");
     doc_e->user_data=doc;
     doc_e->tag_cb=&EdDollarTypeCB;
   }
 
   if (Fs->user_num)
-    DocPrintF(aux,"$CM+H+TY+LX+NC,5,-1$$TX+H+BD,\"#%d\"$",Fs->user_num);
-  DocPutS(aux,"$CM+H+TY+NC,0,-1$");
-  doc_e=DocPutS(aux,"$DA+H-T-P+BD+RD+CX+SCX+IV,140,\"%s...\",16$");
+    DocPrintF(bdoc,"$CM+H+TY+LX+NC,5,-1$$TX+H+BD,\"#%d\"$",Fs->user_num);
+  DocPutS(bdoc,"$CM+H+TY+NC,0,-1$");
+  doc_e=DocPutS(bdoc,"$DA+H-T-P+BD+RD+CX+SCX+IV,140,\"%s...\",16$");
   doc_e->data=&Fs->task_title;
   DocDataFmt(doc_e);
-  DocPrintF(aux,"$CM+H+NC,1,0$$TX+H+BD+IV,\"%X\"$",Fs);
-  aux->settings_root.dft_text_attr=Fs->border_attr;
+  DocPrintF(bdoc,"$CM+H+NC,1,0$$TX+H+BD+IV,\"%X\"$",Fs);
+  bdoc->settings_root.dft_text_attr=Fs->border_attr;
   if (Bt(&Fs->display_flags,DISPLAYf_HAS_CLOSE_WIN))
-    DocPutS(aux,"$TX+H+RX+BD,\"[X]\"$");
-  DocPutS(aux,"$BK,1$$TX+H+LX+BD,\"MENU\"$$BK,0$");
-  return aux;
+    DocPutS(bdoc,"$TX+H+RX+BD,\"[X]\"$");
+  DocPutS(bdoc,"$BK,1$$TX+H+LX+BD,\"MENU\"$$BK,0$");
+  return bdoc;
 }
 
 public U0 UseTermDoc()
@@ -166,12 +166,12 @@ public U0 UseTermDoc()
   Bool old_preempt=Preempt(OFF);
   CDoc *doc=DocNew;
   doc->start_text_attr=WHITE<<4+BLUE;
-  DocQueIns(doc,Fs->last_doc);
   doc->right_click_link=&TermRightClickLink;
   doc->max_entries=4096;
   doc->flags|=DOCF_ATTR_BY_PRT;
   StrCpy(doc->desc,"Term");
-  DocQueInsRev(SysAuxDocInit,Fs->next_doc);
+  Fs->put_doc=Fs->display_doc=doc;
+  Fs->border_doc=SysBorderDocInit;
   Fs->cur_menu=MenuFile("::/TempleOS/Doc/EdPullDown.TXT");
   WinScrollsInit(Fs);
   Preempt(old_preempt);
@@ -271,7 +271,7 @@ public CDocEntry *DocPutLine(CDocEntry *doc_e)
 
 #help_index "Doc/Input"
 public U8 *DocMGetS(I64 flags=0)
-//[C:/TempleOS/Kernel/Adam1a.HPP.Z,1576] Flags
+//[C:/TempleOS/Kernel/Adam1a.HPP.Z,1567] Flags
 {
   CDoc *doc;
   CDocEntry *doc_e,*doc_e_end;
@@ -282,25 +282,15 @@ public U8 *DocMGetS(I64 flags=0)
   do {
     ch=DocGetKey(&sc);
     if (ch==CH_ESC) {
-      doc=Fs->next_doc;
-      while (doc!=(&Fs->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-	  doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL) {
+      if (doc=DocPut) {
 	DocLock(doc);
-	if (!(doc->flags&DOCF_DONT_SHOW) &&
-	    (!doc->best_d || !(doc->flags&DOCF_AUX_DOC)) &&
-	    doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL && doc->cur_entry!=doc) {
+	if (doc->doc_signature==DOC_SIGNATURE_VAL && doc->cur_entry!=doc) {
 	  doc_e=DocEntryCopy(doc,doc->cur_entry);
-	  if (doc->flags&DOCF_AUX_DOC && DocCur)
-	    DocBottom;
-	  else
-	    DocBottom(doc);
+	  DocBottom(doc);
 	  DocEntryRun(doc,doc_e,TRUE);
 	  DocEntryDel(doc,doc_e);
-	  DocUnlock(doc);
-	  break;
 	}
 	DocUnlock(doc);
-	doc=doc->next_doc;
       }
       if (flags&GETSF_WITH_NEW_LINE)
 	break;
@@ -316,7 +306,7 @@ public U8 *DocMGetS(I64 flags=0)
   } while (flags&GETSF_WITH_NEW_LINE || ch!='\n' || sc & SCF_CTRL && sc & SCF_SHIFT);
 
   Preempt(OFF);
-  doc=DocCur;
+  doc=DocPut;
   DocLock(doc);
   if (flags&GETSF_WITH_NEW_LINE) {
     doc_e=doc->cur_entry;
@@ -648,7 +638,7 @@ public U0 DocDm(U8 *buf,I64 cnt=0x80)
 //edited.
 {
   CDocEntry *doc_e;
-  CDoc *doc=DocCur;
+  CDoc *doc=DocPut;
   Bool unlock=DocLock(doc);
   doc_e=DocPrintF(doc,"$HX-Z,%d,16$",cnt);
   doc_e->data=buf;
@@ -664,7 +654,7 @@ public U0 DocD(U8 *buf,I64 cnt=0x80)
 //edited.
 {
   CDocEntry *doc_e;
-  CDoc *doc=DocCur;
+  CDoc *doc=DocPut;
   Bool unlock=DocLock(doc);
   doc_e=DocPrintF(doc,"$HX,%d,16$",cnt);
   doc_e->data=buf;
@@ -678,13 +668,13 @@ public U0 DocD(U8 *buf,I64 cnt=0x80)
 Bool AKDDocPutS(U8 *st)
 {
   CDoc *doc;
-  if (doc=DocCur)
+  if (doc=DocPut)
     DocPutSPartial(doc,st);
   return FALSE;
 }
 
 KeyDevAdd(&AKDDocPutKey,&AKDDocPutS,0x80000000,TRUE);
 fp_mgets=&DocMGetS;
-fp_doc_cur=&DocCur;
+fp_doc_put=&DocPut;
 
 #help_index "Doc"

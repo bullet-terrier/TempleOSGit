@@ -7,7 +7,6 @@ public extern CDate local_time_offset;
 public extern I64 SysTimerRead();
 
 #help_index "Task"
-extern U8 *sys_acct;
 extern CTask *sys_winmgr_task,*sys_task_being_screen_updated;
 public extern CTask *adam_task;
 public extern I64 sys_num_spawned_users,sys_num_task_inits;
@@ -37,7 +36,6 @@ public extern F64 tS(); //From SysTimerFreq.
 public extern Bool Blink(F64 Hz=2.5);
 
 #help_index "Snd"
-#help_file "::/TempleOS/Doc/Snd"
 public extern I64 snd_dev;
 public extern F64 snd_vol,snd_reverb_intensity,snd_reverb_delay;
 public extern U0 Snd(F64 freq,I64 waveform=WF_SQUARE,F64 amp=1.0);
@@ -164,7 +162,7 @@ public extern U0 Spaces(I64 cnt=1);
 public extern U0 PutErr(U8 *st=NULL);
 public extern U0 PutWarn(U8 *st=NULL);
 public extern U0 PutKey(I64 ch,I64 scancode);
-public extern U0 PutChar(I64 ch);
+public extern U0 PutChar(U64 ch);
 public extern U0 PutS(U8 *st);
 public extern U8 *Bin2Hex(U8 *dst,I64 n;I64 width);
 public extern U0 PutHex(I64 n,I64 width);
@@ -180,7 +178,6 @@ extern I64 mouse_pkt_size;
 public extern I64 kbd_evt_time;
 extern Bool kbd_irqs_working;
 public extern Bool PressAKey();
-public extern Bool ExitAllApplications();
 public extern Bool AreYouSure();
 public extern I64 GetKey(I64 *_scancode=NULL,Bool echo=FALSE,Bool raw_cursor=FALSE);
 public extern I64 GetChar(I64 *_scancode=NULL,Bool echo=TRUE,Bool raw_cursor=FALSE);
@@ -189,7 +186,7 @@ public extern Bool YorN();
 public extern I64 GetS(U8 *buf,I64 size,Bool allow_ext=TRUE);
 public extern I64 KbdMouseEvtTime();
 
-//Gets [C:/TempleOS/Kernel/Adam1a.HPP.Z,1576] Flags
+//Gets [C:/TempleOS/Kernel/Adam1a.HPP.Z,1567] Flags
 public extern U8 *MGetS(I64 flags=0);
 extern U8  *(*fp_mgets)(I64 flags=0);
 extern U8 *GetFJoin(U8 *src,U8 *fmt,I64 argc,I64 *argv);
@@ -251,16 +248,7 @@ public extern U8 *CAlloc(I64 size,CTask *mem_task=NULL);
 public extern U8 *MAllocIdentical(U8 *src,CTask *mem_task=NULL);
 public extern U8 *MAllocAligned(I64 size,I64 alignment,CTask *mem_task=NULL,I64 misalignment=0);
 public extern U8 *CAllocAligned(I64 size,I64 alignment,CTask *mem_task=NULL,I64 misalignment=0);
-public extern U0 LinkedLstDel(U8 **_lst);
-public extern U8 *LinkedLstCopy(U8 **_lst,CTask *mem_task=NULL);
-public extern I64 LinkedLstCnt(U8 **_lst);
-public extern I64 LinkedLstSize(U8 **_lst);
 public extern I64 Scale2Mem(I64 min,I64 max,I64 limit=2*1024*1024*1024);
-#help_index "Memory;Circular Queue"
-public extern U0 QueDel(CQue *root,Bool querem=FALSE);
-public extern CQue *QueCopy(CQue *root,CTask *mem_task=NULL);
-public extern I64 QueCnt(CQue *root);
-public extern I64 QueSize(CQue *root);
 #help_index "Memory/Heap Ctrl"
 public extern U0 BlkPoolAdd(CBlkPool *bp,CMemBlk *m,I64 pages512);
 public extern U0 BlkPoolInit(CBlkPool *bp,I64 pages512);
@@ -447,7 +435,7 @@ extern CPrt *drv_to_prt[32];
 public extern I64 ATARep(Bool pmt=TRUE,Bool just_ide=FALSE,CATARep **_root=NULL);
 
 #help_index "File/System/Hardware"
-public extern CATARep *ATAIDDrvs(CATARep *root,U8 _dft_drv,CATARep **_ata_drv,CATARep **_atapi_drv);
+public extern CATARep *ATAIDDrvs(CATARep *root,U8 _sys_acct_drv,CATARep **_ata_drv,CATARep **_atapi_drv);
 extern CBlkDev *ATAMount(U8 first_drv_let,I64 type,I64 base0,I64 base1,I64 unit);
 public extern I64 sys_auto_mount_ide_cnt;
 public extern I64 AutoMountIDE();
@@ -519,6 +507,7 @@ public extern U0 CDImageWrite(U8 cd_drv_let,U8 *in_name=NULL,I64 media_type=MT_C
 public extern U8 *sys_dft_iso_name;
 
 #help_index "File/FileNames"
+public extern U8 *sys_acct;
 public extern Bool FilesFindMatch(U8 *files_find_mask,U8 *filename,I64 fuf_flags=0);
 public extern Bool IsDotZ(U8 *filename);
 public extern Bool IsDotC(U8 *filename);
@@ -536,7 +525,8 @@ public extern U8 *ChgExt(U8 *filename,U8 *extension);
 public extern U8 *DftExt(U8 *filename,U8 *extension);
 public extern Bool IsDir(U8 *dir_name);
 public extern Bool IsDrvWritable(U8 drv_let=0);
-extern CDirEntry *CdDir(CDirEntry *tempm,U8 *abs_name);
+extern CDirEntry *Cd2DirEntry(CDirEntry *tempm,U8 *abs_name);
+public extern U0 ToFileLine(U8 *_fl_file_line,U8 **_filename,I64 *_linenum);
 
 #help_index "File/Program Routines/Utils"
 public extern U0 GetFFlags(U8 *f,U8 *lst,U8 *st);
@@ -569,8 +559,8 @@ extern CATARep *ATARepFind(CATARep *root,I64 num);
 public extern Bool DrvEnable(U8 drv_let,Bool val);
 public extern U0 Fmt(U8 drv_let,Bool quick=TRUE,Bool confirm=TRUE,I64 type=PT_FAT32);
 extern U0 DrvDftSelect();
-public extern U8 dft_drv,sys_first_hd_drv_let,sys_first_cd_drv_let;
-extern Bool boot_drv_pmt;
+public extern U8 sys_first_hd_drv_let,sys_first_cd_drv_let;
+extern Bool boot_drv_pmt,cdrom_boot_is_good;
 
 #help_index "Hash"
 #help_file "::/TempleOS/Doc/Hash"
@@ -669,7 +659,23 @@ public _extern _FAR_CALL32 Bool FarCall32(U0 (*fp_add)());
 //fp_add can have any fixed number of arguments.
 public argpop extern I64 CallStkGrow(I64 stk_size_threshold,I64 stk_size,/*argpop*/I64 (*fp_add)(...),...);
 
-#help_index "Fifo"
+#help_index "Data Types/Circular Queue"
+public extern U0 QueDel(CQue *root,Bool querem=FALSE);
+public extern CQue *QueCopy(CQue *root,CTask *mem_task=NULL);
+public extern I64 QueCnt(CQue *root);
+public extern I64 QueSize(CQue *root);
+
+#help_index "Data Types"
+public extern U0 LinkedLstDel(U8 **_lst);
+public extern U8 *LinkedLstCopy(U8 **_lst,CTask *mem_task=NULL);
+public extern I64 LinkedLstCnt(U8 **_lst);
+public extern I64 LinkedLstSize(U8 **_lst);
+
+public extern CQueVectU8 *QueVectU8New(I64 min_index=0);
+public extern U0 QueVectU8Put(CQueVectU8 *v,I64 index,U8 ch);
+public extern U0 QueVectU8Del(CQueVectU8 *v);
+public extern I64 QueVectU8Get(CQueVectU8 *v,I64 index);
+
 public extern CFifoU8 *FifoU8New(I64 size,CTask *mem_task=NULL);
 public extern U0 FifoU8Del(CFifoU8 *f);
 public extern Bool FifoU8Ins(CFifoU8 *f,U8 b);
@@ -787,7 +793,7 @@ public extern I64 ScanChar();
 public extern I64 sys_cur_scan_code;
 
 #help_index "Doc/Task"
-extern CDoc *(*fp_doc_cur)(CTask *task=NULL);
+extern CDoc *(*fp_doc_put)(CTask *task=NULL);
 
 #help_index "Char/Conversion"
 public extern F64 A2F64(U8 *src,U8 **_end_ptr=NULL);
@@ -813,8 +819,8 @@ public extern Bool PutSrcLink(U8 *add,I64 cnt=1,U8 *buf=NULL);
 public extern U0 EdLite(U8 *filename,I64 num=1);
 extern U8 *sys_fix_file_line;
 public extern U0 SetFix(U8 *filename,I64 line);
+extern U0 EdLiteFileLine(U8 *fl_file_line);
 public extern U0 Fix();
-extern U0 EdLiteFileLine(U8 *_fl_file_line);
 #help_index "Debugging/Debugger;Doc/Cmd Line (Typically);Cmd Line (Typically);Training"
 public extern U0 Man(U8 *st);
 

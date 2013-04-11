@@ -257,9 +257,9 @@ public CDC *GRARead(U8 *filename,CTask *task=NULL)
 }
 
 #help_index "Graphics/CSprite;Graphics/DCs;Doc/Output"
-public U0 DocPutGRAFile(CDoc *doc=NULL,U8 *fname)
+public U0 DocPutGRAFile(CDoc *doc=NULL,U8 *filename)
 {
-  CDC *dc=GRARead(fname);
+  CDC *dc=GRARead(filename);
   CSprite *elems=DC2Sprite(dc);
   DocPutSprite(doc,elems);
   Free(elems);

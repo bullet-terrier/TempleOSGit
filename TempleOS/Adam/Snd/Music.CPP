@@ -124,11 +124,11 @@ public U0 Play(U8 *st,U8 *words=NULL)
     '!!'  *1.5`2
 
   [C:/TempleOS/Adam/Snd/Music.CPP.Z,8] music_waveform is set with
-    "W1" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3718] WF_SQUARE
-    "W2" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3719] WF_SINE
-    "W3" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3720] WF_TRIANGLE
-    "W4" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3721] WF_SAWTOOTH
-    "W5" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3722] WF_NOISE
+    "W1" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3740] WF_SQUARE
+    "W2" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3741] WF_SINE
+    "W3" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3742] WF_TRIANGLE
+    "W4" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3743] WF_SAWTOOTH
+    "W5" for [C:/TempleOS/Kernel/Adam1a.HPP.Z,3744] WF_NOISE
 
   [C:/TempleOS/Adam/Snd/Music.CPP.Z,8] music_meter_top,[C:/TempleOS/Adam/Snd/Music.CPP.Z,9] music_meter_bottom is set with
     "M3/4"

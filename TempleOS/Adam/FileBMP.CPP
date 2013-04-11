@@ -266,9 +266,9 @@ public CDC *BMPFileRead(U8 *filename,Bool use_ms_paint_palette=FALSE)
 }
 
 #help_index "Graphics/CSprite;Graphics/Windows BMP Files;Doc/Output"
-public U0 DocPutBMPFile(CDoc *doc=NULL,U8 *fname,Bool use_ms_paint_palette=FALSE)
+public U0 DocPutBMPFile(CDoc *doc=NULL,U8 *filename,Bool use_ms_paint_palette=FALSE)
 {
-  CDC *dc=BMPFileRead(fname,use_ms_paint_palette);
+  CDC *dc=BMPFileRead(filename,use_ms_paint_palette);
   CSprite *elems=DC2Sprite(dc);
   DocPutSprite(doc,elems);
   Free(elems);

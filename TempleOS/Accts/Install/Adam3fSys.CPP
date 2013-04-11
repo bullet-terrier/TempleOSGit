@@ -4,7 +4,7 @@
 U0 UserStartUp()
 { //Run each time a user a spawned
   UseTermDoc;
-  DocCurAttr(WHITE<<4+BLUE);
+  DocPutAttr(WHITE<<4+BLUE);
   Type("::/TempleOS/Doc/Start.TXT");
   LBts(&Fs->display_flags,DISPLAYf_SHOW);
   WinZBufUpdate;

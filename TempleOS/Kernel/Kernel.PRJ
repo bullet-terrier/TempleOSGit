@@ -1,5 +1,5 @@
 //You should compile this by calling
-//[C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,164] MakeOSInstallPrtBootLoader(), not doing it directly.
+//[C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,136] MakeOSInstallPrtBootLoader(), not doing it directly.
 //See [C:/TempleOS/Adam/Boot/InsBoot.CPP.Z,1] Cmp("Kernel").
 
 #exe {
@@ -24,7 +24,7 @@ kernel_cfg=KernelCfgNew;
 #include "Font8x8"
 #include "Memory"
 #include "Interrupts"
-#include "FIFO"
+#include "DataTypes1a"
 #include "Compress"
 #include "Hash1a"
 #include "Date"

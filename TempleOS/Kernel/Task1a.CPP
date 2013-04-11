@@ -181,10 +181,6 @@ I64 TaskInit(CTask *task,I64 stk_size)
     task->last_child_task=
     (&task->next_child_task)(U8 *)-offset(CTask.next_sibling_task);
 
-  task->next_doc=
-    task->last_doc=
-    (&task->next_doc)(U8 *)-offset(CDoc.next_doc);
-
   QueInit(&task->next_servant_cmd);
   QueInit(&task->next_master_cmd);
   QueInit(&task->next_lex);
@@ -386,9 +382,7 @@ U0 UserTaskCont()
       QueRem(lx);
       LexDel(lx);
     } catch {
-      doc=Fs->last_doc;
-      if (doc!=(&Fs->next_doc)(U8 *)-offset(CDoc.next_doc) &&
-	  doc->doc_in_que_signature==DOC_IN_QUE_SIGNATURE_VAL)
+      if ((doc=Fs->put_doc) && doc->doc_signature==DOC_SIGNATURE_VAL)
 	DocUnlock(doc);
       CatchAll;
     }
