@@ -283,7 +283,10 @@ CArcCompress *CompressBuf(U8 *src,I64 size,
     size_out=(c->dst_pos+7)>>3;
     result=MAlloc(size_out,mem_task);
     MemCpy(result,c->dst_buf,size_out);
-    result->compression_type=text_only ? CT_7_BIT:CT_8_BIT;
+    if (text_only)
+      result->compression_type=CT_7_BIT;
+    else
+      result->compression_type=CT_8_BIT;
     result->compressed_size=size_out;
   } else {
     result=MAlloc(size+sizeof(CArcCompress),mem_task);

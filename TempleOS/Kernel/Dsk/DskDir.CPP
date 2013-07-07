@@ -237,7 +237,7 @@ U0 Dir2(U8 *files_find_mask,I64 fuf_flags,Bool full)
       esize=Bsr(esize)/4+1;
       c=Bsr(c)/4+1;
 
-      "$MA+A,\"Directory \",\"PopUpCd;Dir;\n\"$ of %s\n",st;
+      "$MA+A,\"Directory\",\"PopUpCd;Dir;\n\"$ of %s\n",st;
       if (full)
 	"__DATE__ __TIME__ %*ts %*ts %*ts\n",
 	csize,"SIZE",esize,"UNCMPSIZE",c,"CLUSTER";

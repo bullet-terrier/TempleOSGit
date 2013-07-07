@@ -14,6 +14,7 @@ U0 DrawIt(CTask *,CDC *dc)
 U0 ScrollBars()
 {
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  DocClear;
   Fs->draw_it=&DrawIt;
   GetChar(,FALSE);
   SettingsPop;

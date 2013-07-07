@@ -223,7 +223,7 @@ air is approximated by V and V2
 terms and is smaller.  However, I use
 this to produce a rolling friction
 value, too.  If you want to see my
-best attempt at realstic physics
+best attempt at realistic physics
 download SimStructure.
 
 http://www.templeos.org/files/SimStrSetUp.zip
@@ -276,7 +276,7 @@ Frame man_imgs[LAST_STOPPED_DRIBBLING+1]={
 };
 
 AcctRegSetDftEntry("TempleOS/KeepAway","I64 best_score0=0,best_score1=9999;\n");
-AcctRegExecuteBranch("TempleOS/KeepAway");
+AcctRegExeBranch("TempleOS/KeepAway");
 
 F64 game_t_end,foul_t_end;
 I64 score0,score1;
@@ -668,10 +668,10 @@ U0 KeepAway()
     "Left-Click to pass.\n"
     "Right-Click to jump.\n");
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=BLACK+YELLOW<<4;
   WinMax;
   WinBorder;
   Preempt(OFF);
-  DocPutAttr(BLACK+YELLOW<<4);
 
   Fs->win_inhibit|=WIF_DBL_CLICK;
   WordStat;
@@ -692,7 +692,7 @@ U0 KeepAway()
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;
-  Fs->animate_task=Spawn(&AnimateTask,Fs,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,Fs,"Animate",,Fs);
 
   try {
     while (TRUE) {
@@ -724,6 +724,7 @@ ka_jump:
       }
     }
 ka_done: //Don't goto out of try
+    GetMsg(,,1<<MSG_KEY_UP);
   } catch
     CatchAll;
   SettingsPop;
@@ -732,10 +733,3 @@ ka_done: //Don't goto out of try
   CleanUp;
   MenuPop;
 }
-
-//This is so I can use this file stand alone
-//or as a component of a program.
-#if IncludeDepth<2
-KeepAway;
-#endif
-

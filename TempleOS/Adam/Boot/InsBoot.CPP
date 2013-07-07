@@ -33,8 +33,24 @@ _HI_CALL::
 	CALL	RAX
 @@05:	LEAVE
 	RET1	8
+// ************************************
+_HI_MEMCPY::
+	ENTER	0
+	PUSH	RSI
+	PUSH	RDI
+	CLD
+	MOV	RDI,U64 SF_ARG1[RBP]
+	MOV	RSI,U64 SF_ARG2[RBP]
+	MOV	RCX,U64 SF_ARG3[RBP]
+	REP_MOVSB
+	MOV	RAX,RDI
+	POP	RDI
+	POP	RSI
+	LEAVE
+	RET1	24
 }
 _extern _HI_CALL I64 HiCall(U8 *s);
+_extern _HI_MEMCPY U8 *HiMemCpy(U8 *dst,U8 *src,I64 cnt);
 
 #help_index "Boot"
 public U0 SoftBoot(U8 *filename) //No hardware rst
@@ -48,13 +64,13 @@ public U0 SoftBoot(U8 *filename) //No hardware rst
   if (!(hi_image2=FileRead(filename,&size))) return;
   shutdown=MAlloc(SYS_RESTART_KERNEL_END-SYS_RESTART_KERNEL,Fs->code_heap);
   hi_image=MAlloc(size,Fs->code_heap);
-  MemCpy(hi_image,hi_image2,size);
+  HiMemCpy(hi_image,hi_image2,size);
   Free(hi_image2);
 
   hi_image->boot_base=lo_image(U8 *)+sizeof(CBinFile);
   hi_image->boot_patch_table_base=lo_image(U8 *)+hi_image->h.loader_patch_table_offset;
-  MemCpy(&hi_image->sys_mem_E801,&lo_image->sys_mem_E801,2*2);
-  MemCpy(&hi_image->sys_mem_E820,&lo_image->sys_mem_E820,NUM_MEM_E820_ENTRIES*MEM_E820_ENTRY_SIZE);
+  HiMemCpy(&hi_image->sys_mem_E801,&lo_image->sys_mem_E801,2*2);
+  HiMemCpy(&hi_image->sys_mem_E820,&lo_image->sys_mem_E820,NUM_MEM_E820_ENTRIES*MEM_E820_ENTRY_SIZE);
   hi_image->sys_gr_mode=lo_image->sys_gr_mode;
   hi_image->sys_pci_busses=lo_image->sys_pci_busses;
   hi_image->boot_code=BOOT_CODE_RAM;
@@ -63,9 +79,9 @@ public U0 SoftBoot(U8 *filename) //No hardware rst
   if (mp_cnt>1)
     MPHalt;
 
-  MemCpy(shutdown,SYS_RESTART_KERNEL,SYS_RESTART_KERNEL_END-SYS_RESTART_KERNEL);
-  MemCpy(&hi_image->sys_gdttab,&lo_image->sys_gdttab,GDT_SIZE);
-  MemCpy(lo_image,hi_image,size);
+  HiMemCpy(shutdown,SYS_RESTART_KERNEL,SYS_RESTART_KERNEL_END-SYS_RESTART_KERNEL);
+  HiMemCpy(&hi_image->sys_gdttab,&lo_image->sys_gdttab,GDT_SIZE);
+  HiMemCpy(lo_image,hi_image,size);
   HiCall(shutdown);
 }
 

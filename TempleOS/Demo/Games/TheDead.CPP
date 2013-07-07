@@ -114,7 +114,7 @@ U0 TheDead()
       );
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   WordStat;
   DocCursor;
   DocClear;

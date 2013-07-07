@@ -37,13 +37,12 @@ U8 *runner2_imgs[NUM_RUNNER2_IMGS]={__BIN_8,__BIN_9,__BIN_8,__BIN_10};
 F64 t0,hit_t0;
 F64 ball_x,ball_y;
 
-U0 DrawIt(CTask *task,CDC *dc)
+U0 DrawIt(CTask *,CDC *dc)
 {
   F64 tt=tT-t0;
   I64 i=(NUM_BATTER_IMGS-1)*tt/BATTER_T;
   U8 *inter;
 
-  task->text_attr=GREEN<<4;
   dc->color=WHITE;
   dc->pen_width=3;
   GrLine3(dc,BASE_X,BASE_Y,0,BASE_X-200,BASE_Y-200,0);
@@ -123,13 +122,14 @@ U0 Init()
 U0 TeeBall()
 {
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=GREEN<<4+WHITE;
   WinMax;
   WinBorder;
   Preempt(OFF);
 
   Fs->win_inhibit|=WIF_DBL_CLICK;
   WordStat;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
 
   MenuPush(
   "File {"

@@ -6,7 +6,7 @@ U0 TSStart()
 U0 TS()
 {
   progress4=ts_num++;
-  progress4_max=147;
+  progress4_max=142;
   *progress4_desc=0;
 }
 U0 TSEnd()
@@ -213,21 +213,6 @@ U0 DoKeyBitMap()
   LBtr(key_down_bitmap,i_sc);
 }
 
-U0 DoGolf()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/Golf\";\n");
-  Sleep(300);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  Sleep(300);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  Sleep(300);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  Sleep(300);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
-  XTalk(task,"Exit;\n");
-}
-
 U0 DoMountain()
 {
   CTask *task=SpawnUser;
@@ -258,15 +243,6 @@ U0 DoDigits()
   SendMsg(task,MSG_KEY_DOWN_UP,'1',0);
   Sleep(250);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
-  XTalk(task,"Exit;\n");
-}
-
-U0 DoCPUPlot()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/CPUPlot\";\n");
-  Sleep(1000);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalk(task,"Exit;\n");
 }
 
@@ -402,11 +378,11 @@ U0 DoTheDead()
   XTalk(task,"Exit;\n");
 }
 
-U0 DoBomber()
+U0 DoBulgeBomber()
 {
   I64 i;
   CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Games/Bomber\";\n");
+  XTalkWait(task,"#include \"::/TempleOS/Demo/Games/BulgeBomber\";\n");
   for (i=0;i<7;i++) {
     SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_UP);
     SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_RIGHT);
@@ -455,10 +431,10 @@ U0 DoVaroom()
   XTalk(task,"Exit;\n");
 }
 
-U0 DoNavy()
+U0 DoFlatTops()
 {
   CTask *task=SpawnUser;
-  XTalk(task,"#include \"::/TempleOS/Demo/Games/Navy\";\n");
+  XTalk(task,"#include \"::/TempleOS/Demo/Games/FlatTops\";\n");
   while (!TaskValidate(task->popup_task))
     Yield;
   TaskWait(task->popup_task);
@@ -594,6 +570,9 @@ U0 DoCtrlR1()
   while (!TaskValidate(task->popup_task))
     Yield;
   TaskWait(task->popup_task);
+  task_num=task->popup_task->task_num;
+  for (i=0;i<1;i++)
+    SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
   PostMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   while (TaskValidate(task->popup_task))
     Yield;
@@ -604,8 +583,10 @@ U0 DoCtrlR1()
 //Color
   while (!TaskValidate(task->popup_task))
     Yield;
-  task_num=task->popup_task->task_num;
   TaskWait(task->popup_task);
+  task_num=task->popup_task->task_num;
+  for (i=0;i<1;i++)
+    SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
   PostMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   while (!TaskValidate(task->popup_task)||task->popup_task->task_num==task_num)
     Yield;
@@ -619,9 +600,9 @@ U0 DoCtrlR1()
   while (!TaskValidate(task->popup_task)||task->popup_task->task_num==task_num)
     Yield;
   TaskWait(task->popup_task);
-  SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
-  SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
   task_num=task->popup_task->task_num;
+  for (i=0;i<3;i++)
+    SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
   PostMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   while (!TaskValidate(task->popup_task)||task->popup_task->task_num==task_num)
     Yield;
@@ -635,7 +616,8 @@ U0 DoCtrlR1()
   while (!TaskValidate(task->popup_task)||task->popup_task->task_num==task_num)
     Yield;
   TaskWait(task->popup_task);
-  for (i=0;i<6;i++)
+  task_num=task->popup_task->task_num;
+  for (i=0;i<7;i++)
     SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
   PostMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   while (TaskValidate(task->popup_task))
@@ -654,8 +636,10 @@ U0 DoCtrlR1()
 //Color
   while (!TaskValidate(task->popup_task))
     Yield;
-  task_num=task->popup_task->task_num;
   TaskWait(task->popup_task);
+  task_num=task->popup_task->task_num;
+  for (i=0;i<1;i++)
+    SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
   PostMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   while (!TaskValidate(task->popup_task)||task->popup_task->task_num==task_num)
     Yield;
@@ -669,7 +653,8 @@ U0 DoCtrlR1()
   while (!TaskValidate(task->popup_task)||task->popup_task->task_num==task_num)
     Yield;
   TaskWait(task->popup_task);
-  for (i=0;i<9;i++)
+  task_num=task->popup_task->task_num;
+  for (i=0;i<10;i++)
     SendMsg(task->popup_task,MSG_KEY_DOWN_UP,0,SC_CURSOR_DOWN);
   PostMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   while (TaskValidate(task->popup_task))
@@ -696,21 +681,6 @@ U0 DoTicTacToe()
 {
 }
 */
-
-U0 DoSpaceShip()
-{
-  CTask *task=SpawnUser;
-  SetIP(300,300);
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Games/SpaceShip\";\n");
-  Sleep(150);
-  AFSetIP(3,125,125);
-  SetIP(,,,TRUE);
-  Sleep(50);
-  SetIP(,,,FALSE);
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
-  XTalk(task,"Exit;\n");
-}
 
 U0 DoBox()
 {
@@ -770,17 +740,6 @@ U0 DoRotateTank()
   XTalk(task,"Exit;\n");
 }
 
-/*
-U0 DoPic2ASCII()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/Pic2ASCII\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-*/
-
 U0 DoScreenCodes()
 {
   CTask *task=SpawnUser;
@@ -795,15 +754,6 @@ U0 DoExtendedChars()
   CTask *task=SpawnUser;
   XTalkWait(task,"#include \"::/TempleOS/Demo/ExtendedChars\";\n");
   Sleep(1000);
-  XTalk(task,"Exit;\n");
-}
-
-U0 DoNeatTrick()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/NeatTrick\";\n");
-  Sleep(1500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalk(task,"Exit;\n");
 }
 
@@ -956,15 +906,6 @@ U0 DoLock()
   XTalk(task,"Exit;\n");
 }
 
-U0 DoLayersSpawn()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/MultiCore/LayersSpawn\";\n");
-  Sleep(1500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
 U0 DoClouds()
 {
   CTask *task=SpawnUser;
@@ -1003,11 +944,11 @@ U0 Do()
 }
 */
 
-U0 DoBirdLand()
+U0 DoBugFlapper()
 {
   I64 i;
   CTask *task=SpawnUser;
-  XTalk(task,"#include \"::/TempleOS/Demo/Games/BirdLand\";\n");
+  XTalk(task,"#include \"::/TempleOS/Demo/Games/BugBird\";\n");
   while (!TaskValidate(task->popup_task))
     Yield;
   TaskWait(task->popup_task);
@@ -1023,10 +964,10 @@ U0 DoBirdLand()
   XTalk(task,"Exit;\n");
 }
 
-U0 DoWarGame()
+U0 DoBattleLines()
 {
   CTask *task=SpawnUser;
-  XTalk(task,"#include \"::/TempleOS/Demo/Games/WarGame\";\n");
+  XTalk(task,"#include \"::/TempleOS/Demo/Games/BattleLines\";\n");
   while (!TaskValidate(task->popup_task))
     Yield;
   TaskWait(task->popup_task);
@@ -1091,7 +1032,7 @@ U0 DoTimeOut()
 {
   I64 i;
   CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Apps/Timeout/Run\";\n");
+  XTalkWait(task,"#include \"::/TempleOS/Apps/TimeOut/Run\";\n");
   Sleep(200);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   for (i=0;i<3;i++) {
@@ -1137,14 +1078,6 @@ U0 DoPrimes()
   CTask *task=SpawnUser;
   XTalkWait(task,"#include \"::/TempleOS/Demo/MultiCore/Primes\";\n");
   Sleep(2500);
-  XTalk(task,"Exit;\n");
-}
-
-U0 DoSort()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/MultiCore/Sort\";\n");
-  Sleep(1000);
   XTalk(task,"Exit;\n");
 }
 
@@ -1197,11 +1130,14 @@ U0 DoStrut()
 {
   CTask *task=SpawnUser;
   XTalkWait(task,"#include \"::/TempleOS/Apps/Strut/Run\";\n");
-  WinMgrSync;
+
   SetIP(200,200,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
+  WinMgrSync(2);
+
   SetIP(GR_WIDTH-200,200,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
+
   SetIP(GR_WIDTH/2,400,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
 
@@ -1368,25 +1304,24 @@ U0 DoPick3D()
   XTalk(task,"Exit;\n");
 }
 
+U0 DoTransform()
+{
+  CTask *task=SpawnUser;
+  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/Transform\";\n");
+  Sleep(750);
+  SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
+  XTalk(task,"Exit;\n");
+}
+
 /*
 U0 Do()
 {
   CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Graphics/Transform\";\n");
+  XTalkWait(task,"#include \"::/TempleOS/Apps/ToTheFront\";\n");
   Sleep(500);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalk(task,"Exit;\n");
 }
-
-U0 Do()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Apps/Tanks\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
 */
 
 U0 DoGrModels()
@@ -1551,7 +1486,7 @@ U0 DoFPS()
 {
   I64 i;
   CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Demo/Games/FPS\";\n");
+  XTalkWait(task,"#include \"::/TempleOS/Demo/Games/CastleFrankenstein\";\n");
   for (i=0;i<15;i++) {
     SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_UP);
     Sleep(50);
@@ -1594,15 +1529,6 @@ U0 DoEagleDive()
 }
 
 /*
-U0 Do()
-{
-  CTask *task=SpawnUser;
-  XTalkWait(task,"#include \"::/TempleOS/Apps/Span\";\n");
-  Sleep(500);
-  SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  XTalk(task,"Exit;\n");
-}
-
 U0 Do()
 {
   CTask *task=SpawnUser;
@@ -2096,19 +2022,18 @@ U0 DoReps()
 U0 OSTestSuite()
 {
   TSStart;
-  TS; DoSpaceShip;
   TS; DoBlackDiamond;
   TS; if (IsDrvWritable(':')) DoEagleDive;
-  TS; DoNavy;
+  TS; DoFlatTops;
   TS; DoDunGen;
   TS; DoFPS;
   TS; DoZoneOut;
   TS; DoVaroom;
   TS; DoRocket;
   TS; DoRocketScience;
-  TS; DoWarGame;
+  TS; DoBattleLines;
   TS; DoBigGuns;
-  TS; DoBirdLand;
+  TS; DoBugFlapper;
   TS; DoTimeOut;
   TS; if (!sys_heap_init_flag) /* FloodFill */ DoSpan;
   TS; DoStrut;
@@ -2117,7 +2042,7 @@ U0 OSTestSuite()
   TS; DoAfterEgypt;
   TS; DoXCaliber;
   TS; DoWenceslas;
-  TS; DoBomber;
+  TS; DoBulgeBomber;
   TS; DoTheDead;
   TS; DoChessNet;
   TS; DoMPAdd;
@@ -2128,9 +2053,7 @@ U0 OSTestSuite()
   TS; if (mp_cnt>1) DoLoadTest;
   TS; if (mp_cnt>1) DoMPPrintF;
   TS; if (mp_cnt>1) DoLock;
-  TS; if (mp_cnt>1) DoLayersSpawn;
   TS; if (mp_cnt>1) DoInterrupts;
-  TS; if (mp_cnt>1) DoSort;
   TS; DoSpritePlot;
   TS; DoSpritePlot3D;
   TS; DoSpritePut;
@@ -2150,10 +2073,8 @@ U0 OSTestSuite()
   TS; DoMassSpring;
   TS; DoSpeedLine;
   TS; DoKeyBitMap;
-  TS; DoGolf;
   TS; DoMountain;
   TS; DoCoach;
-  TS; DoCPUPlot;
   TS; DoDither;
   TS; DoBSpline;
   TS; DoGrModels;
@@ -2170,6 +2091,7 @@ U0 OSTestSuite()
   TS; DoBox;
   TS; DoSymmetry;
   TS; DoShadow;
+  TS; DoTransform;
   TS; DoPredatorPrey;
   TS; DoPoleZeros;
   TS; DoDateTime;
@@ -2192,7 +2114,6 @@ U0 OSTestSuite()
   TS; DoExceptions;
   TS; DoScreenCodes;
   TS; DoExtendedChars;
-  TS; DoNeatTrick;
   TS; DoCharGraphics;
   TS; DoMagicPairs;
   TS; DoHanoi;

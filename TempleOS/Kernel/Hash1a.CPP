@@ -299,12 +299,12 @@ _HASH_ADD::
 	MOV	U64 CHash.next[RCX],RBX
 	MOV	U64 [RAX],RCX
 
-//Queins
+//QueIns RCX
 	MOV	RBX,U64 CHashTable.last_added[RDI]
+	MOV	U64 CHash.next_added[RCX],RDI
 	MOV	U64 CHash.last_added[RCX],RBX
 	MOV	U64 CHash.next_added[RBX],RCX
 	MOV	U64 CHashTable.last_added[RDI],RCX
-	MOV	U64 CHash.next_added[RCX],RDI
 
 	POPFD
 	POP	RDI
@@ -324,12 +324,12 @@ _HASH_ADD_AFTER::
 	MOV	U64 CHash.next[RCX],RBX
 	MOV	U64 [RAX],RCX
 
-//QueIns
+//QueIns RCX
 	MOV	RBX,U64 CHashTable.last_added[RDI]
+	MOV	U64 CHash.next_added[RCX],RDI
 	MOV	U64 CHash.last_added[RCX],RBX
 	MOV	U64 CHash.next_added[RBX],RCX
 	MOV	U64 CHashTable.last_added[RDI],RCX
-	MOV	U64 CHash.next_added[RCX],RDI
 
 	POPFD
 	POP	RDI
@@ -357,7 +357,7 @@ _HASH_REPLACE::
 	MOV	RCX,U64 SF_ARG1[RBP]
 	JZ	@@05	//Z set by find
 
-//QueRem/QueIns
+//QueRem RAX,QueIns RCX
 	MOV	RBX,U64 CHash.next_added[RAX]
 	MOV	U64 CHash.next_added[RCX],RBX
 	MOV	U64 CHash.last_added[RBX],RCX
@@ -368,12 +368,12 @@ _HASH_REPLACE::
 	MOV	RBX,U64 CHash.next[RAX]
 	JMP	@@10
 
-//QueIns
+//QueIns RCX
 @@05:	MOV	RBX,U64 CHashTable.last_added[RDI]
+	MOV	U64 CHash.next_added[RCX],RDI
 	MOV	U64 CHash.last_added[RCX],RBX
 	MOV	U64 CHash.next_added[RBX],RCX
 	MOV	U64 CHashTable.last_added[RDI],RCX
-	MOV	U64 CHash.next_added[RCX],RDI
 
 	MOV	RBX,RAX
 
@@ -418,7 +418,7 @@ _HASH_REM_DEL::
 	MOV	RBX,U64 CHash.next[RAX]
 	MOV	U64 [RDX],RBX
 
-//QueRem
+//QueRem RAX
 	MOV	RBX,U64 CHash.next_added[RAX]
 	MOV	RDX,U64 CHash.last_added[RAX]
 	MOV	U64 CHash.next_added[RDX],RBX

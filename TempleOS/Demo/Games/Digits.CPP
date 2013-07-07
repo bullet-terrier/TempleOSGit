@@ -24,6 +24,8 @@ U0 Digits()
   I64 num,ch,i;
   U8 answer[1024];
 
+  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=DKGRAY<<4+WHITE;
   DocClear;
   //Set default background and foreground
   "$WW,1$$BD,DKGRAY$$FD,WHITE$"
@@ -71,7 +73,8 @@ restart:
     }
   }
 dg_done:
-  "$CL$\n";
+  DocClear;
+  SettingsPop;
 }
 
 Digits;

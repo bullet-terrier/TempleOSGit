@@ -156,7 +156,7 @@ U0 RedSeaFSFmt(U8 drv_let,Bool quick=TRUE)
     d_native->cluster=br->root_cluster;
     d_native->size=p->spc<<BLK_SIZE_BITS;
     d_native->expanded_size=d_native->size;
-    d_native->datetime=GetCurTimeCDate;
+    d_native->datetime=GetCurTimeDate;
  
     d_native(U8 *)+=CDIR_SIZE;
  
@@ -164,7 +164,7 @@ U0 RedSeaFSFmt(U8 drv_let,Bool quick=TRUE)
     d_native->name[1]='.';
     d_native->attr=_ATTR_DIR|_ATTR_CONTIGUOUS;
     d_native->cluster=br->root_cluster;
-    d_native->datetime=GetCurTimeCDate;
+    d_native->datetime=GetCurTimeDate;
  
     WBlks(p,root_dir,p->data+br->root_cluster*p->spc,p->spc);
     RedSeaFSPrtInit(p);
@@ -572,7 +572,7 @@ I64 RedSeaFSFilesDel(CPrt *p,U8 *cur_dir,U8 *files_find_mask,I64 fuf_flags,
 }
 
 I64 RedSeaFSFileWrite(CPrt *p,U8 *cur_dir,U8 *name,U8 *buf,I64 size,
-		CDate spdt,I64 attr,Bool raw,
+		CDate cdt,I64 attr,Bool raw,
 		CArcCompress **_ac2)
 {
   CDirEntry de;
@@ -582,8 +582,8 @@ I64 RedSeaFSFileWrite(CPrt *p,U8 *cur_dir,U8 *name,U8 *buf,I64 size,
   MemSet(&de,0,sizeof(CDirEntry));
   if (_ac2) *_ac2=NULL;
   if (size<0) size=0;
-  if (!spdt)
-    spdt=GetCurTimeCDate;
+  if (!cdt)
+    cdt=GetCurTimeDate;
 
   if (p->type!=PT_REDSEA)
     PutDefineErr("ST_NOT_REDSEA");
@@ -608,7 +608,7 @@ I64 RedSeaFSFileWrite(CPrt *p,U8 *cur_dir,U8 *name,U8 *buf,I64 size,
       c=INVALID_CLUSTER;
     de.cluster=c;
     de.attr=attr;
-    de.datetime=spdt;
+    de.datetime=cdt;
     if (blk_cnt)
       WClustersBlks(p,buf,c,blk_cnt);
     RedSeaFSDirNew(p,cur_dir,&de,TRUE);
@@ -695,7 +695,7 @@ Bool RedSeaFSMkDir(CPrt *p,U8 *cur_dir,U8 *name)
     d_native->cluster=c;
     d_native->size=size;
     d_native->expanded_size=size;
-    d_native->datetime=GetCurTimeCDate;
+    d_native->datetime=GetCurTimeDate;
     d_native(U8 *)+=CDIR_SIZE;
  
     d_native->attr=_ATTR_DIR|_ATTR_CONTIGUOUS;
@@ -705,7 +705,7 @@ Bool RedSeaFSMkDir(CPrt *p,U8 *cur_dir,U8 *name)
     d_native->cluster=cur_dir_cluster;
     d_native->size=0;
     d_native->expanded_size=0;
-    d_native->datetime=GetCurTimeCDate;
+    d_native->datetime=GetCurTimeDate;
     WClusters(p,buf,c,1);
     Free(buf);
     if (unlock_break)

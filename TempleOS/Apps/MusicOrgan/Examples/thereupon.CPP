@@ -30,6 +30,7 @@ U0 Song()
   I64 i;
   CTask *task;
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=LTCYAN<<4+BLACK;
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
   MusicSettingsRst;
@@ -52,7 +53,7 @@ U0 Song()
     TaskWait(task);
     SetWinHorz(Fs->win_left,Fs->win_right,task);
     SetWinVert(Fs->win_bottom+3,Fs->win_bottom+15,task);
-    "$BD+H,LTCYAN$$FD+H,BLACK$";
+    "$BG+H,LTCYAN$$FG+H,BLACK$";
     while (!ScanKey) {
       Play("2qG3eCB2hGqG3eCB2qG3A",
       "Umm... \0God?\n\0 \0 \0Let \0Your \0 \0 \0 \0");

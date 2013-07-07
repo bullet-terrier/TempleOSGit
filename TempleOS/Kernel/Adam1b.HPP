@@ -58,13 +58,13 @@ public _intern IC_BT Bool Bt(U8 *bit_field,I64 bit);
 public _intern IC_BTS Bool Bts(U8 *bit_field,I64 bit);
 public _intern IC_BTR Bool Btr(U8 *bit_field,I64 bit);
 public _intern IC_BTC Bool Btc(U8 *bit_field,I64 bit);
-public _intern IC_BEQU Bool BEqu(U8 *bit_field,I64 bit,Bool val);
+public _extern _BEQU Bool BEqu(U8 *bit_field,I64 bit,Bool val);
 
 //Locked for (for multitple CPU's)
 public _intern IC_LBTS Bool LBts(U8 *bit_field,I64 bit);
 public _intern IC_LBTR Bool LBtr(U8 *bit_field,I64 bit);
 public _intern IC_LBTC Bool LBtc(U8 *bit_field,I64 bit);
-public _intern IC_LBEQU Bool LBEqu(U8 *bit_field,I64 bit,Bool val);
+public _extern _LBEQU Bool LBEqu(U8 *bit_field,I64 bit,Bool val);
 
 //Scan I64 sized item fwd for first set bit, starting at lowest.
 //Return -1 if not found.
@@ -108,14 +108,14 @@ public _extern _REP_OUT_U16 U0 RepOutU16(U8 *buf,I64 cnt,I64 port);
 public _extern _REP_OUT_U32 U0 RepOutU32(U8 *buf,I64 cnt,I64 port);
 
 #help_index "Memory"
-
 //Only goes fwd.
-public _intern IC_MEMCPY    U0	MemCpy(U8 *dst,U8 *src,I64 cnt);
-public _intern IC_MEMSET    U8 *MemSet(U8 *dst,I64 val,I64 cnt);
-public _intern IC_MEMSET    U8 *MemSetU8(U8 *dst,I64 val,I64 U8cnt);
-public _intern IC_MEMSET_U16 U16 *MemSetU16(U8 *dst,I64 val,I64 U16cnt);
-public _intern IC_MEMSET_U32 U32 *MemSetU32(U8 *dst,I64 val,I64 U32cnt);
-public _intern IC_MEMSET_U64 U64 *MemSetU64(U8 *dst,I64 val,I64 U64cnt);
+public _extern _MEMCPY U8 *MemCpy(U8 *dst,U8 *src,I64 cnt);
+public _extern _MEMCMP I64 MemCmp(U8 *ptr1,U8 *ptr2,I64 cnt);
+public _extern _MEMSET U8 *MemSet(U8 *dst,I64 val,I64 cnt);
+public _extern _MEMSET U8 *MemSetU8(U8 *dst,I64 val,I64 U8cnt);
+public _extern _MEMSET_U16 U16 *MemSetU16(U16 *dst,I64 val,I64 U16cnt);
+public _extern _MEMSET_U32 U32 *MemSetU32(U32 *dst,I64 val,I64 U32cnt);
+public _extern _MEMSET_U64 U64 *MemSetU64(U64 *dst,I64 val,I64 U64cnt);
 public _extern SYS_CODE_BP CBlkPool *sys_code_bp;
 public _extern SYS_DATA_BP CBlkPool *sys_data_bp;
 public _extern SYS_HEAP_BASE U32 sys_heap_base;
@@ -211,8 +211,8 @@ public _intern IC_TO_I64 I64 ToI64(F64 d);  //This truncates
 public _intern IC_TO_F64 F64 ToF64(I64 i);
 public _intern IC_TO_BOOL Bool ToBool(I64 i);
 public _intern IC_ABS_I64 I64 AbsI64(I64 i);
-public _intern IC_LIMIT_I64 I64 LimitI64(I64 p,I64 lo,I64 hi);
-public _intern IC_LIMIT_U64 U64 LimitU64(U64 p,U64 lo,U64 hi);
+public _extern _LIMIT_I64 I64 LimitI64(I64 p,I64 lo,I64 hi);
+public _extern _LIMIT_U64 U64 LimitU64(U64 p,U64 lo,U64 hi);
 public _intern IC_SIGN_I64 I64 SignI64(I64 i);
 public _intern IC_SQR_I64  I64 SqrI64(I64 i);
 public _intern IC_SQR_U64  U64 SqrU64(U64 i);

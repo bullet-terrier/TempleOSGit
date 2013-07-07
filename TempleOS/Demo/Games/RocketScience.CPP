@@ -73,10 +73,10 @@ U0 DrawIt(CTask *task,CDC *dc)
 
     for (i=0;i<10;i++) {
       switch (RandU16&3) {
-	case 0: dc2->color=ROP_EQU+WHITE; break;
-	case 1: dc2->color=ROP_EQU+LTGRAY; break;
-	case 2: dc2->color=ROP_EQU+DKGRAY; break;
-	case 3: dc2->color=ROP_EQU+BLACK; break;
+	case 0: dc2->color=WHITE; break;
+	case 1: dc2->color=LTGRAY; break;
+	case 2: dc2->color=DKGRAY; break;
+	case 3: dc2->color=BLACK; break;
       }
       GrPlot(dc2,cx+(x+RandU16%12-6),cy-(y+RandU16%12-6));
     }
@@ -232,6 +232,7 @@ U0 TaskEndCB()
 U0 RocketScience()
 {
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=YELLOW<<4+BLUE;
   DocCursor;
   WordStat;
 
@@ -253,9 +254,8 @@ U0 RocketScience()
   dc2=DCAlias;
   Fs->task_end_cb=&TaskEndCB;
 
-  "$CL$$BG,LTCYAN$";
-  NewLine(Fs->win_height-4);
-  "$BG,YELLOW$\n";
+  DocClear;
+  "$BG,LTCYAN$"; NewLine(Fs->win_height-4);
  
   ode=ODENew(STATE_NUM,1e-6,ODEF_HAS_MASSES);
   ode->derivative=&MyDerivative;
@@ -295,7 +295,7 @@ rs_done:
     CatchAll;
   QueRem(ode);
   ODEDel(ode);
-  "$CL$$BG$\n";
+  DocClear;
   SettingsPop;
   DCFill;
   DCDel(dc2);

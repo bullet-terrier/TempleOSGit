@@ -163,6 +163,7 @@ Use [C:/TempleOS/Kernel/Dsk/DskAddDev.CPP.Z,184] Mount() to mount disk
 [Compression,1] Compression
 [Ctrls,1] Ctrls
 [Data Types,1] Data Types
+[Date,1] Date
 [Debugging,1] Debugging
 [Device,1] Device
 [Doc,1] Doc
@@ -173,7 +174,7 @@ Use [C:/TempleOS/Kernel/Dsk/DskAddDev.CPP.Z,184] Mount() to mount disk
 [Hash,1] Hash
 [Help System,1] Help System
 [Info,1] Info
-[Input Pointer,1] Input Pointer
+[Input Pointer,1] Input Pointer (Mouse)
 [Install,1] Install
 [I/O,1] I/O
 [C:/TempleOS/Doc/TSZ.TXT.Z,1] TSZ
@@ -184,7 +185,7 @@ Use [C:/TempleOS/Kernel/Dsk/DskAddDev.CPP.Z,184] Mount() to mount disk
 [Misc,1] Misc
 [MultiCore,1] MultiCore
 [Hash/Named Frame,1] Named Frames
-[CMathODE,1] CMathODE
+[CMathODE,1] MathODE
 [C:/TempleOS/Compiler/OpCodes.TXT.Z,1] OpCodes
 [C:/TempleOS/Doc/HolyC.TXT.Z,1] Operator Precedences
 [C:/TempleOS/Doc/HolyC.TXT.Z,1] PrintF Extended Codes

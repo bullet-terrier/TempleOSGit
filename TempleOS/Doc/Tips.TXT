@@ -53,10 +53,6 @@ new machine does not have PS/2 ports.
 in a start-up file.  It's units are [C:/TempleOS/Kernel/Adam1a.HPP.Z,613]
 CDATE_FREQ.  See [C:/TempleOS/Accts/TAD/Adam3aLocalize.CPP,1] local time.
 
-* Use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1744] DocPutAttr() in
-[C:/TempleOS/Accts/TAD/Adam3fSys.CPP.Z,4] UserStartUp() to set terminal
-window colors.
-
 * See Key Map
 `KeyMap;View;
 `
@@ -291,9 +287,9 @@ it
 will restore defaults.  It should plain text, if you want to edit it.  Be 
 careful of tree indentations.
 
-* Study [C:/TempleOS/Adam/MemRep.CPP.Z,1] and
-[C:/TempleOS/Adam/WallPaper.CPP.Z,29] WallPaper() to learn how the system 
-resources are put together.
+* Study [C:/TempleOS/Adam/Utils/MemRep.CPP,1] and
+[C:/TempleOS/Adam/WallPaper.CPP.Z,29] WallPaper() to learn how the 
+system resources are put together.
 
 * The editor's select-text mechanism allows for disjoint portions of selected 
 text.  This is a feature, not a bug -- you can cut-and-paste disjoint text.

@@ -501,8 +501,9 @@ pc_done:
   DocRst(doc,TRUE);
   doc->flags|=DOCF_MIN_SIZE;
   DocCursor;
-  DocPutAttr(LTBLUE<<4+WHITE);
-  DocBorderAttr(LTBLUE<<4+BLACK);
+  Fs->text_attr=LTBLUE<<4+WHITE;
+  Fs->border_src =BDS_CONST;
+  Fs->border_attr=LTBLUE<<4+BLACK;
   DocPrintF(doc,"Word:%s\n",ws_cur_word);
   for (i=0;i<ws_num_fillins;i++) {
     st=ws_sorted_words[ws_fillin_matches[i]]->str;

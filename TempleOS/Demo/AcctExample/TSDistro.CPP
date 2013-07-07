@@ -29,28 +29,9 @@ U8 TSPmtDrv()
   return result;
 }
 
-U0 RAMDrvPrep(U8 src_drv_let)
-{
-  if (ts_has_ram_drv) {
-    DelTree(TS_LOW_RAM_DRV_DIR);
-    MkDir(TS_LOW_RAM_DRV_DIR);
-    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS");
-    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS/Adam");
-    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
-    MkDir(TS_LOW_RAM_DRV_DIR "/TempleOS/Kernel");
-    Drv(src_drv_let);
-    Copy("/TempleOS/Compiler/Compiler.BIN.Z",TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
-    Copy("/TempleOS/Compiler/OpCodes.TXT.Z", TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
-    Copy("/TempleOS/Compiler/*.HPP*",TS_LOW_RAM_DRV_DIR "/TempleOS/Compiler");
-    Copy("/TempleOS/Kernel/*.HPP*",TS_LOW_RAM_DRV_DIR "/TempleOS/Kernel");
-    Copy("/TempleOS/Accts/TS/DbgAdam1.CPP.Z",TS_LOW_RAM_DRV_DIR "/TempleOS/Kernel/Adam1.CPP.Z");
-  }
-}
-
 U0 TSMakeOSInstallPrtBootLoader(U8 drv_let)
 {
   drv_let=ToUpper(drv_let);
-  RAMDrvPrep(drv_let);
   Auto(TS_CFG);
   MakeOSInstallPrtBootLoader(drv_let);
   if (StrOcc(TS_MASTER_BOOT_DRVS,drv_let))
@@ -238,7 +219,7 @@ U0 DistroPrep()
   Cd("/TempleOS");
   FilesCursorTop;
 
-  DelTree("/TempleOS/Demo/*.BI?");
+  DelTree("/TempleOS/Demo/*.BI*");
 
   Cd("/TempleOS");
   S2T(FILENAME_MASK_SRC,"+r");
@@ -286,17 +267,22 @@ I64 MakeLineCntFile()
   Drv(TS_MAIN_DRV_LET);
   DistroPrep;
 
+  Cd(TS_MAIN_DRV ":/TempleOS");
+  CopyTree(TS_MAIN_DRV ":/TempleOS/Accts/TS",TS_MAIN_DRV ":/Temp/TS");
+  DelTree(TS_MAIN_DRV ":/TempleOS/Accts/TS");
+
   DocMax;
   DocClear;
-  Cd(TS_MAIN_DRV ":/TempleOS");
   result=LineCntRep;
   if (doc=DocPut) {
     st=StrNew(doc->filename.name);
-    StrCpy(doc->filename.name,TS_MAIN_DRV ":/TempleOS/Accts/TS/Wb2/LineCnt.TXT.Z");
+    StrCpy(doc->filename.name,TS_MAIN_DRV ":/Temp/TS/Wb2/LineCnt.TXT.Z");
     DocWrite(doc);
     StrCpy(doc->filename.name,st);
     Free(st);
   }
+  CopyTree(TS_MAIN_DRV ":/Temp/TS",TS_MAIN_DRV ":/TempleOS/Accts/TS");
+  DelTree(TS_MAIN_DRV ":/Temp/TS");
   DocClear;
 
   doc=DocRead(TS_MAIN_DRV ":/TempleOS/Adam/DocDefines.CPP.Z");
@@ -321,7 +307,6 @@ U0 TSDistroPrep()
 {
   Drv(TS_MAIN_DRV_LET);
   DistroPrep;
-  RAMDrvPrep(TS_MAIN_DRV_LET);
   Auto(TS_CDROM_CFG);
   MakeOSInstallPrtBootLoader(TS_MAIN_DRV_LET,TS_CDROM_DRV_LET);
   DelTree(TS_DISTRO_DIR);
@@ -350,16 +335,16 @@ U0 StdDistroPrep()
   Del(TS_DISTRO_DIR "/0000Boot/BootMHD2.BIN.C");
 }
 
-U0 MakeTSDistro()
+U0 MakeStdDistro()
 {
-  TSDistroPrep;
+  StdDistroPrep;
   CDFileCreate(TS_ISO_NAME,TS_DISTRO_DIR "/*",,TS_DISTRO_DIR BOOT_DIR_KERNEL_BIN_C);
   Drv(TS_MAIN_DRV_LET);
 }
 
-U0 MakeStdDistro()
+U0 MakeTSDistro()
 {
-  StdDistroPrep;
+  TSDistroPrep;
   CDFileCreate(TS_ISO_NAME,TS_DISTRO_DIR "/*",,TS_DISTRO_DIR BOOT_DIR_KERNEL_BIN_C);
   Drv(TS_MAIN_DRV_LET);
 }
@@ -389,6 +374,9 @@ U0 MakeWebSite()
   if (ts_has_bak_drv) {
     DocClear;
     Cd(TS_BAK_DRV ":/Wb");
+    DelTree(TS_BAK_DRV ":/Wb/Accts/TS/TAD");
+    Del(TS_BAK_DRV ":/Wb/Accts/TS/*");
+    Touch(TS_BAK_DRV ":/Wb/Accts/TS/Wb2/index.TXT.Z","",,GetCurTimeDate);
     tempm=tempm2=FilesFind(FILENAME_MASK_TXT,FUF_RECURSE|FUF_FLATTEN_TREE|FUF_JUST_FILES);
     while (tempm) {
       TSWebFile(tempm->full_name);
@@ -436,6 +424,19 @@ U0 TSUncompress()
   }
 }
 
+U0 UpdateISODocDefines()
+{
+  I64 size;
+  size=10*FileSize(TS_BAK_DRV ":/Wb/TempleOSCD.ISO")/1024/1024;
+  DefinePrintF("DD_TEMPLEOSCD_SIZE",
+    "Download  - Std. Distro (%0.1f MB)",0.1*size);
+  size=10*FileSize(TS_BAK_DRV ":/Wb/TempleOSTS.ISO")/1024/1024;
+  DefinePrintF("DD_TEMPLEOSTS_SIZE",
+    "Download  - T.S. Company Internal Distro (%0.1f MB)",0.1*size);
+}
+
+UpdateISODocDefines;
+
 U0 MakeDistrosAndBackUp()
 {
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
@@ -451,12 +452,17 @@ U0 MakeDistrosAndBackUp()
     DelTree (TS_BAK_DRV  ":/Wb"); progress4++;
     CopyTree(TS_MAIN_DRV ":/TempleOS",TS_BAK_DRV ":/Wb"); progress4++;
     DocClear;
+
     MakeTSDistro; progress4++;
     DocClear;
     Copy(TS_ISO_NAME,TS_BAK_DRV ":/Wb/TempleOSTS.ISO"); progress4++;
+
     MakeStdDistro; progress4++;
     DocClear;
     Copy(TS_ISO_NAME,TS_BAK_DRV ":/Wb/TempleOSCD.ISO"); progress4++;
+
+    UpdateISODocDefines;
+
     Cd(TS_MAIN_DRV ":/TempleOS");
     if (LinkChk)
       throw;

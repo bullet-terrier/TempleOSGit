@@ -23,7 +23,7 @@ public U0 DCRst(CDC *dc)
 public CDC *DCAlias(CDC *dc=NULL,CTask *task=NULL)
 {
   CDC *result;
-  if (!dc)   dc=gr_dc2;
+  if (!dc)   dc=gr_dc;
   if (!task) task=Fs;
   if (dc->dc_signature!=DCS_SIGNATURE_VAL)
     Dbg;

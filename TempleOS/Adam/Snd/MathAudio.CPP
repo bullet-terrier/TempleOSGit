@@ -119,7 +119,7 @@ public U0 SndWaveCtrlDel(CSndWaveCtrl *swc)
 #define WF_NULL			0
 #define WF_SQUARE		1
 #define WF_SINE			2
-#define WF_TRIANGLE		3
+#define WF_TRI		3
 #define WF_SAWTOOTH		4
 #define WF_NOISE		5
 #define WF_NUM_WAVEFORMS	6
@@ -170,7 +170,7 @@ public U0 SndWaveAddBuf(CSndWaveCtrl *swc,U8 *buf,I64 num_samples,
 	case WF_SINE:
 	  j=amp*Sin(phase);
 	  break;
-	case WF_TRIANGLE:
+	case WF_TRI:
 	  if (phase>=pi) {
 	    swc->last_y=swc->next_y;
 	    swc->next_y=-amp*Sign(swc->last_y)+.00001;

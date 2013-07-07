@@ -116,24 +116,24 @@ SoftBoot
 
 
 
-Tanks <1> (image) Logic <2> (image) WarGame <3> (image) Timeout <4> (image)
-  Span <5> (image)
-
-
-
-
-
-
-
-
-X-Caliber <6> (image) JukeBox <7> (image) Organ <8> (image)  Vocab <9>
+ToTheFront <1> (image) Logic <2> (image) Lines <3> (image) TimeOut <4>
   (image) 
 
 
 
 
 
-KeepAway <10> (image) Models <11> (image) RawHide <12> (image) BirdLand <13>
+
+
+
+X-Caliber <5> (image) JukeBox <6> (image) Organ <7> (image)  Vocab <8>
+  (image) 
+
+
+
+
+
+KeepAway <9> (image) Models <10> (image) RawHide <11> (image) BugBird <12>
   (image)
 
 
@@ -143,7 +143,8 @@ KeepAway <10> (image) Models <11> (image) RawHide <12> (image) BirdLand <13>
 
 
 
-EagleDive <14> (image) BigGuns <15> (image) SpaceShip <16> (image)
+EagleDive <13> (image) BigGuns <14> (image)  Span <15> (image)  ZoneOut <16>
+  (image)
 
 
 
@@ -154,30 +155,27 @@ EagleDive <14> (image) BigGuns <15> (image) SpaceShip <16> (image)
 
 
 
- FPS <17> (image)   AfterEgypt <18> (image) Wenceslas <19> (image) 
+AfterEgypt <17> (image) Frankenstein <18> (image) Wenceslas <19> (image)
 
 
 
 
 
 
-Navy <20> (image) Bomber <21> (image) Strut <22> (image) TheDead <23> (image) 
-
-CPUPlot
-`#include "/TempleOS/Demo/Graphics/CPUPlot";`
- MemRep
-`MemRep;View;`
+FlatTops <20> (image) Bomber <21> (image) Strut <22> (image) TheDead <23>
+  (image) DunGen <24> (image)  
 
 
-Digits (Memory Game)
-`Cd("::/TempleOS/Demo");;#include "Digits"
-`
+MemRep
+  `MemRep;View;`
+   Digits (Memory Game)
+  `Cd("::/TempleOS/Demo");;#include "Digits"
+  `
+  
 
 
-
-
-CTRL-R	Add graphics 
-CTRL-L	Add widgets such as trees
+CTRL-R	Add graphic resource 
+CTRL-L	Add text-widgets such as trees
 CTRL-ALT-A	Extended ASCII from menu
 ALT-digit keys	Extended ASCII from code
 CTRL-ALT-C	Break(interrupt) program

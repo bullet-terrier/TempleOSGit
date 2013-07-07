@@ -48,9 +48,9 @@ I64 OptMVCompare(OptMemberVar *mv1,OptMemberVar *mv2)
 
 U0 OptPass3(CLex *lx,CHashFun *fun_class,COptReg *register_offsets)
 {
-  CHashClass *tempc,*tempc1,*tempc2,*tempc3;
+  CHashClass *tempc,*tempc1,*tempc2;
   CCodeBlkMisc *lb;
-  CIntermediateCode *tempi,*tempi1,*tempi2,*tempi3,
+  CIntermediateCode *tempi,*tempi1,*tempi2,
 	*tempil1,*tempil2,
 	*temp_lag[4];
   I64 code,i,j,l,member_cnt,used_reg_mask=0;
@@ -105,17 +105,6 @@ U0 OptPass3(CLex *lx,CHashFun *fun_class,COptReg *register_offsets)
 	case 9:
 	  ps->ptr-=tempi->ic_data>>3;
 	  break;
-	case 3:
-	  tempi3=PrsPop(ps);
-	  if (tempi3->ic_flags&ICF_R_TO_F64)
-	    tempc3=sys_internal_types[IT_F64];
-	  else if (tempi3->ic_flags & ICF_R_TO_INT)
-	    tempc3=sys_internal_types[IT_I64];
-	  else
-	    tempc3=tempi->t.p3c;
-	  tempi->p3.type=TY_STK+CmpType(tempc3);
-	  tempi->p3.ptype=CmpPType(tempc3);
-	  tempi->ic_flags|=ICF_P3_WAS_STK;
 	case 2:
 	  tempi2=PrsPop(ps);
 	  if (tempi2->ic_flags&ICF_R_TO_F64)
@@ -303,7 +292,6 @@ U0 OptPass3(CLex *lx,CHashFun *fun_class,COptReg *register_offsets)
 	case IC_AND_AND:
 	case IC_OR_OR:
 	case IC_XOR_XOR:
-	case IC_COLON:
 	  break;
 
 	case IC_MUL_EQUAL:
@@ -393,11 +381,9 @@ U0 OptPass3(CLex *lx,CHashFun *fun_class,COptReg *register_offsets)
 	case IC_BTS:
 	case IC_BTR:
 	case IC_BTC:
-	case IC_BEQU:
 	case IC_LBTS:
 	case IC_LBTR:
 	case IC_LBTC:
-	case IC_LBEQU:
 	case IC_BSF:
 	case IC_BSR:
 	case IC_PREEMPT:
@@ -407,8 +393,6 @@ U0 OptPass3(CLex *lx,CHashFun *fun_class,COptReg *register_offsets)
 	case IC_TO_F64:
 	case IC_TO_BOOL:
 	case IC_ABS_I64:
-	case IC_LIMIT_I64:
-	case IC_LIMIT_U64:
 	case IC_MIN_I64:
 	case IC_MAX_I64:
 	case IC_MIN_U64:
@@ -424,11 +408,6 @@ U0 OptPass3(CLex *lx,CHashFun *fun_class,COptReg *register_offsets)
 	case IC_QUE_INS:
 	case IC_QUE_INS_REV:
 	case IC_QUE_REM:
-	case IC_MEMCPY:
-	case IC_MEMSET:
-	case IC_MEMSET_U16:
-	case IC_MEMSET_U32:
-	case IC_MEMSET_U64:
 	case IC_IN_U32:
 	case IC_IN_U16:
 	case IC_IN_U8:
@@ -551,7 +530,6 @@ here1:
 	case IC_ADDR:
 	case IC_NOP1:
 	case IC_END:
-	case IC_QUESTION:
 	case IC_IRQ:
 	case IC_END_EXP:
 	case IC_CALL_END:

@@ -85,25 +85,22 @@ subdirectory and do similar stuff.
 
                             PROGRAMMING GUIDELINES
 
-* Virtual mem is not used (It is identity mapped in x86_64 mode).  The stk 
-does not grow, so allocate enough when the task (process) is
-[C:/TempleOS/Kernel/Task1a.CPP.Z,224] Spawned and use 
-the heap for most things.  (The "heap" refers to
+* Virtual mem/Paging is not used -- it is identity mapped in x86_64 mode. 
+The 
+stk does not grow, so allocate enough when the task (process) is
+[C:/TempleOS/Kernel/Task1a.CPP.Z,224] Spawned and 
+use the heap for most things.  (The "heap" refers to
 [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc() and
 [C:/TempleOS/Kernel/Memory.CPP.Z,950] Free().)
 
-* See [C:/TempleOS/Doc/Glossary.TXT.Z,1] Naming convention and
+* See [C:/TempleOS/Doc/Glossary.TXT.Z,1] Naming Convention and
 [C:/TempleOS/Doc/Glossary.TXT.Z,1] Abbreviations.
 
 * There are two modes of compiling [C:/TempleOS/Doc/Glossary.TXT.Z,1] AOT
-Compiled Mode and [C:/TempleOS/Doc/Glossary.TXT.Z,1] JIT Mode.  Actual 
-compilation is done in both -- nothing is "interpreted".
+Compile Mode and [C:/TempleOS/Doc/Glossary.TXT.Z,1] JIT Compile Mode.  
+Actual compilation is done in both -- nothing is "interpreted".
 
 * [C:/TempleOS/Doc/HolyC.TXT.Z,1] Holy C
-
-* I avoid the '?' operator.  It's not very efficient with my compiler since
-it 
-executes both expressions and I just don't like it.
 
 * I often use 64-bit values when smaller would be more appropriate because
 the 
@@ -118,13 +115,11 @@ actually switch to one type of int.
 
 * Short circuit logic is assumed.
 
-* I generally avoid boolean expression assignments because TRUE is dangerous 
-with different compilers, though, the TempleOS compiler should use 1 for TRUE 
-values, not just nonzero.  Boolean assignments don't have short circuit logic 
-and are not compiled efficiently.  The Bool type is just an alias for a 1
-byte 
-int -- nothing forces it to 1 or 0.  There is a
-[C:/TempleOS/Kernel/Adam1b.HPP.Z,212] ToBool() function.
+* I generally avoid boolean expression assignments.  Boolean assignments
+don't 
+have short circuit logic and are not compiled efficiently.  The Bool type is 
+just an alias for a 1 byte int -- nothing forces it to 1 or 0.  There is a 
+[C:/TempleOS/Kernel/Adam1b.HPP.Z,212] ToBool() function that will, however.
 
 * If you use floats in your interrupt routine, save and restore the fpu state 
 with [C:/TempleOS/Kernel/Adam1b.HPP.Z,252] Fxsave() and
@@ -141,7 +136,7 @@ aligned.
 * [C:/TempleOS/Kernel/Misc1a.CPP.Z,263] SysDbg() and
 [C:/TempleOS/Kernel/Misc1a.CPP.Z,269] IsSysDbg() are really handy when
 working on the compiler or 
-Kernel.  It's just a bit you can set and test.
+kernel.  It's just a bit you can set and test.
 
 * I don't use "U0 *" because the size would be weird for ptr arithmetic.  The 
 size of "U0" is zero.

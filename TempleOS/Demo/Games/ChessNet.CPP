@@ -30,7 +30,6 @@ I64 num_alive[2];
 U0 DrawIt(CTask *task,CDC *dc)
 {
   I64 i;
-  task->text_attr=GREEN<<4;
   for (i=0;i<NUM_UNITS;i++)
     if (u[i].alive && !u[i].king) {
       dc->color=YELLOW;
@@ -185,6 +184,7 @@ U0 ChessNet()
   Unit *tempu,saved_u;
 
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=GREEN<<4+WHITE;
   Preempt(OFF);
   MenuPush(
   "File {"
@@ -247,6 +247,7 @@ U0 ChessNet()
 	}
       } while (ch!=CH_ESC && ch!='\n' && ch!=CH_SHIFT_ESC);
     } while (ch!=CH_ESC && ch!=CH_SHIFT_ESC);
+    GetMsg(,,1<<MSG_KEY_UP);
   } catch
     CatchAll;
   SettingsPop;

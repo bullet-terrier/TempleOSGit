@@ -58,10 +58,9 @@ public Bool Plain(U8 *filename)
 public Bool DocLinkChk(U8 *link_st)
 {
   U8 *filename;
-  I64 num;
   Bool result=FALSE;
   if (link_st) {
-    switch (EdLinkCvt(link_st,&filename,,&num)) {
+    switch (EdLinkCvt(link_st,&filename)) {
       case -1:
 	break;
       case LK_FILE_LINE:
@@ -154,7 +153,6 @@ public CDoc *SysBorderDocInit()
   doc_e->data=&Fs->task_title;
   DocDataFmt(doc_e);
   DocPrintF(bdoc,"$CM+H+NC,1,0$$TX+H+BD+IV,\"%X\"$",Fs);
-  bdoc->settings_root.dft_text_attr=Fs->border_attr;
   if (Bt(&Fs->display_flags,DISPLAYf_HAS_CLOSE_WIN))
     DocPutS(bdoc,"$TX+H+RX+BD,\"[X]\"$");
   DocPutS(bdoc,"$BK,1$$TX+H+LX+BD,\"MENU\"$$BK,0$");
@@ -165,10 +163,9 @@ public U0 UseTermDoc()
 {
   Bool old_preempt=Preempt(OFF);
   CDoc *doc=DocNew;
-  doc->start_text_attr=WHITE<<4+BLUE;
   doc->right_click_link=&TermRightClickLink;
   doc->max_entries=4096;
-  doc->flags|=DOCF_ATTR_BY_PRT;
+  Fs->border_src=BDS_CUR_PRT;
   StrCpy(doc->desc,"Term");
   Fs->put_doc=Fs->display_doc=doc;
   Fs->border_doc=SysBorderDocInit;
@@ -219,7 +216,7 @@ public U8 *DocGetLine(CDoc *doc,CDocEntry *doc_e,I64 *cur_col=NULL,CDocEntry **_
 }
 
 #help_index "Doc/Output"
-public U0 DocDump(CDoc *doc,I64 uS_delay=0)
+U0 DocDump(CDoc *doc,I64 uS_delay=0)
 {
   U8 *st;
   CDocEntry *doc_e,*doc_e2;
@@ -240,10 +237,14 @@ public U0 DocDump(CDoc *doc,I64 uS_delay=0)
     DocUnlock(doc);
 }
 
-public CDocEntry *DocPutLine(CDocEntry *doc_e)
+public CDocEntry *DocPutLine(CDoc *doc=NULL,CDocEntry *doc_e)
 {
   U8 ch,*ptr,*ptr2;
-  while (doc_e->type_u8!=DOCT_ERROR && doc_e->type_u8!=DOCT_NEW_LINE) {
+  Bool unlock;
+  if (!doc && !(doc=DocPut) || doc->doc_signature!=DOC_SIGNATURE_VAL)
+    return NULL;
+  unlock=DocLock(doc);
+  while (doc_e!=doc && doc_e->type_u8!=DOCT_NEW_LINE) {
     if (Bt(doc_tag_types,doc_e->type_u8)) {
       ptr=doc_e->tag;
       do {
@@ -266,7 +267,11 @@ public CDocEntry *DocPutLine(CDocEntry *doc_e)
     doc_e=doc_e->next;
   }
   NewLine;
-  return doc_e->type_u8==DOCT_ERROR ? doc_e:doc_e->next;
+  if (doc_e!=doc)
+    doc_e=doc_e->next;
+  if (unlock)
+    DocUnlock(doc);
+  return doc_e;
 }
 
 #help_index "Doc/Input"
@@ -278,7 +283,7 @@ public U8 *DocMGetS(I64 flags=0)
   Bool old_preempt=IsPreempt;
   U8 *st,*result;
   I64 ch,sc;
-  "$FU$";
+  "$PT$";
   do {
     ch=DocGetKey(&sc);
     if (ch==CH_ESC) {
@@ -311,7 +316,7 @@ public U8 *DocMGetS(I64 flags=0)
   if (flags&GETSF_WITH_NEW_LINE) {
     doc_e=doc->cur_entry;
     do doc_e=doc_e->last;
-    while (doc_e!=doc && doc_e->type_u8!=DOCT_USER_FOREGROUND);
+    while (doc_e!=doc && doc_e->type_u8!=DOCT_PMT);
     doc_e=doc_e->next;
     if (result=DocGetLine(doc,doc_e,NULL,&doc_e_end)) {
       while (doc_e_end!=doc && doc_e_end->type_u8==DOCT_NEW_LINE) {
@@ -326,18 +331,18 @@ public U8 *DocMGetS(I64 flags=0)
     doc_e=doc->cur_entry;
     do doc_e=doc_e->last;
     while (doc_e!=doc && doc_e->type_u8!=DOCT_NEW_LINE &&
-	doc_e->type_u8!=DOCT_USER_FOREGROUND);
-    if (doc_e!=doc && doc_e->type_u8!=DOCT_USER_FOREGROUND) {
+	doc_e->type_u8!=DOCT_PMT);
+    if (doc_e!=doc && doc_e->type_u8!=DOCT_PMT) {
       do doc_e=doc_e->last;
       while (doc_e!=doc && doc_e->type_u8!=DOCT_NEW_LINE &&
-	  doc_e->type_u8!=DOCT_USER_FOREGROUND);
+	  doc_e->type_u8!=DOCT_PMT);
     }
     doc_e=doc_e->next;
     result=DocGetLine(doc,doc_e,NULL);
   }
   DocUnlock(doc);
 mgets_done:
-  "$FU$$FG$$BG$";
+  "$PT$$FG$$BG$";
   Preempt(old_preempt);
   return result;
 }
@@ -357,11 +362,12 @@ public I64 PmtI64(U8 *msg,I64 dft,I64 lo=MIN_I64,I64 hi=MAX_I64)
       return dft;
     }
     try {
-      okay=FALSE;
       result=ExePrintF3("ToI64(%s);",st);
       okay=TRUE;
-    } catch
+    } catch {
       Fs->catch_except=TRUE;
+      okay=FALSE;
+    }
     Free(st);
     if (okay && lo<=result<=hi)
       return result;
@@ -381,11 +387,12 @@ public F64 PmtF64(U8 *msg,F64 dft,F64 lo=MIN_F64,F64 hi=MAX_F64)
       return dft;
     }
     try {
-      okay=FALSE;
       result=ExePrintF3("ToF64(%s);",st)(F64);
       okay=TRUE;
-    } catch
+    } catch {
       Fs->catch_except=TRUE;
+      okay=FALSE;
+    }
     Free(st);
     if (okay && lo<=result<=hi)
       return result;
@@ -423,7 +430,7 @@ public CDate PmtCDate(U8 *msg,CDate dft,CDate lo=MIN_I64,CDate hi=MAX_I64)
       Free(st);
       return dft;
     }
-    result=A2CDate(st);
+    result=A2Date(st);
     Free(st);
     if (result>=lo && result<=hi)
       return result;
@@ -485,10 +492,15 @@ I64 PopUpCancelIncludeDelAuto(U8 *header=NULL,U8 *footer=NULL)
 I64 EdLeftClickLink(CDoc *doc,CDocEntry *doc_e)
 { //called with doc locked, exit unlocked
   Bool result;
-  U8 *st;
+  U8 *st,*st2;
   if (st=DocEntryLink(doc,doc_e)) {
     DocUnlock(doc);
-    result=Ed(st);
+    if (doc_e->flags1 & DOCEF1_POPUP) {
+      st2=MSPrintF("Ed(\"%Q\");",st);
+      result=PopUp(st2);
+      Free(st2);
+    } else
+      result=Ed(st);
     Free(st);
     return result;
   }
@@ -513,7 +525,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 		break;
 	      }
 	    }
-	    "#include \"%s\";\n$FU$$FG$$BG$",st;
+	    "#include \"%s\";\n$PT$$FG$$BG$",st;
 	    WinZBufUpdate;
 	    ExeFile(st);
 	    result=TRUE;
@@ -525,11 +537,11 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 	    result=Type(st);
 	    break;
 	  case RIGHT_ED:
-	    "Ed(\"%s\");\n$FU$$FG$$BG$",st;
+	    "Ed(\"%s\");\n$PT$$FG$$BG$",st;
 	    result=Ed(st);
 	    break;
 	  case RIGHT_PLAIN:
-	    "Plain(\"%s\");\n$FU$$FG$$BG$",st;
+	    "Plain(\"%s\");\n$PT$$FG$$BG$",st;
 	    result=Plain(st);
 	    break;
 	  case RIGHT_AUTOFILE:
@@ -539,7 +551,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 		break;
 	      }
 	    }
-	    "AutoFile(\"%s\");\n$FU$$FG$$BG$",st;
+	    "AutoFile(\"%s\");\n$PT$$FG$$BG$",st;
 	    WinZBufUpdate;
 	    AutoStr("%F\n",st);
 	    result=TRUE;
@@ -551,7 +563,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 		break;
 	      }
 	    }
-	    "Adam(\"#include \\\"%s\\\"\" );\n$FU$$FG$$BG$",st;
+	    "Adam(\"#include \\\"%s\\\"\" );\n$PT$$FG$$BG$",st;
 	    WinZBufUpdate;
 	    AdamFile(st,FALSE);
 	    result=TRUE;
@@ -563,7 +575,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 		break;
 	      }
 	    }
-	    "Cmp(\"%s\");\n$FU$$FG$$BG$",st;
+	    "Cmp(\"%s\");\n$PT$$FG$$BG$",st;
 	    WinZBufUpdate;
 	    result=!ToBool(Cmp(st));
 	    break;
@@ -574,7 +586,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 		break;
 	      }
 	    }
-	    "Load(\"%s\");\n$FU$$FG$$BG$",st;
+	    "Load(\"%s\");\n$PT$$FG$$BG$",st;
 	    WinZBufUpdate;
 	    result=ToBool(Load(st));
 	    break;
@@ -585,7 +597,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 		break;
 	      }
 	    }
-	    "BinRep(\"%s\");\n$FU$$FG$$BG$",st;
+	    "BinRep(\"%s\");\n$PT$$FG$$BG$",st;
 	    WinZBufUpdate;
 	    result=BinRep(st);
 	    break;
@@ -610,7 +622,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
 		break;
 	      }
 	    }
-	    "IDE(\"%s\");\n$FU$$FG$$BG$",st;
+	    "IDE(\"%s\");\n$PT$$FG$$BG$",st;
 	    WinZBufUpdate;
 	    IDE(st);
 	    result=TRUE;
@@ -625,7 +637,7 @@ I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e)
   } else
     send_new_line=TRUE;
   DocBottom(doc);
-  "$FU$$FG$$BG$";
+  "$PT$$FG$$BG$";
   if (send_new_line)
     '\n';
   return result;

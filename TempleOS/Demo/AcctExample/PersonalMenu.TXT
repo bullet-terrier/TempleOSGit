@@ -70,19 +70,24 @@ Cd("/TempleOS/Adam/Doc");Dir;
 `Cd("/TempleOS/Adam/Doc");Dir;
 `
 
-Cd("/TempleOS/Adam/WordStat");Dir;
-
-`Cd("/TempleOS/Adam/WordStat");Dir;
-`
-
 Cd("/TempleOS/Adam/Gr");Dir;
 
 `Cd("/TempleOS/Adam/Gr");Dir;
 `
 
+Cd("/TempleOS/Adam/Utils");Dir;
+
+`Cd("/TempleOS/Adam/Utils");Dir;
+`
+
 Cd("/TempleOS/Adam/Snd");Dir;
 
 `Cd("/TempleOS/Adam/Snd");Dir;
+`
+
+Cd("/TempleOS/Adam/WordStat");Dir;
+
+`Cd("/TempleOS/Adam/WordStat");Dir;
 `
 
 Cd("/TempleOS/Accts");Dir;
@@ -125,9 +130,9 @@ Cd("/TempleOS/Apps");Dir;
 `Cd("/TempleOS/Apps");Dir;
 `
 
-Cd("/TempleOS/Apps/X-Caliber");Dir;
+Cd("/TempleOS/Apps/Span");Dir;
 
-`Cd("/TempleOS/Apps/X-Caliber");Dir;
+`Cd("/TempleOS/Apps/Span");Dir;
 `
 
 Cd("/TempleOS/Apps/MusicOrgan");Dir;
@@ -286,8 +291,8 @@ Make Std Distro ISO
   
   
   
-   
-  JukeBox <1> (image) Vocab <2> (image)  EagleDive <3> (image) WarGame <4> (image)
+  
+  ToTheFront <1> (image) Logic <2> (image) Lines <3> (image) TimeOut <4> (image) 
   
   
   
@@ -296,19 +301,13 @@ Make Std Distro ISO
   
   
   
-  
-  Timeout <5> (image) TheDead <6> (image) Logic <7> (image) X-Caliber <8> (image)
-  
+  X-Caliber <5> (image) JukeBox <6> (image) Organ <7> (image)  Vocab <8> (image) 
   
   
   
   
   
-  
-  
-  
-  Span <9> (image)  BigGuns <10> (image) BirdLand <11> (image) Tanks <12> (image)
-   
+  KeepAway <9> (image) Models <10> (image) RawHide <11> (image) BugBird <12> (image)
   
   
   
@@ -317,8 +316,7 @@ Make Std Distro ISO
   
   
   
-  
-  FPS <13> (image)      AfterEgypt <14> (image)  Organ <15> (image)
+  EagleDive <13> (image) BigGuns <14> (image)  Span <15> (image)  ZoneOut <16> (image)
   
   
   
@@ -329,13 +327,14 @@ Make Std Distro ISO
   
   
   
-  Wenceslas <16> (image) KeepAway <17> (image) Models <18> (image) RawHide <19> (image)
+  AfterEgypt <17> (image) Frankenstein <18> (image) Wenceslas <19> (image)
   
   
   
   
   
-  Chess <20> (image) Navy <21> (image) Bomber <22> (image) Strut <23> (image)
+  
+  FlatTops <20> (image) Bomber <21> (image) Strut <22> (image) TheDead <23> (image) DunGen <24> (image)  
   
 
 [C:/TempleOS/Misc/Bible.TXT.Z,297] Bible
@@ -371,3 +370,4 @@ MusicOrgan GODSongs
 "::/TempleOS/Apps/MusicOrgan/Load";MusicOrgan("::/TempleOS/Accts/TS/TAD/MusicO
 rgan");
 `
+

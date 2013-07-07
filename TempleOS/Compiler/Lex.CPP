@@ -192,7 +192,7 @@ lgc_here2:
 	    tempf->cur_entry=doc_e;
 	    nobound_switch (doc_e->type_u8) {
 	      case DOCT_TEXT:
-		if (doc_e->flags1 & ~(DOCG_BL_IV_UL|DOCEF1_WORD_WRAP|DOCEF1_HIGHLIGHT|DOCEF1_LOCK_TO_PAGE|DOCEF1_LOCK_TO_CENTER|DOCEF1_SKIP|DOCEF1_HARD_SKIP|DOCEF1_FILTER_SKIP) &&
+		if (doc_e->flags1 & ~(DOCEF1_DEFINE|DOCEF1_TAG_CB|DOCG_BL_IV_UL|DOCEF1_WORD_WRAP|DOCEF1_HIGHLIGHT|DOCEF1_LOCK_TO_PAGE|DOCEF1_LOCK_TO_CENTER|DOCEF1_SKIP|DOCEF1_HARD_SKIP|DOCEF1_FILTER_SKIP) &&
 		    LexDollar(lx,doc,doc_e) && *(src=lx->dollar)) {
 		  tempf->line_num=doc_e->y+1;
 		  tempf->buf=tempf->buf_ptr=lx->cur_buf_ptr=src;
@@ -1071,7 +1071,6 @@ lex_octal:
 		  default:
 		    lx->flags|=LF_USE_LAST_U16;
 		    k.u8[j]='\\';
-		    break;
 		}
 	      } else if (ch=='$') {
 		ch=LexGetChar(lx);
@@ -1238,11 +1237,11 @@ lex_if:
 		case TK_IF:	goto lex_if;
 		case TK_IFDEF:	goto lex_ifdef;
 		case TK_IFNDEF:	goto lex_ifndef;
-		case TK_IFAOT: goto lex_ifaot;
-		case TK_IFJIT: goto lex_ifjit;
+		case TK_IFAOT:	goto lex_ifaot;
+		case TK_IFJIT:	goto lex_ifjit;
 		case TK_ELSE:	goto lex_else;
 		case TK_ENDIF:	goto lex_cont;
-		default:		goto lex_end;
+		default:	goto lex_end;
 	      }
 	    } else {
 	      lx->flags&=~LF_IN_IF;
@@ -1616,7 +1615,7 @@ U8 *LexPutLine(CLex *lx,U8 *start)
   U8 *ptr,ch;
   if (!start) return NULL;
   if (lx->cur_lfn->flags&LFSF_IS_DOC)
-    return DocPutLine(start);
+    return DocPutLine(lx->cur_lfn->doc,start);
   else {
     ptr=start;
     while (ch=*ptr++) {

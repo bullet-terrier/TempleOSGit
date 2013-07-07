@@ -150,7 +150,7 @@ U0 Zing()
   DocClear;
 
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;

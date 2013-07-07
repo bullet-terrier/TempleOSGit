@@ -66,8 +66,6 @@ U0 DrawIt(CTask *task,CDC *dc)
   U8 *inter;
   I64 i,w=task->win_pixel_width,h=task->win_pixel_height;
 
-  task->text_attr=LTGRAY<<4+BLACK;
-
   dc->color=DKGRAY;
   GrPutS(dc,w>>1-(POEM_COLS*FONT_WIDTH)>>1,
 	    (Saw(tT-t0,POEM_TIME)-.8)*POEM_LINES*FONT_HEIGHT, poem);
@@ -120,10 +118,11 @@ U0 SongTask(I64)
 U0 WaterFowl()
 {
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=LTGRAY<<4+BLACK;
   WinMax;
   Init;
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   WordStat;
   DocCursor;
   DocClear;

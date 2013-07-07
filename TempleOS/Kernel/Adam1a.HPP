@@ -140,7 +140,6 @@ public class CQue
 
 #define INVALID_PTR	MAX_I64
 #define INVALID_CLUSTER -1
-#define ALL_MASK	-1
 
 //x86 opcodes
 #define OC_OP_SIZE_PREFIX	0x66
@@ -172,7 +171,7 @@ extern class CExeImportExport;
 extern class CHeapCtrl;
 extern class CExeHeapGlbl;
 extern class CDC;
-extern class CMPCmdCtrl;
+extern class CSrvCtrl;
 extern class CIntermediateCode;
 
 #define QUE_VECT_U8_CNT		512
@@ -305,7 +304,6 @@ public class CMass
   F64 mass,drag_profile_factor;
   U0 saved_state;
   F64 x,y,z,DxDt,DyDt,DzDt;
-  I64 user_data;
   U0 end_saved_area;
 };
 
@@ -322,7 +320,6 @@ public class CSpring
   U32 flags,num,
      end1_num,end2_num;
   F64 constant,rest_len;
-  I64 user_data;
   U0 end_saved_area;
 };
 
@@ -783,11 +780,11 @@ public class CHashGeneric:CHash
 #define REGT_FSTK	5
 #define REGT_MM		6
 #define REGT_XMM	7
+
 public class CHashReg:CHash
 {
   U8 reg_num,reg_type;
 };
-
 
 public class CHashTable
 {
@@ -969,57 +966,52 @@ public class CHashGlblVar:CHashSrcSym
 #define ARf_CSPRITE_PTS_RECTANGLES	9
 #define ARf_MANAGE_SLIDER		10
 
-#define TASKCf_WAKE_MASTER	0
-#define TASKCf_FOCUS_MASTER	1
-#define TASKCf_EXIT_ON_COMPLETE	2
-#define TASKCf_DONT_FILTER	3
-#define TASKCf_HIGHEST_PRIORITY	4
+#define SVCf_WAKE_MASTER	0
+#define SVCf_FOCUS_MASTER	1
+#define SVCf_EXIT_ON_COMPLETE	2
+#define SVCf_DONT_FILTER	3
+#define SVCf_HIGHEST_PRIORITY	4
+//MP flags
+#define SVCf_DONE		5
+#define SVCf_DISPATCHED		6
+#define SVCf_FREE_ON_COMPLETE	7
+#define SVCf_ADD_TO_QUE		8
 
-#define TASKCT_TEXT_INPUT	0
-#define TASKCT_MSG		1
-#define TASKCT_EXECUTE_STR	2
-#define TASKCT_EXECUTE_FILE	3
+#define SVCT_TEXT_INPUT		0
+#define SVCT_MSG		1
+#define SVCT_EXE_STR		2
+//MP cmds
+#define SVCT_CALL		3
+#define SVCT_SPAWN_TASK		4
 
-class CTaskCmd
+class CSrvCmd
 {
-  CTaskCmd *next,*last;
+  CSrvCmd *next,*last;
+  CSrvCtrl *ctrl;
   I64 cmd_code;
-  I64 msg_code;
-  I64 p1,p2;
   I64 flags;
-  U8 *data;
+
+  I64 target_cpu;
+  I64 servant_cpu_num;
+
+  I64 msg_code;
+
+  I64 (*add)(U8 *fun_arg);
+  U8 *fun_arg;
+
+  U8  *aux_str;
+  I64 aux1,aux2;
   I64 result;
+
+  CTask *spawned_task;
   CTask *master_task;
 };
 
-
-#define MPCf_DONE		0
-#define MPCf_DISPATCHED		1
-#define MPCf_FREE_ON_COMPLETE	2
-
-#define MPCT_CALL		1
-#define MPCT_SPAWN_TASK		2
-
-class CMPCmd
+#define SVCRf_LOCKED		0
+class CSrvCtrl
 {
-  CMPCmd *next,*last;
-  CMPCmdCtrl *ctrl;
-  I64 cmd_code;
-  I64 flags;
-  I64 (*add)(U8 *data);
-  U8 *data;
-  U8 *desc;
-  I64 target_cpu_mask;
-  CTask *task; //spawned task
-  I64 handler_cpu; //CPU accepting job
-  I64 result;
-};
-
-#define MPCCf_LOCKED		0
-class CMPCmdCtrl
-{
-  CMPCmd *next_waiting,*last_waiting;
-  CMPCmd *next_done,*last_done;
+  CSrvCmd *next_waiting,*last_waiting;
+  CSrvCmd *next_done,*last_done;
   I64 flags;
 };
 
@@ -1060,50 +1052,39 @@ class CBpt
 #define DOCT_BACKGROUND		15
 #define DOCT_DFT_FOREGROUND	16
 #define DOCT_DFT_BACKGROUND	17
-#define DOCT_ALT_FOREGROUND	18
-#define DOCT_LINK_FOREGROUND	19
-#define DOCT_MACRO_FOREGROUND	20
-#define DOCT_ANCHOR_FOREGROUND	21
-#define DOCT_HIDDEN_FOREGROUND	22
-#define DOCT_TREE_FOREGROUND	23
-#define DOCT_USER_FOREGROUND	24
-#define DOCT_BINARY_FOREGROUND	25
-#define DOCT_KEYWORD_FOREGROUND	26
-#define DOCT_KEYWORD2_FOREGROUND 27
-#define DOCT_COMMENT_FOREGROUND	28
-#define DOCT_QUOTE_FOREGROUND	29
-#define DOCT_WORD_WRAP		30
-#define DOCT_UNDERLINE		31
-#define DOCT_INVERT		32
-#define DOCT_BLINK		33
-#define DOCT_SHIFTED_X		34
-#define DOCT_SHIFTED_Y		35
-#define DOCT_CURSOR_MOVEMENT	36
-#define DOCT_ANCHOR		37
-#define DOCT_LINK		38
-#define DOCT_BUTTON		39
-#define DOCT_CHECK_BOX		40
-#define DOCT_MACRO		41
-#define DOCT_MENU_VAL		42
-#define DOCT_HEX_ED		43
-#define DOCT_HIDE_START		44
-#define DOCT_HIDE_END		45
-#define DOCT_TREE		46
-#define DOCT_SPRITE		47
-#define DOCT_INS_BINARY		48
-#define DOCT_INS_BINARY_TYPE	49
-#define DOCT_INS_BINARY_SIZE	50
-#define DOCT_BPT		51
-#define DOCT_SONG		52
-#define DOCT_HIGHLIGHT		53
-#define DOCT_LOCK_TO_PAGE	54
-#define DOCT_LOCK_TO_CENTER	55
-#define DOCT_HTML_IMG		56
-#define DOCT_HTML_VIDEO		57
-#define DOCT_HTML_CODE		58
-#define DOCT_ERROR		59
+#define DOCT_PMT		18
+#define DOCT_WORD_WRAP		19
+#define DOCT_UNDERLINE		20
+#define DOCT_INVERT		21
+#define DOCT_BLINK		22
+#define DOCT_SHIFTED_X		23
+#define DOCT_SHIFTED_Y		24
+#define DOCT_CURSOR_MOVEMENT	25
+#define DOCT_ANCHOR		26
+#define DOCT_LINK		27
+#define DOCT_BUTTON		28
+#define DOCT_CHECK_BOX		29
+#define DOCT_MACRO		30
+#define DOCT_MENU_VAL		31
+#define DOCT_HEX_ED		32
+#define DOCT_HIDE_START		33
+#define DOCT_HIDE_END		34
+#define DOCT_TREE		35
+#define DOCT_SPRITE		36
+#define DOCT_INS_BINARY		37
+#define DOCT_INS_BINARY_TYPE	38
+#define DOCT_INS_BINARY_SIZE	39
+#define DOCT_BPT		40
+#define DOCT_SONG		41
+#define DOCT_HIGHLIGHT		42
+#define DOCT_LOCK_TO_PAGE	43
+#define DOCT_LOCK_TO_CENTER	44
+#define DOCT_HTML_IMG		45
+#define DOCT_HTML_VIDEO		46
+#define DOCT_HTML_CODE		47
+#define DOCT_ERROR		48
 
-#define DOCT_NUM_TYPES		60
+#define DOCT_NUM_TYPES		49
 
 //CDocEntry.type flags upper bits
 #define DOCET_BLINK		ATTRF_BLINK
@@ -1117,8 +1098,8 @@ class CBpt
 #define DOCEt_UNDERLINE		ATTRf_UNDERLINE
 
 #define DOCG_DBL_BUF_FLAGS	(DOCF_OVERSTRIKE|DOCF_PLAIN_TEXT|DOCF_PLAIN_TEXT_WITH_TABS| \
-				DOCF_MIN_SIZE|DOCF_NO_CURSOR|DOCF_FORM|DOCF_ATTR_BY_PRT| \
-				DOCF_ATTR_BY_FILENAME|DOCF_DBL_DOLLARS|DOCF_DONT_SWAP_OUT| \
+				DOCF_MIN_SIZE|DOCF_NO_CURSOR|DOCF_FORM| \
+				DOCF_DBL_DOLLARS|DOCF_DONT_SWAP_OUT| \
 				DOCF_DO_FULL_REFRESH|DOCF_BORDER_DOC|DOCF_HIDE_CURSOR|DOCF_CARRIAGE_RETURN)
 
 //CDocEntry.flag flags
@@ -1289,18 +1270,32 @@ public class CDocBin
 
 #define DOCSSF_BPT		8
 
+#define TERM_ATTR_TEXT		WHITE<<4+BLUE
+#define TERM_ATTR_BORDER	WHITE<<4+LTBLUE
+#define DOC_ATTR_DFT_TEXT	WHITE<<4+BLACK
+
+#define DOC_COLOR_ALT_TEXT	LTGRAY
+#define DOC_COLOR_LINK		RED
+#define DOC_COLOR_MACRO		LTBLUE
+#define DOC_COLOR_ANCHOR	DKGRAY
+#define DOC_COLOR_HIDDEN	DKGRAY
+#define DOC_COLOR_TREE		PURPLE
+#define DOC_COLOR_PMT		GREEN
+#define DOC_COLOR_BIN		CYAN
+#define DOC_COLOR_KEYWORD	BLUE
+#define DOC_COLOR_KEYWORD2	LTRED
+#define DOC_COLOR_COMMENT	GREEN
+#define DOC_COLOR_QUOTE		BROWN
+
 public class CDocSettings
 {
   CDocSettings *next,*last;
   U0 start;
   I16 left_margin,right_margin,indent;
   U16 page_len,header,footer;
-  I8 shifted_x,shifted_y,pad[2];
+  I8 shifted_x,shifted_y;
   U8 state,comment_depth,paren_depth,brace_depth;
-  U8 cur_text_attr,dft_text_attr,alt_text_attr,link_attr,
-     macro_attr,anchor_attr,hidden_attr,tree_attr,
-     user_attr,bin_attr,keyword_attr,
-     keyword2_attr,comment_attr,quote_attr,pad[2];
+  U8 cur_text_attr,dft_text_attr;
 };
 
 #define DOC_DFT 		MIN_I32
@@ -1311,6 +1306,7 @@ public class CDocEntryBase
 //cmds like the text cmd which
 //don't require the full CDocEntry structure.
   CDocEntryBase *next,*last;
+  U8 *tag;
   union {
     U8 type_u8; //this stores the code
     U32 type; //these store attr flags
@@ -1325,7 +1321,6 @@ public class CDocEntryBase
   //these, you do not know the current state.
   //Margins will change to allow multiple columns
   //of text on the same page.  (cursor move back up the page.)
-
   CDocSettings *settings;
 
   I64 user_data;
@@ -1333,11 +1328,6 @@ public class CDocEntryBase
 
 public class CDocEntry:CDocEntryBase
 {
-  union {
-    U8 *tag;
-    I64 hex_ed_width;
-  };
- 
   union {
     I64 attr;
     I64 cursor_x_offset;
@@ -1360,6 +1350,7 @@ public class CDocEntry:CDocEntryBase
   U8 *bin_ptr_link;
   U8 *html_link;
   U8 *my_fmt_data;
+  I64 hex_ed_width;
   union {
     I32 scroll_len;
     I32 width;
@@ -1380,6 +1371,7 @@ public class CDocEntry:CDocEntryBase
 #define	DOF_INTERCEPT_TASK_END	2
 #define DOF_DONT_HOME		4
 #define DOF_WIN_MAX		8
+#define DOF_DONT_TEXT_ATTR	16
 
 class CEdFindText
 {
@@ -1419,22 +1411,21 @@ class CEdFileName
 #define DOCF_IN_DOLLAR		0x20
 #define DOCF_MORE		0x40
 #define DOCF_FORM		0x80
-#define DOCF_ATTR_BY_PRT	0x100
-#define DOCF_ATTR_BY_FILENAME	0x200
-#define DOCF_DBL_DOLLARS	0x400
-#define DOCF_NULL_GRAB_SCROLL	0x800
-#define DOCF_BACKWARD_MOVEMENT	0x1000
-#define DOCF_HAS_SONG		0x2000
-#define DOCF_UNDO_DIRTY		0x4000
-#define DOCF_ALLOW_UNDO		0x8000
-#define DOCF_SUPERSCRIPT_MODE	0x10000
-#define DOCF_SUBSCRIPT_MODE	0x20000
-#define DOCF_DONT_SWAP_OUT	0x40000
-#define DOCF_DONT_SHOW		0x80000
-#define DOCF_DO_FULL_REFRESH	0x100000
-#define DOCF_BREAK_UNLOCKED	0x200000
-#define DOCF_BORDER_DOC		0x400000
-#define DOCF_HIDE_CURSOR	0x800000 //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1713] DocCursor
+#define DOCF_DBL_DOLLARS	0x100
+#define DOCF_NULL_GRAB_SCROLL	0x200
+#define DOCF_BACKWARD_MOVEMENT	0x400
+#define DOCF_HAS_SONG		0x800
+#define DOCF_UNDO_DIRTY		0x1000
+#define DOCF_ALLOW_UNDO		0x2000
+#define DOCF_SUPERSCRIPT_MODE	0x4000
+#define DOCF_SUBSCRIPT_MODE	0x8000
+#define DOCF_DONT_SWAP_OUT	0x10000
+#define DOCF_DONT_SHOW		0x20000
+#define DOCF_DO_FULL_REFRESH	0x40000
+#define DOCF_BREAK_UNLOCKED	0x80000
+#define DOCF_BORDER_DOC		0x100000
+#define DOCF_HIDE_CURSOR	0x200000 //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1713] DocCursor
+//2 unused flags
 
 #define DOCF_HIGHLIGHT		DOCEF1_HIGHLIGHT
 #define DOCF_LOCK_TO_PAGE	DOCEF1_LOCK_TO_PAGE
@@ -1456,22 +1447,21 @@ class CEdFileName
 #define DOCf_IN_DOLLAR		5
 #define DOCf_MORE		6
 #define DOCf_FORM		7
-#define DOCf_ATTR_BY_PRT	8
-#define DOCf_ATTR_BY_FILENAME	9
-#define DOCf_DBL_DOLLARS	10
-#define DOCf_NULL_GRAB_SCROLL	11
-#define DOCf_BACKWARD_MOVEMENT	12
-#define DOCf_HAS_SONG		13
-#define DOCf_UNDO_DIRTY		14
-#define DOCf_ALLOW_UNDO		15
-#define DOCf_SUPERSCRIPT_MODE	16
-#define DOCf_SUBSCRIPT_MODE	17
-#define DOCf_DONT_SWAP_OUT	18
-#define DOCf_DONT_SHOW		19
-#define DOCf_DO_FULL_REFRESH	20
-#define DOCf_BREAK_UNLOCKED	21
-#define DOCf_BORDER_DOC		22
-#define DOCf_HIDE_CURSOR	23  //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1713] DocCursor
+#define DOCf_DBL_DOLLARS	8
+#define DOCf_NULL_GRAB_SCROLL	9
+#define DOCf_BACKWARD_MOVEMENT	10
+#define DOCf_HAS_SONG		11
+#define DOCf_UNDO_DIRTY		12
+#define DOCf_ALLOW_UNDO		13
+#define DOCf_SUPERSCRIPT_MODE	14
+#define DOCf_SUBSCRIPT_MODE	15
+#define DOCf_DONT_SWAP_OUT	16
+#define DOCf_DONT_SHOW		17
+#define DOCf_DO_FULL_REFRESH	18
+#define DOCf_BREAK_UNLOCKED	19
+#define DOCf_BORDER_DOC		20
+#define DOCf_HIDE_CURSOR	21  //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1713] DocCursor
+//2 unused flags
 
 #define DOCf_HIGHLIGHT		DOCEf1_HIGHLIGHT
 #define DOCf_LOCK_TO_PAGE	DOCEf1_LOCK_TO_PAGE
@@ -1520,10 +1510,9 @@ public class CDoc //Linked Text File header
   U8 *dollar_buf;
   CTask *win_task,*mem_task;
   CDocEntry *recalc_start;
-  U32 start_text_attr;
   I32 page_line_num;
   I32 x,y,min_x,max_x,min_y,max_y;
-  I64 undo_cnt;
+  I32 undo_cnt;
   I64 line,col,best_d;
   I64 old_win_top,old_win_bottom,
      old_win_left,old_win_right;
@@ -1555,12 +1544,12 @@ public class CDoc //Linked Text File header
   CDoc *parent_doc;
   U8 desc[8]; //Be careful -- only 7 characters and terminator
 
-  CDocBin  bin_root;
-  CDocSettings settings_root;
+  CDocBin  bin_root;	      //size & 7 ==4
+  CDocSettings settings_root; //size & 7 ==4
   CDocUndo undo_root;
 
   I64 user_data;
-#assert !($&7)
+U0 pad;#assert !($&7) //(compiler lags one token)
 };
 
 //MGetS flags
@@ -1618,42 +1607,39 @@ class CLexUndef
   CHashExport *hash;
 };
 
-#define ICF_R_TO_F64			0x0000000001
-#define ICF_R_TO_INT			0x0000000002
-#define ICF_P1_TO_F64			0x0000000004
-#define ICF_P1_TO_INT			0x0000000008
-#define ICF_P2_TO_F64			0x0000000010
-#define ICF_P2_TO_INT			0x0000000020
-#define ICF_P3_TO_F64			0x0000000040
-#define ICF_P3_TO_INT			0x0000000080
-#define ICF_USE_F64			0x0000000100
-#define ICF_USE_UNSIGNED		0x0000000200
-#define ICF_USE_INT			0x0000000400 //highest priority
-#define ICF_NO_DEPEND_RESULT		0x0000000800
-#define ICF_CODE_FINAL			0x0000001000
-#define ICF_NOT_ADDR			0x0000002000
-#define ICF_SHORT_JMP			0x0000004000
-#define ICF_P1_FIRST			0x0000008000
-#define ICF_PUSH_RESULT			0x0000010000
-#define ICF_TRACE			0x0000020000
-#define ICF_R_WAS_STK			0x0000040000
-#define ICF_P1_WAS_STK			0x0000080000
-#define ICF_P2_WAS_STK			0x0000100000
-#define ICF_P3_WAS_STK			0x0000200000
-#define ICF_PUSH_CMP			0x0000400000 //for 50<i<j<=100 expressions
-#define ICF_POP_CMP			0x0000800000 //for 50<i<j<=100 expressions
-#define ICF_DEPEND_RESULT		0x0001000000
-#define ICF_SWAP			0x0002000000
-#define ICf_DONT_PUSH_FLOAT0		26 // 4 bits
-#define ICf_DONT_POP_FLOAT0		30 // 4 bits
-#define ICF_ALTERNATE_TEMPLATE		0x0400000000
-#define ICF_LOCK			0x0800000000
-#define ICf_LOCK			35
-#define ICF_NO_RIP			0x1000000000
-#define ICF_DEL_PREVIOUS_INS		0x2000000000
-#define ICF_PREVIOUS_DELETED		0x4000000000
-#define ICF_DONT_RESTORE		0x8000000000
-#define ICF_NO_CVT_MASK			0xFFFFFFFF00
+#define ICF_R_TO_F64			0x000000001
+#define ICF_R_TO_INT			0x000000002
+#define ICF_P1_TO_F64			0x000000004
+#define ICF_P1_TO_INT			0x000000008
+#define ICF_P2_TO_F64			0x000000010
+#define ICF_P2_TO_INT			0x000000020
+#define ICF_USE_F64			0x000000040
+#define ICF_USE_UNSIGNED		0x000000080
+#define ICF_USE_INT			0x000000100 //highest priority
+#define ICF_NO_DEPEND_RESULT		0x000000200
+#define ICF_CODE_FINAL			0x000000400
+#define ICF_NOT_ADDR			0x000000800
+#define ICF_SHORT_JMP			0x000001000
+#define ICF_P1_FIRST			0x000002000
+#define ICF_PUSH_RESULT			0x000004000
+#define ICF_TRACE			0x000008000
+#define ICF_R_WAS_STK			0x000010000
+#define ICF_P1_WAS_STK			0x000020000
+#define ICF_P2_WAS_STK			0x000040000
+#define ICF_PUSH_CMP			0x000080000 //for 50<i<j<=100 expressions
+#define ICF_POP_CMP			0x000100000 //for 50<i<j<=100 expressions
+#define ICF_DEPEND_RESULT		0x000200000
+#define ICF_SWAP			0x000400000
+#define ICf_DONT_PUSH_FLOAT0		23 // 3bits
+#define ICf_DONT_POP_FLOAT0		26 // 3bits
+#define ICF_ALTERNATE_TEMPLATE		0x020000000
+#define ICF_LOCK			0x040000000
+#define ICf_LOCK			30
+#define ICF_NO_RIP			0x080000000
+#define ICF_DEL_PREVIOUS_INS		0x100000000
+#define ICF_PREVIOUS_DELETED		0x200000000
+#define ICF_DONT_RESTORE		0x400000000
+#define ICF_NO_CVT_MASK			0x7FFFFFF00
 
 #define IC_BODY_SIZE			48
 
@@ -1669,8 +1655,9 @@ class CICArg
 
 class CICTreeLinks
 {
-  CHashClass *p1c,*p2c,*p3c;
-  CIntermediateCode *p1t,*p2t,*p3t;
+  CHashClass *p1c,*p2c;
+  CIntermediateCode *p1t,*p2t;
+  CHashClass *class2;
 };
 
 class CIntermediateCode
@@ -1687,8 +1674,8 @@ class CIntermediateCode
   CHashClass *ic_class;
   CHashClass *ic_class2;
 
-  I64 ic_line;
-  CICArg p1,p2,p3,r;
+  U32 ic_line;
+  CICArg p1,p2,r;
 
   U8 *ic_ext_body;
   union {
@@ -1703,9 +1690,9 @@ class CIntermediateCode
     //with these links, since they are not needed after pass4.
 
     //Tree links are mostly used during 012 and 3 for determining types.
-    //Pass 4 uses p3c in an abusive sort of way.
     CICTreeLinks t;
   };
+U0 pad;#assert !($&7) //(compiler lags one token)
 };
 
 class CPrsStk
@@ -1872,7 +1859,7 @@ class CAsmUnresolvedRef
 //reserved
 #define EIE_ABS_ADDR		32
 #define EIE_HEAP_GLBL		33
-//See [C:/TempleOS/Adam/BinRep.CPP.Z,1] ::/TempleOS/Adam/BinRep.CPP
+//See [C:/TempleOS/Adam/Utils/BinRep.CPP,1] ::/TempleOS/Adam/Utils/BinRep.CPP
 
 class CExeImportExport
 {
@@ -1922,7 +1909,6 @@ class CExe
   CExeAbsAddr *abss;
   CExeHeapGlbl *heap_glbls;
 };
-
 
 //Opcode Modifier
 #define OM_NO 0
@@ -2192,7 +2178,7 @@ public class CLex
   U0 end_of_zeroed_members;
   CLexFile lfns[LFN_CNT];
   CLexFile stk[LFN_STK_CNT];
-#assert !($&7)
+U0 pad;#assert !($&7) //(compiler lags one token)
 };
 
 
@@ -2924,6 +2910,7 @@ public class CSnap
 };
 
 #define TSF_SAME_SONG	1
+#define TASK_TITLE_LEN			127
 
 class CTaskSettings
 {
@@ -2935,18 +2922,18 @@ class CTaskSettings
   F64	win_max_refresh;
   I64	scroll_x,scroll_y,scroll_z;
   CSnap snap;
-  U32	win_inhibit;
-  U8	text_attr;
-  U8	border_attr;
-  U8	doc_put_attr;
-  U8	doc_border_attr;
   CBGR palette4[16];
+  U32	win_inhibit;;
+  U8	text_attr,  title_src;
+  U8	border_attr,border_src;
+  U8	task_title[TASK_TITLE_LEN+1];
   Bool border;
   Bool preempt;
   Bool cursor;
   Bool scroll;
   Bool wordstat;
   U8	pad[3];
+U0 pad;#assert !($&7) //(compiler lags one token)
 };
 
 #define NUM_PROGRESS_BARS	4
@@ -2956,6 +2943,18 @@ class CProgress
   I64 val,max;
   U8  desc[PROGRESS_DESC_LEN+1];
 };
+
+//Border ATTR src
+#define BDS_CONST		0
+#define BDS_CUR_PRT		1
+#define BDS_ED_FILENAME_PRT	2
+
+//Task title src
+#define TTS_CONST		0
+#define TTS_LOCKED_CONST	1 //This is not strictly enforced
+#define TTS_TASK_NAME		2
+#define TTS_ED_FILENAME		3
+#define TTS_CUR_LEX		4
 
 // TASK task flags
 #define TASKf_KILL_TASK		0
@@ -2967,15 +2966,14 @@ class CProgress
 #define TASKf_FILTER_INPUT	6
 #define TASKf_HAS_SONG		7
 #define TASKf_NOT_RAW		8
-#define TASKf_LOCK_TITLE	9
-#define TASKf_DISABLE_BPTS	10
-#define TASKf_AWAITING_MSG	11
-#define TASKf_CURRENTLY_RUNNING	12
-#define TASKf_BREAK_LOCKED	13
-#define TASKf_PENDING_BREAK	14
-#define TASKf_BREAK_TO_SHIFT_ESC 15
-#define TASKf_INIT_EXT		16
-#define TASKf_KILL_AFTER_DBG	17
+#define TASKf_DISABLE_BPTS	9
+#define TASKf_AWAITING_MSG	10
+#define TASKf_CURRENTLY_RUNNING	11
+#define TASKf_BREAK_LOCKED	12
+#define TASKf_PENDING_BREAK	13
+#define TASKf_BREAK_TO_SHIFT_ESC 14
+#define TASKf_INIT_EXT		15
+#define TASKf_KILL_AFTER_DBG	16
 
 //locked flags
 #define TASKLf_TASK_LOCK		0
@@ -2988,13 +2986,10 @@ class CProgress
 #define DISPLAYf_CHILDREN_NOT_ON_TOP	5
 #define DISPLAYf_HAS_BEEN_RESIZED	6
 
-#define SPAWNF_ADD_TO_QUE		1
-
 #define TASK_SIGNATURE_VAL		'TskS'
 #define TASK_IN_QUE_SIGNATURE_VAL	'TskQ'
 #define TASK_COMBINED_SIGNATURE_VAL	(TASK_SIGNATURE_VAL+TASK_IN_QUE_SIGNATURE_VAL<<32)
 
-#define TASK_TITLE_LEN			127
 #define TASK_NAME_LEN			31
 #define TASK_WALLPAPER_DATA_SIZE	128
 class CTaskStk
@@ -3082,10 +3077,11 @@ public class CTask //The Fs segment register points to current CTask
   U8	task_title[TASK_TITLE_LEN+1];
   U8	task_name[TASK_NAME_LEN+1];
   U8	wallpaper_data[TASK_WALLPAPER_DATA_SIZE];
- 
+
+  U8	title_src;
   U8	text_attr;
-  U8	border_attr;
-  U16	win_z_num,pad[2];
+  U8	border_attr,border_src;
+  U16	win_z_num,pad;
 
   CTaskStk *stk;
 
@@ -3133,9 +3129,7 @@ public class CTask //The Fs segment register points to current CTask
 
 #define MSGF_ALLOW_KEY_DESC	63
 
-  CTaskCmd *next_servant_cmd,*last_servant_cmd;
-  CTaskCmd *next_master_cmd,*last_master_cmd;
-
+  CSrvCtrl srv_ctrl;
   CLex *next_lex,*last_lex;
 
   I64	win_old_left;
@@ -3154,7 +3148,7 @@ public class CTask //The Fs segment register points to current CTask
 
   I64	user_data0,user_data1,
 	user_data2,user_data3;
-#assert !($&7)
+U0 pad;#assert !($&7) //(compiler lags one token)
 };
 
 class CTSS
@@ -3624,7 +3618,6 @@ public class CCPU //The Gs segment register points to current CCPU
   F64 idle_factor;
   I64 total_jiffies;
   CTask *seth_task,*idle_task;
-  CMPCmdCtrl cmd_ctrl;
   I64 tr;   //task register
   I64 swap_cnter;
   U0 (*timer_irq_chain)(CTask *task);
@@ -3632,7 +3625,7 @@ public class CCPU //The Gs segment register points to current CCPU
   CTSS *tss;
   U8 wallpaper_data[CPU_WALLPAPER_DATA_SIZE]; //doubles as start-up stk
   I64 start_stk[8];
-#assert !($&7)
+U0 pad;#assert !($&7) //(compiler lags one token)
 };
 
 #define KDF_HAS_DESCS	1

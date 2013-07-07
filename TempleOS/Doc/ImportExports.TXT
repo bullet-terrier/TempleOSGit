@@ -1,16 +1,16 @@
                        Details of Scoping and Linkages
 
-[C:/TempleOS/Doc/Glossary.TXT.Z,1] Just-In-Time Compilation makes use of the
-current task's hash sym table and 
-its parent tasks' tables.  It fetches syms from parent tasks' tables if not 
-found locally in the current task's table and it places new syms in the 
-current task's table.  Conceptually, syms are at the scope of environment
-vars 
-in other operating systems.
+[C:/TempleOS/Doc/Glossary.TXT.Z,1] JIT Compile Mode makes use of the current
+task's hash sym table and its parent 
+tasks' tables.  It fetches syms from parent tasks' tables if not found
+locally 
+in the current task's table and it places new syms in the current task's 
+table.  Conceptually, syms are at the scope of environment vars in other 
+operating systems.
 
-[C:/TempleOS/Doc/Glossary.TXT.Z,1] AOT Compilation creates a new, empty, sym
-table which you must populate by #in
-cludeing [C:/TempleOS/Kernel/AOTAdam.HPP.Z,1] or whatever to import syms.
+[C:/TempleOS/Doc/Glossary.TXT.Z,1] AOT Compile Mode creates a new, empty, sym
+table which you must populate by #i
+ncludeing [C:/TempleOS/Kernel/AOTAdam.HPP.Z,1] or whatever to import syms.
 
 When a sym is placed into a table, older syms with identical names will be 
 overshadowed if they exist, unless you use the compiler option 
@@ -54,7 +54,7 @@ sym will be left incomplete until the
 sym is defined.  Basically, this binds C to asm from elsewhere.
 
 
-StaticModule/JustInTime
+AheadOfTime/JustInTime
 | Code occurs in GlobalScope/FunctionScope
 | | CCode/AsmCodeBlk
 | | | extern/import/_extern/_import/IMPORT/static/class/goto
@@ -65,32 +65,32 @@ StaticModule/JustInTime
 | | | |        |          | || StaticVarInit/DynamicVarInitAllowed/NoInitAllowed
 | | | |        |          | || | Are dups allowed within the namespace? A dup overshadows the original.
 | | | |        |          | || | DupsAllowed/NoDups/NoDupsButPad/WarningUnlessClosedOut
-S G A          C label::  S MG   N
-S G A          C label:     MG   N
-S G A          C @@label:   AL   N
-S G A IMPORT   C label;     MR   N
-S F A          C label::  S BG   N
-S F A          C label:     BG   N
-S F A          C @@label:   AL   N
-S F A IMPORT   C label;     BR   N
-S x x            #define    MR   D
-S G C          C function S MR   D
-S F C          R var        FR   N
-S F C          S var        FR   N
-S F C static   C var        FR D N
-S F C goto     C label:     FG   N
-S G C          C var      S MR D D
-S G C          D var        MR N D
-S G C            class      MR   D
-S G C class      member     MR   P
-S G C extern     class      MR   D
-S G C extern   C function   MR   W
-S G C import   C function   MR   D
-S G C import   C var        MR   D
-S G C _extern C function   MR   D
-S G C _extern C var        MR   D
-S G C _import C function   MR   D
-S G C _import C var        MR   D
+A G A          C label::  S MG   N
+A G A          C label:     MG   N
+A G A          C @@label:   AL   N
+A G A IMPORT   C label;     MR   N
+A F A          C label::  S BG   N
+A F A          C label:     BG   N
+A F A          C @@label:   AL   N
+A F A IMPORT   C label;     BR   N
+A x x            #define    MR   D
+A G C          C function S MR   D
+A F C          R var        FR   N
+A F C          S var        FR   N
+A F C static   C var        FR D N
+A F C goto     C label:     FG   N
+A G C          C var      S MR D D
+A G C          D var        MR N D
+A G C            class      MR   D
+A G C class      member     MR   P
+A G C extern     class      MR   D
+A G C extern   C function   MR   W
+A G C import   C function   MR   D
+A G C import   C var        MR   D
+A G C _extern  C function   MR   D
+A G C _extern  C var        MR   D
+A G C _import  C function   MR   D
+A G C _import  C var        MR   D
 J G A          C label::  S Tg   N
 J G A          C label:     BG   N
 J G A          C @@label:   AL   N
@@ -113,8 +113,8 @@ J G C extern     class    C TR   D
 J G C extern   C function F TR   W
 J G C extern   C var      G TR   D
 J G C extern   D var      G TR   D
-J G C _extern C function F TR   D
-J G C _extern C var      G TR   D
+J G C _extern  C function F TR   D
+J G C _extern  C var      G TR   D
 
 * GoTo labels must not have the same name as global scope objects.  GoTo's
 are 
@@ -129,9 +129,8 @@ with the same name are allowed in a class.
 * Use reg or noreg in front of local var names to override automatic register 
 var allocation.  You can, optionally, specify a reg after the "reg" keyword.
  
-* Local nonregister function vars can be accessed in asm blks with &i[RBP]
-for 
-example.
+* Local non-register function vars can be accessed in asm blks with &i[RBP] 
+for example.
 
 * Glbl vars and functions can be accessed in asm with and & as in
 	MOV	RAX,I64 [&glbl_var]

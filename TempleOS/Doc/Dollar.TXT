@@ -1,16 +1,14 @@
                                Dollar Sign Cmds
 
 TempleOS supports rich-text type cmds which are bracketed with '$'.  Use <CTRL
--L> to experiment with them.  Use CTRL-T to toggle between plain text and
-rich 
-text.
+-L> to experiment with them.  Use <CTRL-T> to toggle between plain text and 
+rich text.
 
 The format of '$' cmds includes a two character code, +/-flags, a comma and 
 args separated by commas.  The flags often determine how many and what args 
 the cmd takes.
 
-See [C:/TempleOS/Doc/CtrlL.TXT.Z,1] and
-[C:/TempleOS/Demo/Doc/DemoDoc.TXT.Z,1].
+See [C:/TempleOS/Doc/Widget.TXT,1] and [C:/TempleOS/Demo/Doc/DemoDoc.TXT.Z,1].
 
 See [C:/TempleOS/Kernel/Adam1a.HPP.Z,1045] Doc Type Defines and
 [C:/TempleOS/Adam/Doc/Doc.CPP.Z,1] Doc Type Codes
@@ -19,9 +17,9 @@ See [C:/TempleOS/Kernel/Adam1a.HPP.Z,1045] Doc Type Defines and
   attr to center text, you can bracket them with "$" and enter flags such as
   "+CX".  You can't edit them if they are bracketed by "$" unless you toggle to
   plain text mode with <CTRL-T>.
-+] CR Hard Carriage Return
++] CR Hard Carriage Return (New Line)
   Carriage returns are normally specified without being bracketed with "$".
-+] SR Soft Carriage Return
++] SR Soft Carriage Return (New Line)
   Word wrap uses soft carriage returns which are not saved.  You never place
   soft carriage returns by yourself.
 +] TB Tab
@@ -51,18 +49,6 @@ FD Default Foreground Color
 BD Default Background Color
 FG Foreground Color
 BG Background Color
-F2 Alt Foreground Color (Paren & Brace coloring)
-FL Foreground of Links
-FM Foreground of Macros/Menu-Values 
-FA Foreground of Anchors
-FH Foreground of Hidden widgets
-FE Foreground of Trees
-FU Foreground of User Text
-FB Foreground of Binary Tags
-FY Foreground of Keywords
-FR Foreground of Keywords2
-FC Foreground of Comments
-FQ Foreground of Quotes
 +] FU,BU User Prompts
   special color changing cmds.  They are used when the user is prompted for
   text at the cmd line.  They rst the cursor pos if the cursor is posed before
@@ -71,6 +57,8 @@ FQ Foreground of Quotes
   Clear all previous entries except ones with hold(+H) flags.  You might want
   +H on word wrap entries.  Alternatively, you can use
   [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1697] DocClear().
++] PT User Prompt
+  Start of a user prompt.
 +] WW Word Wrap
   Include a 1 or 0.
 +] HL Highlighting

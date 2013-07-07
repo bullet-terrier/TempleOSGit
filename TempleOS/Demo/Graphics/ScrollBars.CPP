@@ -5,7 +5,7 @@
 
 
 
-/* Tree <1> (image) */
+/* <1> <1> (image) */
 
 
 #define MAP_HEIGHT	2048

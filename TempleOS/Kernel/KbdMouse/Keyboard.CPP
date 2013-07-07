@@ -516,7 +516,7 @@ U0 KbdHandler()
   }
 }
 
-I64 KbdQueMsgs()
+I64 KbdMsgsQue()
 {
   I64 p1,p2,msg_code=MSG_NULL;
   CTask *task_focus;
@@ -524,11 +524,11 @@ I64 KbdQueMsgs()
     while (FifoI64Rem(scan_code_fifo,&p2)) {
       p1=ScanCode2A(p2);
       if (p2 & SCF_KEY_UP) {
-	QueMsg(task_focus,0,
+	TaskMsgQue(task_focus,0,
 	  MSG_KEY_UP,p1,p2,0);
 	msg_code=MSG_KEY_UP;
       } else {
-	QueMsg(task_focus,0,
+	TaskMsgQue(task_focus,0,
 	  MSG_KEY_DOWN,p1,p2,0);
 	msg_code=MSG_KEY_DOWN;
       }

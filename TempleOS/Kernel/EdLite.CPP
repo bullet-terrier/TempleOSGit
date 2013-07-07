@@ -249,7 +249,6 @@ U0 EdLite(U8 *filename,I64 num=1)
 	  cur_line->line=src;
 	  cur_col++;
 	}
-	break;
     }
   } while (ch!=CH_SHIFT_ESC && ch!=CH_ESC);
 

@@ -85,22 +85,18 @@ U0 Quail()
     q[i].dead=FALSE;
   }
   SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=YELLOW<<4+BLUE;
   WinMax;
-
-  DocBottom;
-  "$CL$$BG,YELLOW$";
-
+  DocClear;
+  "$BG,YELLOW$";
   PutBibleVerse("Numbers,11:11",88);
   DocTop;
   PopUpOk("Scroll down to finish reading.\n"
 	"$FG,GREEN$<SHIFT-ESC>$FG$ when done.");
   View;
-
-  DocBottom;
-  "$CL$$BG,LTCYAN$";
-  NewLine(SKY_HEIGHT/FONT_HEIGHT);
-  "$BG,YELLOW$";
-  NewLine(3);
+  DocClear;
+  "$BG,LTCYAN$"; NewLine(SKY_HEIGHT/FONT_HEIGHT);
+  "$BG,YELLOW$"; NewLine(5);
 
   t0=tT;
   t_last=0;
@@ -108,5 +104,4 @@ U0 Quail()
   PressAKey;
   DocClear;
   SettingsPop(Fs,TSF_SAME_SONG);
-  "$BG$\n";
 }

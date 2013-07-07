@@ -67,8 +67,7 @@ public CDirEntry *CDirTreeUnflatten(U8 *src)
   return tempm;
 }
 
-#help_index "Install;File/Install Related"
-#help_file "::/TempleOS/Doc/Install"
+#help_index "Install;File/Cmd Line (Typically);Cmd Line (Typically)"
 
 #define ROUND_PRT_TO	(63*255)
 #define PRT_HEADER	63
@@ -157,8 +156,11 @@ public U0 PrtDsk(U8 drv_let=0)
   temppp=root.next;
   drv_let2=bdev->first_drv_let;
   while (temppp!=&root) {
-    "Drive %C:%08X %s\n",drv_let2,temppp->size,
-      temppp->pri ? "Primary":"Logical";
+    "Drive %C:%08X ",drv_let2,temppp->size;
+    if (temppp->pri)
+      "Primary\n";
+    else
+      "Logical\n";
     temppp=temppp->next;
     drv_let2++;
   }
@@ -366,7 +368,7 @@ public U0 DskView(U8 drv_let=0)
     radius=0.4*h;
   else
     radius=0.4*v;
-  dc->color=ROP_EQU+BLACK;
+  dc->color=BLACK;
   GrCircle(dc,h>>1,v>>1,radius);
 
   j=1;
@@ -375,7 +377,7 @@ public U0 DskView(U8 drv_let=0)
     if (bdev==p->bdev && p->type) {
       sect_start=-(p->offset*2*pi/(bdev->max_blk+1));
       sect_end	=-((p->offset+p->size)*2*pi/(bdev->max_blk+1));
-      dc->color=ROP_EQU+BLACK;
+      dc->color=BLACK;
       GrLine(dc,h>>1,v>>1,
 	h>>1+radius*Cos(sect_start),
 	v>>1+radius*Sin(sect_start));
@@ -383,7 +385,7 @@ public U0 DskView(U8 drv_let=0)
 	h>>1+radius*Cos(sect_end),
 	v>>1+radius*Sin(sect_end));
 
-      dc->color=ROP_EQU+j;
+      dc->color=j;
       GrPrintF(dc,0,v-FONT_HEIGHT*j,"%C %-8Z",Prt2Drv(p),
 	p->type.u16[0],"ST_PRT_TYPES");
       GrFloodFill(dc,
@@ -399,7 +401,7 @@ public U0 DskView(U8 drv_let=0)
   DCDel(dc);
 }
 
-#help_index "Info;File/Cmd Line (Typically);Cmd Line (Typically);File/Install Related;Install"
+#help_index "Info;File/Cmd Line (Typically);Cmd Line (Typically);Install"
 public U0 BlkDevRep()
 {
   I64 i;

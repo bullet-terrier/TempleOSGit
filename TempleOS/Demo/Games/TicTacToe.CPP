@@ -35,6 +35,12 @@ U0 DrawBoard(I64 player)
 	break;
 
     }
+/*
+
+ipx,ipy are input pointer (mouse) x,y.
+ip_lb	is mouse left button
+
+*/
   if (player==1)
     DrawX(dc,ipx-Fs->win_pixel_left,ipy-Fs->win_pixel_top);
   else

@@ -120,7 +120,7 @@ U0 Song()
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Preempt(OFF);
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
   MusicSettingsRst;

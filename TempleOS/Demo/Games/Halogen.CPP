@@ -10,37 +10,36 @@ Bool crash;
 
 U0 DrawIt(CTask *task,CDC *dc)
 {
-  I64 h=task->win_pixel_width,v=task->win_pixel_height;
+  I64 w=task->win_pixel_width,h=task->win_pixel_height;
   I64 i,x,y,xx;
   Bool old_preempt=Preempt(OFF);
-  xx=h>>1-car_x+road_x[road_ptr&(NUM_ROAD-1)];
+  xx=w>>1-car_x+road_x[road_ptr&(NUM_ROAD-1)];
 
-  task->text_attr=BLACK+BLACK<<4;
   dc->color=LTGRAY;
   for (i=0;i<NUM_ROAD;i++) {
-    x=h>>1-car_x+road_x[(i+road_ptr)&(NUM_ROAD-1)];
-    y=v-0.5*i;
-    if (y<v/2) break;
+    x=w>>1-car_x+road_x[(i+road_ptr)&(NUM_ROAD-1)];
+    y=h-0.5*i;
+    if (y<(h+FONT_HEIGHT)>>1) break;
     GrPlot(dc,x+ROAD_WIDTH_BY_2-0.4*i,y);
     GrPlot(dc,x-ROAD_WIDTH_BY_2+0.4*i,y);
   }
   dc->color=WHITE;
  
-  x=h>>1-CAR_WIDTH_BY_2;
+  x=w>>1-CAR_WIDTH_BY_2;
   if (x<xx-ROAD_WIDTH_BY_2)
     crash=TRUE;
-  GrLine(dc,x-10,v,x-40,v-100);
-  GrLine(dc,x+10,v,x+40,v-100);
+  GrLine(dc,x-10,h,x-40,h-100);
+  GrLine(dc,x+10,h,x+40,h-100);
 
-  x=h>>1+CAR_WIDTH_BY_2;
+  x=w>>1+CAR_WIDTH_BY_2;
   if (x>xx+ROAD_WIDTH_BY_2)
     crash=TRUE;
-  GrLine(dc,x-10,v,x-40,v-100);
-  GrLine(dc,x+10,v,x+40,v-100);
+  GrLine(dc,x-10,h,x-40,h-100);
+  GrLine(dc,x+10,h,x+40,h-100);
 
   dc->color=YELLOW;
   if (crash)
-    GrPutS(dc,h>>1-FONT_WIDTH*4,(v-FONT_HEIGHT)>>1,"Game Over");
+    GrPutS(dc,w>>1-FONT_WIDTH*4,(h-FONT_HEIGHT)>>1,"Game Over");
   Preempt(old_preempt);
 }
 
@@ -61,6 +60,8 @@ U0 UpdateRoad()
 U0 Init()
 {
   I64 i,x=0;
+  DocClear;
+  "$BG,DKGRAY$"; NewLine((TEXT_ROWS-1)/2);
   speed=0;
   distance=0;
   road_trend=0;
@@ -80,6 +81,7 @@ U0 Halogen()
 {
   I64 p1,p2,ch=0,sc=0;
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=BLACK<<4+WHITE;
   MenuPush(
   "File {"
   "  Abort(,CH_SHIFT_ESC);"
@@ -98,7 +100,6 @@ U0 Halogen()
   WinMax;
   Init;
   DocCursor;
-  DocClear;
   Fs->draw_it=&DrawIt;
   try {
     while (TRUE) {
@@ -157,6 +158,7 @@ ha_done:
   } catch
     CatchAll;
   MenuPop;
+  DocClear;
   SettingsPop;
 }
 

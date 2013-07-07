@@ -579,7 +579,7 @@ args.
 */
   I64 code,i;
   Bool is_unsigned;
-  CHashClass *tempc,*tempc1,*tempc2,*tempc3;
+  CHashClass *tempc,*tempc1,*tempc2;
   CIntermediateCode *tempi,*tempi1,*tempi2,*tempi3,*tempi_push,
 	*temp_lag[4],*last_with_class=NULL,*tempii;
   CPrsStk *ps=OptStart(lx,temp_lag);
@@ -605,11 +605,6 @@ args.
       case 9:
 	ps->ptr-=tempi->ic_data>>2;
 	break;
-      case 3:
-	tempi3=PrsPop(ps);
-	tempc3=tempi3->ic_class;
-	tempi->t.p3t=tempi3;
-	tempi->t.p3c=PrsPop(ps);
       case 2:
 	tempi2=PrsPop(ps);
 	tempc2=tempi2->ic_class;
@@ -1574,25 +1569,6 @@ args.
 	}
 	tempi->ic_class=sys_internal_types[IT_I64];
 	break;
-      case IC_COLON:
-	if (tempc2->sub_type>tempc3->sub_type)
-	  tempi->ic_class=tempc2;
-	else
-	  tempi->ic_class=tempc3;
-	tempc=tempi->ic_class;
-	if (tempc->sub_type==IT_F64) {
-	  if (tempc2->sub_type!=IT_F64)
-	    tempi2->ic_flags|=ICF_R_TO_F64;
-	  if (tempc3->sub_type!=IT_F64)
-	    tempi3->ic_flags|=ICF_R_TO_F64;
-	}
-	if (!tempi_push->ic_class->ptr_cnt) {
-	  if (tempi_push->ic_class->sub_type==IT_F64)
-	    tempi_push->ic_class2=sys_internal_types[IT_F64];
-	  else
-	    tempi_push->ic_class2=sys_internal_types[IT_I64];
-	}
-	break;
       case IC_MUL_EQUAL:
 	if (lx->pass==2 && (!tempc->size||!tempc2->size)) LexPutWarn(lx,"ST_ASSIGN_U0",fun_class);
 
@@ -1672,12 +1648,12 @@ args.
 	  if (tempi1->ic_opcode==IC__PP) {
 	    tempi->ic_opcode=IC_ASSIGN_PP;
 	    tempi->ic_flags|=tempi1->ic_flags;
-	    tempi->t.p3c=tempi1->ic_class;
+	    tempi->t.class2=tempi1->ic_class;
 	    OptSetNOP1(tempi1);
 	  } else if (tempi1->ic_opcode==IC__MM) {
 	    tempi->ic_opcode=IC_ASSIGN_MM;
 	    tempi->ic_flags|=tempi1->ic_flags;
-	    tempi->t.p3c=tempi1->ic_class;
+	    tempi->t.class2=tempi1->ic_class;
 	    OptSetNOP1(tempi1);
 	  }
 	}
@@ -1746,8 +1722,6 @@ args.
       case IC_SIGN_I64:
       case IC_TOUPPER:
       case IC_ABS_I64:
-      case IC_LIMIT_I64:
-      case IC_LIMIT_U64:
       case IC_MIN_I64:
       case IC_MAX_I64:
       case IC_MIN_U64:
@@ -1767,7 +1741,6 @@ args.
       case IC_BTS:
       case IC_BTR:
       case IC_BTC:
-      case IC_BEQU:
       case IC_QUE_INIT:
       case IC_QUE_REM:
       case IC_QUE_INS:
@@ -1777,14 +1750,8 @@ args.
       case IC_OUT_U8:
       case IC_NOBOUND_SWITCH:
       case IC_SWITCH:
-      case IC_MEMCPY:
-      case IC_MEMSET:
-      case IC_MEMSET_U16:
-      case IC_MEMSET_U32:
-      case IC_MEMSET_U64:
       case IC_ASM:
 	break;
-      case IC_LBEQU:
       case IC_LBTS:
       case IC_LBTR:
       case IC_LBTC:
@@ -2054,7 +2021,6 @@ args.
 	break;
       case IC_END:
       case IC_ADDR:
-      case IC_QUESTION:
       case IC_RET:
       case IC_END_EXP:
       case IC_CALL_START:

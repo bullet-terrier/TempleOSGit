@@ -3,9 +3,9 @@
 
 U0 FillInTime()
 {
-  CDate spdt;
-  spdt=GetCurTimeCDate;
-  "$IV,1$----%D %T----$IV,0$\n",spdt,spdt;
+  CDate cdt;
+  cdt=GetCurTimeDate;
+  "$IV,1$----%D %T----$IV,0$\n",cdt,cdt;
 }
 
 U0 RandQuote(I64 num)

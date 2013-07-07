@@ -156,7 +156,7 @@ U0 Collision()
 {
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;

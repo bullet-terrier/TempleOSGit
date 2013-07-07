@@ -4,7 +4,6 @@
 U0 UserStartUp()
 { //Run each time a user a spawned
   UseTermDoc;
-  DocPutAttr(WHITE<<4+BLUE);
   Type("::/TempleOS/Doc/Start.TXT");
   LBts(&Fs->display_flags,DISPLAYf_SHOW);
   WinZBufUpdate;
@@ -13,8 +12,8 @@ U0 UserStartUp()
   Dir;
 }
 
-U0 ServantStartUp()
-{ //Run each time a servant task is spawned.
+U0 SrvStartUp()
+{ //Run each time a srv task is spawned.
   UseTermDoc;
   LBts(&Fs->display_flags,DISPLAYf_SHOW);
   WinZBufUpdate;

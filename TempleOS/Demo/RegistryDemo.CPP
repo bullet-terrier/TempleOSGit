@@ -8,11 +8,11 @@
 
 AcctRegSetDftEntry("DemoCompany/Game1","F64 best_score=1.23;\n");
 AcctRegSetDftEntry("DemoCompany/Game1/SimpleVal","1234;\n");
-AcctRegExecuteBranch("DemoCompany/Game1");
+AcctRegExeBranch("DemoCompany/Game1");
 
 U0 Game()
 {
-  I64 i=AcctRegExecuteBranch("DemoCompany/Game1/SimpleVal");
+  I64 i=AcctRegExeBranch("DemoCompany/Game1/SimpleVal");
   "High Score:%6.5f\n",best_score;
   "Val:%d\n",i;
   i++;

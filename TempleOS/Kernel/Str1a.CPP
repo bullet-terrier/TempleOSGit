@@ -591,10 +591,10 @@ Bool YorN()
   while (TRUE) {
     ch=ToUpper(GetChar(,FALSE));
     if (ch=='Y') {
-      "$FU$YES$FG$\n";
+      "$PT$YES$FG$\n";
       return TRUE;
     } else if (ch=='N') {
-      "$FU$NO$FG$\n";
+      "$PT$NO$FG$\n";
       return FALSE;
     }
   }
@@ -1048,7 +1048,10 @@ ai_skip:
     k++;
   }
   if (_end_ptr) *_end_ptr=st-1;
-  return neg ? -result:result;
+  if (neg)
+    return -result;
+  else
+    return result;
 }
 
 U0 GetFFlags(U8 *f,U8 *lst,U8 *st)
@@ -2046,7 +2049,7 @@ U8 *SPrintF(U8 *dst,U8 *fmt,...)
 }
 
 /*
-A2CDate()
+A2Date()
   This routine recognizes the following formats:
   1) "*+nnnn"  "*-nnnn"
   2) mm/dd
@@ -2064,7 +2067,7 @@ the start of mon for seven days before
 today.
 
 */
-CDate A2CDate(U8 *_src)
+CDate A2Date(U8 *_src)
 //ASCII date to CDate
 {
   CDate result=0;
@@ -2094,7 +2097,7 @@ CDate A2CDate(U8 *_src)
     p1++;
     if (*p1=='+' || *p1=='-')
       result.date=A2I(p1,10,&p1);
-    result+=GetCurTimeCDate+local_time_offset;
+    result+=GetCurTimeDate+local_time_offset;
   } else {
     StrFirstRem(p1,"/",v); //Put mon into v
     ds.mon=A2I(v);
@@ -2106,10 +2109,10 @@ CDate A2CDate(U8 *_src)
 	ds.year+=2000;
     } else {
       ds.day_of_mon=A2I(p1,10,&p1);
-      CDate2CDateStruct(&ds1,GetCurTimeCDate+local_time_offset);
+      Date2DateStruct(&ds1,GetCurTimeDate+local_time_offset);
       ds.year=ds1.year;
     }
-    result=CDateStruct2CDate(&ds);
+    result=DateStruct2Date(&ds);
   }
   if (*p1==')') p1++;
 
@@ -2208,7 +2211,10 @@ to avoid this.
   }
 a2f_end:
   if (_end_ptr) *_end_ptr=src-1;
-  return neg ? -d:d;
+  if (neg)
+    return -d;
+  else
+    return d;
 }
 
 U8 *GetFJoin(U8 *src,U8 *fmt,I64i argc,I64i *argv)
@@ -2328,7 +2334,7 @@ U8 *GetFJoin(U8 *src,U8 *fmt,I64i argc,I64i *argv)
 	    if (cur_arg>=argc)
 	      throw(EXCEPT_GETF,1);
 	    i_ptr=argv[cur_arg++];
-	    *i_ptr=A2CDate(buf);
+	    *i_ptr=A2Date(buf);
 	    break;
 	}
 	Free(buf);

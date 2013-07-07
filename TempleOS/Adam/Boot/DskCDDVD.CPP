@@ -40,7 +40,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
   de->len=sizeof(CISO1DirEntry)-1;
   de->ext_attr_len=0;
   FillU16Palindrome(&de->vol_seq_num,1);
-  CDate2ISO1(&de->date,tempm->datetime);
+  Date2ISO1(&de->date,tempm->datetime);
   de->flags=ISO1_ATTR_DIR;
   de->name_len=1;
   de->name=0;
@@ -52,7 +52,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
   FillU32Palindrome(&de->loc,tempc->loc);
   FillU32Palindrome(&de->size,tempc->short_dir_blks*CD_BLK_SIZE);
   FillU16Palindrome(&de->vol_seq_num,1);
-  CDate2ISO1(&de->date,parent->datetime);
+  Date2ISO1(&de->date,parent->datetime);
   de->flags=ISO1_ATTR_DIR;
   de->name_len=1;
   de->name=1;
@@ -62,7 +62,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
   de2->len=sizeof(CISO1DirEntry)-1;
   de2->ext_attr_len=0;
   FillU16Palindrome(&de2->vol_seq_num,1);
-  CDate2ISO1(&de2->date,tempm->datetime);
+  Date2ISO1(&de2->date,tempm->datetime);
   de2->flags=ISO1_ATTR_DIR;
   de2->name_len=1;
   de2->name=0;
@@ -74,7 +74,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
   FillU32Palindrome(&de2->loc,tempc->loc+tempc->short_dir_blks);
   FillU32Palindrome(&de2->size,tempc->long_dir_blks*CD_BLK_SIZE);
   FillU16Palindrome(&de2->vol_seq_num,1);
-  CDate2ISO1(&de2->date,parent->datetime);
+  Date2ISO1(&de2->date,parent->datetime);
   de2->flags=ISO1_ATTR_DIR;
   de2->name_len=1;
   de2->name=1;
@@ -106,7 +106,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
       }
       FillU32Palindrome(&de->size,tempm1->size);
       FillU16Palindrome(&de->vol_seq_num,1);
-      CDate2ISO1(&de->date,tempm1->datetime);
+      Date2ISO1(&de->date,tempm1->datetime);
       de->flags=0;
       de->name_len=StrLen(tempm1->name);
       StrCpy(&de->name,tempm1->name);
@@ -118,7 +118,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
       FillU32Palindrome(&de2->loc,*_cur_blk);
       FillU32Palindrome(&de2->size,tempm1->size);
       FillU16Palindrome(&de2->vol_seq_num,1);
-      CDate2ISO1(&de2->date,tempm1->datetime);
+      Date2ISO1(&de2->date,tempm1->datetime);
       de2->flags=0;
       de2->name_len=StrLen(tempm1->name)<<1;
       ptr1=&de2->name;
@@ -189,7 +189,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
   FillU32Palindrome(&dir_blk_buf->size,n*CD_BLK_SIZE);
   FillU32Palindrome(&dir_blk_buf->loc,*_cur_blk);
   FillU16Palindrome(&tempi->vol_seq_num,1);
-  CDate2ISO1(&tempi->date,tempm->datetime);
+  Date2ISO1(&tempi->date,tempm->datetime);
   if (write)
     "%X:%s\n",*_cur_blk,tempm->full_name;
   if (write)
@@ -220,7 +220,7 @@ I64 CDFileCreate2(CFile *out_file,CDirEntry *tempm,
   FillU32Palindrome(&dir_blk_buf2->size,n*CD_BLK_SIZE);
   FillU32Palindrome(&dir_blk_buf2->loc,*_cur_blk);
   FillU16Palindrome(&tempi2->vol_seq_num,1);
-  CDate2ISO1(&tempi2->date,tempm->datetime);
+  Date2ISO1(&tempi2->date,tempm->datetime);
   if (write)
     "%X:%s\n",*_cur_blk,tempm->full_name;
   if (write)
@@ -365,7 +365,7 @@ public I64 CDFileCreate(U8 *_filename=NULL,U8 *src_files_find_mask,U8 *fu_flags=
 
   rootdir->attr=_ATTR_DIR;
   rootdir->sub=FilesFind(src_files_find_mask,fuf_flags);
-  rootdir->datetime=GetCurTimeCDate;
+  rootdir->datetime=GetCurTimeDate;
   rootdir->user_data=CAlloc(sizeof(CCCDUserData));
   tempc=rootdir->user_data;
   tempc->path_entry_num=1;

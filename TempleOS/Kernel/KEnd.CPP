@@ -170,8 +170,7 @@ U0 KernelMain()
   SysGrInit;
   StrCpy(Fs->task_name,"Adam Task CPU#0");
   StrCpy(Fs->task_title,Fs->task_name);
-  Fs->text_attr=WHITE<<4+PURPLE;
-  Fs->border_attr=WHITE<<4+LTPURPLE;
+  Fs->title_src=TTS_TASK_NAME;
   Fs->win_right=text_cols-2;
   Fs->win_top++;
   TaskDerivedValsUpdate;
@@ -214,7 +213,7 @@ U0 KernelMain()
   else if (mp_cnt<2)
     Spawn(&MouseDriverInstall);
   else
-    MPSpawn(&MouseDriverInstall);
+    Spawn(&MouseDriverInstall,,,1);
 
   "BlkDevsInitAll\n";
   BlkDevsInitAll;
@@ -239,12 +238,13 @@ U0 KernelMain()
   try
     ExeFile("Adam1"); //Continues [D:/TempleOS/Kernel/Adam1.CPP.Z,1] /TempleOS/Kernel/Adam1.CPP
   catch {
+    Raw(ON);
     CatchAll;
     Dbg;
   }
 
   LBts(&sys_run_level,RLf_ADAM_SERVER);
-  ServantTaskCont; //Never to return
+  SrvTaskCont; //Never to return
 }
 
 asm {	ALIGN	16,OC_NOP

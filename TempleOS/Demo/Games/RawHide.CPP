@@ -1,7 +1,7 @@
 //This uses [C:/TempleOS/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 AcctRegSetDftEntry("TempleOS/RawHide","F64 best_score=9999;\n");
-AcctRegExecuteBranch("TempleOS/RawHide");
+AcctRegExeBranch("TempleOS/RawHide");
 
 F64 t0,tf;
 
@@ -238,9 +238,9 @@ U0 DrawIt(CTask *task,CDC *dc)
     dc->color=RED;
     t=tf-t0;
     if (Blink)
-      GrPutS(dc,(task->win_pixel_width-FONT_WIDTH*9)>>1-task->win_scroll_x,
+      GrPutS(dc,(task->win_pixel_width-FONT_WIDTH*14)>>1-task->win_scroll_x,
 		  (task->win_pixel_height-FONT_HEIGHT)>>1-task->win_scroll_y,
-	"Game Over");
+	"Game Completed");
   } else {
     dc->color=BLACK;
     t=tT-t0;
@@ -479,13 +479,13 @@ U0 RawHide()
 "  Restart(,'\n');"
 "}"
 );
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   Fs->win_inhibit=WIF_ALL-WIF_BORDER-WIF_GRAB_SCROLL-WIF_MENU;
   WinMax;
   WordStat;
   Preempt(OFF);
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,Fs,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,Fs,"Animate",,Fs);
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;
@@ -510,6 +510,7 @@ U0 RawHide()
       }
     }
 rh_done:
+    GetMsg(,,1<<MSG_KEY_UP);
   } catch
     CatchAll;
   MenuPop;

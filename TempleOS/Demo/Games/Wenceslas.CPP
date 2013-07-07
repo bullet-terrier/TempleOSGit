@@ -1,5 +1,5 @@
 AcctRegSetDftEntry("TempleOS/Wenceslas","F64 best_score=9999;\n");
-AcctRegExecuteBranch("TempleOS/Wenceslas");
+AcctRegExeBranch("TempleOS/Wenceslas");
 
 #define BORDER		5
 #define KING_STEP	4
@@ -410,7 +410,7 @@ U0 Wenceslas()
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   Preempt(OFF);
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
 
   PopUpOk("
 Good King Wenceslas looked out
@@ -471,7 +471,7 @@ Lead peasants to fires.
 ");
 
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   WordStat;
 
   DocCursor;

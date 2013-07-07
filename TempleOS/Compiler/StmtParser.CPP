@@ -1471,6 +1471,8 @@ U0 PrsSwitch(CLex *lx,Bool nobound,CHashFun *locals,I64 try_cnt)
       CBICAdd(lx,IC_LABEL,lb_dft,0);
       if (lx->token==':')
 	Lex(lx);
+      else
+	LexExcept(lx,"ST_EXPECTING_COLON");
       dft_found=TRUE;
     } else
       PrsStatement(lx,locals,try_cnt,lb_break);

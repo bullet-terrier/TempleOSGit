@@ -7,7 +7,7 @@
 I64 best_score=0; //Doesn't work yet for AOT
 #else
 AcctRegSetDftEntry("TempleOS/EagleDive","I64 best_score=0;\n");
-AcctRegExecuteBranch("TempleOS/EagleDive");
+AcctRegExeBranch("TempleOS/EagleDive");
 #endif
 
 
@@ -97,9 +97,8 @@ Bool game_over;
 
 class MPCtrl {
   I64 mp_cnt;
-  I64 doc_update;
-  F64 update_done_t[MP_MAX_PROCESSORS];
-  I64 done_flags;
+  I64 init_not_done_flags,update_not_done_flags,app_not_done_flags;
+  F64 update_done_time[MP_MAX_PROCESSORS];
   Bool app_done;
 } mp;
 
@@ -129,7 +128,7 @@ U0 FSTransform(CDC *dc,I64 *x,I64 *y,I64 *z)
 
 U0 CalcNormals()
 {
-/*The idea is that there are two triangles
+/*The idea is that there are two tris
 forming every grid square and we find the normal
 vect with a curl.
 
@@ -205,7 +204,7 @@ Bool TestSameSlope(I64 x,I64 y,I64 w,I64 h)
   I64 k1,k2,xx,yy,s;
   if (!(0<=x && x+w<MAP_WIDTH && 0<=y && y+h<MAP_HEIGHT))
     return FALSE;
-    //Works well averaging the two slopes of two triangles.
+    //Works well averaging the two slopes of two tris.
     //If it is too picky, we get too many panels.
   s=normals[y][x*2]+normals[y][x*2+1];
   for (k2=0;k2<h;k2++)
@@ -329,7 +328,7 @@ U0 MPDoPanels(CTask *task)
     panel_root=start_ptr;
     CriticalSectionEnd;
   }
-  LBts(&mp.done_flags,Gs->num);
+  LBtr(&mp.init_not_done_flags,Gs->num);
 }
 
 
@@ -385,12 +384,11 @@ U0 InitMap()
   panel_root=NULL;
   num_panels=0;
 
-  mp.done_flags=0;
-  for (i=1;i<mp.mp_cnt;i++)
-    MPSpawn(&MPDoPanels,Fs,"Do Panels",i);
-  MPDoPanels(Fs);
-  while (mp.done_flags!=1<<mp.mp_cnt-1)
-    Yield;
+  mp.init_not_done_flags=1<<mp.mp_cnt-1;
+  for (i=0;i<mp.mp_cnt;i++)
+    Spawn(&MPDoPanels,Fs,"Do Panels",i);
+  while (mp.init_not_done_flags)
+    Sleep(1);
   panels_processed_bitmap=MAlloc((num_panels+7)>>3);
 }
 
@@ -443,7 +441,7 @@ U0 MPDrawIt(CTask *task,CDC *dc)
       x3,y3,z3,
       cx=task->win_pixel_width>>1,
       cy=task->win_pixel_height>>1;
-  F64 h_grid_size,t0=tT;
+  F64 h_grid_size,t=tT;
   Panel reg *tempp;
 
   xx=x/(MAP_SCALE*COORDINATE_SCALE);
@@ -544,7 +542,8 @@ U0 MPDrawIt(CTask *task,CDC *dc)
     y1h+=yh;
   }
   Free(s2w);
-  mp.update_done_t[Gs->num]=tT-t0;
+  mp.update_done_time[Gs->num]=Limit(tT-t,.001,0.5);
+  LBtr(&mp.update_not_done_flags,Gs->num);
 }
 
 U0 APEagleDiveTask(CTask *master_task)
@@ -553,10 +552,8 @@ U0 APEagleDiveTask(CTask *master_task)
   if (!IsSysDeterministic)
     Preempt(ON);
   while (!mp.app_done) {
-    LBts(&Fs->task_flags,TASKf_IDLE);
-    while (!LBtr(&mp.doc_update,Gs->num) && !mp.app_done)
-      Yield;
-    LBtr(&Fs->task_flags,TASKf_IDLE);
+    while (!Bt(&mp.update_not_done_flags,Gs->num) && !mp.app_done)
+      Sleep(1);
     if (!mp.app_done)
       MPDrawIt(master_task,dc);
   }
@@ -565,7 +562,7 @@ U0 APEagleDiveTask(CTask *master_task)
   dc->depth_buf=NULL;
 
   DCDel(dc);
-  LBts(&mp.done_flags,Gs->num);
+  LBtr(&mp.app_not_done_flags,Gs->num);
 }
 
 U0 DrawHorizon(CDC *dc)
@@ -663,14 +660,13 @@ U0 DrawHorizon(CDC *dc)
 U0 BSPEagleDive()
 {
   CDC *dc=DCAlias(main_dc,Fs);
-  F64 last_t;
+  F64 max_t;
   I64 i,xx,yy,height,bkcolor,
       cx=Fs->win_pixel_width>>1,
       cy=Fs->win_pixel_height>>1;
   Fish *tempf;
 
   MemSet(panels_processed_bitmap,0,(num_panels+7)>>3);
-  MemSet(mp.update_done_t,0,sizeof(F64)*MP_MAX_PROCESSORS);
 
   xx=x/(MAP_SCALE*COORDINATE_SCALE);
   yy=y/(MAP_SCALE*COORDINATE_SCALE);
@@ -694,13 +690,7 @@ U0 BSPEagleDive()
     DrawHorizon(dc);
     DCDepthBufRst(dc);
 
-  //Signal all cores to start update
-    mp.doc_update=1<<mp.mp_cnt-1-1;
-
-    //Wait for all cores to start
-    while (mp.doc_update)
-      Yield;
-
+    mp.update_not_done_flags=1<<mp.mp_cnt-1;
     MPDrawIt(Fs,dc);
 
     xx=x/COORDINATE_SCALE;
@@ -712,23 +702,19 @@ U0 BSPEagleDive()
       tempf=tempf->next;
     }
 
-    //Wait for all cores to complete.
-    LBts(&Fs->task_flags,TASKf_IDLE);
-    for (i=1;i<mp.mp_cnt;i++)
-      while (!mp.update_done_t[i])
-	Yield;
-    LBtr(&Fs->task_flags,TASKf_IDLE);
+    while (mp.update_not_done_flags)
+      Sleep(1);
 
-    last_t=mp.update_done_t[0];
+    max_t=mp.update_done_time[0];
     for (i=1;i<mp.mp_cnt;i++)
-      last_t=Max(last_t,mp.update_done_t[i]);
+      max_t=Max(max_t,mp.update_done_time[i]);
 
       //Adjust size of updated grid.
-    v_grid_size  *=0.90+0.10*(0.65/Fs->win_max_refresh)/last_t;
+    v_grid_size  *=0.90+0.10*(0.65/Fs->win_max_refresh)/max_t;
     v_grid_size=Limit(v_grid_size,20,200);
     //Regulate how much grid expands in the distance.
     if (mp.mp_cnt>1)
-      span_factor*=0.90+0.10*mp.update_done_t[mp.mp_cnt-1]/mp.update_done_t[0];
+      span_factor*=0.90+0.10*mp.update_done_time[mp.mp_cnt-1]/mp.update_done_time[0];
     span_factor=Limit(span_factor,.30,3.0);
 
   } else {
@@ -821,11 +807,11 @@ U0 AnimateTask(I64)
 
 U0 MPEnd()
 {
-  mp.done_flags=0;
+  mp.app_not_done_flags=1<<mp.mp_cnt-1-1;
   mp.app_done=TRUE;
   //Wait for all cores to exit
-  while (mp.done_flags!=1<<mp.mp_cnt-1-1)
-    Yield;
+  while (mp.app_not_done_flags)
+    Sleep(1);
 }
 
 U0 TaskEndCB()
@@ -879,7 +865,7 @@ U0 Init(I64 _mp_cnt)
   z=64		 *COORDINATE_SCALE*MAP_SCALE;
 
   for (i=1;i<mp.mp_cnt;i++)
-    MPSpawn(&APEagleDiveTask,Fs,"AP EagleDive",i);
+    Spawn(&APEagleDiveTask,Fs,"AP EagleDive",i);
   Fs->task_end_cb=&TaskEndCB;
   game_t0=tT;
 }
@@ -933,9 +919,9 @@ U0 EagleDive(I64 _mp_cnt=MP_MAX_PROCESSORS)
   WinMax;
   WinBorder;
   "Initializing...\n";
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   Init(_mp_cnt);
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;

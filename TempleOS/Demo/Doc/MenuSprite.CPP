@@ -16,7 +16,7 @@ U0 MenuSprite()
 
 //Sprite with flags for left-expression and an exit.
 //See [C:/TempleOS/Adam/Doc/DocPlain.CPP.Z,28] doc_dft_flags1.	Note the %d in the string for the sprite number.
-    PutSprite(__BIN_1,"$SP+LE+X,\"50 Hz\",50,%d$");
+    PutSprite(__BIN_1,"$FG,LTBLUE$$SP+LE+X,\"50 Hz\",50,%d$");
 
     NewLine(3);
     "$MU,\"100 Hz\",100$\n";

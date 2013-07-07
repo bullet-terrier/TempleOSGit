@@ -96,7 +96,7 @@ U0 LoadSysStrs()
 
   DefineLstLoad("ST_COLORS","BLACK\0BLUE\0GREEN\0CYAN\0"
 	"RED\0PURPLE\0BROWN\0LTGRAY\0DKGRAY\0LTBLUE\0LTGREEN\0"
-	"LTSCYAN\0LTRED\0LTPURPLE\0YELLOW\0WHITE\0");
+	"LTCYAN\0LTRED\0LTPURPLE\0YELLOW\0WHITE\0");
   DefineLstLoad("ST_INT_NAMES",
 	"Divide Error\0SingleStep\0NMI\0Breakpoint\0Overflow\0BOUND Range Exceeded\0Invalid Opcode\0No Math Coprocessor\0"
 	"Double Fault\0Coprocessor Segment Fault\0Invalid TASK\0Segment Not Present\0Stk Segment Fault\0General Protection\0Page Fault\0 \0"

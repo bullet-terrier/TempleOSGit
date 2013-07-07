@@ -1,7 +1,3 @@
-#help_index "Time/CDate"
-#help_file "::/TempleOS/Doc/TimeDate"
-public extern CDate local_time_offset;
-
 #help_index "Time/Jiffies"
 //18.33333*65536Hz (SYS_TIMER_FREQ)
 public extern I64 SysTimerRead();
@@ -73,6 +69,7 @@ public extern Bool IsSysDeterministic();
 public extern Bool SysDbg(Bool val);
 public extern Bool SysDeterministic(Bool val);
 public extern Bool ChkPtr(U8 *ptr);
+public extern Bool ChkCodePtr(U8 *ptr);
 public extern Bool ChkOnStk(U8 *ptr,CTask *task=NULL);
 public extern I64 UnusedStk(CTask *task=NULL);
 public extern U8 *Caller(I64 num=1);
@@ -124,7 +121,7 @@ extern U0 (**fp_ctrl_alt_let_cbs)(I64 sc);
 extern I64 ctrl_alt_let_in_irq_flags;
 extern U8 **ctrl_alt_let_descs;
 extern I64 **ctrl_alt_let_ret_addr; //addr of ret add on stack in kbd irq
-extern CTaskCmd sys_macro_root;
+extern CSrvCmd sys_macro_root;
 extern CKeyDev sys_put_key_root;
 extern CTask *sys_macro_util_task;
 extern I64 sys_raw_dc_col,sys_raw_dc_flags;
@@ -221,7 +218,6 @@ public extern I64 DefineMatch(U8 *src,U8 *lst_name,I64 flags=0,I64 *_ambiguity_o
 
 #help_index "Memory"
 #help_file "::/TempleOS/Doc/Mem"
-public _extern _MEMCMP I64 MemCmp(U8 *ptr1,U8 *ptr2,I64 cnt);
 public extern I64 MemPageSize(U8 *a)
 public extern Bool MemPagePresentMark(U8 *a,Bool val);
 public extern Bool MemLowPagesProtect(Bool val);
@@ -271,10 +267,6 @@ public extern U0 Kill(CTask *task,Bool wait=TRUE);
 public extern Bool Suspend(CTask *task=NULL,Bool state=TRUE);
 public extern Bool IsSuspended(CTask *task=NULL);
 public extern Bool TaskValidate(CTask *task);
-public extern CTask *Spawn(U0 (*fp_add)(U8 *data),U8 *data=NULL,
-	    U8 *task_name=NULL,
-	    CTask *parent=NULL, //NULL means adam
-	    I64 stk_size=0,I64 flags=SPAWNF_ADD_TO_QUE);
 public extern U0 TaskQueIns(CTask *task,CTask *pred=NULL);
 public extern U0 TaskQueRem(CTask *task);
 public extern U0 TaskWait(CTask *task=NULL);
@@ -286,27 +278,31 @@ extern U0 (*fp_update_ctrls)(CTask *task);
 public extern CTask *SpawnUser(U8 *fmt=NULL,...);
 extern U0 TaskFinishOff(CTask *task);
 public extern U0 OverRideSingleUserSwap();
+#help_index "Task;MultiCore"
+public extern CTask *Spawn(U0 (*fp_add)(U8 *data),U8 *data=NULL,
+	    U8 *task_name=NULL,
+	    I64 target_cpu=-1,	//-1 means current CPU
+	    CTask *parent=NULL, //NULL means adam
+	    I64 stk_size=0,I64 flags=1<<SVCf_ADD_TO_QUE);
 
 #help_index "Task/Requests"
+public extern U0 SrvCmdDel(CSrvCmd *tempc);
 public extern U0 TaskRstAwaitingMsg(CTask *task=NULL);
-public extern CTaskCmd *
-  TaskRqstQue(CTask *servant,CTask *master,
-		     U8 *data,I64 flags);
-public extern I64 ServantCmdsHandler(CTask *task=NULL);
-public extern I64 ServantUser(U8 *fmt,...);
-extern U0 ServantUserCmdLine();
-public extern Bool GetRqstResult(CTaskCmd *rqst=NULL,I64 *_result=NULL);
-public extern U0 ServantTaskCont();
+public extern CSrvCmd *TaskExeStrQue(CTask *srv,CTask *master,U8 *data,I64 flags);
+public extern I64 SrvCmdsHandler(CTask *task=NULL);
+public extern I64 SrvUser(U8 *fmt,...);
+extern U0 SrvUserCmdLine();
+public extern U0 SrvTaskCont();
 public extern I64 Adam(U8 *fmt,...);
 public extern U0 AdamLogExcept(I64 argc,I64 *argv);
 public extern U0 AdamLog(U8 *fmt,...);
 public extern U0 AdamErr(U8 *fmt,...);
 #help_index "Task/Text Input"
-public extern CTaskCmd *
-  TextInputQue(CTask *servant,CTask *master,
+public extern CSrvCmd *
+  TaskTextInputQue(CTask *srv,CTask *master,
 		     U8 *data,I64 flags);
 #help_index "Task/Text Input;Messages"
-public extern CTaskCmd *QueMsg(CTask *servant,CTask *master,
+public extern CSrvCmd *TaskMsgQue(CTask *srv,CTask *master,
 		     I64 msg_code,I64 p1,I64 p2,I64 flags);
 public extern U0 PostMsg(CTask *task,I64 msg_code,I64 p1,I64 p2,I64 flags=0);
 public extern U0 SendMsg(CTask *task,I64 msg_code,I64 p1,I64 p2,I64 flags=0);
@@ -391,43 +387,40 @@ public extern U8 *reverse_bits_table,*set_bits_table;
 #help_index "Doc/Clipboard"
 public extern CDoc *sys_clipboard_doc;
 
-#help_index "Time/CDate"
+#help_index "Time/Date;Date"
+#help_file "::/TempleOS/Doc/TimeDate"
+public extern CDate local_time_offset;
 public extern U16 mon_start_days1[12];
 public extern U16 mon_start_days2[12];
 public extern I64 YearStartDate(I64 year);
-public extern CDate CDateStruct2CDate(CDateStruct *_ds);
-public extern U0 CDate2CDateStruct(CDateStruct *_ds,CDate spdt);
+public extern CDate DateStruct2Date(CDateStruct *_ds);
+public extern U0 Date2DateStruct(CDateStruct *_ds,CDate cdt);
 public extern I64 FirstDayOfMon(I64 i);
 public extern I64 LastDayOfMon(I64 i);
 public extern I64 FirstDayOfYear(I64 i);
 public extern I64 LastDayOfYear(I64 i);
 public extern I64 DayOfWeek(I64 i);
-public extern CDate GetCurTimeCDate();
-public extern U0 CDate2ISO1(CISO1Date *dst,CDate spdt);
+public extern CDate GetCurTimeDate();
+public extern U0 Date2ISO1(CISO1Date *dst,CDate cdt);
+public extern U8 *date_fmt_map,*time_fmt_map;
+public extern U0 DateTimeFmtMapsRst();
 
 #help_index "File/System"
 extern U8 sys_temp_filename[136];
 extern I64 sys_dsk_reads,sys_dsk_writes;
-
-#help_index "File/System/Cache"
 extern CCacheBlk *sys_dsk_cache_base,*sys_dsk_cache_ctrl;
 extern CCacheBlk **sys_dsk_cache_hash_table;
 extern I64 sys_dsk_cache_size;
-
 extern U0 DskCacheInit(I64 size_in_U8s);
 public extern U0 DskCacheInvalidate(CPrt *p);
-
-#help_index "File/System/BlkDev"
 public extern CBlkDev *sys_blkdevs;
-
-#help_index "File/System/Partitions"
 public extern CPrt *sys_prts;
 extern CPrt *drv_to_prt[32];
 
-#help_index "PCI;Info;File/System/Hardware;Device"
+#help_index "PCI;Info;File/System;Device"
 public extern I64 ATARep(Bool pmt=TRUE,Bool just_ide=FALSE,CATARep **_root=NULL);
 
-#help_index "File/System/Hardware"
+#help_index "File/System"
 public extern CATARep *ATAIDDrvs(CATARep *root,U8 _sys_acct_drv,CATARep **_ata_drv,CATARep **_atapi_drv);
 extern CBlkDev *ATAMount(U8 first_drv_let,I64 type,I64 base0,I64 base1,I64 unit);
 public extern I64 sys_auto_mount_ide_cnt;
@@ -448,7 +441,7 @@ public extern U0 Dir(U8 *wild="*",Bool full=FALSE);
 public extern I64 Del(U8 *wild,Bool print_msg=TRUE);
 public extern Bool MkDir(U8 *filename);
 
-#help_index "Info;File/Cmd Line (Typically);Cmd Line (Typically);File/Install Related;Install"
+#help_index "Info;File/Cmd Line (Typically);Cmd Line (Typically);Install"
 public extern U0 PrtRep();
 
 #help_index "File/Program Routines/Low Level"
@@ -541,16 +534,17 @@ public extern Bool FileFind(U8 *filename,CDirEntry *de=NULL,I64 fuf_flags=0);
 public extern U8 *FileRead(U8 *filename,I64 *_size=NULL,I64 *_attr=NULL,Bool raw=FALSE);
 public extern U8 *TextFileRead(U8 *filename,I64 *_attr=NULL);
 public extern I64 FileWrite(U8 *filename,U8 *fbuf,
-   I64 size,CDate spdt=0,I64 attr=0,Bool raw=FALSE);
+   I64 size,CDate cdt=0,I64 attr=0,Bool raw=FALSE);
 public extern U0 TextFileWrite(U8 *filename,U8 *st,I64 attr=0);
 
-#help_index "Install;File/Install Related;File/Cmd Line (Typically);Cmd Line (Typically);"
+#help_index "Install;File/Cmd Line (Typically);Cmd Line (Typically);"
 public extern U0 Mount(Bool repartition=FALSE);
+public extern U0 Fmt(U8 drv_let,Bool quick=TRUE,Bool confirm=TRUE,I64 type=PT_FAT32);
 
-#help_index "Install;File/Install Related"
+#help_index "Install"
+#help_file "::/TempleOS/Doc/Install"
 extern CATARep *ATARepFind(CATARep *root,I64 num);
 public extern Bool DrvEnable(U8 drv_let,Bool val);
-public extern U0 Fmt(U8 drv_let,Bool quick=TRUE,Bool confirm=TRUE,I64 type=PT_FAT32);
 extern U0 DrvDftSelect();
 public extern U8 sys_first_hd_drv_let,sys_first_cd_drv_let;
 extern Bool boot_drv_pmt,cdrom_boot_is_good;
@@ -594,27 +588,31 @@ extern I64 sys_num_installed_compilers;
 extern U0 (*fp_prs_stream_blk)(CLex *lx);
 
 #help_index "Boot"
+#help_file "::/TempleOS/Doc/Boot"
 public extern U0 Reboot();
 
+#help_index "MultiCore;Task/Requests"
+public extern CSrvCmd *JobQue(I64 (*fp_add)(U8 *data),U8 *data=NULL,
+       I64 target_cpu=1,I64 flags=1<<SVCf_FREE_ON_COMPLETE,
+       I64 cmd_code=SVCT_CALL,U8 *aux_str=NULL,I64 aux1=0,I64 aux2=0);
 #help_index "MultiCore"
-extern CMPCmdCtrl *mp_ctrl;
 extern U8 mp_apic_ids[MP_MAX_PROCESSORS];
 extern CMPCrash *mp_crash;
 public extern U0 MPInt(U8 num,I64 cpu_num=1);
 public extern U0 IntEOI(); //signal end of interrupt
 public extern U0 MPIntAll(U8 num);
-public extern U0 MPWake(I64 target_cpu_mask);
+public extern U0 MPWake(I64 target_cpu);
 extern U0 MPSethServerTask();
-extern CMPCmd *MPQueJob(I64 (*fp_add)(U8 *data),U8 *data=NULL,
-       U8 *desc=NULL,
-       I64 flags=1<<MPCf_FREE_ON_COMPLETE,
-       Bool spawn=FALSE,I64 target_cpu_mask=ALL_MASK);
-public extern CMPCmd *MPJob(I64 (*fp_add)(U8 *data),U8 *data=NULL,
-       I64 target_cpu=1,I64 flags=1<<MPCf_FREE_ON_COMPLETE);
-public extern I64 MPJobResult(CMPCmd *tempm);
-public extern CTask *MPSpawn(U0 (*fp_add)(U8 *data),U8 *data=NULL,U8 *name=NULL,I64 target_cpu=1);
+extern CTask *SpawnQue(U0 (*fp_add)(U8 *data),U8 *data=NULL,
+	    U8 *task_name=NULL,
+	    I64 target_cpu,
+	    CTask *parent=NULL, //NULL means adam
+	    I64 stk_size=0,I64 flags=1<<SVCf_ADD_TO_QUE);
 public extern U0 MPNMInt();
 public extern U0 MPStart();
+#help_index "Task/Requests;MultiCore"
+public extern Bool ScanResult(CSrvCmd *rqst=NULL,I64 *_result=NULL);
+public extern I64 GetResult(CSrvCmd *rqst=NULL);
 #help_index "MultiCore;Boot"
 public extern U0 MPHalt();
 
@@ -698,7 +696,7 @@ public _extern _STRCAT U0 StrCat(U8 *dst,U8 *src);
 public extern I64 sys_key_cnt;
 public extern U0 SetTypeMatic(U8 delay);
 extern U0 KbdInit();
-extern I64 KbdQueMsgs();
+extern I64 KbdMsgsQue();
 extern U0 KbdMouseVarsInit();
 extern Bool MouseDriverInstall();
 extern U0 KbdMouseHandler(Bool poll_kbd,Bool poll_mouse);
@@ -791,12 +789,8 @@ extern CDoc *(*fp_doc_put)(CTask *task=NULL);
 #help_index "Char/Conversion"
 public extern F64 A2F64(U8 *src,U8 **_end_ptr=NULL);
 
-#help_index "Time/CDate"
-public extern U8 *date_fmt_map,*time_fmt_map;
-public extern U0 DateTimeFmtMapsRst();
-
-#help_index "Char/Conversion;Time/CDate"
-public extern CDate A2CDate(U8 *src);
+#help_index "Char/Conversion;Time/Date"
+public extern CDate A2Date(U8 *src);
 
 #help_index "Debugging/PSect;Hash"
 public extern CHash *PSectFind(U8 *add,I64 *_offset);

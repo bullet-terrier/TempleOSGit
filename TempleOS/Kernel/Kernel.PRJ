@@ -41,7 +41,7 @@ kernel_cfg=KernelCfgNew;
 
 #include "QSort"
 #include "Task1a"
-#include "TaskCmd"
+#include "SrvCmd"
 #include "BIOS32"
 
 #exe {Cd("Dsk");};

@@ -96,12 +96,14 @@ Sect	Sector
 Seq	Sequence
 Snd	Sound
 Src	Source
+Srv	Servant
 Stat	Status or Statistic
 Stk	Stack
 Str	String
 Sym	Symbol
 Sys	System
 Term	Terminal
+Tri	Triangle
 Tx	Transmit
 Val	Value
 Var	Variable
@@ -154,9 +156,9 @@ WSD	WordStat Dictionary
   Often a task will [C:/TempleOS/Kernel/Task1a.CPP.Z,224] Spawn() or
   [C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,376] PopUp() a task as a helper.  The
   helper is known as a Child Task, though you can Spawn a task and assign it a
-  different parent... like Adam.  Links are kept as to who spawned what so that
-  when one task is [C:/TempleOS/Kernel/Task1a.CPP.Z,28] Kill()ed the helper
-  tasks disappear, too.  You can get a report on current system tasks with
+  different parent... like Adam.  Links are kept as to who spawned what so when
+  one task is [C:/TempleOS/Kernel/Task1a.CPP.Z,28] Kill()ed the helper tasks
+  disappear, too.  You can get a report on current system tasks with
   [C:/TempleOS/Adam/Utils2a.CPP.Z,429] TaskRep().  There is just one possible
   window per task, so child tasks are needed.
 
@@ -170,10 +172,10 @@ WSD	WordStat Dictionary
   parens, but requires an "&" when referring to function addresses.
 
 +] AOT Compile Mode
-  I coined this term to refer to conventional AOT compilation mode, but it is
-  not the preferred mode for this operating system and is discouraged.  .SP?
-  files are compiled to .BI? files, skipping .OBJ files.  After compiling, you
-  do a [C:/TempleOS/Kernel/Hash1a.CPP.Z,733] Load() cmd which is available from
+  This term to refers to conventional compilation mode.  It is not the
+  preferred mode for this operating system and is discouraged.  .PRJ files are
+  compiled to .BIN files, skipping .OBJ files.  After compiling, you do a
+  [C:/TempleOS/Kernel/Hash1a.CPP.Z,733] Load() cmd which is available by
   right-clicking on a link (like from [C:/TempleOS/Kernel/Dsk/Dsk1b.CPP.Z,235]
   Dir()).  There is no main() routine.  Instead, statements outside functions
   are automatically executed upon loading.  There is no way to unload except by
@@ -195,12 +197,12 @@ See [C:/TempleOS/Demo/Games/EagleDive.CPP.Z,1] for an example of an AOT
   run a string.
 
 +] Compiler Intermediate Code
-  The compiler generates instructions one step before making actual
-  assembly(machine) language instructions.  This code is reverse polish in
-  nature and can be viewed with [C:/TempleOS/Compiler/Directives.CPP.Z,21]
-  PTrace() or [C:/TempleOS/Compiler/Directives.CPP.Z,26] OTrace().  The
-  compiler does not "interpret" code, except in the process of optimization. 
-  The assembly language can be viewed when it is compiled with the
+  The compiler generates instructions one step before making actual assembly
+  (machine) language instructions.  This code is reverse polish in nature and
+  can be viewed with [C:/TempleOS/Compiler/Directives.CPP.Z,21] PTrace() or
+  [C:/TempleOS/Compiler/Directives.CPP.Z,26] OTrace().  The compiler does not
+  "interpret" code, except in the process of optimization.  The assembly
+  language can be viewed when it is compiled with the
   [C:/TempleOS/Compiler/Directives.CPP.Z,38] CTrace() routine, or afterward
   with [C:/TempleOS/Compiler/Unassembler.CPP.Z,866] U().
 
@@ -211,6 +213,12 @@ See [C:/TempleOS/Demo/Games/EagleDive.CPP.Z,1] for an example of an AOT
 ':' is the boot drive.
 
 For commands taking a drive letter as an argument, 0 is the current drive.
+
++] RedSea File System
+  This is a simple, 64-bit, file system which is, basically, FAT32 with nice
+  fixed-size directory entries and no FAT table, just an allocation bitmap. 
+  Files cannot grow in size.  Directory entries have compressed and
+  uncompressed size and file check-sums.
 
 [AutoFile,1] AutoFile
 [Graphics/CSprite,1] Sprite
@@ -303,40 +311,44 @@ DOCG_????
   end of a function name instead of at the beginning.  "RstMusicSettings"
   should be "MusicSettingsRst".
 
++] Fs
+  The CPU FS segment register.  This register points to the current task's
+  [C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask.
 
-Fs The CPU FS segment register.  This register points to the current task's 
-[C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask.
++] Gs
+  The CPU GS segment register.  This register points to the
+  [C:/TempleOS/Kernel/Adam1a.HPP.Z,3618] CCPU.
 
-Gs The CPU GS segment register.  This register points to the
-[C:/TempleOS/Kernel/Adam1a.HPP.Z,3618] CCPU.
++] Bt,Bts,Btr,Btc,LBts,LBtr,LBtc
+  These are bit manipulation functions named after x86 instructions.  They
+  stand for "Bit Test", "Bit Test and Set", "Bit Test and Reset" and "Bit Test
+  and Compliment".  An 'L' means locked with an ASM lock prefix.
 
-Bt,Bts,Btr,Btc,LBts,LBtr,LBtc
-  These are bit manipulation functions named after Intel instructions.  They 
-stand for "Bit Test", "Bit Test and Set", "Bit Test and Rst" and "Bit Test
-and 
-Compliment".  An 'L' means locked.
++] Cli,Sti
+  Turn on or off interrupts.  They are named after the x86 instructions. 
+  "Cli" turns off interrupts.
 
-Cli,Sti Turn on or off interrupts.  They are named after the x86
-instructions. 
- "Cli" turns off interrupts.
++] Heap
+  Programs can dynamically request chunks of memory allocated from a "heap"
+  using [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc().  They must
+  [C:/TempleOS/Kernel/Memory.CPP.Z,950] Free() it when finished.  Ptrs are used
+  to refer to it.  The "heap" is dynamically allocated mem.
 
-Heap Programs can dynamically request chunks of memory allocated from a
-"heap" 
-using [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc().  They must
-[C:/TempleOS/Kernel/Memory.CPP.Z,950] Free() it when finished.  Ptrs are used
-to refer to 
-it.  The "heap" is dynamically allocated mem.
++] Root
+  The base of a binary tree or the head of a queue is the root.  (I don't
+  like the word "head.")
 
-Root The base of a binary tree or the head of a queue.  (I don't like the
-word 
-"head.")
++] Join
+  When two parts of a program have a common low-level routine, that routine
+  is often labeled SomethingJoin.
 
-Join When two parts of a program have a common low-level routine, that
-routine 
-is often labeled SomethingJoin.
++] user_data
+  Many operating system structures have space set aside for you to store
+  values.  You are on your own managing these with multiple applications and
+  libraries.
 
-user_data Many operating system structures have space set aside for you to 
-store values.  You are on your own managing these with multiple applications 
-and libraries.
++] BSP/AP
+  The "boot-strap processor" is core#0, has the Adam task, and is the master.
+   The "application processors" have Seth tasks and are the slave processors. 
+  Only the BSP processor's tasks can have windows.
 
-BSP/AP Boot-strap Processor/Application Processor

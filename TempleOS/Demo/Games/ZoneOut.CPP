@@ -1,5 +1,5 @@
 AcctRegSetDftEntry("TempleOS/ZoneOut","F64 best_score=9999;\n");
-AcctRegExecuteBranch("TempleOS/ZoneOut");
+AcctRegExeBranch("TempleOS/ZoneOut");
 
 
 
@@ -117,7 +117,6 @@ U0 DrawIt(CTask *task,CDC *dc)
   U8 *img;
   F64 tt,theta;
   Bool old_preempt=Preempt(OFF);
-  task->text_attr=BLACK<<4;
 
   theta=640*Wrap(2*us.theta)/pi;
   SpritePlot3(dc,theta-1280,90,0,__BIN_4);
@@ -228,6 +227,8 @@ U0 AnimateTask(I64)
 U0 Init()
 {
   I64 i;
+  DocClear;
+  "$BG,DKGRAY$"; NewLine(12);
   QueInit(&shots);
   MemSet(&us,0,sizeof(us));
   MemSet(them,0,sizeof(them));
@@ -286,15 +287,15 @@ U0 ZoneOut()
       );
 
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=BLACK<<4+WHITE;
   WinMax;
   WinBorder;
   WordStat;
   Preempt(OFF);
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   DocCursor;
-  DocClear;
   Fs->draw_it=&DrawIt;
   try {
     while (TRUE) {
@@ -331,11 +332,10 @@ zo_done:
   } catch
     CatchAll;
   CleanUp;
+  DocClear;
   SettingsPop;
   MenuPop;
   AcctRegWriteBranch("TempleOS/ZoneOut","F64 best_score=%5.4f;\n",best_score);
 }
 
 ZoneOut;
-
-

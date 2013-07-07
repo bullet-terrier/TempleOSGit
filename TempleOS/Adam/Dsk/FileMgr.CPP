@@ -204,17 +204,18 @@ U0 FMRebuildDoc(CDoc **_doc,CDirEntry **_root,I64 mode)
   doc->flags|=DOCF_FORM;
   switch (mode) {
     case FM_NORMAL:
-      DocPutS(doc,"$FG,PURPLE$File Manager$FG$\n\n$LK,\"Click for Help\",\"FI:::/TempleOS/Doc/FileMgr.TXT\"$\n\n");
+      DocPutS(doc,"$FG,PURPLE$File Manager\n\n$LK,\"Click for Help\",\"FI:::/TempleOS/Doc/FileMgr.TXT\"$\n\n");
       break;
     case FM_PICK_FILE:
-      DocPutS(doc,"$FG,PURPLE$Pick file and press <ESC>$FG$\n\n");
+      DocPutS(doc,"$FG,PURPLE$Pick file and press <ESC>\n\n");
       doc->flags|=DOCF_MIN_SIZE;
       break;
     case FM_PICK_DIR:
-      DocPutS(doc,"$FG,PURPLE$Pick directory and press <ESC>$FG$\n\n");
+      DocPutS(doc,"$FG,PURPLE$Pick directory and press <ESC>\n\n");
       doc->flags|=DOCF_MIN_SIZE;
       break;
   }
+  DocPutS(doc,"$FG,LTBLUE$");
   for (i=0;i<NUM_PRTS;i++) {
     p=&sys_prts[i];
     if (p->type==PT_REDSEA||p->type==PT_FAT32)

@@ -472,7 +472,7 @@ I64 FileSizeExpanded(U8 *filename,I64 fuf_flags=0)
 }
 
 I64 FileWrite(U8 *filename,U8 *fbuf,
-   I64 size,CDate spdt=0,I64 attr=0,Bool raw=FALSE)
+   I64 size,CDate cdt=0,I64 attr=0,Bool raw=FALSE)
 {
   I64 c=0;
   CHashGeneric *temph;
@@ -483,11 +483,11 @@ I64 FileWrite(U8 *filename,U8 *fbuf,
     switch (fa->p->type) {
       case PT_REDSEA:
 	c=RedSeaFSFileWrite(fa->p,Fs->cur_dir,fa->mask,
-	  fbuf,size,spdt,attr,raw,&ac);
+	  fbuf,size,cdt,attr,raw,&ac);
 	break;
       case PT_FAT32:
 	c=FAT32FileWrite(fa->p,Fs->cur_dir,fa->mask,
-	  fbuf,size,spdt,attr,raw,&ac);
+	  fbuf,size,cdt,attr,raw,&ac);
 	break;
       case PT_ISO9660:
 	PutDefineErr("ST_NOT_WRITABLE");

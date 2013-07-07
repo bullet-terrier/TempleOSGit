@@ -45,22 +45,30 @@ U0 SoundEffectTask(CSoundEffectFrame *ns)
 
 public CTask *Noise(I64 mS,F64 min_freq,F64 max_freq)
 {
-  CSoundEffectFrame *ns=MAlloc(sizeof(CSoundEffectFrame));
-  ns->type=SE_NOISE;
-  ns->duration=mS/1000.0;
-  ns->freq1=min_freq;
-  ns->freq2=max_freq;
-  music_mute++;
-  return Spawn(&SoundEffectTask,ns,"Noise",Fs);
+  CSoundEffectFrame *ns;
+  if (mS>0) {
+    ns=MAlloc(sizeof(CSoundEffectFrame));
+    ns->type=SE_NOISE;
+    ns->duration=mS/1000.0;
+    ns->freq1=min_freq;
+    ns->freq2=max_freq;
+    music_mute++;
+    return Spawn(&SoundEffectTask,ns,"Noise",,Fs);
+  } else
+    return NULL;
 }
 
 public CTask *Sweep(I64 mS,F64 freq1,F64 freq2)
 {
-  CSoundEffectFrame *ns=MAlloc(sizeof(CSoundEffectFrame));
-  ns->type=SE_SWEEP;
-  ns->duration=mS/1000.0;
-  ns->freq1=freq1;
-  ns->freq2=freq2;
-  music_mute++;
-  return Spawn(&SoundEffectTask,ns,"Noise",Fs);
+  CSoundEffectFrame *ns;
+  if (mS>0) {
+    ns=MAlloc(sizeof(CSoundEffectFrame));
+    ns->type=SE_SWEEP;
+    ns->duration=mS/1000.0;
+    ns->freq1=freq1;
+    ns->freq2=freq2;
+    music_mute++;
+    return Spawn(&SoundEffectTask,ns,"Noise",,Fs);
+  } else
+    return NULL;
 }

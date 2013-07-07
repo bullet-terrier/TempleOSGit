@@ -1,7 +1,7 @@
 //Practice tracing circles
 
 AcctRegSetDftEntry("TempleOS/CircleTrace","F64 best_score=999;\n");
-AcctRegExecuteBranch("TempleOS/CircleTrace");
+AcctRegExeBranch("TempleOS/CircleTrace");
 
 I64 cx,cy;
 F64 avg_error=0,elapsed_time=0,total_error=0,score=999;
@@ -39,7 +39,7 @@ U0 CircleTrace()
   CDC *dc=DCAlias;
 
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   WordStat;
 
   cx=Fs->win_pixel_width/2;
@@ -115,6 +115,7 @@ U0 CircleTrace()
 	break;
     }
   } while (msg_code!=MSG_KEY_DOWN || p1!=CH_SHIFT_ESC && p1!=CH_ESC);
+  GetMsg(,,1<<MSG_KEY_UP);
   SettingsPop;
   DCFill;
   DCDel(dc);

@@ -40,18 +40,7 @@ U0 DocTablesInit()
 	1<<DOCT_BACKGROUND|
 	1<<DOCT_DFT_FOREGROUND|
 	1<<DOCT_DFT_BACKGROUND|
-	1<<DOCT_ALT_FOREGROUND|
-	1<<DOCT_LINK_FOREGROUND|
-	1<<DOCT_MACRO_FOREGROUND|
-	1<<DOCT_ANCHOR_FOREGROUND|
-	1<<DOCT_HIDDEN_FOREGROUND|
-	1<<DOCT_TREE_FOREGROUND|
-	1<<DOCT_USER_FOREGROUND|
-	1<<DOCT_BINARY_FOREGROUND|
-	1<<DOCT_KEYWORD_FOREGROUND|
-	1<<DOCT_KEYWORD2_FOREGROUND|
-	1<<DOCT_COMMENT_FOREGROUND|
-	1<<DOCT_QUOTE_FOREGROUND|
+	1<<DOCT_PMT|
 	1<<DOCT_WORD_WRAP|
 	1<<DOCT_UNDERLINE|
 	1<<DOCT_INVERT|
@@ -511,19 +500,7 @@ public U0 DocRst(CDoc *doc,Bool is_old)
   s->shifted_x=0;
   s->shifted_y=0;
 
-  s->cur_text_attr=s->dft_text_attr=doc->start_text_attr=WHITE<<4+BLACK;
-  s->alt_text_attr	=LTGRAY;
-  s->link_attr		=RED;
-  s->macro_attr		=LTBLUE;
-  s->anchor_attr	=DKGRAY;
-  s->hidden_attr	=DKGRAY;
-  s->tree_attr		=PURPLE;
-  s->user_attr		=GREEN;
-  s->bin_attr		=CYAN;
-  s->keyword_attr	=BLUE;
-  s->keyword2_attr	=LTRED;
-  s->comment_attr	=GREEN;
-  s->quote_attr		=BROWN;
+  s->cur_text_attr=s->dft_text_attr=DOC_ATTR_DFT_TEXT;
 
   doc_e=&doc->root;
   doc_e->type=DOCT_ERROR;
@@ -747,7 +724,8 @@ sys_clipboard_doc=DocNew;
 
 #help_index "Doc/Task"
 public CDoc *DocPut(CTask *task=NULL)
-{
+{//Current document that PUT goes to.
+ //Basically, StdOut unless double buffering.
   CDoc *result;
   if (!task) task=Fs;
   if ((result=task->put_doc) && result->doc_signature==DOC_SIGNATURE_VAL)
@@ -757,7 +735,7 @@ public CDoc *DocPut(CTask *task=NULL)
 }
 
 public CDoc *DocDisplay(CTask *task=NULL)
-{
+{//StdOut unless double buffering.
   CDoc *result;
   if (!task) task=Fs;
   if ((result=task->display_doc) && result->doc_signature==DOC_SIGNATURE_VAL)
@@ -767,7 +745,7 @@ public CDoc *DocDisplay(CTask *task=NULL)
 }
 
 public CDoc *DocBorder(CTask *task=NULL)
-{
+{//Doc holding border of window text.
   CDoc *result;
   if (!task) task=Fs;
   if ((result=task->border_doc) && result->doc_signature==DOC_SIGNATURE_VAL)
@@ -788,7 +766,6 @@ public CDoc *DocDblBufStart(CTask *task=NULL)
     unlock_ddoc=DocLock(ddoc); //dont want change during winupdate, so lock DocPut
     result=DocNew(task);
     result->win_task		=ddoc->win_task;
-    result->start_text_attr	=ddoc->start_text_attr;
     result->max_entries		=ddoc->max_entries;
     MemCpy(result->find_replace,ddoc->find_replace,sizeof(CEdFindText));
     result->start_x		=ddoc->start_x;
@@ -843,7 +820,6 @@ public Bool DocDblBufSwap(CTask *task=NULL)
     DocRst(ddoc,TRUE);
     MemCpy(ddoc->find_replace,pdoc->find_replace,sizeof(CEdFindText));
     MemCpy(&ddoc->filename,&pdoc->filename,sizeof(CEdFileName));
-    ddoc->start_text_attr	=pdoc->start_text_attr;
     ddoc->max_entries		=pdoc->max_entries;
     ddoc->flags			=pdoc->flags&DOCG_DBL_BUF_FLAGS | ddoc->flags&~DOCG_DBL_BUF_FLAGS;
     ddoc->left_click_link	=pdoc->left_click_link;

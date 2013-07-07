@@ -6,12 +6,12 @@ background very easily.
 
 
 
-/* <fan> <1> (image) */
+/* <1> <1> (image) */
 
 
 
  
-/* <ball> <2> (image) */
+/* <2> <2> (image) */
 
 
 CDC *background;
@@ -112,7 +112,7 @@ U0 Stadium()
   WinBorder;
   WordStat;
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
 
   background=GRARead("::/TempleOS/Demo/Games/Stadium/Stadium");
 
@@ -131,6 +131,7 @@ U0 Stadium()
       ball_t=tT;
     }
   } while (ch!=CH_SHIFT_ESC && ch!=CH_ESC);
+  GetMsg(,,1<<MSG_KEY_UP);
 
   DCDel(background);
   SettingsPop;

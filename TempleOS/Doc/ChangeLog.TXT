@@ -1,6 +1,89 @@
 Use [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R() to rename if I change
 a label.
 
+----07/07/13 11:58:10----
+* Made graphics routines return I64, not Bool.
+
+----06/30/13 00:41:54----
+* **TempleOS version 1.04 Released**
+* Fixed [C:/TempleOS/Apps/Span/SpanMain.CPP.Z,1].
+* Added [C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask.border_src and
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask.title_src.
+* Cleaned-up [C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask.task_title.
+
+----06/27/13 07:11:00----
+* Cleaned-up [C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask.text_attr and
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask.border_attr.
+* Got rid of [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc.start_text_attr.
+* Got rid of custom doc widget colors and custom syntax highlighting colors.
+
+----06/18/13 06:54:12----
+* Made /TempleOS/Adam/Utils directory.
+
+----06/16/13 17:46:40----
+* **TempleOS version 1.03 Released**
+* Made better [C:/TempleOS/Demo/Graphics/PixelCollision.CPP.Z,1].
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R("gr_dc2","gr_dc");
+* Improved PSect code.
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R("CDate","Date");
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R("MPJob","JobQue");
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R("MPSpawn","Spawn");
+* Changed args to [C:/TempleOS/Kernel/Task1a.CPP.Z,224] Spawn(). 
+* Got rid of cpu_mask in multicore API.
+
+----06/15/13 02:18:23----
+* Worked on [C:/TempleOS/Apps/ToTheFront/ToTheFront.CPP,1].
+
+----06/14/13 17:12:47----
+* Made so [MN:JobQue] JobQue() and [C:/TempleOS/Kernel/Task1a.CPP.Z,224]
+Spawn() can work with core#0.
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R("Servant","Srv");
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R("Execute","Exe");
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13]
+R("MPJobResult","[MN:GetResult] GetResult");
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13]
+R("GetRqstResult","[MN:ScanResult] ScanResult");
+* Merged CMPCmd into [MN:CSrvCmd] CSrvCmd.
+
+----06/12/13 13:29:08----
+* Added coffins to [C:/TempleOS/Demo/Games/CastleFrankenstein.CPP,1].
+* Fixed MeshEditor bug.
+
+----06/12/13 10:49:53----
+* Renamed games.
+* Added AddOutline and Etch to <CTRL-R> bitmap edit menu.
+* Changed [C:/TempleOS/Demo/Games/BulgeBomber.CPP,1].
+
+----06/02/13 21:25:49----
+* Got rid of 3 arg in-line (built-in) functions.
+* Got rid of ? : operator.
+* Improved unassembler code.
+* Improved compiler code.
+
+----05/27/13 08:15:31----
+* **TempleOS version 1.02 Released**
+* Added help to <CTRL-R>.
+* Added PopUp flag for links.
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13] R("Triangle","Tri");
+
+----05/25/13 13:47:35----
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13]
+R("PopUpDitherColor","PopUpColorDither");
+* [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13]
+R("PopUpLightingColor","PopUpColorLighting");
+* Changed sprite edit.
+
+----05/24/13 20:15:47----
+* Fixed compiler bug involving passing float array to function.
+
+----05/16/13 07:09:21----
+* Changed [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,243] DocPutLine().
+* Moved tag to [C:/TempleOS/Kernel/Adam1a.HPP.Z,1309] CDocEntryBase.
+
+----05/12/13 14:15:07----
+* Improved documentation.
+* Moved profiler from Adam2 to Adam3.
+
 ----05/11/13 03:31:59----
 * [C:/TempleOS/Accts/TAD/Adam3eWrappers.CPP.Z,13]
 R("MemPtAtPageTableEntry","MemPageTable");
@@ -23,7 +106,6 @@ Play().
 
 ----04/10/13 12:41:18----
 * dft_drv is now *sys_acct.
-* Added LowRAMDrv kernel config option.
 * Made so RAM drives are not reformatted at boot.
 * **WARNING**: Added new prompt to RAM disk creation.
 * Added [C:/TempleOS/Compiler/CmpMain.CPP.Z,680] StreamExePutS() and

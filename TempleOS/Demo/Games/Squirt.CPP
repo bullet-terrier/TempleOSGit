@@ -311,9 +311,7 @@ U0 MoveNozzleTaskY(I64 sign)
 U0 DrawBackGroundTextLayer()
 {
   DocClear;
-  "$BG,LTCYAN$";
-  NewLine(GROUND_Y/FONT_HEIGHT);
-  "$BG,YELLOW$";
+  "$BG,LTCYAN$"; NewLine(GROUND_Y/FONT_HEIGHT);
 }
 
 U0 Init()
@@ -339,7 +337,6 @@ U0 CleanUp()
   QueDel(&ode->next_spring,TRUE);
   ODEDel(ode);
   DocClear;
-  "$BG$";
 }
 
 U0 SongTask(I64)
@@ -358,7 +355,8 @@ U0 Squirt()
 {
   I64 sc;
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
-  Fs->song_task=Spawn(&SongTask,NULL,"Song",Fs);
+  Fs->text_attr=YELLOW<<4+BLUE;
+  Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   WinMax;
   WinBorder;
   Preempt(OFF);
@@ -382,7 +380,7 @@ U0 Squirt()
       );
 
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   Fs->draw_it=&DrawIt;
 
   try {
@@ -391,16 +389,16 @@ U0 Squirt()
 	case 0:
 	  switch (sc.u8[0]) {
 	    case SC_CURSOR_LEFT:
-	      Spawn(&MoveNozzleTaskX,-1,"Move Nozzle",Fs);
+	      Spawn(&MoveNozzleTaskX,-1,"Move Nozzle",,Fs);
 	      break;
 	    case SC_CURSOR_RIGHT:
-	      Spawn(&MoveNozzleTaskX,1,"Move Nozzle",Fs);
+	      Spawn(&MoveNozzleTaskX,1,"Move Nozzle",,Fs);
 	      break;
 	    case SC_CURSOR_UP:
-	      Spawn(&MoveNozzleTaskY,-1,"Move Nozzle",Fs);
+	      Spawn(&MoveNozzleTaskY,-1,"Move Nozzle",,Fs);
 	      break;
 	    case SC_CURSOR_DOWN:
-	      Spawn(&MoveNozzleTaskY,1,"Move Nozzle",Fs);
+	      Spawn(&MoveNozzleTaskY,1,"Move Nozzle",,Fs);
 	      break;
 	  }
 	  break;

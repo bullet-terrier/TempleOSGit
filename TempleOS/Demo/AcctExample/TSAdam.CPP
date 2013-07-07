@@ -186,17 +186,16 @@ if (ts_has_cdrom_drv)
 
 #define TS_ISO_NAME		TS_RAM_DRV ":/TempleOSCD.ISO"
 #define TS_DISTRO_DIR		TS_RAM_DRV ":/Distro"
-#define TS_LOW_RAM_DRV_DIR	TS_RAM_DRV ":/LowRAMDrv"
 
-#define CFG_OPTS	"ProtectLow\nAutoMountIDE\nDTLowRAMDrv\n" TS_LOW_RAM_DRV_DIR "\nS\n"
-#define CFG_DBG_OPTS	"ProtectLow\nAutoMountIDE\nDTLowRAMDrv\n" TS_LOW_RAM_DRV_DIR "\nS"\
+#define CFG_OPTS	"ProtectLow\nAutoMountIDE\nDT\n"
+#define CFG_DBG_OPTS	"ProtectLow\nAutoMountIDE\nDT"\
 			"Det\nHeapInit\n130\nMemInit\n131\nVarInit\n132\n\n"
-#define CFG_DBGZ_OPTS	"ProtectLow\nAutoMountIDE\nDTLowRAMDrv\n" TS_LOW_RAM_DRV_DIR "\nS"\
+#define CFG_DBGZ_OPTS	"ProtectLow\nAutoMountIDE\nDT"\
 			"Det\nHeapInit\n0\nMemInit\n0\nVarInit\n0\n\n"
 
 #define TS_CFG		CFG_RAM_DRVS CFG_CDROM_DRVS CFG_HARD_DRVS CFG_ACCT CFG_DSK_CACHE CFG_OPTS
 #define TS_MENU_CFG	CFG_RAM_DRVS CFG_CDROM_DRVS CFG_HARD_DRVS "\n\n"  CFG_DSK_CACHE CFG_OPTS
-#define TS_CDROM_CFG	"b1\n0x20000\nt3 \n\nTS\n\nAutoMountIDE\nDTLowRAMDrv\n" TS_LOW_RAM_DRV_DIR "\nS\n"
+#define TS_CDROM_CFG	"b1\n0x20000\nt3 \n\nTS\n\nAutoMountIDE\nDT\n"
 
 //**Change these, too...**
 //STD_DISTRO_CDROM_CFG
@@ -222,12 +221,12 @@ public U0 MyScreenShot(I64 bits=4)
   U8 *st;
   CDirEntry *tempm;
   I64 cnt=0;
-  tempm=FilesFind("::/Temp/ScreenShots/*.BMP");
+  tempm=FilesFind("::/Temp/ScreenShots/*.BMP.Z");
   while (tempm) {
     cnt++;
     tempm=tempm->next;
   }
-  st=MSPrintF("::/Temp/ScreenShots/SCRN%04d.BMP",cnt);
+  st=MSPrintF("::/Temp/ScreenShots/SCRN%04d.BMP.Z",cnt);
   BMPFileCaptureScreen(st,bits);
   Free(st);
   Beep;
@@ -328,25 +327,6 @@ U0 CtrlAltS(I64)
   Spawn(&ScreenShotTask);
 }
 SetCtrlAltLetCB('S',&CtrlAltS,"Cmd/Screen Shot");
-
-public U0 Abbr(U8 *word,U8 *abbr)
-{
- U8 buf1[136],buf2[136];
- StrCpy(buf1,word);
- StrCpy(buf2,abbr);
-
- StrUtil(buf1,SUF_TO_LOWER);
- StrUtil(buf2,SUF_TO_LOWER);
- Grep(buf1,"/TempleOS/"FILENAME_MASK_TXT,"-l-i",buf2);
-
- *buf1=ToUpper(*buf1);
- *buf2=ToUpper(*buf2);
- Grep(buf1,"/TempleOS/"FILENAME_MASK_TXT,"-l-i",buf2);
-
- StrUtil(buf1,SUF_TO_UPPER);
- StrUtil(buf2,SUF_TO_UPPER);
- Grep(buf1,"/TempleOS/"FILENAME_MASK_TXT,"-l-i",buf2);
-}
 
 public U0 ChkAll()
 {

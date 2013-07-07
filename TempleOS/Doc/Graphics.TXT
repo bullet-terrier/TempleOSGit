@@ -38,12 +38,6 @@
 
 
 
-
-
-
-
-
-
 * See [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,752] GrUpdateScreen() and
 [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,378] GrUpdateWins().  Only tasks on core0
 are allowed to 
@@ -58,23 +52,14 @@ your own structure, with its own color and pen width.  Free it with
 [C:/TempleOS/Adam/Gr/GrDC.CPP.Z,76] DCDel() 
 when finished.
 
-* [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,5] gr_dc is a global var for a bitmap
-redrawn each refresh and placed on the 
-screen.  You use an alias [C:/TempleOS/Kernel/Adam1a.HPP.Z,3356] CDC.  You
-change the "Fs->draw_it" var to point to 
-your "DrawIt()" which gets called each screen refresh.  You draw everything
-in 
-the window over and over again.  See [C:/TempleOS/Demo/Graphics/Box.CPP.Z,1].
+* You change the "Fs->draw_it" var to point to your "DrawIt()" which gets 
+called each screen refresh.  You draw everything in the window over and over 
+again.  See [C:/TempleOS/Demo/Graphics/Box.CPP.Z,1].
  
-* gr_dc2 is a bitmap for persistent data on the screen, not needing to be 
-redrawn.  You create an alias for this by using
-[C:/TempleOS/Adam/Gr/GrDC.CPP.Z,23] DCAlias() and work with that.  
-It's slightly simpler than using the global var
-[C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,5] gr_dc, but it's not as good 
-because changes aren't syncronized to the screen update and window borders
-are 
-not enforced when windows are moved.  See 
-[C:/TempleOS/Demo/Graphics/DotNet.CPP.Z,1].
+* gr_dc is a device context for persistent data on the screen, not needing to 
+be redrawn.  You create an alias for this by using
+[C:/TempleOS/Adam/Gr/GrDC.CPP.Z,23] DCAlias() and work with 
+that.  See [C:/TempleOS/Demo/Graphics/DotNet.CPP.Z,1].
 
 * Use [C:/TempleOS/Adam/Gr/GrDC.CPP.Z,42] DCNew() to create a mem bitmap
 which can be used to work off-screen and 
@@ -120,19 +105,20 @@ SpritePlot3() shift it around.  You can edit a
 sprite by clicking the cursor on it and pressing <CTRL-R> again.
 
 * There is a mechanism built-in for generating motion based on differential 
-equations, which allows realstic physics.  You create an
+equations, which allows realistic physics.  You create an
 [C:/TempleOS/Kernel/Adam1a.HPP.Z,336] CMathODE struct with 
 [C:/TempleOS/Adam/MathODE.CPP.Z,42] ODENew(), passing it the num of vars in
-the state vect.  For realstic physics, 
-you usually have 2 state vars for each dimension (for each mass) because 
-motion is governed by f=ma which is a 2nd order equation.  The two states are 
-pos and velocity and to solve these you need to supply the derivative of pos 
-and velocity.  The derivative of pos is usually simply the current velocity 
-and the derivative of velocity is the acceleration (the sum of forces on a 
-mass divided by mass).  To help provide meaningful names for values in the 
-state vect, you can create an [C:/TempleOS/Kernel/Adam1a.HPP.Z,292] COrder2D3
-ptr and point it to a mass in the 
-state vect.  Six elements in the state vect are required for each mass.
+the state vect.  For realistic 
+physics, you usually have 2 state vars for each dimension (for each mass) 
+because motion is governed by f=ma which is a 2nd order equation.  The two 
+states are pos and velocity and to solve these you need to supply the 
+derivative of pos and velocity.  The derivative of pos is usually simply the 
+current velocity and the derivative of velocity is the acceleration (the sum 
+of forces on a mass divided by mass).  To help provide meaningful names for 
+values in the state vect, you can create an
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,292] COrder2D3 ptr and point it to a 
+mass in the state vect.  Six elements in the state vect are required for each 
+mass.
 
 See [Math/CMathODE,1] Math/CMathODE.
 See [C:/TempleOS/Demo/Games/Rocket.CPP.Z,1].
@@ -153,10 +139,10 @@ You can either work with a nonzero count or convert your
 if your subelements draw on top of each other.  Be sure to set ->bkcolor 
 before using [C:/TempleOS/Kernel/Adam1a.HPP.Z,2772] ROP_COLLISION.  See
 [C:/TempleOS/Demo/Graphics/PixelCollision.CPP.Z,1] 
-and [C:/TempleOS/Apps/Timeout/Timeout.CPP.Z,1].
+and [C:/TempleOS/Apps/TimeOut/TimeOut.CPP,1].
  
 * The ->dither_probability member of [C:/TempleOS/Kernel/Adam1a.HPP.Z,3356]
 CDC is a U16 used to statistically select 
 between two colors.  See [C:/TempleOS/Demo/Graphics/Shading.CPP.Z,1].  It
 works with 
-most graphic routines, but not those with pens.
+many graphic routines, but not those with pens.

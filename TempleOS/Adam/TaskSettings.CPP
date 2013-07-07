@@ -29,10 +29,7 @@ public CTaskSettings *SettingsPush(CTask *task=NULL,I64 flags=0)
   if (doc=DocPut(task)) {
     tempse->cursor=!Bt(&doc->flags,DOCf_HIDE_CURSOR);
     tempse->scroll=!Bt(&doc->flags,DOCf_NO_SCROLL_BARS);
-    tempse->doc_put_attr=doc->start_text_attr;
   }
-  if (doc=DocBorder(task))
-    tempse->doc_border_attr=doc->start_text_attr;
 
   tempse->left=task->win_left;
   tempse->right=task->win_right;
@@ -48,7 +45,10 @@ public CTaskSettings *SettingsPush(CTask *task=NULL,I64 flags=0)
 
   tempse->win_max_refresh=task->win_max_refresh;
   tempse->text_attr=task->text_attr;
+  StrCpy(tempse->task_title,task->task_title);
+  tempse->title_src  =task->title_src;
   tempse->border_attr=task->border_attr;
+  tempse->border_src =task->border_src;
   tempse->border=!Bt(&task->display_flags,DISPLAYf_NO_BORDER);
   tempse->preempt=Bt(&task->task_flags,TASKf_PREEMPT);
   if (TaskValidate(ws_task))
@@ -68,10 +68,7 @@ U0 SettingsPop2(CTask *task,CTaskSettings *tempse)
   if (doc=DocPut(task)) {
     LBEqu(&doc->flags,DOCf_HIDE_CURSOR,!tempse->cursor);
     LBEqu(&doc->flags,DOCf_NO_SCROLL_BARS,!tempse->scroll);
-    doc->start_text_attr=tempse->doc_put_attr;
   }
-  if (doc=DocBorder(task))
-    doc->start_text_attr=tempse->doc_border_attr;
 
   WinBorder(tempse->border,task);
   SetWinHorz(tempse->left,tempse->right,task);
@@ -84,6 +81,9 @@ U0 SettingsPop2(CTask *task,CTaskSettings *tempse)
   task->win_max_refresh=tempse->win_max_refresh;
   task->text_attr=tempse->text_attr;
   task->border_attr=tempse->border_attr;
+  task->border_src =tempse->border_src;
+  task->title_src  =tempse->title_src;
+  StrCpy(task->task_title,tempse->task_title);
   WordStat(tempse->wordstat);
   SetVGAPalette4(tempse->palette4);
   Snd(0);

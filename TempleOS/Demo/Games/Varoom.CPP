@@ -1,4 +1,4 @@
-
+ 
 
 
 
@@ -115,16 +115,23 @@ U0 InitTrack()
   for (i=0;i<SLICES;i++) {
     InitTrackPoly(tempt++,DKGRAY,TRACK_INNER,TRACK_OUTER,
       i*2*pi/SLICES,(i+1)*2*pi/SLICES);
-    InitTrackPoly(tempt++,i&1?RED:WHITE,TRACK_INNER-SHOULDER,TRACK_INNER,
-      i*2*pi/SLICES,(i+1)*2*pi/SLICES);
-    InitTrackPoly(tempt++,i&1?WHITE:RED,TRACK_OUTER,TRACK_OUTER+SHOULDER,
-      i*2*pi/SLICES,(i+1)*2*pi/SLICES);
+    if (i&1) {
+      InitTrackPoly(tempt++,RED,TRACK_INNER-SHOULDER,TRACK_INNER,
+	i*2*pi/SLICES,(i+1)*2*pi/SLICES);
+      InitTrackPoly(tempt++,WHITE,TRACK_OUTER,TRACK_OUTER+SHOULDER,
+	i*2*pi/SLICES,(i+1)*2*pi/SLICES);
+    } else {
+      InitTrackPoly(tempt++,WHITE,TRACK_INNER-SHOULDER,TRACK_INNER,
+	i*2*pi/SLICES,(i+1)*2*pi/SLICES);
+      InitTrackPoly(tempt++,RED,TRACK_OUTER,TRACK_OUTER+SHOULDER,
+	i*2*pi/SLICES,(i+1)*2*pi/SLICES);
+    }
   }
 }
 
 #define HORIZON_DIP	200
 
-I64 mp_done_flags;
+I64 mp_not_done_flags;
 
 U0 MPUpdateWin(CDC *dc2)
 {
@@ -136,7 +143,7 @@ U0 MPUpdateWin(CDC *dc2)
   F64 s,dip_theta=Diptheta(vx,vz);
   CD3I32 poly[4];
   TrackPoly *tempt;
-  CDC *dc=DCAlias(gr_dc,task);
+  CDC *dc=DCAlias(gr_dc2,task);
 
   GrIdentEqu(r);
   GrRotYEqu(r,-theta);
@@ -181,7 +188,7 @@ U0 MPUpdateWin(CDC *dc2)
   }
   dc->depth_buf=NULL;
   DCDel(dc);
-  LBts(&mp_done_flags,Gs->num);
+  LBtr(&mp_not_done_flags,Gs->num);
 }
 
 U0 DrawIt(CTask *task,CDC *dc)
@@ -192,7 +199,6 @@ U0 DrawIt(CTask *task,CDC *dc)
       cx=w>>1;
   F64 s,dip_theta=Diptheta(vx,vz);
 
-  task->text_attr=YELLOW<<4;
   dc->color=LTCYAN;
   GrRect(dc,0,0,w,HORIZON_DIP*Sin(dip_theta)+FONT_HEIGHT*4.5);
 
@@ -213,12 +219,10 @@ U0 DrawIt(CTask *task,CDC *dc)
     GrFloodFill(dc,s*x+cx,15+HORIZON_DIP*Sin(dip_theta));
   }
 
-  mp_done_flags=0;
-  for (i=1;i<mp_cnt;i++)
-    MPJob(&MPUpdateWin,dc,i);
-  MPUpdateWin(dc);
-
-  while (mp_done_flags!=1<<mp_cnt-1)
+  mp_not_done_flags=1<<mp_cnt-1;
+  for (i=0;i<mp_cnt;i++)
+    JobQue(&MPUpdateWin,dc,i);
+  while (mp_not_done_flags)
     Yield;
 
   //Map
@@ -283,6 +287,7 @@ U0 Varoom()
       );
   SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
   try {
+    Fs->text_attr=YELLOW<<4+BLUE;
     Fs->win_inhibit=WIF_ALL-WIF_GRAB_SCROLL-WIF_MENU;
     WordStat;
     WinMax;
@@ -292,7 +297,7 @@ U0 Varoom()
     DocCursor;
     DocClear;
     Fs->draw_it=&DrawIt;
-    Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+    Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
     while (TRUE) {
       while (ScanKey(&ch,&sc))
 	switch (ch) {

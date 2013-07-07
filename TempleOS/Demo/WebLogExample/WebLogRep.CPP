@@ -75,7 +75,7 @@ U0 PrsSingleLogFile(LogStruct *root,U8 *name)
 	ds.min=A2I(src,10,&src);
 	if (*src++!=':') throw;
 	ds.sec=A2I(src,10,&src);
-	templg->datetime=CDateStruct2CDate(&ds);
+	templg->datetime=DateStruct2Date(&ds);
 	if (*src++!=CH_SPACE) throw;
 	i=A2I(src,10,&src);
 	templg->datetime-=(i/100+i%100/60.0)*CDATE_FREQ*60*60;

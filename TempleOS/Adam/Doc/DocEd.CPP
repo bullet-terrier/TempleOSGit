@@ -126,7 +126,7 @@ public U0 EdCursorLeft(CDoc *doc,I64 sc=MIN_I64)
 	!(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
 	!(doc_ce->flags2&DOCEG2_DONT_EDIT) &&
 	cc<doc_ce->max_col) {
-	doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+	doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	doc_ne->type=doc_ce->type;
 	doc_ne->flags1=doc_ce->flags1;
 	doc_ne->flags2=doc_ce->flags2;
@@ -145,7 +145,7 @@ public U0 EdCursorLeft(CDoc *doc,I64 sc=MIN_I64)
 	!(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
 	!(doc_ce->flags2&DOCEG2_DONT_EDIT) &&
 	cc>doc_ce->min_col) {
-	doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+	doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	doc_ne->type=doc_ce->type;
 	doc_ne->flags1=doc_ce->flags1;
 	doc_ne->flags2=doc_ce->flags2;
@@ -188,7 +188,7 @@ public U0 EdCursorLeft(CDoc *doc,I64 sc=MIN_I64)
 	    !(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
 	    !(doc_ce->flags2&DOCEG2_DONT_EDIT) &&
 	    cc>doc_ce->min_col) {
-	    doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+	    doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	    doc_ne->type=doc_ce->type;
 	    doc_ne->flags1=doc_ce->flags1;
 	    doc_ne->flags2=doc_ce->flags2;
@@ -248,7 +248,7 @@ public U0 EdCursorRight(CDoc *doc,I64 sc=MIN_I64)
 	!(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
 	!(doc_ce->flags2&DOCEG2_DONT_EDIT) &&
 	cc>doc_ce->min_col) {
-	doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+	doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	doc_ne->type=doc_ce->type;
 	doc_ne->flags1=doc_ce->flags1;
 	doc_ne->flags2=doc_ce->flags2;
@@ -278,7 +278,7 @@ public U0 EdCursorRight(CDoc *doc,I64 sc=MIN_I64)
 	!(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
 	!(doc_ce->flags2&DOCEG2_DONT_EDIT) &&
 	cc<doc_ce->max_col) {
-	doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+	doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	doc_ne->type=DOCT_TEXT | old_color & -0x100;
 	doc_ne->flags1=old_flags1;
 	doc_ne->flags2=old_flags2;
@@ -360,7 +360,7 @@ public U0 EdLineUp(CDoc *doc,I64 sc=MIN_I64)
       !(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
       !(doc_ce->flags2&DOCEG2_DONT_EDIT)) {
     if (doc_ce->min_col<doc->cur_data_col<doc_ce->max_col-1) {
-      doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+      doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
       doc_ne->type=doc_ce->type;
       doc_ne->flags1=doc_ce->flags1;
       doc_ne->flags2=doc_ce->flags2;
@@ -458,7 +458,7 @@ public U0 EdLineUp(CDoc *doc,I64 sc=MIN_I64)
     !(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
     !(doc_ce->flags2&DOCEG2_DONT_EDIT) && doc_ce->x<x) {
     if (doc->cur_data_col<doc_ce->max_col-1) {
-      doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+      doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
       doc_ne->type=doc_ce->type;
       doc_ne->flags1=doc_ce->flags1;
       doc_ne->flags2=doc_ce->flags2;
@@ -515,7 +515,7 @@ public U0 EdLineDown(CDoc *doc,I64 sc=MIN_I64)
       !(doc_ce->flags1&DOCEG1_DONT_EDIT)&&
       !(doc_ce->flags2&DOCEG2_DONT_EDIT)) {
     if (doc->cur_data_col>doc_ce->min_col && doc->cur_data_col<doc_ce->max_col-1) {
-      doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+      doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
       doc_ne->type=doc_ce->type;
       doc_ne->flags1=doc_ce->flags1;
       doc_ne->flags2=doc_ce->flags2;
@@ -592,7 +592,7 @@ public U0 EdLineDown(CDoc *doc,I64 sc=MIN_I64)
     !(doc_ce->flags1&DOCEG1_DONT_EDIT) &&
     !(doc_ce->flags2&DOCEG2_DONT_EDIT)) {
     if (doc_ce->min_col<doc->cur_data_col<doc_ce->max_col-1) {
-      doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+      doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
       doc_ne->type=DOCT_TEXT | old_color & -0x100;
       doc_ne->flags1=old_flags1;
       doc_ne->flags2=old_flags2;
@@ -794,7 +794,7 @@ ic_overstrike_char:
       b=MAlloc(2,doc->mem_task);
       *b=ch;
       b[1]=0;
-      doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+      doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
       doc_ne->type=DOCT_TEXT | doc->settings_root.dft_text_attr << 8;
       doc_ne->tag=b;
       doc_ne->max_col=1;
@@ -864,7 +864,7 @@ ic_form_tab:
 	b=MAlloc(2,doc->mem_task);
 	*b=ch;
 	b[1]=0;
-	doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+	doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	doc_ne->type=DOCT_TEXT | doc->settings_root.dft_text_attr << 8;
 	doc_ne->tag=b;
 	doc_ne->max_col=1;
@@ -975,7 +975,10 @@ public U0 EdFindNext(CDoc *doc)
       }
     }
 fn_skip:
-    doc_e= doc->find_replace->scan_fwd ? doc_e->next:doc_e->last;
+    if (doc->find_replace->scan_fwd)
+      doc_e=doc_e->next;
+    else
+      doc_e=doc_e->last;
   } while (doc_e!=doc_ce);
   if (unlock)
     DocUnlock(doc);
@@ -1477,8 +1480,7 @@ U0 DocEntryToggle(CDoc *doc)
 U0 DocFlagsToggle(CDoc *doc,I64 tog_flags)
 {
   Bool unlock=DocLock(doc);
-  I64 size,start_text_attr=doc->start_text_attr,
-      flags=doc->flags^tog_flags;
+  I64 size,flags=doc->flags^tog_flags;
   U8 *st=DocSave(doc,&size);
   CDocUndo *u_next,*u_last;
 
@@ -1487,7 +1489,6 @@ U0 DocFlagsToggle(CDoc *doc,I64 tog_flags)
   doc->undo_root.next=doc->undo_root.last=&doc->undo_root;
 
   DocRst(doc,TRUE);
-  doc->start_text_attr=start_text_attr;
   doc->undo_root.next=u_next;
   doc->undo_root.last=u_last;
   DocUndoCntSet(doc);
@@ -1592,7 +1593,7 @@ public U0 DocPutKey(CDoc *doc,I64 ch,I64 sc)
 	      doc_ce=doc->cur_entry=doc_ce->last;
 	      if (doc_ce!=doc && doc_ce->type_u8==DOCT_SOFT_NEW_LINE)
 		doc_ce=doc->cur_entry=doc_ce->last;
-	      if (doc_ce==doc || doc_ce->type_u8==DOCT_USER_FOREGROUND) {
+	      if (doc_ce==doc || doc_ce->type_u8==DOCT_PMT) {
 		doc_ce=doc->cur_entry=doc_ce->next;
 		doc->cur_data_col=doc_ce->min_col;
 	      } else {
@@ -1805,7 +1806,7 @@ public U0 DocPutKey(CDoc *doc,I64 ch,I64 sc)
 	      else
 		SetKeyDesc("Edit/Autocomplete Word");
 	    } else {
-	      if (WordStat) {
+	      if (WordStat(ON)) {
 		DocUnlock(doc);
 		if (sc&SCF_SHIFT)
 		  WSDDef(ch-'0',Fs);
@@ -1871,7 +1872,7 @@ public U0 DocPutKey(CDoc *doc,I64 ch,I64 sc)
 		  else
 		    SetKeyDesc("Edit/Autocomplete Sym");
 		} else {
-		  if (WordStat) {
+		  if (WordStat(ON)) {
 		    DocUnlock(doc);
 		    if (sc&SCF_SHIFT)
 		      WSMan(sc2-SC_F1+1,Fs);
@@ -1962,6 +1963,13 @@ public U0 DocPutKey(CDoc *doc,I64 ch,I64 sc)
 			} else {
 			  DocWrite(doc);
 			  st=StrNew(doc->filename.name);
+			}
+			if (st2=DirFile(st,"Run","CPP.Z")) {
+			  if (FileFind(st2)) {
+			    Free(st);
+			    st=st2;
+			  } else
+			    Free(st2);
 			}
 			if (st) {
 			  if (sc&SCF_SHIFT)
@@ -2260,7 +2268,7 @@ public U0 DocPutSPartial(CDoc *doc,U8 *st)
 	  Free(doc_ce->tag);
 	  doc_ce->tag=b;
 	} else {
-	  doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+	  doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 	  doc_ne->type=DOCT_TEXT | doc->settings_root.dft_text_attr << 8;
 	  doc_ne->tag=MAlloc(j+1,doc->mem_task);
 	  MemCpy(doc_ne->tag,ptr2,j+1);
@@ -2286,7 +2294,7 @@ public U0 DocPutSPartial(CDoc *doc,U8 *st)
 Bool DocFileEd(I64 type,U8 *filename,
 	U8 *pattern,I64 *_num,I64 ed_flags)
 {
-  I64 flags=0,i;
+  I64 flags=0,i,old_border_src=Fs->border_src;
   CDocEntry *doc_e;
   CDoc *doc;
   Bool old_silent=Bt(&Fs->display_flags,DISPLAYf_SILENT),
@@ -2324,7 +2332,7 @@ Bool DocFileEd(I64 type,U8 *filename,
       doc=DocRead(filename,flags);
       StrCpy(doc->desc,"Edit");
       Silent(old_silent);
-      doc->flags|=DOCF_ATTR_BY_FILENAME;
+      Fs->border_src=BDS_ED_FILENAME_PRT;
     }
  
     if (Bt(&ed_flags,EDf_COLLAPSE))
@@ -2366,6 +2374,7 @@ Bool DocFileEd(I64 type,U8 *filename,
     Silent(old_silent);
     result=FALSE;
   }
+  Fs->border_src=old_border_src;
   return result;
 }
 

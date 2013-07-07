@@ -1,12 +1,11 @@
 U8 sys_temp_filename[136];
-CTaskCmd sys_macro_root;
+CSrvCmd sys_macro_root;
 CKeyDev sys_put_key_root;
 CTask *sys_macro_util_task=NULL,
       *sys_dbg_focus_task=NULL;
 U8    *sys_dbg_msg=NULL;
 I64   sys_dbg_msg_num=0;
 
-CMPCmdCtrl *mp_ctrl=NULL;
 CMPCrash *mp_crash=NULL;
 U8 mp_apic_ids[MP_MAX_PROCESSORS];
 I64 *sys_idt=NULL;

@@ -38,6 +38,7 @@ The transformation is implemented as a callback on the
 [C:/TempleOS/Kernel/Adam1a.HPP.Z,3356] CDC's transform() 
 member.  The default transfrom() callback is
 [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,154] GrTransform().  See 
-[C:/TempleOS/Demo/Games/EagleDive.CPP.Z,1] or
-[C:/TempleOS/Demo/Games/FPS.CPP.Z,1] to see 
-how to change the transfrom() callback for foreshortening.
+[C:/TempleOS/Demo/Games/EagleDive.CPP.Z,1] or 
+[C:/TempleOS/Demo/Games/CastleFrankenstein.CPP,1] to see how to change the
+transfr
+om() callback for foreshortening.

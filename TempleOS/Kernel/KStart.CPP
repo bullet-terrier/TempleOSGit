@@ -26,7 +26,7 @@ SYS_KERNEL_START1::
 	ALIGN	4,OC_NOP
 SYS_BOOT_BASE::			DU32	0;	//Fixed offset from start used by reboot
 SYS_BOOT_PATCH_TABLE_BASE::	DU32	0;
-#exe {StreamPrintF("SYS_COMPILE_TIME:: DU64 0x%X;",GetCurTimeCDate);}
+#exe {StreamPrintF("SYS_COMPILE_TIME:: DU64 0x%X;",GetCurTimeDate);}
 
 //See [C:/TempleOS/Kernel/Dsk/DskATA.CPP.Z,658] BootCdProbe
 #assert SYS_COMPILE_TIME+8+16<CD_BLK_SIZE

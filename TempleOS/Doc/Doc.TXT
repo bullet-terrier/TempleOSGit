@@ -1,7 +1,10 @@
 A TempleOS document is a [Data Types/Circular Queue,1] Circular Queue of cmds
-and graphics.  See [C:/TempleOS/Kernel/Adam1a.HPP.Z,1334] CDocEntry 
-for the entry structure.  See [C:/TempleOS/Adam/Training.CPP.Z,203]
-TipOfDay() for a nice example.
+and graphics.  See 
+[C:/TempleOS/Doc/Dollar.TXT.Z,1] Dollar Cmds and
+[C:/TempleOS/Adam/Doc/Doc.CPP.Z,29] ST_DOC_CMDS.  See
+[C:/TempleOS/Kernel/Adam1a.HPP.Z,1334] CDocEntry for the entry structure. 
+See 
+[C:/TempleOS/Adam/Training.CPP.Z,203] TipOfDay() for a nice example.
 
 There is one document format for the editor/ viewer/ browser/ cmd line.
 

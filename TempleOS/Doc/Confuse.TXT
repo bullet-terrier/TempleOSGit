@@ -55,7 +55,8 @@ CPU.  TempleOS does not use virtual memory, so
 activity.  A swap takes half a microsecond.  See 
 [C:/TempleOS/Demo/Lectures/Spinning.CPP.Z,1].
 
-* I use the term "JIT compilation".  This means it is compiled and executable 
+* I use the term [C:/TempleOS/Doc/Glossary.TXT.Z,1] JIT Compile Mode.  This
+means it is compiled and executable 
 code placed into mem, ready to be called.
 
 * Files with names ending in "Z" are compressed, not encrypted. 

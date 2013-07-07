@@ -110,10 +110,12 @@ float<-->int conversion, but sometimes you
 want to override.  These functions are better than multiplying by "1.0" to 
 convert to float.) 
 
-* The "`" operator raises a base to a power.
-
 * A single quote can encompass multiple characters.  'ABC' is equal to 0x43424
 1.
+
+* The "`" operator raises a base to a power.
+
+* There is no question-colon operator.
 
 * TempleOS [C:/TempleOS/Compiler/CmpInit.CPP.Z,1] operator precedence
   `,>>,<<
@@ -127,7 +129,6 @@ convert to float.)
   &&
   ^^
   ||
-  :,?
   =,<<=,>>=,*=,/=,&=,|=,^=,+=,-=
 
 * You can use [C:/TempleOS/Compiler/Directives.CPP.Z,6]

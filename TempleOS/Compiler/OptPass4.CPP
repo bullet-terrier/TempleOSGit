@@ -51,43 +51,6 @@ Bool OptIC4(CIntermediateCode *tempi)
     }
     if (tempil2->ic_opcode==IC_MOV ||
 	tempil2->ic_opcode==IC_REG) {
-      if (tempil1->p3.type&TY_MASK==TY_STK) {
-	if (tempil2->ic_flags & ICF_R_TO_INT) {
-	  if (tempil2->p1.type&TY_MASK==TY_IMM)
-	    tempil2->p1.disp=tempil2->p1.disp(F64);
-	  else
-	    tempil1->ic_flags|=ICF_P3_TO_INT;
-	} else if (tempil2->ic_flags&ICF_R_TO_F64) {
-	  if (tempil2->p1.type&TY_MASK==TY_IMM)
-	    tempil2->p1.disp(F64)=tempil2->p1.disp;
-	  else
-	    tempil1->ic_flags|=ICF_P3_TO_F64;
-	}
-
-	ty=tempil1->p3.type&IT_MASK;
-	ty1=tempil2->p1.type&IT_MASK;
-	if (ty1 && ty1<ty)
-	  ty=ty1;
-	ty1=tempil2->r.type&IT_MASK;
-	if (ty1 && ty1<ty)
-	  ty=ty1;
-	tempil1->p3.type=tempil2->p1.type&TY_MASK+ty;
-
-	pt=tempil1->p3.ptype;
-	pt1=tempil2->p1.ptype;
-	if (pt1 && pt1<pt && pt!=IT_F64)
-	  pt=pt1;
-	pt1=tempil2->r.ptype;
-	if (pt1 && pt1<pt && pt!=IT_F64)
-	  pt=pt1;
-	tempil1->p3.ptype=pt;
-
-	tempil1->p3.reg=tempil2->p1.reg;
-	tempil1->p3.disp=tempil2->p1.disp;
-	tempil1->ic_flags|=tempil2->ic_flags&ICF_NO_CVT_MASK;
-	OptSetNOP2(tempil2);
-	return TRUE;
-      }
       if (tempil1->p2.type&TY_MASK==TY_STK) {
 	if (tempil2->ic_flags & ICF_R_TO_INT) {
 	  if (tempil2->p1.type&TY_MASK==TY_IMM)
@@ -456,12 +419,11 @@ sib:
 	case IC_AND_AND:
 	case IC_OR_OR:
 	case IC_XOR_XOR:
-	case IC_COLON:
 	  break;
 	case IC_ASSIGN_PP:
 	case IC_ASSIGN_MM:
 //this val was stashed during pass012 for pointer arithmetic
-	  tempi->ic_class2=tempi->t.p3c;
+	  tempi->ic_class2=tempi->t.class2;
 	case IC_ASSIGN:
 	case IC_SHL_EQUAL:
 	case IC_SHR_EQUAL:
@@ -589,8 +551,6 @@ sib:
 	case IC_TAN:
 	case IC_ATAN:
 	case IC_ABS_I64:
-	case IC_LIMIT_I64:
-	case IC_LIMIT_U64:
 	case IC_MIN_I64:
 	case IC_MAX_I64:
 	case IC_MIN_U64:
@@ -606,11 +566,6 @@ sib:
 	case IC_QUE_INS:
 	case IC_QUE_INS_REV:
 	case IC_QUE_REM:
-	case IC_MEMCPY:
-	case IC_MEMSET:
-	case IC_MEMSET_U16:
-	case IC_MEMSET_U32:
-	case IC_MEMSET_U64:
 	case IC_IN_U32:
 	case IC_IN_U16:
 	case IC_IN_U8:
@@ -623,7 +578,6 @@ sib:
 	case IC_RET:
 	case IC_END:
 	case IC_ADDR:
-	case IC_QUESTION:
 	case IC_IRQ:
 	case IC_NOP1:
 	case IC_CALL_START:
@@ -702,58 +656,6 @@ sib:
 	      tempi->p2.type=TY_RIP_DISP32+tempi->p2.type&IT_MASK;
 	      tempi->p2.reg=CREG_RIP;
 	      OptSetNOP1(tempi2);
-	    }
-	  }
-	  break;
-	case IC_BEQU:
-	case IC_LBEQU:
-	  if (!(tempi->ic_flags&ICF_NOT_ADDR)) {
-	    if (tempi3->ic_opcode==IC_ADDR) {
-	      if (tempi3->p1.type&TY_MASK==TY_STK &&
-		    tempi3->r.type&TY_MASK==TY_STK) {
-		if (!(tempil3=OptLag1(tempi3)) ||
-		      tempil3->ic_opcode!=IC_ABS_ADDR &&
-		      !(tempil3->ic_opcode==IC_MOV &&
-		      tempil3->p1.type==TY_IMM+IT_I64 &&
-		      0<=tempil3->p1.disp<=MAX_I32) ||
-		      tempil3->ic_flags&ICF_NO_RIP)
-		  tempil3=NULL;
-		else {
-		  if (tempil3->ic_opcode==IC_ABS_ADDR)
-		    tempi->p3.disp=tempil3->ic_data;
-		  else
-		    tempi->p3.disp=tempil3->p1.disp;
-		}
-	      } else {
-		if (tempi3->p1.type==TY_IMM+IT_I64 &&
-		      0<=tempi3->p1.disp<=MAX_I32 &&
-		      !(tempi3->ic_flags&ICF_NO_RIP)) {
-		  tempil3=tempi3;
-		  tempi3=NULL;
-		  tempi->p3.disp=tempil3->p1.disp;
-		} else
-		  tempil3=NULL;
-	      }
-	      if (tempil3) {
-		if (tempi3) {
-		  tempi->ic_flags|=tempi3->ic_flags;
-		  OptSetNOP1(tempi3);
-		}
-		tempi->ic_flags|=tempil3->ic_flags|ICF_NOT_ADDR;
-		tempi->p3.type=TY_RIP_DISP32+tempi->p3.type&IT_MASK;
-		tempi->p3.reg=CREG_RIP;
-		OptSetNOP1(tempil3);
-	      }
-	    } else if (tempi3->ic_opcode==IC_MOV &&
-		  tempi3->r.type&TY_MASK==TY_STK &&
-		  tempi3->p1.type==TY_IMM+IT_I64 &&
-		  0<=tempi3->p1.disp<=MAX_I32 &&
-		  !(tempi3->ic_flags&ICF_NO_RIP)) {
-	      tempi->p3.disp=tempi3->p1.disp;
-	      tempi->ic_flags|=tempi3->ic_flags|ICF_NOT_ADDR;
-	      tempi->p3.type=TY_RIP_DISP32+tempi->p3.type&IT_MASK;
-	      tempi->p3.reg=CREG_RIP;
-	      OptSetNOP1(tempi3);
 	    }
 	  }
 	  break;

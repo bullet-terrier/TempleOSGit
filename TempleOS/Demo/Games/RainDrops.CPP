@@ -168,7 +168,7 @@ U0 RainDrops()
   sc_1=A2ScanCode('1');
   sc_2=A2ScanCode('2');
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;

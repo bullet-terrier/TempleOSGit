@@ -4,9 +4,10 @@
 x86_64, multi-cored, multi-tasking, 
 ring-0-only, single-address_mapped (identity), operating system for 
 recreational programming:
-  * Professional hobby projects
-* Teenager projects
-* Non-professional, older-person projects
+
+  * Professionals doing hobby projects
+* Teenagers doing projects
+* Non-professional, older-persons projects
 
 Simplicity is a goal to [C:/TempleOS/Doc/Strategy.TXT.Z,1] keep the line
 count down, so it's easy to tinker with. 
@@ -25,7 +26,7 @@ fine without memory protection and most computers in the world -- the
 embedded 
 ones -- operate without protection.  The resulting simplicity of no 
 protections is why TempleOS has value.  In facts, that's the point of 
-TempleOS.  See the [C:/TempleOS/Doc/Charter.TXT.Z,1] TempleOS Constitition.
+TempleOS.  See the [C:/TempleOS/Doc/Charter.TXT.Z,1] TempleOS Charter.
 
 Two things to know about TempleOS are that _tasks_ have
 [C:/TempleOS/Kernel/Memory.CPP.Z,956]

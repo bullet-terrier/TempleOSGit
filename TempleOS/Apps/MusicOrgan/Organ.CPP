@@ -21,7 +21,7 @@ and kbdgraphic.
 
   2) The Fs->draw_it() for the staff region, drawn every refresh.
 
-  3) The gr_dc2 persistent layer for the note chooser, meter chooser.  The 
+  3) The gr_dc persistent layer for the note chooser, meter chooser.  The 
 persistent layer is used during drag-and-drop.
 
   4) The Fs->next_ctrl for the tempo/stacatto sliders.
@@ -450,7 +450,7 @@ F64 PopUpDuration()
 {
   I64 i;
   CDoc *doc=DocNew;
-  DocPutS(doc,"$FM,GREEN$$MU,\"Set Word\",ORGR_SET_WORD$\n"
+  DocPutS(doc,"$FG,GREEN$$MU,\"Set Word\",ORGR_SET_WORD$\n"
 	"$MU,\"Toggle Sharp\",ORGR_SHARP$\n"
 	"$MU,\"Toggle Flat\",ORGR_FLAT$\n"
 	"$MU,\"Toggle Tie\",ORGR_TIE$\n"
@@ -611,16 +611,16 @@ U0 DrawPickNoteBox()
 U0 DrawPickTools()
 {
   if (oc.tool==OTT_BOX_TOOL)
-    oc.dc2->color=ROPF_DITHER+WHITE<<16+ROP_EQU+RED;
+    oc.dc2->color=ROPF_DITHER+WHITE<<16+RED;
   else
-    oc.dc2->color=ROPF_DITHER+WHITE<<16+ROP_EQU+BLACK;
+    oc.dc2->color=ROPF_DITHER+WHITE<<16+BLACK;
   GrLineRect4(oc.dc2,ORG_TOOLS_X,ORG_TOOLS_Y,
     ORG_TOOLS_X+10,ORG_TOOLS_Y+10);
 
   if (oc.tool==OTT_PTR_TOOL)
-    oc.dc2->color=ROP_EQU+RED;
+    oc.dc2->color=RED;
   else
-    oc.dc2->color=ROP_EQU+BLACK;
+    oc.dc2->color=BLACK;
   (*fp_draw_input_ptr)(oc.dc2,ORG_TOOLS_X+15,ORG_TOOLS_Y);
   oc.dc2->color=BLACK;
 }
@@ -792,7 +792,7 @@ U0 OrgLeftClickStaffBox(I64 x,I64 y)
   do {
     msg_code=GetMsg(&p1,&p2,1<<MSG_IP_L_UP|1<<MSG_IP_MOVE);
     DrawDC2;
-    oc.dc2->color=ROPF_DITHER+WHITE<<16+ROP_EQU+BLACK;
+    oc.dc2->color=ROPF_DITHER+WHITE<<16+BLACK;
     GrLineRect4(oc.dc2,x,y,p1,p2);
     if (msg_code==MSG_IP_L_UP) {
       if (x>p1) SwapU64(&x,&p1);
@@ -1330,7 +1330,7 @@ U0 OrgUpKey(I64 x,I64 y)
 U0 OrgMenu(I64 org_octave)
 {
   DocClear;
-  "$BD,WHITE$$FD,GREEN$$FU,GREEN$$FM,GREEN$$CM,0,12$\n";
+  "$BD,WHITE$$FD,GREEN$$CM,0,12$\n";
   PutSprite(__BIN_17);
   NewLine(5);
 
@@ -1382,7 +1382,7 @@ U0 MusicOrgan(U8 *dirname=NULL)
       note=NOTE_REST,octave=OCTAVE_REST,org_octave=3,timeout_val,timeout_val2,
       old_doc_flags;
   U8 *filename=NULL,*st,*st2;
-  CTask *play_task=Spawn(&OrgPlayTask,NULL,"Organ Play",Fs);
+  CTask *play_task=Spawn(&OrgPlayTask,NULL,"Organ Play",,Fs);
   OrgNote *tempo;
   F64 f=0,last_f=0,org_duration=1.0,
       d,evt_time=tT,note_down_time=tT;
@@ -1853,6 +1853,7 @@ got_msg:
 	}
       }
     } while (ch!=CH_ESC && ch!=CH_SHIFT_ESC);
+    GetMsg(,,1<<MSG_KEY_UP);
   } catch
     CatchAll;
   OrgPopMode;
@@ -1862,9 +1863,9 @@ got_msg:
   Kill(play_task);
   DCFill;
   DCDel(oc.dc2);
+  DocClear;
   SettingsPop;
   if (DocPut) DocPut->flags=DocPut->flags&~DOCF_FORM|old_doc_flags&DOCF_FORM;
   Free(dirname);
-  "$CL$\n";
   MenuPop;
 }

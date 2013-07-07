@@ -288,19 +288,19 @@ U0 Horeb()
       );
   SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
   try {
+    Fs->text_attr=YELLOW<<4+BLUE;
     Fs->win_inhibit=WIF_ALL-WIF_GRAB_SCROLL-WIF_MENU;
     WordStat;
     WinMax;
     WinBorder;
     Preempt(OFF);
 
-    "$CL$$BG,LTCYAN$";
-    NewLine(6);
-    "$BG,YELLOW$";
-    NewLine(30);
+    DocClear;
+    "$BG,LTCYAN$"; NewLine(6);
+    "$BG,YELLOW$"; NewLine(30);
     PutBibleVerse("Exodus,3:1",21);
     Init;
-    Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+    Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
     Fs->draw_it=&DrawHoreb;
     while (!horeb_done) {
       while (ScanKey(&ch,&sc))
@@ -308,16 +308,16 @@ U0 Horeb()
 	  case 0:
 	    switch (sc.u8[0]) {
 	      case SC_CURSOR_LEFT:
-		Spawn(&AnimatethetaTask,(-pi/100)(I64),"Animate theta",Fs);
+		Spawn(&AnimatethetaTask,(-pi/100)(I64),"Animate theta",,Fs);
 		break;
 	      case SC_CURSOR_RIGHT:
-		Spawn(&AnimatethetaTask,( pi/100)(I64),"Animate theta",Fs);
+		Spawn(&AnimatethetaTask,( pi/100)(I64),"Animate theta",,Fs);
 		break;
 	      case SC_CURSOR_UP:
-		Spawn(&AnimateVTask,(-40.0 )(I64),"Animate V",Fs);
+		Spawn(&AnimateVTask,(-40.0 )(I64),"Animate V",,Fs);
 		break;
 	      case SC_CURSOR_DOWN:
-		Spawn(&AnimateVTask,( 40.0 )(I64),"Animate V",Fs);
+		Spawn(&AnimateVTask,( 40.0 )(I64),"Animate V",,Fs);
 		break;
 	    }
 	    break;
@@ -333,14 +333,7 @@ U0 Horeb()
 hr_done: //Don't goto out of try
   } catch
     Fs->catch_except=TRUE;
-  SettingsPop(Fs,TSF_SAME_SONG);
   DocClear;
-  "$BG$";
+  SettingsPop(Fs,TSF_SAME_SONG);
   MenuPop;
 }
-
-//This is so I can use this file stand alone
-//or as a component of a program.
-#if IncludeDepth<2
-Horeb;
-#endif

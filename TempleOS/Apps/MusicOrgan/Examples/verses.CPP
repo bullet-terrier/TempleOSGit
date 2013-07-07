@@ -16,7 +16,7 @@ U0 PutVerse()
   U8 *ch;
   I64 *start;
 
-  "$CL$";
+  DocClear;
   start=GetTimeStamp/16%size;
   if (start>size-LEN) start=size-LEN;
   ch=bible[start+LEN-1];

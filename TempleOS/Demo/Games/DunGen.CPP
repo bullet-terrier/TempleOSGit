@@ -5,7 +5,7 @@
 //starting pos.
 
 
-/* map <1> (image) */
+/* <1> <1> (image) */
 
 
 
@@ -15,70 +15,38 @@
 
 
 
+/* <2> <2> (image) */
 
 
 
-/* hero <2> (image) */
+/* <3> <3> (image) */
 
 
-
-/* hero_attack <3> (image) */
-
-
-
-
-
-
-/* template <4> (image) */	 //This is a template you can copy and use to make a tile.
+/* <4> <4> (image) */	 //This is a template you can copy and use to make a tile.
 	//WHITE is the transparent color.
 
 
 
 
-
-/* tree <5> (image) */
-
+/* <5> <5> (image) */
 
 
+/* <6> <6> (image) */
 
 
-/* path <6> (image) */
+/* <7> <7> (image) */
 
 
-
-/* water1 <7> (image) */
-
-
-
-/* water2 <8> (image) */
-
+/* <8> <8> (image) */
 
 
 
  
-/* goblin <9> (image) */
+/* <9> <9> (image) */
 
+/* <10> <10> (image) */
 
-
-
-
-
-
-
-/* wall1 <10> (image) */
-
-
-
-
-
-
-
-/* wall2 <11> (image) */
-
-
-
-
-
+/* <11> <11> (image) */
 
 
 
@@ -133,18 +101,17 @@ Bool LOSPlot(U8 *,I64 x,I64 y,I64)
 
 Bool LOS(I64 x1,I64 y1,I64 x2,I64 y2)
 { //Line of sight
-  return Line(NULL,x1*LOS_SCALE+LOS_SCALE/2,y1*LOS_SCALE+LOS_SCALE/2,0,
+  return LOSLine(NULL,x1*LOS_SCALE+LOS_SCALE/2,y1*LOS_SCALE+LOS_SCALE/2,0,
 	       x2*LOS_SCALE+LOS_SCALE/2,y2*LOS_SCALE+LOS_SCALE/2,0,&LOSPlot);
 }
 
 U0 DrawIt(CTask *task,CDC *dc)
 {
-  CDC *dc_t=DCAlias(gr_dc,task);
+  CDC *dc_t=DCAlias(gr_dc2,task);
   I64 i,x,y,xx,yy,x1,y1,z1,color;
   CD3I32 poly[4];
   U8 **_tiles;
 
-  task->text_attr=BLACK<<4;
   if (Blink(5))
     _tiles=tiles1;
   else
@@ -361,11 +328,12 @@ U0 DunGen()
       );
 
   SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  Fs->text_attr=BLACK<<4+WHITE;
   Preempt(OFF);
   WinMax;
   WordStat;
   Init;
-  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",Fs);
+  Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;

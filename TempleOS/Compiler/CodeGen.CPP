@@ -84,17 +84,10 @@ U0 CBPutIC(CIntermediateCode *tempi)
     ',';
     if (tempi->p2.type&TY_MASK)
       CBPutICArg(&tempi->p2);
-    ',';
-    if (tempi->p3.type&TY_MASK)
-      CBPutICArg(&tempi->p3);
     '' CH_SPACE;
     CBPutClass(tempi->ic_class);
     if (tempi->ic_flags & ICF_LOCK)
       "$FG,BROWN$lock$FG$ ";
-    if (tempi->ic_flags & ICF_P3_TO_F64)
-      "$FG,LTBLUE$p3d$FG$ ";
-    if (tempi->ic_flags & ICF_P3_TO_INT)
-      "$FG,GREEN$p3i$FG$ ";
     if (tempi->ic_flags & ICF_P2_TO_F64)
       "$FG,LTBLUE$p2d$FG$ ";
     if (tempi->ic_flags & ICF_P2_TO_INT)

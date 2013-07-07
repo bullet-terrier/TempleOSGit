@@ -1,5 +1,10 @@
 //This uses [C:/TempleOS/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
+class MyMass:CMass
+{
+  Bool collision;
+};
+
 #define MAP_WIDTH	2048
 #define MAP_HEIGHT	(GR_HEIGHT-3*FONT_HEIGHT)
 
@@ -32,7 +37,7 @@ CMathODE *ode=NULL;
 U0 DrawIt(CTask *task,CDC *dc)
 {
   CDC *map=maps[active_map&1];
-  CMass *tempm;
+  MyMass *tempm;
   F64 theta=gun_theta;
   I64 i,x,y,w,
       h=-task->horz_scroll.pos,
@@ -65,7 +70,7 @@ U0 DrawIt(CTask *task,CDC *dc)
     map->collision_cnt=0;
     GrCircle(map,tempm->x,tempm->y,2);
     if (map->collision_cnt)
-      tempm->user_data=1;
+      tempm->collision=TRUE;
 
     GrCircle(dc,tempm->x+h,tempm->y+v,2);
 
@@ -85,7 +90,7 @@ U0 DrawIt(CTask *task,CDC *dc)
 
 U0 MyDerivative(CMathODE *ode,F64,COrder2D3 *,COrder2D3 *)
 {
-  CMass *tempm=ode->next_mass;
+  MyMass *tempm=ode->next_mass;
   while (tempm!=&ode->next_mass) {
     tempm->DstateDt->DyDt+=1000.0*tempm->mass;
     tempm->DstateDt->DxDt+=25.0*wind_x;
@@ -113,18 +118,18 @@ U0 DrawMap()
 
 U0 FireTask(I64)
 { //by default preempt is off on new tasks
-  CMass *tempm;
+  MyMass *tempm;
   I64 i;
   if (gun_recoil) return;
 
-  tempm=CAlloc(sizeof(CMass),Fs->parent_task);
+  tempm=CAlloc(sizeof(MyMass),Fs->parent_task);
   tempm->mass=10.0;
   tempm->drag_profile_factor=0.1;
   tempm->x=gun_x+27*Cos(gun_theta);
   tempm->y=gun_y-15+27*Sin(gun_theta);
   tempm->DxDt=600.0*Cos(gun_theta);
   tempm->DyDt=600.0*Sin(gun_theta);
-  tempm->user_data=0;
+  tempm->collision=FALSE;
   while (sys_task_being_screen_updated==Fs->parent_task)
     Yield;
   QueIns(tempm,ode->last_mass);
@@ -144,13 +149,13 @@ U0 FireTask(I64)
 U0 ManageShots()
 {
   I64 i;
-  CMass *tempm,*tempm1;
+  MyMass *tempm,*tempm1;
   Bool chged=FALSE;
   tempm=ode->next_mass;
   while (tempm!=&ode->next_mass) {
     tempm1=tempm->next;
     if (!(0<=tempm->x<MAP_WIDTH) ||
-	 tempm->user_data) {
+	 tempm->collision) {
       QueRem(tempm);
       for (i=tempm->x-4;i<=tempm->x+4;i++)
 	if (0<=i<MAP_WIDTH)
@@ -289,14 +294,14 @@ U0 BigGuns()
 		if (gun_theta>0)
 		  gun_theta=0;
 		else
-		  Spawn(&MoveTask,NULL,"Move",Fs);
+		  Spawn(&MoveTask,NULL,"Move",,Fs);
 		break;
 	      case SC_CURSOR_LEFT:
 		gun_theta-=2.0*pi/180;
 		if (gun_theta<-pi)
 		  gun_theta=-pi;
 		else
-		  Spawn(&MoveTask,NULL,"Move",Fs);
+		  Spawn(&MoveTask,NULL,"Move",,Fs);
 		break;
 	    }
 	    break;
@@ -305,7 +310,7 @@ U0 BigGuns()
 	    Init;
 	    break;
 	  case CH_SPACE:
-	    Spawn(&FireTask,NULL,"Fire",Fs);
+	    Spawn(&FireTask,NULL,"Fire",,Fs);
 	    break;
 	  case CH_SHIFT_ESC:
 	  case CH_ESC:

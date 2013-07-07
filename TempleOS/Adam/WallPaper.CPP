@@ -34,7 +34,7 @@ U0 WallPaper(CTask *_task)
   CHashTable *old_hash=Fs->hash_table;
   CCPU *c;
   Bool old_preempt=Preempt(OFF);
-  CDate spdt;
+  CDate cdt;
   U8 buf[256],*st;
   static I64 code_heap_unused=0,code_heap_used=0,
 	     data_heap_unused=0,data_heap_used=0;
@@ -112,18 +112,21 @@ U0 WallPaper(CTask *_task)
   WallPrintF(,0,l--,"CPU   Swaps/s");
   WallPrintF(,0,l--,"      Context");
 
-  spdt=GetCurTimeCDate;
+  cdt=GetCurTimeDate;
   if (!(win_updates&63))
     last_unused_sysmem=UnusedSysMem+data_heap_unused;
 
   WallPrintF(,0,0,"%h2D %h4T Ref:%2tf Mem:%010X CPU",
-    spdt,spdt,win_actual_refresh,last_unused_sysmem);
+    cdt,cdt,win_actual_refresh,last_unused_sysmem);
  
   if (wallpaper_record_on)
     WallPrintF(RED,45-4,0,"*");
   for (i=0;i<mp_cnt;i++) {
     c=&cpu_structs[i];
-    WallPrintF(i&1 ? WHITE:YELLOW,45+i*2,0,"%2tf",100.0*(1.0-c->idle_factor));
+    if (i&1)
+      WallPrintF(WHITE,45+i*2,0,"%2tf",100.0*(1.0-c->idle_factor));
+    else
+      WallPrintF(YELLOW,45+i*2,0,"%2tf",100.0*(1.0-c->idle_factor));
   }
 
   st=ScanCode2KeyName(sys_last_down_scan_code);

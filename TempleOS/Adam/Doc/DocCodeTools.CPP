@@ -11,7 +11,7 @@ I64 PopUpEdFmt()
 {
   I64 i;
   CDoc *doc=DocNew;
-  DocPutS(doc,"$MU,\"Check Compile\",EF_CHK_COMPILE$\n"
+  DocPutS(doc,"$FG,LTBLUE$$MU,\"Check Compile\",EF_CHK_COMPILE$\n"
 	"$MU,\"Reindent CPP.Z Fun\",EF_REINDENT$\n"
 	"$MU,\"Renum Asm Local @@ Labels for Fun\",EF_RENUM_ASM$\n"
 	"$MU,\"Insert Mgd Code: Slider Ctrl\",EF_SLIDER_CTRL$\n"
@@ -358,7 +358,7 @@ U0 EdCodeTools2(CDoc *doc,I64 tool_action)
   I64 i,start_y,end_y,x,r,goto_line_num;
   U8 *b,*st,*st2,*prj_file;
   CTask *task=NULL;
-  CTaskCmd *tempc;
+  CSrvCmd *tempc;
   CQueVectU8 *indent;
 
   DocRecalc(doc);
@@ -371,36 +371,36 @@ U0 EdCodeTools2(CDoc *doc,I64 tool_action)
       if (doc->flags&DOCF_PLAIN_TEXT)
 	DocFlagsToggle(doc,DOCF_PLAIN_TEXT);
       DocWrite(doc);
-      task=Spawn(&ServantUserCmdLine,NULL,"Servant",Fs);
+      task=Spawn(&SrvUserCmdLine,NULL,"Srv",,Fs);
       st2=CurDir;
       st=MSPrintF("Cd(\"%s\");",st2);
-      tempc=TaskRqstQue(task,Fs,st,1<<TASKCf_WAKE_MASTER|1<<TASKCf_FOCUS_MASTER);
+      tempc=TaskExeStrQue(task,Fs,st,1<<SVCf_WAKE_MASTER|1<<SVCf_FOCUS_MASTER);
       Free(st2);
       Free(st);
       SetWinHorz(Fs->win_left,Fs->win_right, task);
       SetWinVert(Fs->win_top, Fs->win_bottom,task);
-      if (GetRqstResult(tempc,&r)) {
+      if (ScanResult(tempc,&r)) {
 	st=DirFile(doc->filename.name,,"PRJ.Z"),
 	      prj_file=FileNameAbs(st,FUF_Z_OR_NOT_Z);
 	Free(st);
 	if (FileFind(prj_file)) {
 	  st2=DirFile(prj_file),
-		st=MSPrintF("Cd(\"%s\");",st2);
+	  st=MSPrintF("Cd(\"%s\");",st2);
 	  Free(st2);
-	  tempc=TaskRqstQue(task,Fs,st,1<<TASKCf_WAKE_MASTER|1<<TASKCf_FOCUS_MASTER);
+	  tempc=TaskExeStrQue(task,Fs,st,1<<SVCf_WAKE_MASTER|1<<SVCf_FOCUS_MASTER|1<<SVCf_FREE_ON_COMPLETE);
 	  Free(st);
 	  st=MSPrintF("\"$WW,1$\";Cmp(\"%s\",\"SysTemp\",\"SysTemp\");",prj_file);
-	  tempc=TaskRqstQue(task,Fs,st,1<<TASKCf_WAKE_MASTER|1<<TASKCf_FOCUS_MASTER);
+	  tempc=TaskExeStrQue(task,Fs,st,1<<SVCf_WAKE_MASTER|1<<SVCf_FOCUS_MASTER);
 	  Free(st);
-	  if (GetRqstResult(tempc,&r))
+	  if (ScanResult(tempc,&r))
 	    if (!r) {
-	      tempc=TaskRqstQue(task,Fs,
-		    "Load(\"SysTemp\",LDF_JUST_LOAD);",1<<TASKCf_WAKE_MASTER|1<<TASKCf_FOCUS_MASTER);
-	      if (GetRqstResult(tempc,&r))
+	      tempc=TaskExeStrQue(task,Fs,
+		    "Load(\"SysTemp\",LDF_JUST_LOAD);",1<<SVCf_WAKE_MASTER|1<<SVCf_FOCUS_MASTER);
+	      if (ScanResult(tempc,&r))
 		okay=TRUE;
 	    }
-	  tempc=TaskRqstQue(task,Fs,"Del(\"SysTemp.*\");",1<<TASKCf_WAKE_MASTER|1<<TASKCf_FOCUS_MASTER);
-	  GetRqstResult(tempc,&r);
+	  tempc=TaskExeStrQue(task,Fs,"Del(\"SysTemp.*\");",1<<SVCf_WAKE_MASTER|1<<SVCf_FOCUS_MASTER);
+	  ScanResult(tempc,&r);
 	} else {
 	  Free(prj_file);
 	  st=DirFile(doc->filename.name,"Load","CPP.Z");
@@ -410,9 +410,9 @@ U0 EdCodeTools2(CDoc *doc,I64 tool_action)
 	    st=MSPrintF("\"$WW,1$\";ExeFile(\"%s\",TRUE);",prj_file);
 	  else
 	    st=MSPrintF("\"$WW,1$\";ExeFile(\"%s\",TRUE);",doc->filename.name);
-	  tempc=TaskRqstQue(task,Fs,st,1<<TASKCf_WAKE_MASTER|1<<TASKCf_FOCUS_MASTER);
+	  tempc=TaskExeStrQue(task,Fs,st,1<<SVCf_WAKE_MASTER|1<<SVCf_FOCUS_MASTER);
 	  Free(st);
-	  if (GetRqstResult(tempc,&r) && r)
+	  if (ScanResult(tempc,&r) && r)
 	    okay=TRUE;
 	}
 	Free(prj_file);
@@ -465,7 +465,7 @@ U0 EdCodeTools2(CDoc *doc,I64 tool_action)
 		  b=MAlloc(i+1,doc->mem_task);
 		  MemSet(b,CH_SPACE,i);
 		  b[i]=0;
-		  doc_ne=CAlloc(sizeof(CDocEntryBase)+sizeof(U8 *),doc->mem_task);
+		  doc_ne=CAlloc(sizeof(CDocEntryBase),doc->mem_task);
 		  doc_ne->type=DOCT_TEXT | doc->settings_root.dft_text_attr << 8;
 		  doc_ne->tag=b;
 		  doc_ne->max_col=1;
