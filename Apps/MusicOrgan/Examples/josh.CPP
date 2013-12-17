@@ -18,9 +18,9 @@ U0 Song()
   music_stacatto_factor= 0.814;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,46190] Psalms,18:26 Try other translations.\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,12005] Numbers,11:1 Read the whole chapter.\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,29345] 1 Kings,22:1 Read the whole chapter.\n"
+    "[C:/Misc/Bible.TXT.Z,46190] Psalms,18:26 Try other translations.\n"
+    "[C:/Misc/Bible.TXT.Z,12005] Numbers,11:1 Read the whole chapter.\n"
+    "[C:/Misc/Bible.TXT.Z,29345] 1 Kings,22:1 Read the whole chapter.\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

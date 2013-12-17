@@ -4,8 +4,8 @@ public U0 DocProfile(U8 *filename,I64 flags)
        *flags_stats=CAlloc(sizeof(I64)*64),
        *type_flags_stats=CAlloc(sizeof(I64)*64);
 //Note, word wrap is determined by
-//doc->win_task when a [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc is recalculated
-//use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
+//doc->win_task when a [C:/Kernel/Adam1a.HPP.Z,1398] CDoc is recalculated
+//use [C:/Adam/Doc/DocRecalc2b.CPP.Z,248] DocRecalc().
   CDoc *doc=DocRead(filename,flags);
 
 //doc->root which is equal to doc is the
@@ -52,16 +52,16 @@ public U0 DocProfile(U8 *filename,I64 flags)
 }
 
 
-//See [C:/TempleOS/Adam/Training.CPP.Z,203] TipOfDay.
+//See [C:/Adam/Training.CPP.Z,203] TipOfDay.
 
-//Note: Not all [C:/TempleOS/Kernel/Adam1a.HPP.Z,1334] CDocEntry's are full-sized nodes.
-//Some are [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloced with a smaller size to save
-//mem.	They all have at least the size [C:/TempleOS/Kernel/Adam1a.HPP.Z,1309] CDocEntryBase.
+//Note: Not all [C:/Kernel/Adam1a.HPP.Z,1223] CDocEntry's are full-sized nodes.
+//Some are [C:/Kernel/Mem1b.CPP.Z,376] MAlloced with a smaller size to save
+//mem.	They all have at least the size [C:/Kernel/Adam1a.HPP.Z,1205] CDocEntryBase.
 
-//Note: [C:/TempleOS/Kernel/Adam1a.HPP.Z,1334] CDocEntry's should be allocated from the
+//Note: [C:/Kernel/Adam1a.HPP.Z,1223] CDocEntry's should be allocated from the
 //heap of the owning task, doc->mem_task.
 
-//The flag arrays [MN:doc_type_flags_tag] doc_type_flags_tag, [MN:doc_type_flags_form] doc_type_flags_form, etc
+//The flag arrays [C:/Adam/Doc/DocNew.CPP.Z,2] doc_type_flags_tag, [C:/Adam/Doc/DocNew.CPP.Z,4] doc_type_flags_form, etc
 //are useful.
 
 DocProfile("::/Doc/ChangeLog.TXT",0);

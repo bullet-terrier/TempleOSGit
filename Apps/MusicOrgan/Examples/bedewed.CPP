@@ -18,7 +18,7 @@ U0 Song()
   music_tempo=2.5;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,94869] Philippians,4:8\n"
+    "[C:/Misc/Bible.TXT.Z,94869] Philippians,4:8\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

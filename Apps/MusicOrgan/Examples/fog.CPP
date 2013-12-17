@@ -31,7 +31,7 @@ U0 DrawIt(CTask *,CDC *dc)
 
 U0 Song()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
 

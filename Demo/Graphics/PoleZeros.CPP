@@ -103,7 +103,7 @@ U0 PoleZeros()
   );
   WinMgrSync;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->win_inhibit=WIG_TASK_DFT-WIF_FOCUS-WIF_BORDER;
   SetVGAPalette4(vga_palette4_gray);
   SetVGAPaletteColor(15,0xFF0000); //White is red

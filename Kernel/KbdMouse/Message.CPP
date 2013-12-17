@@ -183,9 +183,9 @@ I64 GetChar(I64 *_scancode=NULL,Bool echo=TRUE,Bool raw_cursor=FALSE)
 }
 
 U8 *MGetS(I64 flags=0)
-//[C:/TempleOS/Kernel/Adam1a.HPP.Z,1567] Flags
+//[C:/Kernel/Adam1a.HPP.Z,1454] Flags
 {
-//Returns a [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc()ed prompted string.
+//Returns a [C:/Kernel/Mem1b.CPP.Z,376] MAlloc()ed prompted string.
   return (*fp_mgets)(flags);
 }
 

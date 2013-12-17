@@ -9,7 +9,7 @@ U0 Song()
     "Asking God for stuff is like knocking on the door\n"
     "of a neighbor in the middle of the night.\n"
     "It's annoying!  We're supposed to love God!\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,81941]\n"
+    "[C:/Misc/Bible.TXT.Z,81941]\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

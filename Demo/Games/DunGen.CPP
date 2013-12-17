@@ -52,7 +52,7 @@
 
 
 //These are indexed by color #.
-//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3301] COLORS.
+//See [C:/Kernel/Adam1a.HPP.Z,3156] COLORS.
 
 U8 *tiles1[16]=
 {NULL,__BIN_7 ,__BIN_5 ,NULL,
@@ -124,8 +124,8 @@ U0 DrawIt(CTask *task,CDC *dc)
   dc_t->flags|=DCF_TRANSFORMATION;
 
   //You could make it much more efficient
-  //if you did it like [C:/Demo/Games/BigGuns.CPP,1]
-  //with a [C:/TempleOS/Kernel/Adam1a.HPP.Z,3356] CDC.
+  //if you did it like [C:/Demo/Games/BigGuns.CPP.Z,1]
+  //with a [C:/Kernel/Adam1a.HPP.Z,3210] CDC.
 
   for (y=-SCREEN_HEIGHT/2;y<SCREEN_HEIGHT/2;y++) {
     yy=y+screen_y;
@@ -326,7 +326,7 @@ U0 DunGen()
       "}"
       );
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=BLACK<<4+WHITE;
   Preempt(OFF);
   WinMax;

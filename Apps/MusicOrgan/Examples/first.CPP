@@ -19,7 +19,7 @@ U0 Song()
   music_tempo=2.5;
   try {
   task=PopUpViewStr(
-    "$WW+H,1$[C:/TempleOS/Misc/Bible.TXT.Z,76908]\n\n"
+    "$WW+H,1$[C:/Misc/Bible.TXT.Z,76908]\n\n"
     "How many people hear \"Love God with all heart "
     "mind and soul; and neighbor as self,\" but walk "
     "away thinking \"Love neighbor with all heart "

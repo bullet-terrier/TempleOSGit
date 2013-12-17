@@ -3,11 +3,11 @@
 //There is no code in this file.
 
 //The internal types are U16i,I32i, etc.
-//They are defined [C:/TempleOS/Compiler/CmpInit.CPP.Z,8] internal_types_table.
+//They are defined [C:/Compiler/CmpInit.CPP.Z,8] internal_types_table.
 //HolyC has a feature where a
 //union structure is treated as a
 //whole if no member is specified.
-//See [C:/Demo/SubIntAccess.CPP,1].
+//See [C:/Demo/SubIntAccess.CPP.Z,1].
 public U16i union U16
 {
   I8i i8[2];
@@ -283,13 +283,13 @@ public class CMathODE
 
 class CBinFile
 {
-/* See [C:/Compiler/CmpMain.CPP,1] Bin File Header Generation by compiler.
+/* See [C:/Compiler/CmpMain.CPP.Z,1] Bin File Header Generation by compiler.
 
 Bin files have this 16-byte header,
 followed by code,
 followed by loader patch table.
 
-See [C:/Compiler/CmpMain.CPP,1] Loader Patch Table Generation and [C:/TempleOS/Adam/BinRep.CPP.Z,23] BinRep().
+See [C:/Compiler/CmpMain.CPP.Z,1] Loader Patch Table Generation and [C:/Adam/Utils/BinRep.CPP.Z,23] BinRep().
 */
   U16 jmp;
   U16 type;
@@ -341,7 +341,7 @@ class CBinFilePatchTableWithOrg
 #define I_MP_CRASH		0x30
 #define I_WAKE			0x31
 #define I_DBG			0x32
-//See [C:/TempleOS/Kernel/Define1a.CPP.Z,116] ST_INT_NAMES
+//See [C:/Kernel/Define1b.CPP.Z,111] ST_INT_NAMES
 
 //You might want to start backward from
 //0xFF for your own interrupts.
@@ -388,8 +388,8 @@ class CMemE820
 #define GDT_BOOT_DS_SEL 	0x10
 #define GDT_BOOT_CS_SEL		0x20
 #define GDT_CS_SEL		0x30
-#define GDT_CS64_SEL		0x40 //The [C:/Doc/Charter.TXT,1] Charter says just ring-0.
-#define GDT_CS64_RING3_SEL	0x50 //[C:/Demo/Lectures/Ring3.CPP,1] Ring3, in case you want to play around.
+#define GDT_CS64_SEL		0x40 //The [C:/Doc/Charter.TXT.Z,1] Charter says just ring-0.
+#define GDT_CS64_RING3_SEL	0x50 //[C:/Demo/Lectures/Ring3.CPP.Z,1] Ring3, in case you want to play around.
 #define GDT_ZERO_DS_SEL		0x60
 #define GDT_ZERO_DS_RING3_SEL	0x70
 #define GDT_CPU_TR_SELS		0x80
@@ -397,7 +397,7 @@ class CMemE820
 #define GDT_SIZE		(GDT_CPU_TR_RING3_SELS+MP_MAX_PROCESSORS*16)
 
 class CKernel
-{ //Must match [C:/Kernel/KStart.CPP,1] OSStartUp
+{ //Must match [C:/Kernel/KStart.CPP.Z,1] OSStartUp
   CBinFile h; //16 bytes, 1 paragraph
   U32 jmp;
   U32 boot_base;
@@ -568,7 +568,7 @@ class CSema
 #define SYSf_CTRL_ALT_TAB		3
 
 //Asm callable function pointers.
-//They work with [C:/TempleOS/Kernel/Adam1b.HPP.Z,296] CallExtNum() when calling from HolyC.
+//They work with [C:/Kernel/Adam1b.HPP.Z,294] CallExtNum() when calling from HolyC.
 #define EXT_WIN_TO_TOP		0
 #define EXT_WIN_FOCUS		1
 #define EXT_HEAPLOG_MALLOC	2
@@ -576,7 +576,7 @@ class CSema
 #define EXT_NUM_ENTRIES		4
 
 //Hash table types
-//[C:/Kernel/Define1b.CPP,1] ST_HTT_TYPES
+//[C:/Kernel/Define1b.CPP.Z,1] ST_HTT_TYPES
 #define HTt_EXPORT_SYS_SYM	0
 #define HTt_IMPORT_SYS_SYM	1
 #define HTt_DEFINE_STR		2
@@ -652,7 +652,7 @@ public class CHash
 //in front for searches.  Old function code is not freed
 //because a reference might use it.
   CHash *next;
-//Sometimes, the whole hash table is traverse, for example, in [C:/TempleOS/Kernel/PSect.CPP.Z,10] PSectFind().
+//Sometimes, the whole hash table is traverse, for example, in [C:/Kernel/PSect.CPP.Z,10] PSectFind().
 //To speed traversal, the following links  allow skipping
 //the empty slots.
   CHash *next_added,*last_added;
@@ -662,7 +662,7 @@ public class CHash
 //each time a node is found in a hash search.
 //One place it is used is to tell if a externed function was unused
 //before being defined.  It is also used for popularity measures
-//in wordstat.	You can do a [MN:Who] Who() to see
+//in wordstat.	You can do a [C:/Adam/Hash2a.CPP.Z,91] Who() to see
 //roughly how many times a symbol has been
 //referenced.	Beware of instances where
 //a hash entry is continuously searched for and
@@ -776,8 +776,8 @@ public class CMemberLst
 #define Cf_INTERNAL_TYPE	1
 
 public class CHashClass:CHashSrcSym
-{ //See [C:/TempleOS/Compiler/StmtParser.CPP.Z,1] PrsClassNew().	baseclass of [C:/TempleOS/Kernel/Adam1a.HPP.Z,900] CHashFun
-  I64 size; //must be at same offset as [C:/TempleOS/Kernel/Adam1a.HPP.Z,945] CHashGlblVar.size
+{ //See [C:/Compiler/StmtParser.CPP.Z,1] PrsClassNew().	baseclass of [C:/Kernel/Adam1a.HPP.Z,810] CHashFun
+  I64 size; //must be at same offset as [C:/Kernel/Adam1a.HPP.Z,855] CHashGlblVar.size
   U32 member_cnt;
   U8 ptr_cnt,raw_type;
   U16 flags;
@@ -808,7 +808,7 @@ class CExternUsage
 #define Ff_RET1			14
 
 public class CHashFun:CHashClass
-{ //See [C:/TempleOS/Compiler/StmtParser.CPP.Z,45] PrsFunNew().
+{ //See [C:/Compiler/StmtParser.CPP.Z,45] PrsFunNew().
   U32 arg_cnt,pad;
   U32 used_reg_mask,clobbered_reg_mask;
   U8 *executable_addr;
@@ -854,7 +854,7 @@ public class CHashFun:CHashClass
 
 public class CHashGlblVar:CHashSrcSym
 {
-  I64 size; //must be at same offset as [C:/TempleOS/Kernel/Adam1a.HPP.Z,870] CHashClass.size
+  I64 size; //must be at same offset as [C:/Kernel/Adam1a.HPP.Z,778] CHashClass.size
   I64 flags;
   CHashClass *var_class;
   CHashFun *fun_ptr;
@@ -932,7 +932,7 @@ class CBpt
   U8 val,pad[7];
 };
 
-//See [C:/Adam/Gr/GrScreen.CPP,1] ExtScreenCodes
+//See [C:/Adam/Gr/GrScreen.CPP.Z,1] ExtScreenCodes
 #define ATTRF_BLINK	0x10000000
 #define ATTRF_INVERT	0x20000000
 #define ATTRF_SELECTED	0x40000000
@@ -1260,7 +1260,7 @@ public class CDocEntry:CDocEntryBase
   U8 *data;
 };
 
-//[C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,291] DocFormDo() [C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,343] DocMenuDo() [C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,184] DocDo() [C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,429] PopUpMenu()
+//[C:/Adam/Doc/DocPopUp.CPP.Z,299] DocFormDo() [C:/Adam/Doc/DocPopUp.CPP.Z,354] DocMenuDo() [C:/Adam/Doc/DocPopUp.CPP.Z,182] DocDo() [C:/Adam/Doc/DocPopUp.CPP.Z,445] PopUpMenu()
 #define	DOF_MIN_SIZE		0x01
 #define	DOF_INTERCEPT_TASK_END	0x02
 #define DOF_DONT_HOME		0x04
@@ -1287,7 +1287,7 @@ class CEdFileName
   U8 name[256] fmtstr "$DA-P,255,\"File Name:%s\"$";
 };
 
-//[C:/TempleOS/Adam/Doc/DocMain.CPP.Z,3] Ed()
+//[C:/Adam/Doc/DocMain.CPP.Z,3] Ed()
 #define EDF_BAIL		1
 #define EDF_COLLAPSE		2
 #define EDF_UNCOLLAPSE		4
@@ -1307,8 +1307,8 @@ class CEdFileName
 #define DOCF_BORDER_DOC		0x100
 #define DOCF_FORM		0x200
 #define DOCF_MIN_SIZE		0x400
-#define DOCF_HIDE_CURSOR	0x800  //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1713] DocCursor
-#define DOCF_NO_SCROLL_BARS	0x1000 //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1723] DocScroll
+#define DOCF_HIDE_CURSOR	0x800  //use [C:/Adam/Doc/DocRecalc2a.CPP.Z,171] DocCursor
+#define DOCF_NO_SCROLL_BARS	0x1000 //use [C:/Adam/Doc/DocRecalc2a.CPP.Z,181] DocScroll
 #define DOCF_ALLOW_UNDO		0x2000
 #define DOCF_DONT_SHOW		0x4000
 #define DOCF_HAS_SONG		0x8000
@@ -1345,8 +1345,8 @@ class CEdFileName
 #define DOCf_BORDER_DOC		8
 #define DOCf_FORM		9
 #define DOCf_MIN_SIZE		10
-#define DOCf_HIDE_CURSOR	11  //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1713] DocCursor
-#define DOCf_NO_SCROLL_BARS	12  //use [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1723] DocScroll
+#define DOCf_HIDE_CURSOR	11  //use [C:/Adam/Doc/DocRecalc2a.CPP.Z,171] DocCursor
+#define DOCf_NO_SCROLL_BARS	12  //use [C:/Adam/Doc/DocRecalc2a.CPP.Z,181] DocScroll
 #define DOCf_ALLOW_UNDO		13
 #define DOCf_DONT_SHOW		14
 #define DOCf_HAS_SONG		15
@@ -1385,7 +1385,7 @@ class CDocUndo
   U8 *body;
 };
 
-//See [C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,343] DocMenuDo()
+//See [C:/Adam/Doc/DocPopUp.CPP.Z,354] DocMenuDo()
 #define DOCM_CANCEL		(-1)
 
 #define DOC_SIGNATURE_VAL		'DocS'
@@ -1455,7 +1455,7 @@ U0 pad;#assert !($&7) //(compiler lags one token)
 #define GETSF_WITH_NEW_LINE	2
 
 //Compiler Options
-//  Use [C:/TempleOS/Compiler/Directives.CPP.Z,6] OptOn() [C:/TempleOS/Compiler/Directives.CPP.Z,11] OptOff()
+//  Use [C:/Compiler/ICLCC.CPP.Z,6] OptOn() [C:/Compiler/ICLCC.CPP.Z,11] OptOff()
 
 //You might need to do #exe {OptOn();}
 //Note: The #exe statement is lexed-ahead, so it takes effect earlier than you might expect.
@@ -1750,7 +1750,7 @@ class CAsmUnresolvedRef
 //reserved
 #define EIT_ABS_ADDR		32
 #define EIT_HEAP_GLBL		33
-//See [C:/Adam/Utils/BinRep.CPP,1] ::/Adam/Utils/BinRep.CPP
+//See [C:/Adam/Utils/BinRep.CPP.Z,1] ::/Adam/Utils/BinRep.CPP
 
 class CExeImportExport
 {
@@ -2321,7 +2321,7 @@ public class CDateStruct
 };
 
 
-//CDirEntry flags (Used by [C:/TempleOS/Adam/Dsk/FileMgr.CPP.Z,548] FileMgr())
+//CDirEntry flags (Used by [C:/Adam/Dsk/FileMgr.CPP.Z,549] FileMgr())
 #define DEF_PROCESSED		1
 #define DEF_REMOVABLE		2
 #define DEF_NOT_INITIALIZED	4
@@ -2344,7 +2344,7 @@ public class CDirEntry
 
 #define CDIR_SIZE (sizeof(CDirEntry)-offset(CDirEntry.start))
 
-//See [C:/TempleOS/Kernel/Define1a.CPP.Z,43] ST_BLKDEV_TYPES
+//See [C:/Kernel/Define1b.CPP.Z,33] ST_BLKDEV_TYPES
 #define BDT_NULL		0
 #define BDT_RAM			1
 #define BDT_ATA			2
@@ -2403,7 +2403,7 @@ class CATARep
 //Partition locked flags
 #define Plf_LOCKED	0
 
-//See [C:/TempleOS/Kernel/Define1a.CPP.Z,47] ST_PRT_TYPES
+//See [C:/Kernel/Define1b.CPP.Z,35] ST_PRT_TYPES
 #define PT_NULL		0
 #define PT_REDSEA	1 //Supported
 #define PT_FAT32	2 //Supported except for short names, to some degree
@@ -2438,7 +2438,7 @@ public class CFreeLst
 public class CPrt
 {
 //Don't access ->drive directly in case a drive has been remapped.
-//Use [C:/TempleOS/Kernel/Dsk/DskStr.CPP.Z,88] Prt2Drv().
+//Use [C:/Kernel/Dsk/DskStr.CPP.Z,88] Prt2Drv().
   I64 locked_flags;
   U32 type,  //Bit31 is used as a disable, since it will be unknown
       flags; //Flags not used at the moment
@@ -2545,9 +2545,9 @@ class CMemUsedAllocated
 
 
 //TempleOS does not mess with page tables after it
-//identity-maps them during boot -- [C:/TempleOS/Kernel/Memory.CPP.Z,9] SYS_INIT_MEM.
-//[C:/TempleOS/Kernel/Adam1a.HPP.Z,2723] PAGE_SIZE is arbitrary, and is not related to CPU hardware.
-//I need some unit for memory allocation so I invented "[C:/TempleOS/Kernel/Adam1a.HPP.Z,2723] PAGE_SIZE".
+//identity-maps them during boot -- [C:/Kernel/Mem1a.CPP.Z,9] SYS_INIT_MEM.
+//[C:/Kernel/Adam1a.HPP.Z,2570] PAGE_SIZE is arbitrary, and is not related to CPU hardware.
+//I need some unit for memory allocation so I invented "[C:/Kernel/Adam1a.HPP.Z,2570] PAGE_SIZE".
 //
 //All virtual addresses are identical to physical, always.
 //There is no high kernel memory because RAM's physical
@@ -2585,7 +2585,7 @@ class CMemUsedAllocated
 //locked flags
 #define BPlf_LOCKED		0
 public class CBlkPool
-//See [C:/Kernel/KStart.CPP,1] SYS_BP_START
+//See [C:/Kernel/KStart.CPP.Z,1] SYS_BP_START
 {
   I64 locked_flags,size;
   I64 allocated_u8s;
@@ -2618,8 +2618,8 @@ public class CHeapCtrl
 #define ROP_COLLISION			0x0200
 #define ROP_MONO			0x0300
 
-//These are just for [C:/TempleOS/Kernel/Adam1a.HPP.Z,2782] ROPF_PROBABILITY_DITHER
-//See [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,459] GrLighting().
+//These are just for [C:/Kernel/Adam1a.HPP.Z,2628] ROPF_PROBABILITY_DITHER
+//See [C:/Adam/Gr/MathGr.CPP.Z,543] GrLighting().
 #define ROPF_HALF_RANGE_COLOR		0x1000
 #define ROPF_TWO_SIDED			0x2000
 
@@ -2908,7 +2908,7 @@ public class CTask //The Fs segment reg points to current CTask
   CSnap snap;
 
 //These must be in this order
-//for [C:/Kernel/Scheduler.CPP,1] TASK_CONTEXT_SAVE and [C:/Kernel/Scheduler.CPP,1] _TASK_CONTEXT_RESTORE
+//for [C:/Kernel/Scheduler.CPP.Z,1] TASK_CONTEXT_SAVE and [C:/Kernel/Scheduler.CPP.Z,1] _TASK_CONTEXT_RESTORE
   I64 rip;
   I64 rflags;
   I64 rsp;
@@ -3107,8 +3107,8 @@ class CTSS
 
 //TempleOS places a 1 in bit 7 for
 //keys with an E0 prefix.
-//See [C:/Doc/Char.TXT,1]
-//and [C:/TempleOS/Kernel/KbdMouse/Keyboard.CPP.Z,473] KbdHandler().
+//See [C:/Doc/Char.TXT.Z,1]
+//and [C:/Kernel/KbdMouse/Keyboard.CPP.Z,445] KbdHandler().
 #define SC_ESC		0x01
 #define SC_BACKSPACE	0x0E
 #define SC_TAB		0x0F
@@ -3173,15 +3173,15 @@ class CTSS
 
 //Low 8 bits reserved for flags that go into saved bitmaps
 #define DCF_COMPRESSED		1
-#define DCF_NO_TRANSPARENTS	2 //Can be used to optimized [C:/TempleOS/Adam/Gr/GrBitMap.CPP.Z,76] GrBlot().
+#define DCF_NO_TRANSPARENTS	2 //Can be used to optimized [C:/Adam/Gr/GrBitMap.CPP.Z,71] GrBlot().
 
 #define DCF_TRANSFORMATION	0x100
 
-//See [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,373] GrSetSymmetry() or [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,395] GrSetSymmetry3()
+//See [C:/Adam/Gr/MathGr.CPP.Z,457] GrSetSymmetry() or [C:/Adam/Gr/MathGr.CPP.Z,479] GrSetSymmetry3()
 #define DCF_SYMMETRY		0x200
 
 //Must be used with DCF_SYMMETRY set also.
-//See [C:/Demo/Games/BigGuns.CPP,1]
+//See [C:/Demo/Games/BigGuns.CPP.Z,1]
 #define DCF_JUST_MIRROR		0x400
 
 #define DCF_LOCATE_NEAREST	0x800
@@ -3216,33 +3216,33 @@ public class CDC
 
 //public--change directly
   CColorROPU32 color,
-	bkcolor, //Set for use with [C:/TempleOS/Kernel/Adam1a.HPP.Z,2772] ROP_COLLISION
-	color2; //Internally used for [C:/TempleOS/Adam/Gr/GrPrimatives.CPP.Z,236] GrFloodFill()
+	bkcolor, //Set for use with [C:/Kernel/Adam1a.HPP.Z,2618] ROP_COLLISION
+	color2; //Internally used for [C:/Adam/Gr/GrPrimatives.CPP.Z,236] GrFloodFill()
   CD3I32 ls; //Light source (should be normalized to 65536).
 
   //dither_probability_u16 is basically a U16.
-  //It is activated by [C:/TempleOS/Kernel/Adam1a.HPP.Z,2782] ROPF_PROBABILITY_DITHER.
+  //It is activated by [C:/Kernel/Adam1a.HPP.Z,2628] ROPF_PROBABILITY_DITHER.
   //0x0000 =100% color.c0
   //0x8000 =50%  color.c0   50% color.c1
   //0x10000=100% color.c1
-  U32 dither_probability_u16, //See [C:/Demo/Graphics/Shading.CPP,1].
+  U32 dither_probability_u16, //See [C:/Demo/Graphics/Shading.CPP.Z,1].
      pad;
 
   CDC *brush;
 
-//Set with [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,307] GrSetRotMat().  [C:/TempleOS/Kernel/Memory.CPP.Z,950] Free() before setting.
+//Set with [C:/Adam/Gr/MathGr.CPP.Z,391] GrSetRotMat().  [C:/Kernel/Mem1b.CPP.Z,370] Free() before setting.
   I64 *r;  //rotation matrix of quads decimal in lo
   I64 r_norm; //shifted 32 bits.  Used for scaling pen width
 
 //public--change directly
   I32 x,y,z,pen_width;	//translation
 
-//Can be changed from the default [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,154] GrTransform()
+//Can be changed from the default [C:/Adam/Gr/MathGr.CPP.Z,238] GrTransform()
   U0 (*transform)(CDC *dc,I64 *x,I64 *y,I64 *z);
-//Can be changed from the default [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,459] GrLighting()
+//Can be changed from the default [C:/Adam/Gr/MathGr.CPP.Z,543] GrLighting()
   U0 (*lighting)(CDC *dc,CD3I32 *p1,CD3I32 *p2,CD3I32 *p3,CColorROPU32 color);
 
-//Set by [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,373] GrSetSymmetry() or [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,395] GrSetSymmetry3()
+//Set by [C:/Adam/Gr/MathGr.CPP.Z,457] GrSetSymmetry() or [C:/Adam/Gr/MathGr.CPP.Z,479] GrSetSymmetry3()
   CGrSym sym;
 
 //not document num, but num in a CSprite collection
@@ -3256,7 +3256,7 @@ public class CDC
   I32 cur_x,cur_y,cur_z,pad;
   I64 collision_cnt;
 
-  //Set by [C:/TempleOS/Kernel/Adam1a.HPP.Z,3335] DCF_RECORD_EXTENTS
+  //Set by [C:/Kernel/Adam1a.HPP.Z,3192] DCF_RECORD_EXTENTS
   I64 min_x,max_x,min_y,max_y; //screen coordinates
 
   U32 dc_signature,pad;
@@ -3264,7 +3264,7 @@ public class CDC
   CDC *alias;
   U8 *body;
 
-  //Set by [C:/TempleOS/Adam/Gr/GrDC.CPP.Z,103] DCAllocDepthBuf()
+  //Set by [C:/Adam/Gr/GrDC.CPP.Z,90] DCAllocDepthBuf()
   I32 *depth_buf;
   I64 db_z; //private
 };
@@ -3414,7 +3414,7 @@ public class CFile
 };
 
 //File util flags
-//See [C:/TempleOS/Kernel/Define1a.CPP.Z,42] ST_FILE_UTIL_FLAGS
+//See [C:/Kernel/Define1b.CPP.Z,32] ST_FILE_UTIL_FLAGS
 #define FUf_RECURSE		0
 #define FUf_DIFF		1
 #define FUf_IGNORE		2

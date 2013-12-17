@@ -96,7 +96,7 @@ U0 Stadium()
 {
   I64 msg_code,p1,p2,ch=0;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->win_inhibit|=WIG_DBL_CLICK;
 
   MenuPush(

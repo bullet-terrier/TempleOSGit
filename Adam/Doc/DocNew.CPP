@@ -3,7 +3,7 @@ I64	doc_type_flags_tag		[(DOCT_NUM_TYPES+63)/64],
 	doc_type_flags_form		[(DOCT_NUM_TYPES+63)/64],
 	doc_type_flags_data		[(DOCT_NUM_TYPES+63)/64];
 I64 doc_clean_scancodes[4]={0,0,0,0};
-//Don't forget [C:/Compiler/Lex.CPP,1] doc_type_flags_src_code
+//Don't forget [C:/Compiler/Lex.CPP.Z,1] doc_type_flags_src_code
 U0 DocTablesInit()
 {
   doc_type_flags_tag[0]=
@@ -23,7 +23,7 @@ U0 DocTablesInit()
 	1<<DOCT_SONG|
 	1<<DOCT_HTML_CODE;
 
-  //Don't forget [C:/Compiler/Lex.CPP,1] doc_type_flags_src_code
+  //Don't forget [C:/Compiler/Lex.CPP.Z,1] doc_type_flags_src_code
 
   doc_type_flags_nontag_invisible[0]=
 	1<<DOCT_PAGE_LEN|
@@ -447,7 +447,7 @@ public U0 DocRst(CDoc *doc,Bool is_old)
       b=b1;
     }
   }
-  //Check [C:/TempleOS/Adam/Doc/DocFile.CPP.Z,193] DocInsDoc
+  //Check [C:/Adam/Doc/DocFile.CPP.Z,199] DocInsDoc
   doc->flags&=DOCF_BREAK_UNLOCKED;
   doc->root.next=doc->root.last=doc;
   QueInit(&doc->bin_root);
@@ -723,7 +723,7 @@ public CDoc *DocBorder(CTask *task=NULL)
 
 
 public CDoc *DocDblBufStart(CTask *task=NULL)
-{ //See [C:/Demo/Spy.CPP,1]
+{ //See [C:/Demo/Spy.CPP.Z,1]
   Bool unlock_ddoc,old_preempt=Preempt(OFF);
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task),*result;
   if (!pdoc || !ddoc || pdoc!=ddoc)
@@ -756,7 +756,7 @@ public CDoc *DocDblBufStart(CTask *task=NULL)
 }
 
 public Bool DocDblBufEnd(CTask *task=NULL)
-{ //See [C:/Demo/Spy.CPP,1]
+{ //See [C:/Demo/Spy.CPP.Z,1]
   Bool result=FALSE,old_preempt=Preempt(OFF);
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task);
   if (pdoc && ddoc && pdoc!=ddoc) {//Double buffering?
@@ -774,7 +774,7 @@ public Bool DocDblBufEnd(CTask *task=NULL)
 }
 
 public Bool DocDblBufSwap(CTask *task=NULL)
-{ //See [C:/Demo/Spy.CPP,1]
+{ //See [C:/Demo/Spy.CPP.Z,1]
   Bool result=FALSE,old_preempt=Preempt(OFF);
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task);
   if (pdoc && ddoc && pdoc!=ddoc) {//Double buffering?

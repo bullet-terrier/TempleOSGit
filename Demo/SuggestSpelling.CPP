@@ -74,7 +74,7 @@ install this command as a hot-key.
 
 U0 CtrlAltL(I64)
 {
-//[C:/TempleOS/Adam/WordStat/WordStat.CPP.Z,36] ws_cur_word is only set if WordStat
+//[C:/Adam/WordStat/WordStat.CPP.Z,36] ws_cur_word is only set if WordStat
 //is running.
   PopUp("SuggestSpelling(ws_cur_word);View;");
 }
@@ -88,4 +88,4 @@ else {
 }
 
 //Note: It would be more appropriate
-//to define a key in [C:/TempleOS/Accts/TAD/Adam3dKeyPlugIns.CPP.Z,12] MyPutKey().
+//to define a key in [C:/Accts/TAD/Adam3dKeyPlugIns.CPP.Z,11] MyPutKey().

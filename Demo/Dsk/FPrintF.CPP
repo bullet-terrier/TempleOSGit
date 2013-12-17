@@ -1,6 +1,6 @@
 /* There is no FPrintF type function and no
 way to grow files. Therefore, use mem to
-hold the file until you are done.  The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc
+hold the file until you are done.  The [C:/Kernel/Adam1a.HPP.Z,1398] CDoc
 framework is convenient for this.
 */
 
@@ -24,7 +24,7 @@ U0 TreeSub(CDoc *doc,CDirEntry *tempde)
     }
     //Note there is also a routine
     //to delete an entire CDirEntry tree.
-    //See [MN:DirLstDel] DirLstDel().
+    //See [C:/Kernel/Dsk/DskDir.CPP.Z,34] DirLstDel().
     DirEntryDel(tempde);
     tempde=tempde1;
   }

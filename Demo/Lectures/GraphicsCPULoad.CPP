@@ -1,5 +1,5 @@
 //This is the fastest you can update the whole screen.
-//See [C:/Demo/Lectures/MiniGrLib.CPP,1] if this interests you.
+//See [C:/Demo/Lectures/MiniGrLib.CPP.Z,1] if this interests you.
 
 F64 VGAPattern(I64 p)
 {//This returns the time to update in seconds.

@@ -5,7 +5,7 @@ U0 Song()
   Fs->task_end_cb=&SndTaskEndCB;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,76908]\n"
+    "[C:/Misc/Bible.TXT.Z,76908]\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

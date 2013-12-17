@@ -106,7 +106,7 @@ public U0 Play(U8 *st,U8 *words=NULL)
 
     '(' tie, placed before the note to be extended
 
-  [C:/TempleOS/Adam/Snd/Music.CPP.Z,8] music_meter_top,[C:/TempleOS/Adam/Snd/Music.CPP.Z,9] music_meter_bottom is set with
+  [C:/Adam/Snd/Music.CPP.Z,8] music_meter_top,[C:/Adam/Snd/Music.CPP.Z,9] music_meter_bottom is set with
     "M3/4"
     "M4/4"
     etc.

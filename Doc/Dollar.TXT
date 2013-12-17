@@ -8,10 +8,10 @@ The format of '$' cmds includes a two character code, +/-flags, a comma and
 args separated by commas.  The flags often determine how many and what args 
 the cmd takes.
 
-See [C:/Doc/Widget.TXT,1] and [C:/Demo/Doc/DemoDoc.TXT,1].
+See [C:/Doc/Widget.TXT.Z,1] and [C:/Demo/Doc/DemoDoc.TXT.Z,1].
 
-See [C:/TempleOS/Kernel/Adam1a.HPP.Z,1045] Doc Type Defines and
-[C:/Adam/Doc/Doc.CPP,1] Doc Type Codes
+See [C:/Kernel/Adam1a.HPP.Z,947] Doc Type Defines and
+[C:/Adam/Doc/Doc.CPP.Z,1] Doc Type Codes
 +] TX Text
   Normally, text is not bracketed with "$", but if you wish to specify flag
   attr to center text, you can bracket them with "$" and enter flags such as
@@ -33,17 +33,17 @@ See [C:/TempleOS/Kernel/Adam1a.HPP.Z,1045] Doc Type Defines and
 +] DA Data
   primarily used for forms that prompt for data. Use <CTRL-L> as a resource
   editor-type thing to generate the text you'll need in your "fmtstr" cmd in a
-  class.  If you add it directly with [MN:DocPrint] DocPrint(), you'll need to
-  fill-in the data addr.  See [C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,291]
-  DocFormDo(),[C:/Demo/Doc/Form.CPP,1].
+  class.  If you add it directly with [C:/Adam/Doc/DocPlain.CPP.Z,658]
+  DocPrint(), you'll need to fill-in the data addr.  See
+  [C:/Adam/Doc/DocPopUp.CPP.Z,299] DocFormDo(),[C:/Demo/Doc/Form.CPP.Z,1].
 
 If there is a ':', the space after the first ':' in the format string marks
   the first valid cursor pos.
   
 +] Text Colors
   You place an expression(usually a color define--see
-  [C:/TempleOS/Kernel/Adam1a.HPP.Z,3297] color defines) to indicate which of
-  the 16 colors to use. If you enter no num, color returns to the default.
+  [C:/Kernel/Adam1a.HPP.Z,3152] color defines) to indicate which of the 16
+  colors to use. If you enter no num, color returns to the default.
 FD Default Foreground Color
 BD Default Background Color
 FG Foreground Color
@@ -51,7 +51,7 @@ BG Background Color
 +] CL clear
   Clear all previous entries except ones with hold(+H) flags.  You might want
   +H on word wrap entries.  Alternatively, you can use
-  [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1697] DocClear().
+  [C:/Adam/Doc/DocRecalc2a.CPP.Z,155] DocClear().
 +] PT User Prompt
   Start of a user prompt.
 +] WW Word Wrap
@@ -73,33 +73,33 @@ BG Background Color
 * Only foreground is shifted.
 * Positive down.
 +] CM Cursor Movement
-  See [C:/Demo/Doc/CursorMove.CPP,1].
+  See [C:/Demo/Doc/CursorMove.CPP.Z,1].
 +] AN Anchor
   
 +] LK Link
   By default, links have a separate tag text from link text, but with the -A
   flag you can make the link displayed as in example 3.
 
-[C:/TempleOS/Adam/Doc/Doc.CPP.Z,44] Link Types
+[C:/Adam/Doc/Doc.CPP.Z,92] Link Types
 
 Examples: <CTRL-T> to see
 
-1)[C:/Doc/HelpIndex.TXT,1] File link to HelpIndex.TXT
-2)[C:/Doc/HelpIndex.TXT,1] File link to HelpIndex.TXT with link type file
-3)File link without different tag str.[C:/Doc/HelpIndex.TXT,1]
-4)[C:/Doc/HelpIndex.TXT,1] File find link searching for 'Admin'
-5)[C:/Kernel/Adam1a.HPP,5] File find link searching for 5th 'CTRL'
-6)[MN:Print] Manual page link
-7)[C:/Kernel/Adam1a.HPP,200] File line num link
-8)[C:/Kernel/Define1b.CPP,1] File anchor link -- <CTRL-T> to see anchor after
-  you click
-9)[C:/TempleOS/Misc/Bible.TXT.Z,87803] Bible Link The chapter:verse actually
-  just does a text search.
+1)[C:/Doc/HelpIndex.TXT.Z,1] File link to HelpIndex.TXT
+2)[C:/Doc/HelpIndex.TXT.Z,1] File link to HelpIndex.TXT with link type file
+3)File link without different tag str.[C:/Doc/HelpIndex.TXT.Z,1]
+4)[C:/Doc/HelpIndex.TXT.Z,1] File find link searching for 'Admin'
+5)[C:/Kernel/Adam1a.HPP.Z,5] File find link searching for 5th 'CTRL'
+6)[C:/Kernel/StrPrint.CPP.Z,967] Manual page link
+7)[C:/Kernel/Adam1a.HPP.Z,200] File line num link
+8)[C:/Kernel/Define1b.CPP.Z,1] File anchor link -- <CTRL-T> to see anchor
+  after you click
+9)[C:/Misc/Bible.TXT.Z,87803] Bible Link The chapter:verse actually just does
+  a text search.
 10) [Doc,1] Help Index Link.
-11) [C:/TempleOS/Kernel/Hash1a.CPP.Z,570] Address Link.
+11) [C:/Kernel/Interrupts.CPP.Z,7] Address Link.
 
 +] BT Button
-  See [C:/Demo/Doc/MenuButton.CPP,1].
+  See [C:/Demo/Doc/MenuButton.CPP.Z,1].
 +] CB Check Box
   
 +] MA Macro
@@ -110,9 +110,9 @@ Examples: <CTRL-T> to see
   you cancel the <ESC> with a '-X'.
 
 +] MU Menu Value
-  See [C:/TempleOS/Adam/Doc/DocPopUp.CPP.Z,617] PopUpRangeI64().
+  See [C:/Adam/Doc/DocPopUp.CPP.Z,641] PopUpRangeI64().
 +] HX Hex Edit
-  See [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,651] DocD().
+  See [C:/Adam/Doc/DocMain.CPP.Z,628] DocD().
 +] TR Tree Widget
   A tree widget is a branch in a collapsable tree.  The domain of the branch
   extends from the first +indent until enough -indents bring it back to where
@@ -138,31 +138,31 @@ Examples: <CTRL-T> to see
   to be displayed for the $IB$ cmd.
 
 The main reason for the $IB$ cmd at this point is to pass a arg to the
-  [C:/TempleOS/Adam/Gr/GrSpritePlot.CPP.Z,27] SpritePlot3() function.  See
-  [C:/Demo/Graphics/SpritePlot.CPP,1].
+  [C:/Adam/Gr/GrSpritePlot.CPP.Z,27] SpritePlot3() function.  See
+  [C:/Demo/Graphics/SpritePlot.CPP.Z,1].
 
 +] IT Insert Binary Type
   See $IB$.  This cmd inserts a number into the compiled stream describing
   the type of binary data associated with a num.  See
-  [C:/TempleOS/Kernel/Adam1a.HPP.Z,1269] DOCBT_CSPRITE for the types of binary
-  data in DOC's.
+  [C:/Kernel/Adam1a.HPP.Z,1152] DOCBT_CSPRITE for the types of binary data in
+  DOC's.
 +] IS Insert Binary Size
   See $IB$.  This cmd inserts a number into the compiled stream describing
   the size of binary data associated with a number.
 +] BP Break Point
   This is used by the debugger to mark a break point.
 +] HC html
-  The [C:/TempleOS/Adam/ToHtml.CPP.Z,318] ToHtml() or
-  [C:/TempleOS/Adam/ToHtml.CPP.Z,127] Doc2Html() routines will generate a html
+  The [C:/Adam/Utils/ToHtml.CPP.Z,272] ToHtml() or
+  [C:/Adam/Utils/ToHtml.CPP.Z,107] Doc2Html() routines will generate a html
   version of a document.  You can cause html code to be injected with HC.  Use
   the +HTML flag to inject a html link.
 +] ER Error
   When errors are detected in dollar cmds, an ER entry is generated to hold
   the garbage so it is not lost.
 
-See [C:/TempleOS/Kernel/Adam1a.HPP.Z,1206] Doc Flag Defines and
-[C:/Adam/Doc/Doc.CPP,1] Doc Flag Codes
-See [C:/Adam/Doc/DocPlain.CPP,1] dft_flags.
+See [C:/Kernel/Adam1a.HPP.Z,1092] Doc Flag Defines and
+[C:/Adam/Doc/Doc.CPP.Z,1] Doc Flag Codes
+See [C:/Adam/Doc/DocPlain.CPP.Z,1] dft_flags.
 +] FLAGS
   +] +H Hold
     Tells it to not delete it when cleared with CL or when the
@@ -173,9 +173,8 @@ See [C:/Adam/Doc/DocPlain.CPP,1] dft_flags.
     str to be the same.
   +] +D Define Str
     A +D means a define str is present.  The tag will be regenerated by
-    substituting the value of a system #define or
-    [C:/TempleOS/Kernel/Str1a.CPP.Z,620] DefineLoad() string.  See
-    [C:/Demo/Doc/DefineStr.CPP,1].
+    substituting the value of a system #define or [C:/Kernel/Define1a.CPP.Z,1]
+    DefineLoad() string.  See [C:/Demo/Doc/DefineStr.CPP.Z,1].
   +] +TR Tree
     * Make a tree branch.  Usually, this is placed on a text(TX) entry.  The
     tree extends from the start until another tree entry or when indentation has
@@ -200,8 +199,8 @@ See [C:/Adam/Doc/DocPlain.CPP,1] dft_flags.
     A zero flag on a hex edit(HX) entry will cause the offset from zero.  A
     -X will show the actual memory addr. By default, HX has the zero flag set.
   +] +HTML
-    The [C:/TempleOS/Adam/ToHtml.CPP.Z,318] ToHtml() or
-    [C:/TempleOS/Adam/ToHtml.CPP.Z,127] Doc2Html() routines will generate a html
+    The [C:/Adam/Utils/ToHtml.CPP.Z,272] ToHtml() or
+    [C:/Adam/Utils/ToHtml.CPP.Z,107] Doc2Html() routines will generate a html
     version of a document.  You can cause html link on an item with +HTML.
   +] +BP
     The Bin Ptr Link flags lets you specify a filename and bin num to import

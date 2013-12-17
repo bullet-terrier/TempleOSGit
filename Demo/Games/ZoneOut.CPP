@@ -286,7 +286,7 @@ U0 ZoneOut()
       "}"
       );
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=BLACK<<4+WHITE;
   WinMax;
   WinBorder;

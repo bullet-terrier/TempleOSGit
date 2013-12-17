@@ -66,7 +66,7 @@ ADDRESS-TO-SYMBOL LOOK-UP  (Slow because not important--could add tree)
 2)"next_added,last_added" que links are traversed.  This speeds look-up
 instead of scanning hash table because hash table is so sparce.
 
-See [C:/TempleOS/Kernel/PSect.CPP.Z,10] PSectFind().
+See [C:/Kernel/PSect.CPP.Z,10] PSectFind().
 
 ****/
 

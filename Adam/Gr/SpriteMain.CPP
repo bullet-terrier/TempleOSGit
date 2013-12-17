@@ -123,7 +123,7 @@ U0 GrSetSettings(CDC *dc,CSprite *root,I64 cur_num,CColorROPU32 *_color,I64 *_wi
 
 U0 GrScreenInit(CDC *dc,I64,I64)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 xx,yy,old_pen_width=dc->pen_width;
   CColorROPU32 old_color=dc->color;
   WinMgrSync;
@@ -167,7 +167,7 @@ I64 SpriteMain(CDoc *doc,CDocEntry *doc_e,I64 x,I64 y)
   I32 *ptr,*mesh,*old_mesh;
   U8 *st,*old_task_title=StrNew(Fs->task_title);
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WordStat;
   WinMgrSync(2,TRUE);
   dc2->flags|=DCF_ON_TOP;

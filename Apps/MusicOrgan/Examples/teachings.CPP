@@ -8,7 +8,7 @@ U0 Song()
   music_stacatto_factor= 0.902;
   try {
   task=PopUpViewStr(
-	"[C:/TempleOS/Misc/Bible.TXT.Z,53793] Proverbs,11:25\n"
+	"[C:/Misc/Bible.TXT.Z,53793] Proverbs,11:25\n"
     );
 
   TaskWait(task);

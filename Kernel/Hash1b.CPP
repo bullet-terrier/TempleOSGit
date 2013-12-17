@@ -71,7 +71,7 @@ U0 HashDel(CHashSrcSym *temph)
       Free(temph->debug);
     if (temph->type & (HTT_FUN | HTT_CLASS))
     //Assumes code not on heap, so doesn't Free.
-    //[C:/TempleOS/Compiler/Lex.CPP.Z,599] MemberLstDel() is an import to the Kernel module
+    //[C:/Compiler/Lex.CPP.Z,570] MemberLstDel() is an import to the Kernel module
       MemberLstDel(temph);
     else if (temph->type&HTT_DEFINE_STR)
       Free(temph(CHashDefineStr *)->data);
@@ -357,7 +357,7 @@ U0 LoadPass2(U8 *src,U8 *module_base,I64)
 }
 
 U8 *Load(U8 *filename,I64 ld_flags=0,CBinFile *bfh_addr=INVALID_PTR)
-{ //See [C:/TempleOS/Adam/BinRep.CPP.Z,23] BinRep().
+{ //See [C:/Adam/Utils/BinRep.CPP.Z,23] BinRep().
   //bfh_addr==INVALID_PTR means don't care what load addr.
   U8 *fbuf,*module_base,*absname;
   I64 size,module_alignment,module_org;
@@ -369,7 +369,7 @@ U8 *Load(U8 *filename,I64 ld_flags=0,CBinFile *bfh_addr=INVALID_PTR)
     return NULL;
   }
 
-  //See [C:/Compiler/CmpMain.CPP,1] Loader Patch Table Generation
+  //See [C:/Compiler/CmpMain.CPP.Z,1] Loader Patch Table Generation
   bfpt=bfh2(U8 *)+bfh2->loader_patch_table_offset;
   module_alignment=bfpt->module_alignment;
   if (bfpt->eit_module_org==EIT_MODULE_ORG)
@@ -425,7 +425,7 @@ U0 LoadKernel()
 {
   HashGenericAdd(KERNEL_MODULE_NAME,HTT_MODULE|HTF_PUBLIC,sys_boot_base-sizeof(CBinFile));
 
-//Abs patches done here [D:/Kernel/KStart.CPP,1] CBinFilePatchTableWithoutOrg.
+//Abs patches done here [D:/Kernel/KStart.CPP.Z,1] CBinFilePatchTableWithoutOrg.
   LoadPass1(sys_boot_patch_table_base,sys_boot_base,LDF_NO_ABSS|LDF_SILENT);
 
 //No main routines

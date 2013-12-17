@@ -1,4 +1,4 @@
-//See [C:/Adam/Gr/GrScreen.CPP,1] ExtScreenCodes
+//See [C:/Adam/Gr/GrScreen.CPP.Z,1] ExtScreenCodes
 
 #define ATTR (BLACK<<12+WHITE<<8)
 
@@ -77,7 +77,7 @@ U0 Maze()
 {
   I64 ch,x,y;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   WinBorder;
   WordStat;

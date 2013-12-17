@@ -7,7 +7,7 @@ public U0 DocLoad(CDoc *doc,U8 *src2,I64 size)
   CDocBin *tempb;
   doc->find_replace->filter_lines=0;
   if (src2) {
-    DocPutS(doc,src2); //Too big [MN:DocPrint] DocPrint() is wasteful.
+    DocPutS(doc,src2); //Too big [C:/Adam/Doc/DocPlain.CPP.Z,658] DocPrint() is wasteful.
     src=src2+StrLen(src2)+1;
     i=size-(offset(CDocBin.end)-offset(CDocBin.start));
     while (src<=src2+i) {
@@ -78,7 +78,7 @@ public U8 *DocSave(CDoc *doc,I64 *_size=NULL)
 	  else
 	    cnt++;
 	  break;
-	case DOCT_TEXT://**Update [D:/Compiler/Lex.CPP,1] DOCT_TEXT**
+	case DOCT_TEXT://**Update [D:/Compiler/Lex.CPP.Z,1] DOCT_TEXT**
 	  if (!(doc_e->flags1 & ~(DOCG_BL_IV_UL|DOCEF1_WORD_WRAP|DOCEF1_HIGHLIGHT|DOCEF1_LOCK_TO_PAGE|DOCEF1_LOCK_TO_CENTER|DOCEF1_SKIP|DOCEF1_HARD_SKIP|DOCEF1_FILTER_SKIP))) {
 	    cnt+=StrLen(doc_e->tag);
 	    if (!(doc->flags & (DOCF_PLAIN_TEXT | DOCF_PLAIN_TEXT_WITH_TABS)) ||
@@ -197,7 +197,7 @@ public U0 DocWrite(CDoc *doc,Bool prompt=FALSE)
 
 #help_index "Doc"
 public U0 DocInsDoc(CDoc *doc,CDoc *doc2)
-{  //TODO: [C:/TempleOS/Adam/Doc/DocNew.CPP.Z,449] DocRst
+{  //TODO: [C:/Adam/Doc/DocNew.CPP.Z,416] DocRst
   U8 *dst;
   Bool unlock_doc=DocLock(doc),
 	 unlock_doc2=DocLock(doc2);
@@ -358,7 +358,7 @@ public CDoc *DocCopy(CDoc *doc,CDocEntry *start,CDocEntry *end)
 #help_index "Doc;Compiler/Directive"
 
 public U0 StreamDoc(CDoc *doc)
-{  //TODO: [C:/TempleOS/Adam/Doc/DocNew.CPP.Z,449] DocRst
+{  //TODO: [C:/Adam/Doc/DocNew.CPP.Z,416] DocRst
   Bool unlock_doc=DocLock(doc);
   CDocEntry *doc_e=doc->root.next;
   while (doc_e!=doc) {

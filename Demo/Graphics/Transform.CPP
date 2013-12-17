@@ -7,7 +7,7 @@
 //Scroll bar works.
 
 //The multiplication takes place in the
-//[MN:SpritePlotRotZ3B] SpritePlotRotZ3B routine.
+//[C:/Adam/Gr/GrSpritePlot.CPP.Z,298] SpritePlotRotZ3B routine.
 
 
 #define SLIDER_SPACING 20
@@ -194,7 +194,7 @@ U0 Init()
 
 U0 TransformDemo(I64 _mp_cnt=mp_cnt)
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Init;
   Fs->win_inhibit=WIG_TASK_DFT-WIF_FOCUS-WIF_BORDER-WIF_GRAB_SCROLL-WIF_MENU-WIF_CTRLS;
   DocCursor;

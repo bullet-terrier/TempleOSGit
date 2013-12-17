@@ -121,7 +121,7 @@ U0 Init()
 
 U0 TeeBall()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=GREEN<<4+WHITE;
   WinMax;
   WinBorder;

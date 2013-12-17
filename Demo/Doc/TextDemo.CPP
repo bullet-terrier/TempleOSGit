@@ -18,7 +18,7 @@
 	"Invert   : Test\n\n"
 	"UnderLine: _Test_\n\n"
 //<CTRL-SHIFT-T> on this link to toggle individual commands.
-	"Link     : [C:/TempleOS/Misc/Bible.TXT.Z,297] Genesis,1:1\n\n\n"
+	"Link     : [C:/Misc/Bible.TXT.Z,297] Genesis,1:1\n\n\n"
 
 
 	"Button   :     OKAY\n\n\n\n";

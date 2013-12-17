@@ -1,8 +1,8 @@
-1) Do a [C:/TempleOS/Kernel/Dsk/Dsk1b.CPP.Z,235] Dir() command
+1) Do a [C:/Kernel/Dsk/Dsk1b.CPP.Z,237] Dir() command
 
 2) Right-Click on ModuleDemo.PRJ.Z and click AOT COMPILE.
 
-3) Do a [C:/TempleOS/Kernel/Dsk/Dsk1b.CPP.Z,235] Dir() command
+3) Do a [C:/Kernel/Dsk/Dsk1b.CPP.Z,237] Dir() command
 
 4) Right-Click on ModuleDemo.BIN.Z and click LOAD.
 

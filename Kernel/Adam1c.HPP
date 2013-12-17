@@ -121,7 +121,7 @@ extern U8 *sys_raw_screen_image;
 public extern Bool text_mode;
 
 //Consts are defined for these to
-//optimize.  See [C:/Adam/Gr/GrCfg.CPP,1].
+//optimize.  See [C:/Adam/Gr/GrCfg.CPP.Z,1].
 public extern I64 text_rows,text_cols,gr_width,gr_height;
 public extern U8 *gr_font;
 
@@ -140,7 +140,7 @@ public extern U0 NewLine(I64 cnt=1);
 public extern U0 Spaces(I64 cnt=1);
 public extern U0 PutKey(I64 ch=0,I64 sc=0);
 public extern U0 PutChars(U64 ch);
-extern U0 PutS(U8 *st); //Use [MN:Print] Print()
+extern U0 PutS(U8 *st); //Use [C:/Kernel/StrPrint.CPP.Z,967] Print()
 public extern U8 *Bin2Hex(U8 *dst,I64 n;I64 width);
 public extern U0 PutHex(I64 n,I64 width);
 public extern Bool Silent(Bool val);
@@ -163,7 +163,7 @@ public extern Bool YorN();
 public extern I64 GetS(U8 *buf,I64 size,Bool allow_ext=TRUE);
 public extern I64 KbdMouseEvtTime();
 
-//Gets [C:/TempleOS/Kernel/Adam1a.HPP.Z,1567] Flags
+//Gets [C:/Kernel/Adam1a.HPP.Z,1454] Flags
 public extern U8 *MGetS(I64 flags=0);
 extern U8  *(*fp_mgets)(I64 flags=0);
 public extern U8 *ScanJoin(U8 *src,U8 *fmt,I64 argc,I64 *argv);

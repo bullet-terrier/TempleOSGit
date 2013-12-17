@@ -230,7 +230,7 @@ Bool DiffBins(CDoc *doc1,CDoc *doc2)
 }
 
 public Bool Diff(U8 *dst_file,U8 *src_file,I64 *_df_flags=NULL)
-{ //The _df_flags arg is used when this is called by [C:/TempleOS/Adam/Merge.CPP.Z,41] MergeChk().
+{ //The _df_flags arg is used when this is called by [C:/Adam/Utils/Merge.CPP.Z,41] MergeChk().
   CDoc *doc1=DocRead(dst_file,DOCF_PLAIN_TEXT_WITH_TABS|DOCF_NO_CURSOR),
        *doc2=DocRead(src_file,DOCF_PLAIN_TEXT_WITH_TABS|DOCF_NO_CURSOR);
   CDocEntry *doc_e,**doc_sorted1,**doc_sorted2,**doc_unsorted1,**doc_unsorted2;

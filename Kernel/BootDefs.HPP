@@ -1,8 +1,8 @@
-//See [C:/Kernel/Adam1a.HPP,1] MP_VECT_ADDR for something
+//See [C:/Kernel/Adam1a.HPP.Z,1] MP_VECT_ADDR for something
 //else used in low RAM.
-//See [C:/Doc/Mem.TXT,1].
+//See [C:/Doc/Mem.TXT.Z,1].
 
-//At least [C:/TempleOS/Kernel/Adam1a.HPP.Z,618] DFT_CACHE_LINE_WIDTH alignment.
+//At least [C:/Kernel/Adam1a.HPP.Z,532] DFT_CACHE_LINE_WIDTH alignment.
 #define BOOT_RAM_BASE		0x07C00
 #define BOOT_RAM_LIMIT		0x97000
 

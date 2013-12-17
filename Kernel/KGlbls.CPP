@@ -115,10 +115,10 @@ I64	sys_key_cnt,
 	mouse_install_attempts,
 	mouse_last_evt_time;
 
-//BitTest, [C:/TempleOS/Kernel/Adam1b.HPP.Z,57] Bt(), with a merged scan code.
+//BitTest, [C:/Kernel/Adam1b.HPP.Z,57] Bt(), with a merged scan code.
 //(Left and right shift merged, for example.)
 U32	key_down_bitmap[8];
-//BitTest, [C:/TempleOS/Kernel/Adam1b.HPP.Z,57] Bt(), with an unmerged scan code.
+//BitTest, [C:/Kernel/Adam1b.HPP.Z,57] Bt(), with an unmerged scan code.
 U32	key_down_bitmap2[8];
 
 CSndData snd_record_root;

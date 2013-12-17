@@ -1,4 +1,4 @@
-//The CFG defines are [C:/Demo/AcctExample/TSAdam.CPP,1] Here.
+//The CFG defines are [C:/Demo/AcctExample/TSAdam.CPP.Z,1] Here.
 
 U8 TSPmtDrv()
 {
@@ -448,22 +448,22 @@ U0 UpdateISODocDefines()
 
   size=10*FileSize(TS_BAK_DRV ":/Wb/TempleOSCD.ISO")/1024/1024;
   DefinePrint("DD_TEMPLEOSCD_SIZE",
-    "Download  - Std. Distro (%0.1f MB)",0.1*size);
+    "Download TempleOS V1.10 - Std. Distro (%0.1f MB)",0.1*size);
 
   size=10*FileSize(TS_BAK_DRV ":/Wb/TempleOSTS.ISO")/1024/1024;
   DefinePrint("DD_TEMPLEOSTS_SIZE",
-    "Download  - T.S. Company Internal Distro (%0.1f MB)",0.1*size);
+    "Download TempleOS V1.10 - T.S. Company Internal Distro (%0.1f MB)",0.1*size);
 
   size=10*FileSize(TS_BAK_DRV ":/Wb/TempleOSDbg.ISO")/1024/1024;
   DefinePrint("DD_TEMPLEOSDBG_SIZE",
-    "Download  - Debug Distro (%0.1f MB)",0.1*size);
+    "Download TempleOS V1.10 - Debug Distro (%0.1f MB)",0.1*size);
 }
 
 UpdateISODocDefines;
 
 public U0 MakeDistrosAndBackUp()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   progress4=*progress4_desc=0;
   progress4_max=15;
   WordStat;

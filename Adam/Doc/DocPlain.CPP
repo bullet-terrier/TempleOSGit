@@ -242,7 +242,7 @@ U8 *Doc2PlainText(CDoc *doc,CDocEntry *doc_e)
 
 
 CDocEntry *PrsDollarCmd(CDoc *doc,U8 *st)
-{//This uses [C:/TempleOS/Compiler/Lex.CPP.Z,789] Lex() to parse a string and make Doc entries.
+{//This uses [C:/Compiler/Lex.CPP.Z,760] Lex() to parse a string and make Doc entries.
   I64 i,j,flags1,attr=DOC_DFT;
   U8 *ptr,*st2;
   CDocEntry *doc_e=NULL;
@@ -500,7 +500,7 @@ public U0 DocIns(CDoc *doc,CDocEntry *doc_e)
 
 #help_index "Doc/Output"
 CDocEntry *DocPutS(CDoc *doc,U8 *st)
-{ //Don't use this.  Use [MN:DocPrint] DocPrint().
+{ //Don't use this.  Use [C:/Adam/Doc/DocPlain.CPP.Z,658] DocPrint().
   //Does not handle partial Doc entries
   //Returns last newly created dollar-sign CDocEntry.
   U8 ch,*ptr=st,*ptr2,*st2,*ptr3,*ptr4,*src,

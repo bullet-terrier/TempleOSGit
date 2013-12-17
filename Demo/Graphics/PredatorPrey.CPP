@@ -53,7 +53,7 @@ U0 PredatorPrey()
   PopUpOk("This will plot multiple predator-prey\n"
 	"trajectories.  It restarts many times\n"
 	"with different, random, initial populations.\n");
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   try {
     DocClear;
     WinMax;

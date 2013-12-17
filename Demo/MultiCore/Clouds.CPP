@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 
 
@@ -15,7 +15,7 @@
 
 
 
-<1> //Pointer to sprite <6> in Camp.CPP.Z file
+/* <1> <1> (image) */ //Pointer to sprite <6> in Camp.CPP.Z file
 
 #define NUM_CLOUDS		16
 #define SKY_LINES		30
@@ -75,7 +75,7 @@ U0 MPDrawClouds(CTask *task)
 U0 DrawIt(CTask *task,CDC *dc)
 {
   I64 i;
-  SpritePlot3(dc,0,SKY_LINES*FONT_HEIGHT,0,<1>);
+  SpritePlot3(dc,0,SKY_LINES*FONT_HEIGHT,0,__BIN_1);
   mp_not_done_flags=1<<mp_cnt-1;
   for (i=0;i<mp_cnt;i++)
     JobQue(&MPDrawClouds,task,i);
@@ -176,7 +176,7 @@ U0 SongTask(I64)
 
 U0 CloudScene()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   try {
     Fs->text_attr=YELLOW<<4+BLUE;
     Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);

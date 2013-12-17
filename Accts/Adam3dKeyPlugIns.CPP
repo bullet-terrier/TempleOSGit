@@ -12,11 +12,11 @@ Bool MyPutKey(I64 ch,I64 sc)
 {  //ch=ASCII; sc=scancode
 
 //See [Char,1] Char for definition of scan codes.
-//See [C:/Doc/KeyBoard.TXT,1] Keyboard Handling
+//See [C:/Doc/KeyBoard.TXT.Z,1] Keyboard Handling
 
 //You can customize keys.  This routine
 //is called before the main editor
-//key handler [C:/TempleOS/Adam/Doc/DocEd.CPP.Z,1503] DocPutKey().
+//key handler [C:/Adam/Doc/DocEd2b.CPP.Z,3] DocPutKey().
 //You can intercept any key.
 
 //Return TRUE if you completely

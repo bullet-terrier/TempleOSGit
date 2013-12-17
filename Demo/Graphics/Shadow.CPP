@@ -88,7 +88,7 @@ U0 Shadow()
   omega=0;
   s=1.5;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   Fs->draw_it=&DrawIt;
   Preempt(OFF);

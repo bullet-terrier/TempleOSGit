@@ -141,7 +141,7 @@ I64 SysDel(U8 *wild,Bool make_mask)	//this is dangerous
 }
 
 U0 Fmt(I64 drv_let,Bool quick=TRUE,Bool confirm=TRUE,I64 type=PT_FAT32)
-{//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,2541] PT_FAT32 for a lst of supported file system types.
+{//See [C:/Kernel/Adam1a.HPP.Z,2409] PT_FAT32 for a lst of supported file system types.
 
   CPrt *p=Drv2Prt(drv_let);
   Bool old_silent=IsSilent;

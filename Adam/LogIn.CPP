@@ -1,6 +1,6 @@
 #help_index "Misc/Accts"
 
-//This is temporary until defined in [C:/TempleOS/Accts/TAD/Adam3fSys.CPP,1].
+//This is temporary until defined in [C:/Accts/TAD/Adam3fSys.CPP,1].
 U0 UserStartUp()
 { //Run each time a user a spawned
   DocTermNew;
@@ -11,7 +11,7 @@ U0 UserStartUp()
   Preempt(ON);
 }
 
-//This is temporary until defined in [C:/TempleOS/Accts/TAD/Adam3fSys.CPP,1].
+//This is temporary until defined in [C:/Accts/TAD/Adam3fSys.CPP,1].
 U0 SrvStartUp()
 { //Run each time a srv task is spawned.
   DocTermNew;
@@ -28,7 +28,7 @@ U8 *PopUpSysAcct()
   CDirEntry	*tempde=FilesFind("/Accts/*",FUF_RECURSE|FUF_JUST_DIRS|FUF_FLATTEN_TREE),
 		*tempde1=tempde;
   DocPrint(doc,"$CM+CX-LE,8$");
-  DocPutSprite(doc,<1>,"$SP+SIF,\"\",%d$");
+  DocPutSprite(doc,__BIN_1,"$SP+SIF,\"\",%d$");
   DocPrint(doc,"$CM+LX,0,14$Select Account.\nCursor down and press <SPACE BAR>.\n");
   while (tempde) {
     if (*tempde->name!='.') {

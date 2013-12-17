@@ -266,7 +266,7 @@ public I64 GRACaptureScreen(U8 *filename)
 #help_index "Graphics;Graphics/DCs"
 
 public U0 DCExtentsInit(CDC *dc)
-{//See [C:/Demo/Graphics/Extents.CPP,1]
+{//See [C:/Demo/Graphics/Extents.CPP.Z,1]
 //You should clear the record flag yourself
   dc->flags|=DCF_RECORD_EXTENTS;
   dc->min_x=MAX_I64;

@@ -587,7 +587,7 @@ U0 DigitalLogic()
   input2_table	  =NULL;
   input3_table	  =NULL;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   WordStat;
   WinBorder(ON);

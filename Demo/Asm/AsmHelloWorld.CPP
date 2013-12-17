@@ -6,7 +6,7 @@ in a task.  Hit F5 to spawn a new task
 and run it.
 
 These are many useful kernel
-routines [C:/Kernel/Str1a.CPP,1] ::/Kernel/Str1a.CPP
+routines [C:/Kernel/Str1a.CPP.Z,1] ::/Kernel/Str1a.CPP
 intended to be called from
 asm.  Generally, they preserve
 regs.
@@ -22,7 +22,7 @@ from C, preserve all other regs.
 
 asm {
 //Opcodes are slightly different to make writing my x86_64 assembler easier.
-//See [C:/Compiler/OpCodes.TXT,1].
+//See [C:/Compiler/OpCodes.TXT.Z,1].
 
 USE64	//Defaults to 64, but this is a good habit.
 
@@ -36,7 +36,7 @@ MY_WORLD_MSG:
 //My convention is to put an underscore
 //on C callable routines.
 _HELLO_WORLD::
-	PUSH	RSI	//See [MN:REG_VARS_MASK] REG_VARS_MASK & [MN:REG_NON_PTR_MASK] REG_NON_PTR_MASK
+	PUSH	RSI	//See [C:/Kernel/Adam1a.HPP.Z,3533] REG_VARS_MASK & [C:/Kernel/Adam1a.HPP.Z,3534] REG_NON_PTR_MASK
 	MOV	RCX,10
 @@05:	MOV	RAX,RCX
 	CALL	PUT_HEX_U8

@@ -53,7 +53,7 @@ class CMeshTri
 public class CSprite
 {
 //See [Graphics/CSprite,1] Graphics/CSprite
-//See [C:/Adam/Gr/GrSpritePlot.CPP,1] ::/Adam/Gr/GrSpritePlot.CPP for how CSprite are stored.
+//See [C:/Adam/Gr/GrSpritePlot.CPP.Z,1] ::/Adam/Gr/GrSpritePlot.CPP for how CSprite are stored.
   CSprite *next,*last;
 
   U0 start;

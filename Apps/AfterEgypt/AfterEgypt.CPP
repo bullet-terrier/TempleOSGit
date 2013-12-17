@@ -186,7 +186,7 @@ U0 AfterEgypt()
 {
   Bool was_mute=IsMute;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinBorder;
   WordStat;
   DocClear;

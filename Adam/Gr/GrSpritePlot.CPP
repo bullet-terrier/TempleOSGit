@@ -1,18 +1,18 @@
 #help_index "Graphics/CSprite"
 /*
-[C:/TempleOS/Adam/Gr/Gr.CPP.Z,60] CSprites are stored as a sequence of var
+[C:/Adam/Gr/Gr.CPP.Z,54] CSprites are stored as a sequence of var
 length operations with a 1-byte type leading
 each operation.  The types available are lsted
-here, [C:/TempleOS/Adam/Gr/Gr.CPP.Z,19] GRST_PT.  They are stored, one after another,
-in a chunk of memory terminated by a type [C:/TempleOS/Adam/Gr/Gr.CPP.Z,15] GRST_END.
+here, [C:/Adam/Gr/Gr.CPP.Z,23] GRST_PT.  They are stored, one after another,
+in a chunk of memory terminated by a type [C:/Adam/Gr/Gr.CPP.Z,15] GRST_END.
 
-[C:/TempleOS/Adam/Gr/GrSpritePlot.CPP.Z,27] SpritePlot3() and [MN:SpriteMain] SpriteMain() shows how the
+[C:/Adam/Gr/GrSpritePlot.CPP.Z,27] SpritePlot3() and [C:/Adam/Gr/SpriteMain.CPP.Z,151] SpriteMain() shows how the
 unions are used.  It's kind-of a mess using a union.
 
-[C:/TempleOS/Adam/Gr/CSpriteNew.CPP.Z,119] SpriteSize() will return the size of a single
-operation, while [C:/TempleOS/Adam/Gr/CSpriteNew.CPP.Z,119] SpriteSize() with an 's' will
+[C:/Adam/Gr/SpriteNew.CPP.Z,77] SpriteSize() will return the size of a single
+operation, while [C:/Adam/Gr/SpriteNew.CPP.Z,77] SpriteSize() with an 's' will
 return the size of an entire lst.  Look at
-[MN:sprite_base_size] sprite_base_size.
+[C:/Adam/Gr/SpriteNew.CPP.Z,5] sprite_base_size.
 
 To get familiar, type <CTRL-R> on sprite in
 a document and select "Display as Text".  It
@@ -24,7 +24,7 @@ See ::/Apps/GrModels
 `
  for an example of
 making CSprite by hand.  Those are type
-[C:/TempleOS/Adam/Gr/Gr.CPP.Z,44] GRST_MESH, one of the most complicated.
+[C:/Adam/Gr/Gr.CPP.Z,39] GRST_MESH, one of the most complicated.
 */
 
 public U0 SpritePlot3(CDC *dc,I64 x,I64 y,I64 z,U8 *elems,Bool just_one=FALSE)

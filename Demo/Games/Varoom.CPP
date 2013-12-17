@@ -307,7 +307,7 @@ U0 Varoom()
   "  Right(,,SC_CURSOR_RIGHT);"
       "}"
       );
-  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   try {
     Fs->text_attr=YELLOW<<4+BLUE;
     Fs->win_inhibit=WIG_TASK_DFT-WIF_FOCUS-WIF_GRAB_SCROLL-WIF_MENU;

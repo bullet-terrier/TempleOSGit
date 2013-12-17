@@ -10,7 +10,7 @@
 	 want to turn-it-off.  Strings
 	 use U64.
     ,32  sets the tag string width.
-	 See [C:/Adam/Doc/DocPlain.CPP,1] Data Tag Width.
+	 See [C:/Adam/Doc/DocPlain.CPP.Z,1] Data Tag Width.
      -P  Means it is a string var, basically.
 */
 
@@ -39,7 +39,7 @@ U0 DataDemo()
 //doc_e->data before it is set.
   Bool unlock=DocLock(doc);
 
-//You might set the [C:/TempleOS/Kernel/Adam1a.HPP.Z,1421] DOCF_FORM flag.
+//You might set the [C:/Kernel/Adam1a.HPP.Z,1308] DOCF_FORM flag.
 //  doc->flags|=DOCF_FORM
 //if you wish.
 
@@ -63,4 +63,4 @@ U0 DataDemo()
 
 DataDemo;
 
-//See [C:/TempleOS/Adam/Gr/CSpriteVect.CPP.Z,68] PopUpExtents().
+//See [C:/Adam/Gr/SpriteMain.CPP.Z,65] PopUpExtents().

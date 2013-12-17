@@ -1,5 +1,5 @@
 /*
-See [C:/Doc/MultiTasking.TXT,1] TempleOS MultiTasking.
+See [C:/Doc/MultiTasking.TXT.Z,1] TempleOS MultiTasking.
 
 Tasks are ordered in a queue based
 on window front-to-back order with the
@@ -18,11 +18,11 @@ waiting for a certain time or waiting
 on a message and skips it if it's not
 ready.  A task runs until it
 voluntarily yields ctrl with a call
-to [C:/TempleOS/Kernel/Scheduler.CPP.Z,369] Yield or gets preempted by the
-timer interrupt.  See [C:/TempleOS/Kernel/Interrupts.CPP.Z,15] SYS_TIMER_HANDLER.
-The timer freqency is [C:/TempleOS/Kernel/Adam1a.HPP.Z,612] JIFFY_FREQ.  Tasks
+to [C:/Kernel/Scheduler.CPP.Z,362] Yield or gets preempted by the
+timer interrupt.  See [C:/Kernel/Interrupts.CPP.Z,15] SYS_TIMER_HANDLER.
+The timer freqency is [C:/Kernel/Adam1a.HPP.Z,526] JIFFY_FREQ.  Tasks
 can ask not to be preempted with
-[C:/TempleOS/Kernel/Adam1b.HPP.Z,94] Preempt(ON/OFF).  Tasks waiting on I/O
+[C:/Kernel/Adam1b.HPP.Z,94] Preempt(ON/OFF).  Tasks waiting on I/O
 often loop, checking for a stat and
 swapping-out.  This does not really
 degrade performance, though it pegs the
@@ -38,7 +38,7 @@ Each core has it's own circular task
 que.  For AP processors, they have a
 "Seth" task which stays in a loop
 waiting for jobs or requests to spawn
-tasks.  See [C:/TempleOS/Kernel/MultiProc.CPP.Z,276] MPSethServerTask().
+tasks.  See [C:/Kernel/MultiProc.CPP.Z,221] MPSethServerTask().
 
 All cores have an idle task.  If the
 scheduler determined an IRQ opportunity

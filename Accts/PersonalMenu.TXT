@@ -75,7 +75,7 @@ Cd("::/Demo/AcctExample");Dir;
 `
 
 
-MakeAll with [MN:MakeOSPrtBootInstall] MakeOSPrtBootInstall().
+MakeAll with [C:/Adam/Boot/InsBoot.CPP.Z,141] MakeOSPrtBootInstall().
 Cd("::/Kernel");Dir;
 
 `Cd("::/Kernel");Dir;
@@ -94,8 +94,8 @@ Cd("::/Adam");Dir;
 `
     
 
-[C:/Doc/Welcome.TXT,1] Welcome [C:/Doc/HelpIndex.TXT,1] Help Index
-[C:/Doc/DemoIndex.TXT,1] Demo Index
+[C:/Doc/Welcome.TXT.Z,1] Welcome [C:/Doc/HelpIndex.TXT.Z,1] Help Index
+[C:/Doc/DemoIndex.TXT.Z,1] Demo Index
 Take Tour
 `Cd("::/Misc/Tour");;AutoFile("Tour");
 `

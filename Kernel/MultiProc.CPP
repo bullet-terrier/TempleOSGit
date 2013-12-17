@@ -1,10 +1,10 @@
 asm {
 	ALIGN	16,OC_NOP
 USE16
-//See [C:/Doc/MultiCore.TXT,1] TempleOS MultiCore.
+//See [C:/Doc/MultiCore.TXT.Z,1] TempleOS MultiCore.
 
-//This code gets copied to [C:/TempleOS/Kernel/Adam1a.HPP.Z,577] MP_VECT_ADDR.
-//See [C:/Kernel/MultiProc.CPP,2] MemCpy(MP_VECT_ADDR.
+//This code gets copied to [C:/Kernel/Adam1a.HPP.Z,491] MP_VECT_ADDR.
+//See [C:/Kernel/MultiProc.CPP.Z,2] MemCpy(MP_VECT_ADDR.
 SYS_MP_INIT_START::
 	JMP	MP2_START2
 	ALIGN	4,OC_NOP
@@ -18,7 +18,7 @@ MP2_START2:
 	MOV	AX,MP_VECT_ADDR/16
 	MOV	DS,AX
 
-//See [C:/Kernel/MultiProc.CPP,2] mp->sys_temp_ptr
+//See [C:/Kernel/MultiProc.CPP.Z,2] mp->sys_temp_ptr
 #assert MP2_SYS_TEMP_PTR-SYS_MP_INIT_START==CMPMain.sys_temp_ptr
 	LGDT	U32 [CMPMain.sys_temp_ptr]
 
@@ -76,7 +76,7 @@ USE64
 }
 
 U0 TSSBusy(I64 tr,Bool val=OFF)
-{ //See [C:/Demo/Lectures/Ring3.CPP,1].
+{ //See [C:/Demo/Lectures/Ring3.CPP.Z,1].
   LBEqu((&sys_gdttab)(U8 *)+tr+4,9,val);
 }
 
@@ -197,7 +197,7 @@ U0 MPWake(I64 target_cpu)
 U0 MPAPICInit()
 { //Called by adam during start-up
   //and other cores during initialization
-  //after [C:/TempleOS/Kernel/MultiProc.CPP.Z,400] MPStart().
+  //after [C:/Kernel/MultiProc.CPP.Z,313] MPStart().
   *LAPIC_SVR(U32 *)|=LAPICF_APIC_ENABLED;
   mp_apic_ids[Gs->num]=*LAPIC_APIC_ID(U32 *)>>24;
   *LAPIC_LDR(U32 *)=mp_apic_ids[Gs->num]<<24;
@@ -232,7 +232,7 @@ U0 MPSethServerTask()
 	LBtr(&my_ctrl->flags,SVCRf_LOCKED) ;
 	if (my_ctrl->next_waiting==my_ctrl) {
 	  LBts(&Gs->cpu_flags,CPUf_SETH_SLEEP);
-	  Sleep(20); //We don't want this too long because of need for [C:/TempleOS/Kernel/Task1a.CPP.Z,539] TaskFinishOffDying().
+	  Sleep(20); //We don't want this too long because of need for [C:/Kernel/Task1a.CPP.Z,521] TaskFinishOffDying().
 	  LBtr(&Gs->cpu_flags,CPUf_SETH_SLEEP);
 	}
       }
@@ -302,7 +302,7 @@ CTask *SpawnQue(U0 (*fp_add)(U8 *data),U8 *data=NULL,
 }
 
 U0 MPCPUTaskInit()
-{ //Called by multicore's seth task after [C:/TempleOS/Kernel/MultiProc.CPP.Z,400] MPStart()
+{ //Called by multicore's seth task after [C:/Kernel/MultiProc.CPP.Z,313] MPStart()
   //as the first thing a CPU does before waiting for jobs
   MPAPICInit;
   Fs->rip=&MPSethServerTask;
@@ -340,8 +340,8 @@ U0 MPStart()
   MemSet(&cpu_structs[1],0,sizeof(CCPU)*(MP_MAX_PROCESSORS-1));
 
 //When you start-up other cores, they jump to an addr
-//specified by a byte vect number, [C:/TempleOS/Kernel/Adam1a.HPP.Z,576] MPN_VECT which corresponds
-//to a location 4096*vect number, [C:/TempleOS/Kernel/Adam1a.HPP.Z,577] MP_VECT_ADDR.
+//specified by a byte vect number, [C:/Kernel/Adam1a.HPP.Z,490] MPN_VECT which corresponds
+//to a location 4096*vect number, [C:/Kernel/Adam1a.HPP.Z,491] MP_VECT_ADDR.
   MemCpy(mp,SYS_MP_INIT_START,SYS_MP_INIT_END-SYS_MP_INIT_START);
 
   mp->sys_temp_ptr=GDT_SIZE-1+(&sys_gdttab)(U8 *)<<16;
@@ -349,7 +349,7 @@ U0 MPStart()
   mp_cnt_lock=0;
 
   *LAPIC_LVT_ERR(U32 *)=*LAPIC_LVT_ERR(U32 *)&0xFFFFFF00+MPN_VECT;
-  asm {WBINVD}; //Not sure why this is needed.	Might just need delay. [C:/TempleOS/Kernel/Adam1b.HPP.Z,113] MemCpy above?
+  asm {WBINVD}; //Not sure why this is needed.	Might just need delay. [C:/Kernel/Adam1b.HPP.Z,112] MemCpy above?
 
   *LAPIC_ICR_LOW(U32 *)=0xC4500; //assert init IPI
   BusyWait(10000);
@@ -370,7 +370,7 @@ U0 MPStart()
     SPrint(buf,"Seth Task CPU#%d",i);
     task=Spawn(&MPCPUTaskInit,NULL,buf,,,SETH_STK,0);
     task->rflags=SYS_START_RFLAGS;
-    //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3008] CTask allocated off this core's seth_task's heap (Which is Adam)
+    //[C:/Kernel/Adam1a.HPP.Z,2866] CTask allocated off this core's seth_task's heap (Which is Adam)
     task->task_in_que_signature=TASK_IN_QUE_SIGNATURE_VAL;
     CPUStructInit(i,&cpu_structs[i],task);
     asm {WBINVD}; //Not sure why this is needed.  Might just need delay.

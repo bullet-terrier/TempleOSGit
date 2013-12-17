@@ -1,5 +1,5 @@
 /*
-This uses [MN:DocPrint] DocPrint() because updates
+This uses [C:/Adam/Doc/DocPlain.CPP.Z,658] DocPrint() because updates
 to within a tree while a tree is collapsed get
 messed-up if "live" (like using ordinary Print.)
 The insert point is confused by hiding of
@@ -8,7 +8,7 @@ Doc is taken off-line by disabling preemption so there
 are no screen updates until all data has been inserted.
 
 There is a special Doc function which is also
-available to take an Doc off-line.  See [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,1645] DocInsSafe.
+available to take an Doc off-line.  See [C:/Adam/Doc/DocRecalc2a.CPP.Z,103] DocInsSafe.
 For this example, however, I wanted to use DocPrint
 and disabled Preemption myself.
 */
@@ -33,7 +33,7 @@ U0 TreeSub(CDoc *doc,CDirEntry *tempde)
     }
     //Note there is also a routine
     //to delete an entire CDirEntry tree.
-    //See [MN:DirLstDel] DirLstDel().
+    //See [C:/Kernel/Dsk/DskDir.CPP.Z,34] DirLstDel().
     DirEntryDel(tempde);
     tempde=tempde1;
   }

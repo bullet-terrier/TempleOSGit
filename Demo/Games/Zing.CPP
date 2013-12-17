@@ -141,7 +141,7 @@ U0 Zing()
     "  Restart(,'\n');"
     "}"
   );
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Preempt(OFF);
   WinBorder;
   WinMax;

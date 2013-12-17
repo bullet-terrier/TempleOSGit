@@ -15,8 +15,8 @@ U0 Song()
     "Don't ask for stuff, let God pick, but He might get annoyed at that.  "
     "God wants us to be happy.  He tries hard.  If you do get what you pray for, you damn "
     "well better be happy, lil' sonfabitch!\n\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,56267] Ecclesiastes,3:13\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,85266] John,16:24\n"
+    "[C:/Misc/Bible.TXT.Z,56267] Ecclesiastes,3:13\n"
+    "[C:/Misc/Bible.TXT.Z,85266] John,16:24\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

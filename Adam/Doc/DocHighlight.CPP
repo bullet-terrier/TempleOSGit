@@ -1,5 +1,5 @@
 U32 *DocHighlight(CDocEntry *doc_e,U8 *src,I64 len,I64 _temp_u32_attr)
-{ //Be aware of [C:/Adam/Utils/ToHtml.CPP,1].
+{ //Be aware of [C:/Adam/Utils/ToHtml.CPP.Z,1].
   U32 *result=MAlloc((len+1)*sizeof(U32)),*dst=result;
   U8 *ptr,ch,ch1,last_ch;
   CDocSettings *s=&doc_e->settings;

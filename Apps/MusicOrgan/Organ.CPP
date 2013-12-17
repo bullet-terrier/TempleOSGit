@@ -3,11 +3,11 @@ This uses four types of ctrls
 
   1) The pull-down menu.
 
-  2) The [C:/TempleOS/Kernel/Adam1a.HPP.Z,2834] CCtrl type for the
-tempo/stacatto sliders.
+  2) The [C:/Kernel/Adam1a.HPP.Z,2680] CCtrl type for the tempo/stacatto
+sliders.
 
-  3) The active [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc sprite buttons
-with macros for left/record/play/right.
+  3) The active [C:/Kernel/Adam1a.HPP.Z,1398] CDoc sprite buttons with macros
+for left/record/play/right.
 
   4) Hand-made ctrls for the kbdgraphic, notes and staff.
 
@@ -16,8 +16,8 @@ with macros for left/record/play/right.
 
 This uses four types of output
 
-  1) The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc for the text and buttons
-and kbdgraphic.
+  1) The [C:/Kernel/Adam1a.HPP.Z,1398] CDoc for the text and buttons and
+kbdgraphic.
 
   2) The Fs->draw_it() for the staff region, drawn every refresh.
 
@@ -27,8 +27,8 @@ persistent layer is used during drag-and-drop.
   4) The Fs->next_ctrl for the tempo/stacatto sliders.
 
 
-See [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,378] GrUpdateWins() and
-[C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,752] GrUpdateScreen().
+See [C:/Adam/Gr/GrScreen.CPP.Z,382] GrUpdateWins() and
+[C:/Adam/Gr/GrScreen.CPP.Z,824] GrUpdateScreen().
 
 
 */
@@ -1378,7 +1378,7 @@ U0 MusicOrgan(U8 *dirname=NULL)
   CCtrl *c=TempoNew;
 
   if (DocPut) old_doc_flags=DocPut->flags;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinBorder;
   WordStat;
   Preempt(OFF);

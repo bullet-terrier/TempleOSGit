@@ -4,10 +4,10 @@ U0 Song()
   CTask *task;
   Fs->task_end_cb=&SndTaskEndCB;
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,81941]\n"
+    "[C:/Misc/Bible.TXT.Z,81941]\n"
     "\n"
     "Prodigal Son\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,81941]\n"
+    "[C:/Misc/Bible.TXT.Z,81941]\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

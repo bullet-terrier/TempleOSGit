@@ -1,5 +1,5 @@
-//See [D:/Kernel/KStart.CPP,2] SYS_BIOS_GR_MODE
-//See [C:/TempleOS/Kernel/KEnd.CPP.Z,73] SysGrInit()
+//See [D:/Kernel/KStart.CPP.Z,2] SYS_BIOS_GR_MODE
+//See [C:/Kernel/KEnd.CPP.Z,68] SysGrInit()
 
 //This allows consts to be used
 //instead of vars.

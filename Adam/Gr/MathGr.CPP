@@ -11,7 +11,7 @@ public I64 Line(U8 *aux_data,
 		 Bool (*fp_plot)(U8 *aux,I64 x,I64 y,I64 z),
 		 I64 step=1,I64 start=0)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 i,j,d,dx=x2-x1,dy=y2-y1,dz=z2-z1,_x,_y,_z,
       adx=AbsI64(dx),ady=AbsI64(dy),adz=AbsI64(dz),result=0;
   Bool first=TRUE;
@@ -85,7 +85,7 @@ public Bool LOSLine(U8 *aux_data,
 		 Bool (*fp_plot)(U8 *aux,I64 x,I64 y,I64 z),
 		 I64 step=1,I64 start=0)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 i,j,d,dx=x2-x1,dy=y2-y1,dz=z2-z1,_x,_y,_z,
       adx=AbsI64(dx),ady=AbsI64(dy),adz=AbsI64(dz);
   Bool first=TRUE;
@@ -159,7 +159,7 @@ public I64 Rect(U8 *aux_data,
 		I64 x3,I64 y3,I64 z3,
 		Bool (*fp_plot)(U8 *aux,I64 x,I64 y,I64 z))
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 i,j,result=0,
      d1,dx1=x2-x1,dy1=y2-y1,dz1=z2-z1,
      d2,dx2=x3-x1,dy2=y3-y1,dz2=z3-z1,
@@ -222,12 +222,12 @@ public I64 Rect(U8 *aux_data,
 
 #help_index "Graphics/Math/3D Transformation"
 #help_file "::/Doc/Transform"
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 I64 gr_scale=1<<32;
 
 public U0 GrRot(I64 r[4][4],I64 *_x,I64 *_y,I64 *_z)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 x1,y1,z1,xx=*_x,yy=*_y,zz=*_z;
   x1=(r[0][0]*xx+r[0][1]*yy+r[0][2]*zz+r[0][3])>>32;
   y1=(r[1][0]*xx+r[1][1]*yy+r[1][2]*zz+r[1][3])>>32;
@@ -237,7 +237,7 @@ public U0 GrRot(I64 r[4][4],I64 *_x,I64 *_y,I64 *_z)
 
 public U0 GrTransform(CDC *dc,I64 *_x,I64 *_y,I64 *_z)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   GrRot(dc->r,_x,_y,_z);
   *_x+=dc->x;
   *_y+=dc->y;
@@ -246,7 +246,7 @@ public U0 GrTransform(CDC *dc,I64 *_x,I64 *_y,I64 *_z)
 
 public I64 *GrRotXNew(F64 phi,CTask *mem_task=NULL)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   F64 my_cos=Cos(phi)*gr_scale,
      my_sin=Sin(phi)*gr_scale;
   I64 *r=CAlloc(sizeof(I64)*16,mem_task);
@@ -262,7 +262,7 @@ public I64 *GrRotXNew(F64 phi,CTask *mem_task=NULL)
 
 public I64 *GrRotYNew(F64 omega,CTask *mem_task=NULL)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   F64 my_cos=Cos(omega)*gr_scale,
      my_sin=Sin(omega)*gr_scale;
   I64 *r=CAlloc(sizeof(I64)*16,mem_task);
@@ -278,7 +278,7 @@ public I64 *GrRotYNew(F64 omega,CTask *mem_task=NULL)
 
 public I64 *GrRotZNew(F64 theta,CTask *mem_task=NULL)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   F64 my_cos=Cos(theta)*gr_scale,
      my_sin=Sin(theta)*gr_scale;
   I64 *r=CAlloc(sizeof(I64)*16,mem_task);
@@ -294,7 +294,7 @@ public I64 *GrRotZNew(F64 theta,CTask *mem_task=NULL)
 
 public I64 *GrScaleNew(I64 *m1,F64 s,CTask *mem_task=NULL)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 i,*r=CAlloc(sizeof(I64)*16,mem_task);
   for (i=0;i<16;i++)
     r[i]=m1[i]*s;
@@ -303,7 +303,7 @@ public I64 *GrScaleNew(I64 *m1,F64 s,CTask *mem_task=NULL)
 
 public I64 *GrMulMat(I64 *m1,I64 *m2,CTask *mem_task=NULL)
 {
-  //This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+  //This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
  //Conceptually, the transform m1 is applied after m2
   I64 i,j,k,*r=CAlloc(sizeof(I64)*16,mem_task);
   F64 d;
@@ -322,7 +322,7 @@ public I64 *GrMulMat(I64 *m1,I64 *m2,CTask *mem_task=NULL)
 
 public I64 *GrRotXEqu(I64 *m1,F64 phi)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   F64 my_cos=Cos(phi)*gr_scale,
      my_sin=Sin(phi)*gr_scale;
   I64 r[16],*r2;
@@ -342,7 +342,7 @@ public I64 *GrRotXEqu(I64 *m1,F64 phi)
 
 public I64 *GrRotYEqu(I64 *m1,F64 omega)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   F64 my_cos=Cos(omega)*gr_scale,
      my_sin=Sin(omega)*gr_scale;
   I64 r[16],*r2;
@@ -362,7 +362,7 @@ public I64 *GrRotYEqu(I64 *m1,F64 omega)
 
 public I64 *GrRotZEqu(I64 *m1,F64 theta)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   F64 my_cos=Cos(theta)*gr_scale,
      my_sin=Sin(theta)*gr_scale;
   I64 r[16],*r2;
@@ -390,7 +390,7 @@ public I64 *GrScaleEqu(I64 *m1,F64 s)
 
 public U0 GrSetRotMat(CDC *dc,I64 r[4][4])
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 // (1.0/Sqrt(3))*65536=37837.22
   I64 xx=37838,yy=37837,zz=37837;
   dc->r=r;
@@ -414,7 +414,7 @@ public U0 GrScalePenWidth(CDC *dc)
 
 public I64 *GrIdentNew(CTask *mem_task=NULL)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 *r=CAlloc(sizeof(I64)*16,mem_task);
   r[0] .i32[1]=1;
   r[5] .i32[1]=1;
@@ -425,7 +425,7 @@ public I64 *GrIdentNew(CTask *mem_task=NULL)
 
 public I64 *GrIdentEqu(I64 r[4][4])
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   MemSet(r,0,sizeof(I64)*16);
   r[0][0].i32[1]=1;
   r[1][1].i32[1]=1;
@@ -436,7 +436,7 @@ public I64 *GrIdentEqu(I64 r[4][4])
 
 public I64 *GrSetTranslation(I64 r[4][4],I64 x,I64 y,I64 z)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   r[0][3]=x<<32;
   r[1][3]=y<<32;
   r[2][3]=z<<32;
@@ -446,7 +446,7 @@ public I64 *GrSetTranslation(I64 r[4][4],I64 x,I64 y,I64 z)
 
 public I64 *GrAddTranslation(I64 r[4][4],I64 x,I64 y,I64 z)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   r[0][3]+=x<<32;
   r[1][3]+=y<<32;
   r[2][3]+=z<<32;
@@ -513,7 +513,7 @@ public Bool GrSetSymmetry3(CDC *dc,I64 x1,I64 y1,I64 z1,I64 x2,I64 y2,I64 z2,I64
 
 public U0 GrReflect(CDC *dc,I64 *_x,I64 *_y,I64 *_z)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 x=*_x<<32,y=*_y<<32,z=*_z<<32,
     xx=*_x-dc->sym.sx,yy=*_y-dc->sym.sy,zz=*_z-dc->sym.sz,
     d=(xx*dc->sym.snx+yy*dc->sym.sny+zz*dc->sym.snz)>>16,

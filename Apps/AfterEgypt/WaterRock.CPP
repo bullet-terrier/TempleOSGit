@@ -127,7 +127,7 @@ U0 WaterRock()
 {
   I64 msg_code,ch,sc;
 
-  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=YELLOW<<4+BLUE;
   try {
     DocClear;

@@ -79,7 +79,7 @@ I64 GodleTimerPickedBits(I64 num_bits)
 }
 
 U0 BadCodeJump()
-{ //[C:/Apps/HolySpirit/HSNotes.TXT,1]
+{ //[C:/Apps/HolySpirit/HSNotes.TXT.Z,1]
   CDirEntry *tempde1=FilesFind("/*",FUF_JUST_FILES|FUF_RECURSE|FUF_JUST_SRC),
 	*tempde=tempde1;
   I64 cnt=0,num;
@@ -137,7 +137,7 @@ U0 BlogGodle()
 {
   I64 i,j,w,h,x,y,ch;
   godle_done=FALSE;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   WinBorder;
   WordStat;

@@ -42,7 +42,7 @@ U0 DrawIt(CTask *,CDC *dc)
 U0 Song()
 {
   CTask *task;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
   MusicSettingsRst;
@@ -50,7 +50,7 @@ U0 Song()
   music_stacatto_factor= 0.902;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,79970] Mark,14:37\n"
+    "[C:/Misc/Bible.TXT.Z,79970] Mark,14:37\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

@@ -6,8 +6,8 @@ This is an advanced demo that shows
 that you can place ctrls on the
 wall paper.
 
-See [C:/Demo/Graphics/SliderCtrl.CPP,1]
-and [C:/Demo/Graphics/WallPaperFish.CPP,1]
+See [C:/Demo/Graphics/SliderCtrl.CPP.Z,1]
+and [C:/Demo/Graphics/WallPaperFish.CPP.Z,1]
 before messing with this program.
 
 It must be "Adam Included".

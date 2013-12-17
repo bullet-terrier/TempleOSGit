@@ -83,7 +83,7 @@ extern U8 *MPrint(U8 *fmt,...);
 extern U8 *Define(U8 *name);
 extern U8 *DefineSub(I64 sub,U8 *name);
 extern I64 DefineMatch(U8 *pattern,U8 *lst_name,I64 flags=0);
-extern U0 PutS(U8 *st); //Use [MN:Print] Print()
+extern U0 PutS(U8 *st); //Use [C:/Kernel/StrPrint.CPP.Z,967] Print()
 extern U0 PutChars(U64 ch);
 extern I64 GetChar(I64 *scancode=NULL,Bool echo=TRUE,Bool raw_cursor=FALSE);
 extern Bool IsDbg();

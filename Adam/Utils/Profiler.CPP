@@ -47,7 +47,7 @@ public U0 ProfBin(U8 *start,I64 cnt=PF_ARRAY_CNT*3)
 //Start profiler in bin mode.  Profilers
 //report where time is spent by checking
 //the instruction ptr during the
-//timer interrupt.  Do a [C:/TempleOS/Adam/Profiler.CPP.Z,109] ProfRep(), (profiler report)
+//timer interrupt.  Do a [C:/Adam/Utils/Profiler.CPP.Z,109] ProfRep(), (profiler report)
 //after you have collected data.
 {
   if (cnt<PF_ARRAY_CNT)
@@ -83,7 +83,7 @@ public U0 ProfAll(I64 depth=0)
 //Start profiler in record-all mode.  Profilers
 //report where time is spent by checking
 //the instruction ptr during the
-//timer interrupt.  Do a [C:/TempleOS/Adam/Profiler.CPP.Z,109] ProfRep(), (profiler report)
+//timer interrupt.  Do a [C:/Adam/Utils/Profiler.CPP.Z,109] ProfRep(), (profiler report)
 //after you have collected data.
 {
   pf_depth=depth;

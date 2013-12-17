@@ -11,7 +11,7 @@
 [D:/Compiler/Assembler.CPP.Z,170] AsmStoreCodeU8At          0000007EF8    000B 00000000B7 Funct Export Res 
 [D:/Compiler/Assembler.CPP.Z,668] AsmStoreNum               0000009280    0004 00000004A2 Funct Export Res 
 [D:/Compiler/Assembler.CPP.Z,1] AsmUnresolvedAdd          0000007930    0004 00000000E6 Funct Export Res 
-[D:/Compiler/CmpInit.CPP.Z,4] CInternalType             007FCAB7C0    0002 000000000A Class 
+[D:/Compiler/CmpInit.CPP.Z,4] CInternalType             007FCA5B58    0002 000000000A Class 
 [D:/Compiler/CmpAsm.CPP.Z,5] CMP_TEMPLATES             0000000000    0001            ExportSysSym Export 
 [D:/Compiler/CmpAsm.CPP.Z,179] CMP_TEMPLATES_DONT_POP    000000018B    0001            ExportSysSym Export 
 [D:/Compiler/CmpAsm.CPP.Z,268] CMP_TEMPLATES_DONT_PUSH   0000000257    0001            ExportSysSym Export 
@@ -21,10 +21,10 @@
 [D:/Compiler/BackF1a.CPP.Z,1] CN_A2                     0             0005 0000000008 DefineStr 
 [D:/Compiler/BackF1a.CPP.Z,3] CN_MAIN                   2             0028 0000000008 DefineStr 
 [D:/Compiler/BackF1a.CPP.Z,4] CN_R                      3             0003 0000000008 DefineStr 
-[D:/Compiler/StmtParser.CPP.Z,1369] CSubSwitch                007FCC4558    0004 0000000020 Class 
-[D:/Compiler/StmtParser.CPP.Z,1374] CSwitchCase               007FD930E0    0004 0000000020 Class 
+[D:/Compiler/StmtParser.CPP.Z,1369] CSubSwitch                007FD92E28    0004 0000000020 Class 
+[D:/Compiler/StmtParser.CPP.Z,1374] CSwitchCase               007FD92B70    0004 0000000020 Class 
 [D:/Compiler/ICLCC.CPP.Z,33] CTrace                    00000028D8    0000 0000000017 Funct Export Res 
-[D:/Compiler/StmtParser.CPP.Z,222] CVI2                      007FCC4940    0003 0000000010 Class 
+[D:/Compiler/StmtParser.CPP.Z,222] CVI2                      007FD930E0    0003 0000000010 Class 
 [D:/Compiler/CmpMain.CPP.Z,346] Cmp                       000002DB88    0000 000000059C Funct Export Res 
 [D:/Compiler/CmpMain.CPP.Z,165] CmpBuf                    000002D580    0001 00000000FE Funct Export Res 
 [D:/Compiler/OptLib.CPP.Z,548] CmpF1PushPop              000000F336    0002 0000000031 Funct Export Res 
@@ -225,7 +225,7 @@
 [D:/Compiler/OptLib.CPP.Z,62] OptLag2                   000000E676    0003 000000002A Funct Export Res 
 [D:/Compiler/OptLib.CPP.Z,73] OptLead1                  000000E6A6    0004 0000000030 Funct Export Res 
 [D:/Compiler/OptLib.CPP.Z,571] OptMVCompare              000000F3E6    0001 000000001A Funct Export Res 
-[D:/Compiler/OptLib.CPP.Z,566] OptMemberVar              007FCC71F0    0005 0000000020 Class 
+[D:/Compiler/OptLib.CPP.Z,566] OptMemberVar              007FCC4558    0005 0000000020 Class 
 [D:/Compiler/ICLCC.CPP.Z,11] OptOff                    0000002838    0000 0000000016 Funct Export Res 
 [D:/Compiler/ICLCC.CPP.Z,6] OptOn                     0000002820    0000 0000000016 Funct Export Res 
 [D:/Compiler/OptPass012.CPP.Z,24] OptPass012                0000013F0E    0000 0000002810 Funct Export Res 

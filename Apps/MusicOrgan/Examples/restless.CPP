@@ -8,7 +8,7 @@ U0 Song()
   music_stacatto_factor= 0.736;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,56267] Ecclesiastes,5:12\n"
+    "[C:/Misc/Bible.TXT.Z,56267] Ecclesiastes,5:12\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 
 AcctRegSetDftEntry("TempleOS/CastleFrankenstein","F64 best_score=9999;\n");
@@ -538,7 +538,7 @@ U0 CastleFrankenstein()
       "}"
       );
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=RED<<4+WHITE;
   Preempt(OFF);
   WinBorder;

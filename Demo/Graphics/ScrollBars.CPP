@@ -51,7 +51,7 @@ U0 Init()
 
 U0 ScrollBars()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Init;
   DocCursor;
   DocClear;

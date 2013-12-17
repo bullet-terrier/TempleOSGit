@@ -13,9 +13,9 @@ sym hash table at boot before this file
 gets #included during boot.
 
 See
-[C:/Kernel/Kernel.PRJ,1] Adam1b for where it is included during compiling the kernel.
-[C:/Kernel/Adam1.CPP,1] Adam1b for where it is included during boots.
-[C:/Kernel/KEnd.CPP,1] LoadKernel for where the Kernel syms are added to the hash tables.
+[C:/Kernel/Kernel.PRJ.Z,1] Adam1b for where it is included during compiling the kernel.
+[C:/Kernel/Adam1.CPP.Z,1] Adam1b for where it is included during boots.
+[C:/Kernel/KEnd.CPP.Z,1] LoadKernel for where the Kernel syms are added to the hash tables.
 
 */
 
@@ -172,7 +172,7 @@ public _extern _LXCHG_U16 U64 LXchgU16(U16 *dst,U16 d);
 public _extern _LXCHG_U8  U64 LXchgU8(U8 *dst,U8 d);
 
 //Model Specific Reg
-//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,592] MSRs
+//See [C:/Kernel/Adam1a.HPP.Z,506] MSRs
 public _extern _SET_MSR U0 SetMSR(I64 model_specific_reg,I64 val);
 
 #help_index "Processor/Cache;Memory/Cache"
@@ -183,7 +183,7 @@ public _intern IC_CLFLUSH U0 CLFlush(U8 *a);
 #help_index "MultiCore"
 #help_file "::/Doc/MultiCore"
 public _extern SYS_MP_CNT I64 mp_cnt;
-_extern SYS_MP_CNT_INITIAL I64 mp_cnt_initial; //only used during [C:/TempleOS/Kernel/MultiProc.CPP.Z,400] MPStart
+_extern SYS_MP_CNT_INITIAL I64 mp_cnt_initial; //only used during [C:/Kernel/MultiProc.CPP.Z,313] MPStart
 _extern SYS_MP_CNT_LOCK I64 mp_cnt_lock;
 public _extern SYS_CPU_STRUCTS	 CCPU *cpu_structs;
 _extern SYS_SEMAS CSema sys_semas[NUM_SYS_SEMAS];
@@ -288,7 +288,7 @@ public _extern _CALL I64 Call(U8 *s);
 public _extern _CALLIND I64 CallInd(/*argpop*/I64 (*fp_add)(...),...);
 
 //This is just an array of ptrs to funs.
-//See [MN:EXT_NUM_ENTRIES] Extern Num Definitions
+//See [C:/Kernel/Adam1a.HPP.Z,576] Extern Num Definitions
 public _extern SYS_EXTERN_TABLE /*argpop*/ I64 (**ext)(...);
 //Can have any fixed number of arguments.
 public _extern _CALLEXTNUM I64 CallExtNum(I64 num,...);

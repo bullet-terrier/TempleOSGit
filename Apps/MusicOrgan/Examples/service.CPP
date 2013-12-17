@@ -8,9 +8,9 @@ U0 Song()
   music_stacatto_factor= 0.902;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,76908] Matthew,20:28\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,79970] Mark,10:45\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,85266] John,13:14\n"
+    "[C:/Misc/Bible.TXT.Z,76908] Matthew,20:28\n"
+    "[C:/Misc/Bible.TXT.Z,79970] Mark,10:45\n"
+    "[C:/Misc/Bible.TXT.Z,85266] John,13:14\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

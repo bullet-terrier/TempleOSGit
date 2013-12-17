@@ -192,7 +192,7 @@ U0 BugBird()
 
   PopUpOk("Use $GREEN$<SPACE BAR>$FG$ to flap.\nHold down to glide.");
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinBorder(ON);
   SetWinHorz(1,TEXT_COLS/2);
   SetWinVert(2,TEXT_ROWS/2);

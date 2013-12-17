@@ -3,7 +3,7 @@
 //gives a name to it.  Strings like
 //this are known as Define entries.
 
-//See [C:/Adam/Gr/GrScreen.CPP,1] ST_RAINBOW_10
+//See [C:/Adam/Gr/GrScreen.CPP.Z,1] ST_RAINBOW_10
 
 U0 PrintDigit(U8 ch)
 {
@@ -25,7 +25,7 @@ U0 Digits()
   I64 num,ch,i;
   U8 answer[1024];
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=DKGRAY<<4+WHITE;
   DocClear;
   //Set default background and foreground

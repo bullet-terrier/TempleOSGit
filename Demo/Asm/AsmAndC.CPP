@@ -8,7 +8,7 @@ and run it.
 
 asm {
 //Opcodes are slightly different to make writing my x86_64 assembler easier.
-//See [C:/Compiler/OpCodes.TXT,1].
+//See [C:/Compiler/OpCodes.TXT.Z,1].
 USE64	//Defaults to 64, but this is a good habit.
 	IMPORT	Beep;
 
@@ -16,7 +16,7 @@ _BEEPS::
 //You can clobber RAX,RBX,RCX,RDX,R8,R9 in a pure asm subroutine.
 	PUSH	RBP
 	MOV	RBP,RSP
-	MOV	RCX,U64 SF_ARG1[RBP]  //[C:/Kernel/Adam1a.HPP,1] SF_ARG1
+	MOV	RCX,U64 SF_ARG1[RBP]  //[C:/Kernel/Adam1a.HPP.Z,1] SF_ARG1
 
 @@05:	PUSH	RCX
 //U0 Beep(I64 freq=500,Bool busy=FALSE)
@@ -40,7 +40,7 @@ _extern _BEEPS U0 Beeps(I64 cnt);
 I64 AsmAndC()
 {
   I64 noreg i;	//Normally this would be stored in a reg
-		//Check with [C:/TempleOS/Adam/Dbg2a.CPP.Z,236] Uf("AsmAndC").
+		//Check with [C:/Adam/Dbg2a.CPP.Z,236] Uf("AsmAndC").
 
   i=PmtI64("Num of beeps 1-5 (%d):",3,1,5);
   Beeps(i);
@@ -58,7 +58,7 @@ USE64	//Defaults to 64, but this is a good habit.
 	MOV	RAX,RCX	//freq=loop*100.0+100.0
 	IMUL2	RAX,100 //TempleOS uses nonstandard opcodes
 			//to avoid multiple form of the same one.
-			//See [C:/Compiler/OpCodes.TXT,1].
+			//See [C:/Compiler/OpCodes.TXT.Z,1].
 	ADD	RAX,100
 	PUSH	RAX
 	FILD	U64 [RSP]	//Convert from int to floating

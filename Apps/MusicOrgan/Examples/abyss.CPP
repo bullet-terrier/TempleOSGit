@@ -12,9 +12,9 @@ U0 Song()
     "Styx separating the land of the\n"
     "living from dead.  Jesus' told a story\n"
     "about the land of living separate from\n"
-    "land of dead.  ([C:/TempleOS/Misc/Bible.TXT.Z,81941] Luke,16:22)  In the Old\n"
+    "land of dead.  ([C:/Misc/Bible.TXT.Z,81941] Luke,16:22)  In the Old\n"
     "Testament, the River Jordan was a special\n"
-    "barrier.  ([C:/TempleOS/Misc/Bible.TXT.Z,15977] Deuteronomy,4:22)\n"
+    "barrier.  ([C:/Misc/Bible.TXT.Z,15977] Deuteronomy,4:22)\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

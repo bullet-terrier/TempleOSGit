@@ -21,9 +21,9 @@ U0 Song()
   music_tempo=2.5;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,94514] Ephesians,6:11\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,76908] Matthew,5:10\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,93323] 2 Corinthians,6:7\n"
+    "[C:/Misc/Bible.TXT.Z,94514] Ephesians,6:11\n"
+    "[C:/Misc/Bible.TXT.Z,76908] Matthew,5:10\n"
+    "[C:/Misc/Bible.TXT.Z,93323] 2 Corinthians,6:7\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

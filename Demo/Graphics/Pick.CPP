@@ -29,7 +29,7 @@ U0 DrawIt(CTask *,CDC *dc)
     SpritePlot3(dc,x[i],y[i],0,__BIN_1);
     if (dc->nearest_dist<=best_dist) {
       //distance to nearest pixel, squared
-      //[C:/TempleOS/Kernel/Adam1b.HPP.Z,230] Sqrt() is expensive so we work with distance squared.
+      //[C:/Kernel/Adam1b.HPP.Z,228] Sqrt() is expensive so we work with distance squared.
       best_dist=dc->nearest_dist;
       best_apple=i;
 
@@ -59,7 +59,7 @@ U0 Main()
   }
   *buf=0;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WordStat;
   DocCursor;
   DocClear;
@@ -70,7 +70,7 @@ U0 Main()
     msg_code=GetMsg(&p1,&p2,1<<MSG_KEY_DOWN|1<<MSG_IP_L_DOWN);
 
     //Use screen coordinates, not window (p1,p2)
-    //[C:/TempleOS/Kernel/KGlbls.CPP.Z,80] ipx and [C:/TempleOS/Kernel/KGlbls.CPP.Z,80] ipy are global vars updated
+    //[C:/Kernel/KGlbls.CPP.Z,79] ipx and [C:/Kernel/KGlbls.CPP.Z,79] ipy are global vars updated
     //updated by the window mgr to hold the
     //screen coordinates of the input ptr (mouse).
     cur_x=ipx; cur_y=ipy;

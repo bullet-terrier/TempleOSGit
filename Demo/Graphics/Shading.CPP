@@ -148,10 +148,10 @@ U0 DrawIt(CTask *task,CDC *dc)
   }
 }
 
-//See [C:/Demo/Graphics/SpritePlot3D.CPP,1].
+//See [C:/Demo/Graphics/SpritePlot3D.CPP.Z,1].
 //for a CSprite example.
 
-//See [MN:SpriteMesh] SpriteMesh() for a fancy example.
+//See [C:/Adam/Gr/SpriteMesh.CPP.Z,874] SpriteMesh() for a fancy example.
 
 U0 Main()
 {
@@ -161,7 +161,7 @@ U0 Main()
   s->sy=7*VIEWANGLES_SNAP;
   s->sz=6*VIEWANGLES_SNAP;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   DocClear;
   WinMax;
   WinBorder;

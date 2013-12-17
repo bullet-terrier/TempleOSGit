@@ -195,17 +195,17 @@ CDirEntry *FilesFind(U8 *files_find_mask,I64 fuf_flags=0)
 {
 /*
 Flags:
-  [C:/TempleOS/Kernel/Adam1a.HPP.Z,3587] FUF_RECURSE		+r Recurse
-  [C:/TempleOS/Kernel/Adam1a.HPP.Z,3604] FUF_FLATTEN_TREE	+f **use with '+F'**.  Just use +F, probably.
-  [C:/TempleOS/Kernel/Adam1a.HPP.Z,3595] FUF_JUST_DIRS		+D just directories
-  [C:/TempleOS/Kernel/Adam1a.HPP.Z,3596] FUF_JUST_FILES	+F just files (Flattens trees)
-  [MN:FUF_JUST_TXT] FUF_JUST_TXT	+T just text files	: [MN:FILEMASK_TXT] FILEMASK_TXT
-  [MN:FUF_JUST_SRC] FUF_JUST_SRC	+S just src files	: [MN:FILEMASK_SRC] FILEMASK_SRC
-  [MN:FUF_JUST_AOT] FUF_JUST_AOT	+A just aot files	: [MN:FILEMASK_AOT] FILEMASK_AOT
-  [MN:FUF_JUST_JIT] FUF_JUST_JIT	+J just jit files	: [MN:FILEMASK_JIT] FILEMASK_JIT
-  [MN:FUF_JUST_GRA] FUF_JUST_GRA	+G just graphic files	: [MN:FILEMASK_GRA] FILEMASK_GRA
+  [C:/Kernel/Adam1a.HPP.Z,3440] FUF_RECURSE		+r Recurse
+  [C:/Kernel/Adam1a.HPP.Z,3457] FUF_FLATTEN_TREE	+f **use with '+F'**.  Just use +F, probably.
+  [C:/Kernel/Adam1a.HPP.Z,3448] FUF_JUST_DIRS		+D just directories
+  [C:/Kernel/Adam1a.HPP.Z,3449] FUF_JUST_FILES	+F just files (Flattens trees)
+  [C:/Kernel/Adam1a.HPP.Z,3450] FUF_JUST_TXT	+T just text files	: [C:/Kernel/Adam1a.HPP.Z,2084] FILEMASK_TXT
+  [C:/Kernel/Adam1a.HPP.Z,3451] FUF_JUST_SRC	+S just src files	: [C:/Kernel/Adam1a.HPP.Z,2083] FILEMASK_SRC
+  [C:/Kernel/Adam1a.HPP.Z,3452] FUF_JUST_AOT	+A just aot files	: [C:/Kernel/Adam1a.HPP.Z,2082] FILEMASK_AOT
+  [C:/Kernel/Adam1a.HPP.Z,3453] FUF_JUST_JIT	+J just jit files	: [C:/Kernel/Adam1a.HPP.Z,2081] FILEMASK_JIT
+  [C:/Kernel/Adam1a.HPP.Z,3454] FUF_JUST_GRA	+G just graphic files	: [C:/Kernel/Adam1a.HPP.Z,2085] FILEMASK_GRA
 
-See [C:/TempleOS/Kernel/Define1a.CPP.Z,42] ST_FILE_UTIL_FLAGS when used in calling program taking text flags.
+See [C:/Kernel/Define1b.CPP.Z,32] ST_FILE_UTIL_FLAGS when used in calling program taking text flags.
 */
   CDirEntry *result;
   CFileAccess *fa;
@@ -365,7 +365,7 @@ U8 *TextFileRead(U8 *filename,I64 *_attr=NULL)
 
 
 Bool FileFind(U8 *filename,CDirEntry *_de=NULL,I64 fuf_flags=0)
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3595] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3596] FUF_JUST_FILES, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3602] FUF_Z_OR_NOT_Z, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3603] FUF_SCAN_PARENTS
+{ //[C:/Kernel/Adam1a.HPP.Z,3448] FUF_JUST_DIRS, [C:/Kernel/Adam1a.HPP.Z,3449] FUF_JUST_FILES, [C:/Kernel/Adam1a.HPP.Z,3455] FUF_Z_OR_NOT_Z, [C:/Kernel/Adam1a.HPP.Z,3456] FUF_SCAN_PARENTS
   //If you pass _de, you must Free(_de->full_name);
   I64 i,j,cur_dir_cluster;
   U8 *altname,*curname,*full_name=NULL;
@@ -446,7 +446,7 @@ Bool FileFind(U8 *filename,CDirEntry *_de=NULL,I64 fuf_flags=0)
 }
 
 I64 FileSize(U8 *filename,I64 fuf_flags=0)
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3595] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3596] FUF_JUST_FILES, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3602] FUF_Z_OR_NOT_Z, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3603] FUF_SCAN_PARENTS
+{ //[C:/Kernel/Adam1a.HPP.Z,3448] FUF_JUST_DIRS, [C:/Kernel/Adam1a.HPP.Z,3449] FUF_JUST_FILES, [C:/Kernel/Adam1a.HPP.Z,3455] FUF_Z_OR_NOT_Z, [C:/Kernel/Adam1a.HPP.Z,3456] FUF_SCAN_PARENTS
   CDirEntry de;
   if (FileFind(filename,&de,fuf_flags)) {
     Free(de.full_name);
@@ -456,7 +456,7 @@ I64 FileSize(U8 *filename,I64 fuf_flags=0)
 }
 
 I64 FileSizeExpanded(U8 *filename,I64 fuf_flags=0)
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3595] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3596] FUF_JUST_FILES, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3602] FUF_Z_OR_NOT_Z, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3603] FUF_SCAN_PARENTS
+{ //[C:/Kernel/Adam1a.HPP.Z,3448] FUF_JUST_DIRS, [C:/Kernel/Adam1a.HPP.Z,3449] FUF_JUST_FILES, [C:/Kernel/Adam1a.HPP.Z,3455] FUF_Z_OR_NOT_Z, [C:/Kernel/Adam1a.HPP.Z,3456] FUF_SCAN_PARENTS
   U8 buf[BLK_SIZE];
   CPrt *p;
   CDirEntry de;

@@ -1,7 +1,7 @@
 #help_index "Math/CMathODE;CMathODE"
 #help_file "::/Doc/ODE"
 
-//See [C:/Doc/Acknowledgements.TXT,1].
+//See [C:/Doc/Acknowledgements.TXT.Z,1].
 
 F64 LowPass1(F64 a,F64 y0,F64 y,F64 dt=1.0)
 { //First order low pass filter
@@ -41,7 +41,7 @@ U0 ODERstPtrs(CMathODE *ode)
 
 public CMathODE *ODENew(I64 n,F64 max_tolerance=1e-6,I64 flags=0)
 {
-//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,330] flags.
+//See [C:/Kernel/Adam1a.HPP.Z,244] flags.
 
 //The tolerance is not precise.
 //You can min_tolerance and it will
@@ -512,7 +512,7 @@ F64 ode_allocated_factor=0.75;
 U0 ODEsUpdate(CTask *task)
 {
 /*
-This routine is called by the [C:/Adam/Gr/GrScreen.CPP,1] window mgr on a continuous
+This routine is called by the [C:/Adam/Gr/GrScreen.CPP.Z,1] window mgr on a continuous
 basis to allow real-time simulation.  It is intended
 to provide results good enough for games.  It uses a runge-kutta
 integrator which is a better algorithm than doing it with Euler.
@@ -530,7 +530,7 @@ it has a timeout.
   if (task->next_ode==&task->next_ode)
     task->last_ode_time=0;
   else {
-    //See [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,378] GrUpdateWins()
+    //See [C:/Adam/Gr/GrScreen.CPP.Z,382] GrUpdateWins()
     if (!Bt(&task->win_inhibit,WIf_ODE)) {
       //TODO: Being preempted here woulds be bad
       if (task!=Fs)
@@ -625,7 +625,7 @@ ode_done:
 	ode=ode->next;
       }
       refresh_ode_time+=task->last_ode_time=tT-start_time;
-      //See [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,378] GrUpdateWins()
+      //See [C:/Adam/Gr/GrScreen.CPP.Z,382] GrUpdateWins()
       if (task!=Fs)
 	Suspend(task,old_suspend);
     }

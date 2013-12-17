@@ -112,7 +112,7 @@ U0 TheDead()
   "  Down(,,SC_CURSOR_DOWN);"
       "}"
       );
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   WordStat;

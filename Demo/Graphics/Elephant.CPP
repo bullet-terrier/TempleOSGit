@@ -185,7 +185,7 @@ U0 SongTask(I64)
 
 U0 Main()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
   Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   WinMax;

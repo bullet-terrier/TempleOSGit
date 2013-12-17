@@ -300,7 +300,7 @@ Bool FAT32DirFill(CFAT32DirEntry *de,CDirEntry *tempde,I64 *_de_cnt=NULL)
 
 
 Bool FAT32FileFind(CPrt *p,I64 cur_dir_cluster,U8 *name,CDirEntry *_result,I64 fuf_flags=0)
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3595] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3596] FUF_JUST_FILES
+{ //[C:/Kernel/Adam1a.HPP.Z,3448] FUF_JUST_DIRS, [C:/Kernel/Adam1a.HPP.Z,3449] FUF_JUST_FILES
   Bool result=FALSE,unlock;
   CFAT32DirEntry *buf;
   I64 xsum=0,attr,cur_dir_entry,entries_per_cluster;
@@ -603,7 +603,7 @@ I64 FAT32AllocContiguousClusters(CPrt *p,I64 cnt)
 
 Bool FAT32DirNew(CPrt *p,U8 *cur_dir,CDirEntry *tempde,Bool free_old_chain)
 {
-//See [C:/Doc/CutCorners.TXT,1].
+//See [C:/Doc/CutCorners.TXT.Z,1].
   CFAT32DirEntry *buf,*last_buf,*temp_buf,de[3];
   I64 i,attr,avail_cnt,de_cnt,c,
       cur_dir_entry,entries_per_cluster,

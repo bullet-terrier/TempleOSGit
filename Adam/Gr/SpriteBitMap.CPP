@@ -204,7 +204,7 @@ I64 SpriteBitMap(CDoc *,CDocEntry *doc_e,CDC *dc,I64 *_xx1,I64 *_yy1,I64 *_xx2,I
   U8 *st=NULL;
   CDC *img=*_img,
 	*clipboard=NULL,*undo=NULL,*dc2;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
 
   if (_ip_snap) ip_snap=*_ip_snap;
   if (_ip_scaler) ip_scaler=*_ip_scaler;

@@ -327,7 +327,7 @@ class CElTorito
 
 public I64 CDFileCreate(U8 *_filename=NULL,U8 *src_files_find_mask,U8 *fu_flags=NULL,
 		  U8 *_stage2_filename=NULL)
-//See [C:/Demo/MakeDistro.CPP,1]
+//See [C:/Demo/MakeDistro.CPP.Z,1]
 
 //Use "C:/Distro/*" if you want all files in the C:/Distro directory.
 //Default flags are "+r" recurse.

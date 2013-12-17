@@ -191,7 +191,7 @@ U0 BulgeBomber()
   "  Bomb(,CH_SPACE);"
       "}"
       );
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WordStat;
   WinMax;
   Preempt(OFF);

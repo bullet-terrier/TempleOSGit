@@ -260,7 +260,7 @@ public CDocEntry *DocPutLine(CDoc *doc=NULL,CDocEntry *doc_e)
 
 #help_index "Doc/Input"
 public U8 *DocMGetS(I64 flags=0)
-//[C:/TempleOS/Kernel/Adam1a.HPP.Z,1567] Flags
+//[C:/Kernel/Adam1a.HPP.Z,1454] Flags
 {
   CDoc *doc;
   CDocEntry *doc_e,*doc_e_end;

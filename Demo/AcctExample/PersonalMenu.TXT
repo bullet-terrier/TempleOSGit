@@ -22,7 +22,7 @@ TSMakeOSPrtBootInstall(TS_MAIN_DRV_LET);
 `
 
 
-[C:/Doc/ChangeLog.TXT,1] ChangeLog [C:/Doc/HelpIndex.TXT,1] Help [C:/Doc/DemoIndex.TXT,1] Demo Key Map
+[C:/Doc/ChangeLog.TXT.Z,1] ChangeLog [C:/Doc/HelpIndex.TXT.Z,1] Help [C:/Doc/DemoIndex.TXT.Z,1] Demo Key Map
 `KeyMap;View;
 `
  Take Tour
@@ -352,7 +352,7 @@ Make Std Distro ISO
   FlatTops <20> (image) Bomber <21> (image) Strut <22> (image) TheDead <23> (image) DunGen <24> (image)  
   
 
-[C:/TempleOS/Misc/Bible.TXT.Z,297] Bible
+[C:/Misc/Bible.TXT.Z,297] Bible
 SoftBoot(TS_BAK_DRV ":/Kernel.BIN.C");
 `SoftBoot(TS_BAK_DRV ":/Kernel.BIN.C");`
 

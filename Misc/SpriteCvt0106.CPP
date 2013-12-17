@@ -120,7 +120,7 @@ I64 SpriteElemSizeOld(CSprite *tempg)
 }
 
 public U8 *Sprite2TextOld(CSprite *tempg)
-{ //Study [C:/Demo/Graphics/SpriteText.CPP,1].
+{ //Study [C:/Demo/Graphics/SpriteText.CPP.Z,1].
   U8 buf[256],buf2[256],buf3[136];
   I32 *ptr;
   SPrint(buf,"%Z",tempg->type,"ST_SPRITE_TYPES_OLD");

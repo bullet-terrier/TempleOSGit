@@ -729,7 +729,7 @@ gr_done:
 
 public I64 GrBlot3(CDC *dc,I64 x1,I64 y1,I64 z1,CDC *img)
 {  //Clipping and transformation
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   CColorROPU32 old_color=dc->color;
   I64  color,reg i,j,w=img->width,h=img->height,
       d1,dx1,dy1,dz1,
@@ -1122,7 +1122,7 @@ gr_done:
 
 public I64 GrFillTri0(CDC *dc,CD3I32 *p1,CD3I32 *p2,CD3I32 *p4)
 {
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 //Returns cnt of pixels changed
   I64 x1,x2,y,z1,z2,dx1,dy1,dz1,dx2,dy2,dz2,result=0,i,y_min,y_max;
   CTask *win_task;

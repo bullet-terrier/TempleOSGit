@@ -1,5 +1,5 @@
 #help_index "Install"
-//See [C:/Doc/Install.TXT,1] Install Documentation or [C:/Doc/Upgrade.TXT,1] Upgrading Documentation.
+//See [C:/Doc/Install.TXT.Z,1] Install Documentation or [C:/Doc/Upgrade.TXT.Z,1] Upgrading Documentation.
 
 //Kernel module: Kernel.BIN.Z
 #define KERNEL_BIN_C	"Kernel.BIN.C"
@@ -123,7 +123,7 @@ U8 ChkWritable(U8 drv_let=0)
 
 #help_index "Install"
 public U0 MakeAll()
-//Call from [MN:MakeOSPrtBootInstall] MakeOSPrtBootInstall()  because loader must be patched with block address.
+//Call from [C:/Adam/Boot/InsBoot.CPP.Z,141] MakeOSPrtBootInstall()  because loader must be patched with block address.
 
 //These 2 modules (and bootloaders at top) are the only AOT
 //compiled code in TempleOS.  Everything else is JIT.
@@ -145,11 +145,11 @@ public Bool MakeOSPrtBootInstall(U8 src_drv=0,U8 dst_drv=0)
 //the code on that drive and update the boot sect.
 
 //If you are making a bootable CD-ROM you supply a dst_drv.
-//See [C:/Demo/MakeDistro.CPP,1]
+//See [C:/Demo/MakeDistro.CPP.Z,1]
 
-//See [C:/Doc/Install.TXT,1] Install Documentation
+//See [C:/Doc/Install.TXT.Z,1] Install Documentation
 
-//Study my account examples my technique [C:/Demo/AcctExample/TSAdam.CPP,1] Cfg Strs [C:/Demo/AcctExample/TSDistro.CPP,1] Update Funs
+//Study my account examples my technique [C:/Demo/AcctExample/TSAdam.CPP.Z,1] Cfg Strs [C:/Demo/AcctExample/TSDistro.CPP.Z,1] Update Funs
 
   CBlkDev *bdev;
   CPrt *p;

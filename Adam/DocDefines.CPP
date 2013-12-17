@@ -2,8 +2,8 @@
 
 U0 LoadDocDefines()
 {
-//These are used in documents such as [C:/Doc/TrivialSolutions.TXT,1]
-//The [C:/TempleOS/Kernel/Adam1a.HPP.Z,1509] CDoc framework will search the sym table for define string
+//These are used in documents such as [C:/Doc/TrivialSolutions.TXT.Z,1]
+//The [C:/Kernel/Adam1a.HPP.Z,1398] CDoc framework will search the sym table for define string
 //consts if you specify that.
   CBinFile *bfh=sys_boot_base-sizeof(CBinFile);
 
@@ -35,7 +35,7 @@ U0 LoadDocDefines()
     "DD_TEMPLEOS_AGE","%0.1f",(Now-A2Date("8/1/2003"))/ToF64(1<<32)/CDATE_YEAR_DAYS);
 
   //This is cut and replaced when I generate a distro.
-  //See [C:/Demo/AcctExample/TSDistro.CPP,1] DD_TEMPLEOS_LOC.
+  //See [C:/Demo/AcctExample/TSDistro.CPP.Z,1] DD_TEMPLEOS_LOC.
   -] LineCnt
     DefinePrint("DD_TEMPLEOS_LOC","121,584");
     DefinePrint("DD_TEMPLEOS_LOC_OFFICIAL","82,054");

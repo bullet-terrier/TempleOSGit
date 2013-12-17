@@ -177,8 +177,8 @@ public I64 GrTextDiamond3(CDC *dc,I64 x1,I64 y1,I64 z1,U8 *_s,I64 border=2)
 }
 
 #help_index "Graphics;Input Pointer/Displayed Image"
-//Called by [C:/TempleOS/Adam/Window.CPP.Z,176] DrawInputPtr() which is
-//called by [C:/TempleOS/Adam/Window.CPP.Z,205] WinFinalUpdate().
+//Called by [C:/Adam/Win2a.CPP.Z,168] DrawInputPtr() which is
+//called by [C:/Adam/Win2a.CPP.Z,197] WinFinalUpdate().
 public U0 DrawStdInputPtr(CDC *dc,I64 x,I64 y)
 {
   dc->pen_width=1;
@@ -188,7 +188,7 @@ public U0 DrawStdInputPtr(CDC *dc,I64 x,I64 y)
 
 public U0 (*fp_draw_input_ptr)(CDC *dc,I64 x,I64 y)=&DrawStdInputPtr;
 public U0 (*fp_draw_grab_input_ptr)(CDC *dc,I64 x,I64 y,Bool closed)=NULL;
-public U8 *gr_empty_sprite=NULL; //Gets assigned [C:/Adam/WallPaper.CPP,1] gr_empty_sprite
+public U8 *gr_empty_sprite=NULL; //Gets assigned [C:/Adam/WallPaper.CPP.Z,1] gr_empty_sprite
 
 public U0 DrawWaitInputPtr(CDC *dc,I64 x,I64 y)
 {

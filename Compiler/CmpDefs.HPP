@@ -229,7 +229,7 @@
 #define IC_TAN			0xC5
 #define IC_ATAN			0xC6
 #define IC_NUM_ENTRIES		0xC7
-//Don't forget [C:/Compiler/CmpInit.CPP,1] IC_INIT_TABLE
+//Don't forget [C:/Compiler/CmpInit.CPP.Z,1] IC_INIT_TABLE
 
 #define KW_INCLUDE		0
 #define KW_DEFINE		1

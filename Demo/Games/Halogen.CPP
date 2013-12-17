@@ -80,7 +80,7 @@ U0 Init()
 U0 Halogen()
 {
   I64 p1,p2,ch=0,sc=0;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=BLACK<<4+WHITE;
   MenuPush(
   "File {"

@@ -134,7 +134,7 @@ U0 CleanUp()
 U0 Song()
 {
   CTask *task;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Preempt(OFF);
   Init;
   Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
@@ -145,7 +145,7 @@ U0 Song()
   music_stacatto_factor= 0.902;
   try {
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,90914] Romans,8:28\n"
+    "[C:/Misc/Bible.TXT.Z,90914] Romans,8:28\n"
     );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

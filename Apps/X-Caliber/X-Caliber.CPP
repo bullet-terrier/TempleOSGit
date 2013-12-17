@@ -990,7 +990,7 @@ U0 XCaliber()
   I64 ch,msg_code,p1,p2,sc;
   CCtrl *cp=CtrlPanelNew;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=BLACK<<4+WHITE;
   Preempt(OFF);
   MenuPush(

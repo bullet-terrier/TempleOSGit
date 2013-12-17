@@ -25,7 +25,7 @@ U0 Song()
 {
   CTask *task;
   task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,98684] Revelation,22:18\n"
+    "[C:/Misc/Bible.TXT.Z,98684] Revelation,22:18\n"
   );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

@@ -43,7 +43,7 @@ class MySpring:CSpring
 
 
 
-<4> //Pointer to sprite <6> in Camp.CPP.Z file
+/* <4> <4> (image) */ //Pointer to sprite <6> in Camp.CPP.Z file
 
 #define HOSE_RADIUS	3
 #define LINK_SIZE	6
@@ -69,7 +69,7 @@ U0 DrawIt(CTask *task,CDC *dc)
   MySpring *temps;
   CD3I32 poly[4];
 
-  SpritePlot3(dc,0,GROUND_Y,0,<4>);
+  SpritePlot3(dc,0,GROUND_Y,0,__BIN_4);
   if (start_up_timeout>tT) {
     ode->drag_v2=0.01; //Let hose settle during start-up
     ode->drag_v3=0.0001;
@@ -354,7 +354,7 @@ U0 SongTask(I64)
 U0 Squirt()
 {
   I64 sc;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=YELLOW<<4+BLUE;
   Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   WinMax;

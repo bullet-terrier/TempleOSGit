@@ -1,4 +1,4 @@
-//This shows the [C:/TempleOS/Kernel/Adam1b.HPP.Z,157] Carry function.
+//This shows the [C:/Kernel/Adam1b.HPP.Z,157] Carry function.
 //It's tricky to use.
 
 U0 BigCnt()

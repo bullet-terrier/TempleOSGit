@@ -1,6 +1,6 @@
 //You should compile this by calling
-//[MN:MakeOSPrtBootInstall] MakeOSPrtBootInstall(), not doing it directly.
-//See [C:/Adam/Boot/InsBoot.CPP,1] Cmp("Kernel").
+//[C:/Adam/Boot/InsBoot.CPP.Z,141] MakeOSPrtBootInstall(), not doing it directly.
+//See [C:/Adam/Boot/InsBoot.CPP.Z,1] Cmp("Kernel").
 
 #exe {
 OptOn(OPTf_WARN_PAREN);

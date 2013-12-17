@@ -173,7 +173,7 @@ U0 CallerRep(U8 **rbp=NULL,CTask *task=NULL)
 
 U0 D(U8 *add,I64 cnt=0x80,Bool show_offset=TRUE)
 //Dump mem, showing offsets.
-//See [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,651] DocD() for a live dump.
+//See [C:/Adam/Doc/DocMain.CPP.Z,628] DocD() for a live dump.
 {
   I64 i,j,ch;
   U8 *ptr=add;
@@ -220,7 +220,7 @@ U0 Da(U8 **add,I64 cnt=0x10)
 }
 
 U0 RawPrint(I64 mS=100,U8 *fmt,...)
-//Print using [C:/TempleOS/Kernel/Misc1a.CPP.Z,282] Raw screen
+//Print using [C:/Kernel/Misc1a.CPP.Z,272] Raw screen
 //output for a length of time.
 //**Your heap must be good.**
 {
@@ -239,7 +239,7 @@ U0 RawPrint(I64 mS=100,U8 *fmt,...)
 }
 
 U0 RawD(I64 mS=100,U8 *add,I64 cnt=0x80)
-//Dumps a block of mem using [C:/TempleOS/Kernel/Misc1a.CPP.Z,282] Raw
+//Dumps a block of mem using [C:/Kernel/Misc1a.CPP.Z,272] Raw
 //screen output for a fixed length
 //of time.
 {
@@ -256,7 +256,7 @@ U0 RawD(I64 mS=100,U8 *add,I64 cnt=0x80)
 }
 
 U0 RawDm(I64 mS=100,U8 *add,I64 cnt=0x80)
-//Dumps a block of mem using [C:/TempleOS/Kernel/Misc1a.CPP.Z,282] Raw
+//Dumps a block of mem using [C:/Kernel/Misc1a.CPP.Z,272] Raw
 //screen output for a fixed length
 //of time.
 {
@@ -607,7 +607,7 @@ U0 Fault3(I64 fault_num,I64 fault_err_code)
   PopFD;
 }
 
-U0 Fault2(I64 fault_num,I64 fault_err_code) //Called from [C:/Kernel/Interrupts.CPP,1] Fault2
+U0 Fault2(I64 fault_num,I64 fault_err_code) //Called from [C:/Kernel/Interrupts.CPP.Z,1] Fault2
 {
 //**Be careful not to swap-out and ruin the saved context**
   Bool was_raw,was_single_user,was_silent;

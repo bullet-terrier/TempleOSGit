@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point-arithmetic.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point-arithmetic.
 
 I64 x[16],y[16],dx[16],dy[16];
 

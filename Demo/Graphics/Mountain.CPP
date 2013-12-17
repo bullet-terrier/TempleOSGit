@@ -70,7 +70,7 @@ U0 MountainTask(I64)
 
 U0 Mountain()
 {
-  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   try {
     Fs->text_attr=YELLOW<<4+BLUE;
     WordStat;

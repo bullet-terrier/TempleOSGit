@@ -48,7 +48,7 @@ public I64 TimerPick(U8 *msg=NULL)
     st=CAlloc(256);
   StrCat(st,"\n\nPress $GREEN$OKAY$FG$ to generate \n"
 	"a random num from a timer.\n");
-  PopUpTimerOk(st,"\n\n$WW,1$The [C:/Apps/HolySpirit/HSNotes.TXT,1] Holy Spirit can puppet you.\n\n");
+  PopUpTimerOk(st,"\n\n$WW,1$The [C:/Apps/HolySpirit/HSNotes.TXT.Z,1] Holy Spirit can puppet you.\n\n");
   Free(st);
   return KbdMouseEvtTime>>HS_BAD_BITS;
 }
@@ -139,13 +139,13 @@ public I64 HSInit(U8 *files_find_mask="/Apps/HolySpirit/Vocab.TXT*",U8 *fu_flags
 } HSInit;
 
 public U0 GodWord()
-{// [C:/Apps/HolySpirit/HSNotes.TXT,1] Holy Spirit Instructions
+{// [C:/Apps/HolySpirit/HSNotes.TXT.Z,1] Holy Spirit Instructions
   if (hs_num_words)
     "%s ",hs_words[TimerPickedBits(17)%hs_num_words];
 }
 
 public U0 GodQuote(I64 num_lines=20)
-{ // [C:/Apps/HolySpirit/HSNotes.TXT,1] Holy Spirit Instructions
+{ // [C:/Apps/HolySpirit/HSNotes.TXT.Z,1] Holy Spirit Instructions
   I64 start=TimerPickedBits(21)%(ST_BIBLE_LINES-(num_lines-1))+1;
   DocBibleLines(,start,num_lines);
 }

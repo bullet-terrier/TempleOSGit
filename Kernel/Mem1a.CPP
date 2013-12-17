@@ -1,7 +1,7 @@
 asm {
 /*
-See [C:/Doc/Acknowledgements.TXT,1].
-See [C:/Doc/Mem.TXT,1]
+See [C:/Doc/Acknowledgements.TXT.Z,1].
+See [C:/Doc/Mem.TXT.Z,1]
 */
 
 USE32
@@ -508,7 +508,7 @@ U0 MemBlks2MegFree(CMemBlk *m,I64 pages2Meg,CBlkPool *bp=NULL)
 CMemBlk *MemBlksAlloc(I64 *_pages512,CHeapCtrl *hc)
 {
 //hc must be locked.  Interrupts should probably be off
-//Currently, this is only called from [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc().
+//Currently, this is only called from [C:/Kernel/Mem1b.CPP.Z,376] MAlloc().
 //
 //Returns NULL if out of memory
   CMemBlk *result;

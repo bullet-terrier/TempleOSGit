@@ -3,7 +3,7 @@
 public U8 *DBlk(I64 blk,Bool write=FALSE)
 {//Dump Disk Blk.
 //If you set write to TRUE, it will be written when you press <ESC>.
-//See [C:/Demo/Dsk/DskRaw.CPP,1].
+//See [C:/Demo/Dsk/DskRaw.CPP.Z,1].
   U8 *buf=MAlloc(BLK_SIZE);
 
   RBlks(Fs->cur_prt,buf,blk,1);
@@ -21,8 +21,8 @@ public U8 *DBlk(I64 blk,Bool write=FALSE)
 public U8 *DCluster(I64 c,Bool write=FALSE,I64 num=0)
 {//Dump Disk Cluster.
 //If you set write to TRUE, it will be written when you press <ESC>.
-//See [C:/Demo/Dsk/DskRaw.CPP,1].
-//Do [C:/TempleOS/Kernel/Dsk/Dsk1b.CPP.Z,235] Dir("*",TRUE); to get cluster numbers of files.
+//See [C:/Demo/Dsk/DskRaw.CPP.Z,1].
+//Do [C:/Kernel/Dsk/Dsk1b.CPP.Z,237] Dir("*",TRUE); to get cluster numbers of files.
   U8 *buf=MAlloc(Fs->cur_prt->spc<<BLK_SIZE_BITS);
   c=ClusterNumNext(Fs->cur_prt,c,num);
   RClusters(Fs->cur_prt,buf,c,1);
@@ -75,7 +75,7 @@ I64 FOCompare(CDirEntry *tempde1,CDirEntry *tempde2)
 }
 
 public CDirEntry **FilesOrder(CDirEntry *tempde,I64 *_cnt=NULL)
-{ //See [C:/Demo/Dsk/OrderedIO.CPP,1].
+{ //See [C:/Demo/Dsk/OrderedIO.CPP.Z,1].
   I64 cnt=FileCnt(tempde),i=0;
   CDirEntry **flst=MAlloc(sizeof(CDirEntry *)*cnt);
   FOFlatten(tempde,flst,&i);

@@ -3,7 +3,7 @@
   access to bytes and words of larger
   integers.
 
-  See [C:/Kernel/Adam1a.HPP,1] U64i union
+  See [C:/Kernel/Adam1a.HPP.Z,1] U64i union
  
   The versions with "i" are internal data types.
   Use "I64" instead of "U64i" and you
@@ -14,7 +14,7 @@
   compiler to not use a reg for the
   variable.**
 
-  See [C:/Demo/Lectures/FixedPoint.CPP,1].
+  See [C:/Demo/Lectures/FixedPoint.CPP.Z,1].
 */
 
 I64 q=0xFEDCBA9876543210,q1;

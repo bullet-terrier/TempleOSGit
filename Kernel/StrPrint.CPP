@@ -253,7 +253,7 @@ U8 *sprint_neg_powers_lets=
 #define SLOP		8
 
 U8 *SPrintJoin(U8 *dst,U8 *src,I64 argc,I64 *argv)
-{ //[C:/Doc/HolyC.TXT,1] Print Codes
+{ //[C:/Doc/HolyC.TXT.Z,1] Print Codes
 /*
 In float formatting, do not exceed 18-digits
 before or after the decimal point
@@ -960,20 +960,20 @@ sp_out_eng: //Engineering notation
 }
 
 U8 *SPrint(U8 *dst,U8 *fmt,...)
-{ //See [MN:SPrintJoin] SPrintJoin()
+{ //See [C:/Kernel/StrPrint.CPP.Z,255] SPrintJoin()
   return SPrintJoin(dst,fmt,argc,argv);
 }
 
 U0 Print(U8 *fmt,...)
-{//[C:/Doc/HolyC.TXT,1] Print Extended Codes
- //See [MN:SPrintJoin] SPrintJoin()
+{//[C:/Doc/HolyC.TXT.Z,1] Print Extended Codes
+ //See [C:/Kernel/StrPrint.CPP.Z,255] SPrintJoin()
   U8 *buf=SPrintJoin(NULL,fmt,argc,argv);
   PutS(buf);
   Free(buf);
 }
 
 U8 *MPrint(U8 *fmt,...)
-{ //See [MN:SPrintJoin] SPrintJoin()
+{ //See [C:/Kernel/StrPrint.CPP.Z,255] SPrintJoin()
   U8 *result,*buf=SPrintJoin(NULL,fmt,argc,argv);
   result=StrNew(buf);
   Free(buf);

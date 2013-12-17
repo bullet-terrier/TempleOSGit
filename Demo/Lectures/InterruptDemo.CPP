@@ -1,5 +1,5 @@
  //This is the software interrupt num
-//we will use.  See [C:/TempleOS/Kernel/Adam1a.HPP.Z,428] Software Int's for
+//we will use.  See [C:/Kernel/Adam1a.HPP.Z,342] Software Int's for
 //picking a num.  Nums are subject to change.
 
 #define I_F_UNARY_MINUS	I_USER

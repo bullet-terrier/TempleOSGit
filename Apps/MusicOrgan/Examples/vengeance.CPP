@@ -32,15 +32,15 @@ U0 Song()
 {
   CTask *task;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
 
   music_tempo=2.5;
   try {
     task=PopUpViewStr(
-	"[C:/TempleOS/Misc/Bible.TXT.Z,90914] Romans,12:19\n"
-	"[C:/TempleOS/Misc/Bible.TXT.Z,76908] Matthew,5:38\n"
+	"[C:/Misc/Bible.TXT.Z,90914] Romans,12:19\n"
+	"[C:/Misc/Bible.TXT.Z,76908] Matthew,5:38\n"
 	);
     TaskWait(task);
     SetWinHorz(Fs->win_left,Fs->win_right,task);

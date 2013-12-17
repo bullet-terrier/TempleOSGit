@@ -1,7 +1,7 @@
 #help_index "Doc"
 #help_file "::/Doc/Doc"
 
-//See [C:/Doc/Doc.TXT,1]
+//See [C:/Doc/Doc.TXT.Z,1]
 extern I64 EdLeftClickLink(CDoc *doc,CDocEntry *doc_e);
 extern I64 TermRightClickLink(CDoc *doc,CDocEntry *doc_e);
 extern U0 DocPutSPartial(CDoc *doc,U8 *st);
@@ -20,7 +20,7 @@ I32 doc_dft_type_flags[DOCT_NUM_TYPES];
 #include "DocPlain"
 
 U0 DocInit()
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,1045] CMD Defines
+{ //[C:/Kernel/Adam1a.HPP.Z,947] CMD Defines
   CLex *lx;
   I64 i;
   CHashGeneric *temph;

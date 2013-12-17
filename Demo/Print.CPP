@@ -1,8 +1,8 @@
-//TempleOS supports standard [MN:Print] Print()
+//TempleOS supports standard [C:/Kernel/StrPrint.CPP.Z,967] Print()
 //codes and extended ones.
-//See [C:/Doc/HolyC.TXT,1] Print Codes.
+//See [C:/Doc/HolyC.TXT.Z,1] Print Codes.
 
-//This file demonstrates [C:/Doc/HolyC.TXT,3] sub_fmt codes.
+//This file demonstrates [C:/Doc/HolyC.TXT.Z,3] sub_fmt codes.
 
 
 

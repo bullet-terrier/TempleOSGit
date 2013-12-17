@@ -3,7 +3,7 @@
 public CTaskSettings *SettingsPush(CTask *task=NULL,I64 flags=0)
 { //This is typically used at the start of an application.
   //It saves many settings so they can be restored
-  //at the end of the application with [C:/TempleOS/Adam/TaskSettings.CPP.Z,92] SettingsPop().
+  //at the end of the application with [C:/Adam/TaskSettings.CPP.Z,92] SettingsPop().
 
   CTaskSettings *tempse;
   CDoc *doc;

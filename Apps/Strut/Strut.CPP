@@ -608,7 +608,7 @@ U0 Strut()
 {
   CCtrl *bt_main_mode=CtrlButtonNew((GR_WIDTH-4*FONT_WIDTH-16)>>1,1*FONT_HEIGHT+4,80,,MMD_NUM_MODES,
 	   Define("ST_MAIN_MODES"),main_mode_colors,&main_mode_button);
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->win_inhibit|=WIF_IP_L|WIF_IP_R|WIG_DBL_CLICK;
   WinMax;
   WinBorder;

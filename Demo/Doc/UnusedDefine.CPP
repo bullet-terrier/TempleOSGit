@@ -1,15 +1,15 @@
 /*
 This scans the sym table and checks
-each [C:/TempleOS/Kernel/Adam1a.HPP.Z,703] HTT_DEFINE_STR entry to see if
+each [C:/Kernel/Adam1a.HPP.Z,611] HTT_DEFINE_STR entry to see if
 it only occurs once in files.
 
 It's a brute force solution, but
 gets the job done... slowly.
 
-[C:/TempleOS/Adam/Grep.CPP.Z,163] Grep() returns a count of matches.
+[C:/Adam/Utils/Grep.CPP.Z,145] Grep() returns a count of matches.
 
-[C:/TempleOS/Adam/Grep.CPP.Z,195] FileOcc() is [C:/TempleOS/Adam/Grep.CPP.Z,163] Grep() with
-output [C:/TempleOS/Kernel/Misc1a.CPP.Z,244] Silent().
+[C:/Adam/Utils/Grep.CPP.Z,181] FileOcc() is [C:/Adam/Utils/Grep.CPP.Z,145] Grep() with
+output [C:/Kernel/Misc1a.CPP.Z,249] Silent().
 
 */
 

@@ -120,7 +120,7 @@ U0 Init()
 
 U0 Hanoi()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Init;
   DocClear;
   Fs->draw_it=&DrawIt;

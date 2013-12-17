@@ -28,7 +28,7 @@ U0 BlkPoolInit(CBlkPool *bp,I64 pages512)
 
 CHeapCtrl *HeapCtrlInit(CHeapCtrl *hc=NULL,CTask *task=NULL,CBlkPool *bp)
 {
-//[C:/Kernel/KStart.CPP,1] Adam Task
+//[C:/Kernel/KStart.CPP.Z,1] Adam Task
   if (!hc)
     hc=ACAlloc(sizeof(CHeapCtrl));
   hc->hc_signature=HEAP_CTRL_SIGNATURE_VAL;

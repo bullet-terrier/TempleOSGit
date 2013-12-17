@@ -106,7 +106,7 @@ U8 msg_buf[136];
 I64 msg_off_timeout; //Jiffies. Goes away after a time.
 
 /*I got tricky by not defining a color
-right away in these [C:/TempleOS/Adam/Gr/Gr.CPP.Z,60] CSprites so they can
+right away in these [C:/Adam/Gr/Gr.CPP.Z,54] CSprites so they can
 work for both players by setting dc->color
 before drawing them.  I actually made these
 graphics by defining a color in the <CTRL-R>
@@ -434,7 +434,7 @@ just compiles with the val at compile
 time, an advantage of just-in-time over
 AOT binaries.  TempleOS has a limited
 stk size, so don't get in the habit.
-[C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc() would probably be the better choice.
+[C:/Kernel/Mem1b.CPP.Z,376] MAlloc() would probably be the better choice.
 */
   MPCtrl1 job[mp_cnt];
   CSrvCmd *cmd[mp_cnt];
@@ -786,7 +786,7 @@ U0 FireShot(Unit *tempu,Unit *target)
       }
     }
   }
-  while (snd_freq) //see [C:/TempleOS/Kernel/Misc1a.CPP.Z,189] Snd()
+  while (snd_freq) //see [C:/Kernel/Misc1a.CPP.Z,194] Snd()
     Yield;
   target_unit=NULL;
 }
@@ -908,7 +908,7 @@ U0 IndirectFireResolve()
     }
     Noise(2000*ANIMATION_DELAY,800,1000);
     Sleep(2000*ANIMATION_DELAY);
-    while (snd_freq) //see [C:/TempleOS/Kernel/Misc1a.CPP.Z,189] Snd()
+    while (snd_freq) //see [C:/Kernel/Misc1a.CPP.Z,194] Snd()
       Yield;
     indirect_explosion=FALSE;
 
@@ -1650,7 +1650,7 @@ U0 ToTheFront()
   I64 result,ch;
   map=DCNew(MAP_WIDTH,MAP_HEIGHT);
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->win_inhibit|=WIF_IP_L|WIF_IP_R|WIG_DBL_CLICK;
 
   MenuPush(

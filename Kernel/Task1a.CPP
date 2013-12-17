@@ -192,7 +192,7 @@ I64 TaskInit(CTask *task,I64 stk_size)
   MemCpy(task->fpu_mmx,&sys_init_fpu_mmx,sizeof(CFPU));
 
   if (task==SYS_ADAM_TASK) {
-// Delayed until heap expanded.  See [C:/Kernel/Mem1a.CPP,1] Expand Heap
+// Delayed until heap expanded.  See [C:/Kernel/Mem1a.CPP.Z,1] Expand Heap
 //    task->hash_table=HashTableNew(ADAM_HASH_SIZE,task);
   } else {
     if (!Gs->num)

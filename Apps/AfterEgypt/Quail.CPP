@@ -28,7 +28,7 @@
 
 
 
-<4> //Pointer to sprite <6> in Camp.CPP.Z file
+/* <4> <4> (image) */ //Pointer to sprite <6> in Camp.CPP.Z file
 
 #define NUM_QUAIL	128
 #define SKY_HEIGHT	(0.6*GR_HEIGHT)
@@ -45,7 +45,7 @@ U0 DrawQuail(CTask *,CDC *dc)
   I64 i;
   U8 *temps;
   F64 tt,t1=tT-t0;
-  SpritePlot3(dc,0,SKY_HEIGHT,0,<4>);
+  SpritePlot3(dc,0,SKY_HEIGHT,0,__BIN_4);
   for (i=0;i<NUM_QUAIL;i++) {
     tt=Tri(t1+q[i].phase,1.0);
     if (q[i].dead) {
@@ -84,7 +84,7 @@ U0 Quail()
     q[i].phase=Rand;
     q[i].dead=FALSE;
   }
-  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=YELLOW<<4+BLUE;
   WinMax;
   DocClear;

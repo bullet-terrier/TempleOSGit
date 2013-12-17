@@ -408,7 +408,7 @@ U0 TimeOut()
   Bool gun_on;
 
   I64 next_update_jiffy;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Preempt(OFF);
   WinBorder;
   WordStat;

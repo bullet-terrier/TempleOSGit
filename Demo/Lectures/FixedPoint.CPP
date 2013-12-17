@@ -13,11 +13,11 @@ It's a little better.
 I often use 64-bit ints with upper 32-bits
 as integer and lower 32-bits as fraction.
 
-See [C:/Demo/SubIntAccess.CPP,1] for how
+See [C:/Demo/SubIntAccess.CPP.Z,1] for how
 to access upper or lower 32-bits.
 
 For a complete lst of nonstandard compiler
-features, see [C:/Doc/HolyC.TXT,1].
+features, see [C:/Doc/HolyC.TXT.Z,1].
 
 */
 
@@ -54,7 +54,7 @@ U0 DoIt2()
   allows a structure to be accessed as a
   whole.  That's why the i variable can
   be accessed normally in addition to
-  structure member access [C:/TempleOS/Kernel/Adam1a.HPP.Z,50] I64.  The actual
+  structure member access [C:/Kernel/Adam1a.HPP.Z,50] I64.  The actual
   intrinsic compiler type is U64i.
 
 public U64i union I64
@@ -73,7 +73,7 @@ public U64i union I64
   penalty.
 
 For a complete lst of nonstandard compiler
-features, see [C:/Doc/HolyC.TXT,1].
+features, see [C:/Doc/HolyC.TXT.Z,1].
 
 */
 
@@ -85,7 +85,7 @@ CPURep;
 Main;
 DoIt2;
 
-//See [C:/Demo/Lectures/FixedPointAdvanced.CPP,1]
+//See [C:/Demo/Lectures/FixedPointAdvanced.CPP.Z,1]
 
 
 /*  Program Output

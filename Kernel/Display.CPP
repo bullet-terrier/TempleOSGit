@@ -4,10 +4,10 @@ U0 RawPutChar(I64 ch)
 before the window mgr is running
 and for the debugger.
 
-See [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,628] GrUpdateForegroundOfText for
+See [C:/Adam/Gr/GrScreen.CPP.Z,677] GrUpdateForegroundOfText for
 the normal screen text output routine.
 
-See also [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,752] GrUpdateScreen().
+See also [C:/Adam/Gr/GrScreen.CPP.Z,824] GrUpdateScreen().
 
 */
   Bool old_preempt=Preempt(OFF);
@@ -178,7 +178,7 @@ Bool AKDInputFilterPutS(U8 *st)
 }
 
 U0 PutKey(I64 ch=0,I64 sc=0)
-{ //See [C:/Doc/KeyBoard.TXT,1] PutKeyHandling
+{ //See [C:/Doc/KeyBoard.TXT.Z,1] PutKeyHandling
   CKeyDev *tempp;
   if (ch||sc) {
     tempp=sys_put_key_root.next;
@@ -205,7 +205,7 @@ U0 PutChars(U64 ch)
 }
 
 U0 PutS(U8 *st)
-{ //Use [MN:Print] Print().  See [C:/Doc/KeyBoard.TXT,1] PutKeyHandling
+{ //Use [C:/Kernel/StrPrint.CPP.Z,967] Print().  See [C:/Doc/KeyBoard.TXT.Z,1] PutKeyHandling
   U8 ch,*ptr;
   Bool cont=TRUE;
   if (!st) return;
@@ -253,7 +253,7 @@ U0 SetCtrlAltLetCB(U8 ch,U0 (*fp_handler)(I64 sc),U8 *desc,Bool in_irq=FALSE)
 
 CKeyDev *KeyDevAdd(Bool (*fp_put_key)(I64 ch,I64 sc),Bool (*fp_puts)(U8 *st),I64 priority,Bool key_descs=FALSE)
 //Places hook in StdOut chain
-{ //See [C:/Doc/KeyBoard.TXT,1] PutKeyHandling
+{ //See [C:/Doc/KeyBoard.TXT.Z,1] PutKeyHandling
   Bool old_preempt=Preempt(OFF);
   CKeyDev *tempp,*tempp1=sys_put_key_root.last;
   tempp=ACAlloc(sizeof(CKeyDev));

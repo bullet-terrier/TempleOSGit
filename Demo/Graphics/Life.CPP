@@ -53,7 +53,7 @@ public U0 Life()
   cur_dc=0;
   restart=FALSE;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   DCFill;
   DocClear;

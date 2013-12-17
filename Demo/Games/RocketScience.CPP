@@ -183,7 +183,7 @@ U0 MyDerivative(CMathODE *,F64,F64 *state,F64 *DstateDt)
   //You might also factor-in fuel slosh in the tank.
 
   //To do this, you would have to set-up state vars for mass and
-  //do A=F/m manually instead of relyin on [C:/TempleOS/Adam/MathODE.CPP.Z,336] ODECallDerivative() to divide
+  //do A=F/m manually instead of relyin on [C:/Adam/MathODE.CPP.Z,336] ODECallDerivative() to divide
   //by mass.
 }
 
@@ -231,7 +231,7 @@ U0 TaskEndCB()
 
 U0 RocketScience()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=YELLOW<<4+BLUE;
   DocCursor;
   WordStat;

@@ -5,7 +5,7 @@ to OBJ files.
 Right-Click MakeFile.CPP.Z and click INCLUDE or
 do the following:
 
-1) Do a [C:/TempleOS/Kernel/Dsk/Dsk1b.CPP.Z,235] Dir() command
+1) Do a [C:/Kernel/Dsk/Dsk1b.CPP.Z,237] Dir() command
 
 2) Right-Click on OD1.PRJ.Z and click AOT COMPILE.
    Right-Click on OD2.PRJ.Z and click AOT COMPILE.
@@ -23,5 +23,5 @@ do the following:
   
 
 
-#include the file [C:/Adam/Utils/BinRep.CPP,1] and
-call [C:/TempleOS/Adam/BinRep.CPP.Z,23] BinRep() to analyze the .BIN.Z files.  
+#include the file [C:/Adam/Utils/BinRep.CPP.Z,1] and
+call [C:/Adam/Utils/BinRep.CPP.Z,23] BinRep() to analyze the .BIN.Z files.  

@@ -44,13 +44,13 @@ U0 DrawIt(CTask *,CDC *dc)
 
 U0 Song()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=CYAN<<4+BLACK;
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
 
   CTask *task=PopUpViewStr(
-      "[C:/TempleOS/Misc/Bible.TXT.Z,79970]\n"
+      "[C:/Misc/Bible.TXT.Z,79970]\n"
       );
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

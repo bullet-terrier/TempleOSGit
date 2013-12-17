@@ -29,7 +29,7 @@ U0 Song()
 {
   I64 i;
   CTask *task;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=LTCYAN<<4+BLACK;
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
@@ -42,13 +42,13 @@ U0 Song()
   }
   try {
     task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,12005] Numbers,6:25\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,46190] Psalms,31:16\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,46190] Psalms,67:1\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,46190] Psalms,80:3\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,46190] Psalms,80:19\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,46190] Psalms,119:135\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,71804] Daniel,9:17\n"
+    "[C:/Misc/Bible.TXT.Z,12005] Numbers,6:25\n"
+    "[C:/Misc/Bible.TXT.Z,46190] Psalms,31:16\n"
+    "[C:/Misc/Bible.TXT.Z,46190] Psalms,67:1\n"
+    "[C:/Misc/Bible.TXT.Z,46190] Psalms,80:3\n"
+    "[C:/Misc/Bible.TXT.Z,46190] Psalms,80:19\n"
+    "[C:/Misc/Bible.TXT.Z,46190] Psalms,119:135\n"
+    "[C:/Misc/Bible.TXT.Z,71804] Daniel,9:17\n"
     );
     TaskWait(task);
     SetWinHorz(Fs->win_left,Fs->win_right,task);

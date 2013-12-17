@@ -56,7 +56,7 @@ U8 *ScaleIndent(U8 *src,F64 indent_scale_factor)
 }
 
 U8 *MStrUtil(U8 *src,I64 flags,F64 indent_scale_factor=0)
-//Return a [C:/TempleOS/Kernel/Memory.CPP.Z,956] MAlloc()ed result from StrUtil
+//Return a [C:/Kernel/Mem1b.CPP.Z,376] MAlloc()ed result from StrUtil
 {
   U8 *dst=StrNew(src),*dst2,*temp;
   StrUtil(dst,flags);

@@ -4,8 +4,8 @@ main reason to do AOT programs is to make closed-source applications.  Why
 not 
 do it like the programs in /Apps, instead?
 
-See [C:/Doc/ImportExports.TXT,1] Scoping and Linkages for details on extern,
-import, _extern, _import, etc.
+See [C:/Doc/ImportExports.TXT.Z,1] Scoping and Linkages for details on
+extern, import, _extern, _import, etc.
 
 Demo1 shows a multiple file AOT module.
 

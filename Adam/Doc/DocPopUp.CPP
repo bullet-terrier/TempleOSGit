@@ -863,7 +863,7 @@ I64 DitherColorDo(U8 *header=NULL)
   "%s",header;
   DocRecalc(DocPut);
   FramePtrAdd("DitherDoFrame",(DocPut->max_y+1)*FONT_HEIGHT);
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
   do {
     msg_code=GetMsg(&p1,&p2,1<<MSG_IP_L_DOWN|1<<MSG_KEY_DOWN);

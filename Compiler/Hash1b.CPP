@@ -113,7 +113,7 @@ I64 HashEntrySize2(CHashSrcSym *temph)
     else if (temph->type & HTT_FUN) {
       result+=MemberLstSize(temph);
       if (dbg=temph->debug)
-	//This should be [C:/TempleOS/Kernel/Memory.CPP.Z,951] MSize() but it would crash on AOT .BIN.Z file funs.
+	//This should be [C:/Kernel/Mem1b.CPP.Z,371] MSize() but it would crash on AOT .BIN.Z file funs.
 	result+=dbg->body[dbg->max_line-dbg->min_line+1]-temph(CHashFun *)->executable_addr;
     } else if (temph->type&HTT_DEFINE_STR)
       result+=MSize2(temph(CHashDefineStr *)->data);

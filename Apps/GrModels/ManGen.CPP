@@ -187,7 +187,7 @@ U0 AddBox(ManDefineStruct *md,I64 c,I64 x1,I64 y1,I64 z1,F64 w,F64 h,F64 d,F64 h
 
 U8 *Man2CSprite()
 {
-//See [C:/Adam/Gr/GrSpritePlot.CPP,1] ::/Adam/Gr/GrSpritePlot.CPP for how CSprite are stored.
+//See [C:/Adam/Gr/GrSpritePlot.CPP.Z,1] ::/Adam/Gr/GrSpritePlot.CPP for how CSprite are stored.
   U8 *result=MAlloc(sizeof(U8)+2*sizeof(I32)+
       m->vertex_cnt*sizeof(CD3I32)+m->tri_cnt*sizeof(CMeshTri)+sprite_base_size[GRST_END]),
       *dst=result;

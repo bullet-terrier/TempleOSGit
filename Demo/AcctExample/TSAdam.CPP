@@ -241,7 +241,7 @@ if (ts_has_cdrom_drv)
 //STD_DISTRO_CDROM_CFG
 `F("STD_DISTRO_CDROM_CFG");View;`
 
-//[C:/Accts/Install/DoItOnce.CPP,1] Install Acct
+//[C:/Accts/Install/DoItOnce.CPP.Z,1] Install Acct
 
 
 U0 CtrlAltR(I64)

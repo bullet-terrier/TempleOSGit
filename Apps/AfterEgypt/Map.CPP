@@ -29,7 +29,7 @@ U0 AEMap()
       x_scale=ToF64(cx)/c_min,y_scale=ToF64(cy)/c_min;
   CDC *dc=DCAlias;
 
-  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=YELLOW<<4+BLUE;
   DocClear;
   "$BG,YELLOW$"; NewLine(TEXT_ROWS);

@@ -11,7 +11,7 @@ Constant expressions are simplified.
 Eliminated opcodes are set to NOP.
 Types are determined by reconstructing an
 expression tree for operators
-[C:/TempleOS/Kernel/Adam1a.HPP.Z,1677] CIntermediateCode.[C:/TempleOS/Kernel/Adam1a.HPP.Z,1671] CICTreeLinks.
+[C:/Kernel/Adam1a.HPP.Z,1561] CIntermediateCode.[C:/Kernel/Adam1a.HPP.Z,1546] CICTreeLinks.
 
 Pointer arithmetic size is set, once
 the type is determined.

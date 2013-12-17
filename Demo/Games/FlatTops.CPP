@@ -698,7 +698,7 @@ U0 FlatTops()
 {
   I64 p1,p2;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=BLUE<<4+WHITE;
   PopUpOk("$GREEN${Left-Mouse}$FG$\t\tChange Course\n"
 	  "$GREEN${Right-Mouse}$FG$\t\tLaunch Squadron\n"

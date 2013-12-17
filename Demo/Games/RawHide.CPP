@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 AcctRegSetDftEntry("TempleOS/RawHide","F64 best_score=9999;\n");
 AcctRegExeBranch("TempleOS/RawHide");
@@ -464,7 +464,7 @@ U0 CleanUp()
 U0 RawHide()
 {
   I64 msg_code,p1,p2;
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   PopUpOk(
 	"Coral the cattle into an area\n"
 	"the size of a screen.\n\n"

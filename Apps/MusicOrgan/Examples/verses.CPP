@@ -40,7 +40,7 @@ U0 Song()
     "Talk to God as an offering, then run AfterEgypt
 `Cd("::/Apps/AfterEgypt");;#include "Run"\n`
  if you "
-    "want God to talk some more.  The [C:/Apps/HolySpirit/HSNotes.TXT,1] Holy Spirit can "
+    "want God to talk some more.  The [C:/Apps/HolySpirit/HSNotes.TXT.Z,1] Holy Spirit can "
     "puppet you.\n");
   TaskWait(task);
   SetWinHorz(Fs->win_left,Fs->win_right,task);

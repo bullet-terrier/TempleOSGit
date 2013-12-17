@@ -162,7 +162,7 @@ U0 RainDrops()
   "  OpenLower(,'2');"
       "}"
       );
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   cur_dc=DCNew(GR_WIDTH,GR_HEIGHT);
   sc_1=A2ScanCode('1');

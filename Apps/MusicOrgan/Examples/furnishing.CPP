@@ -50,7 +50,7 @@ U0 Song()
   for (i=0;i<BLADES;i++)
     blades_theta[i]=2*Rand*pi;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
   Fs->task_end_cb=&SndTaskEndCB;
   MusicSettingsRst;

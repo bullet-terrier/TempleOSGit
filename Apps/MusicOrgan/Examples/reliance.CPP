@@ -5,11 +5,11 @@ U0 Song()
   Fs->task_end_cb=&SndTaskEndCB;
   music_tempo=2.5;
   task=PopUpViewStr(
-    "$WW+H,1$[C:/TempleOS/Misc/Bible.TXT.Z,76908]\n\n"
+    "$WW+H,1$[C:/Misc/Bible.TXT.Z,76908]\n\n"
     "I find two things interesting.  Jesus asks for "
     "the bare minimum... can't ask for less than daily bread.  "
     "Also, He actually demands it.  I find that funny.\n\n"
-    "[C:/TempleOS/Misc/Bible.TXT.Z,76908]\n\n"
+    "[C:/Misc/Bible.TXT.Z,76908]\n\n"
     "I have a funny story.  I used to shoot birds with a BB-gun.  "
     "That passage didn't snd so comforting!!  How many sparrows "
     "am I worth?\n"

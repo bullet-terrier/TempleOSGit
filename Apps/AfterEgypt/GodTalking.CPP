@@ -37,7 +37,7 @@ U0 UpTheMountain()
   Mountain;
   Horeb;
 
-  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=YELLOW<<4+BLUE;
   Fs->draw_it=&DrawGodTalking;
   "$BG,YELLOW$$WW,1$$CM,0,30$God Says...$RED$\n";

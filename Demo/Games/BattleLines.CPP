@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 
 
@@ -306,7 +306,7 @@ U0 BattleLines()
   F64 old_mzz_scale=mzz_scale;
   CMenuEntry *tempse;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=GREEN<<4+WHITE;
   Preempt(OFF);
 

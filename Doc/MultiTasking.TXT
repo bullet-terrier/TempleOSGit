@@ -2,19 +2,17 @@
 
 TempleOS is a preemptive multitasking operating system.  However, you can 
 turn-off preemption on a task by task basis and the task will not yield ctrl 
-unless it volunteers with [C:/TempleOS/Kernel/Scheduler.CPP.Z,369] Yield(),
-[C:/TempleOS/Kernel/Misc1a.CPP.Z,178] Sleep() or a call to I/O which yields
-ctrl. 
- Use the [C:/TempleOS/Kernel/Adam1b.HPP.Z,94] Preempt() cmd to turn on or off
+unless it volunteers with [C:/Kernel/Scheduler.CPP.Z,362] Yield(),
+[C:/Kernel/Misc1a.CPP.Z,183] Sleep() or a call to I/O which yields ctrl. 
+ Use the [C:/Kernel/Adam1b.HPP.Z,94] Preempt() cmd to turn on or off
 preemption.  This is useful when you 
 have multiple tasks modifying data structures simultaneously.  Interrupts 
 still occur when preemption is off.   
 
 **Preemption is turned-off by default when a task is
-[C:/TempleOS/Kernel/Task1a.CPP.Z,224] Spawn()ed.**
+[C:/Kernel/Task1a.CPP.Z,230] Spawn()ed.**
 
-The time-slice rate is set by [C:/TempleOS/Kernel/Adam1a.HPP.Z,612]
-JIFFY_FREQ.
+The time-slice rate is set by [C:/Kernel/Adam1a.HPP.Z,526] JIFFY_FREQ.
 
 TempleOS does not remove tasks from "the queue" when they are waiting.  They 
 swap-in, check for whatever condition they are waiting for and swap-out. 
@@ -23,7 +21,7 @@ keeps it simple, but would cause problems if too many tasks existed.
 TempleOS 
 is intended for non-server home computers with a maximum of around ten, or
 so, 
-tasks.  See [C:/Kernel/Scheduler.CPP,1] Scheduler.
+tasks.  See [C:/Kernel/Scheduler.CPP.Z,1] Scheduler.
 
 TempleOS has no task priority scheme.
 
@@ -36,13 +34,13 @@ During that time, other tasks can do CPU-only operations, however.
 
 You can turn-on and off interrupts, in your user programs.  This is part of 
 the mission statement, giving complete freedom to programmers  Use
-[C:/TempleOS/Kernel/Adam1b.HPP.Z,141] Cli() or 
-[C:/TempleOS/Kernel/Adam1b.HPP.Z,142] Sti().  TempleOS currently doesn't use
-interrupt besides the timer and 
+[C:/Kernel/Adam1b.HPP.Z,141] Cli() or 
+[C:/Kernel/Adam1b.HPP.Z,142] Sti().  TempleOS currently doesn't use interrupt
+besides the timer and 
 keyboard interrupt.  Since the interrupt flag is part of your task context
 and 
 since you are voluntarily swapped-out if you call
-[C:/TempleOS/Kernel/KbdMouse/Message.CPP.Z,180] GetChar() or whatever, you 
+[C:/Kernel/KbdMouse/Message.CPP.Z,175] GetChar() or whatever, you 
 won't even notice if you turn-off interrupts at the cmd prompt because you
 are 
 being swapped-out and interrupts are being turned-on by the next task.  
@@ -58,4 +56,4 @@ not
 break-up requests, if you are curious why one task must wait until another 
 finishes an operation.
 
-See [C:/Demo/Lectures/Spinning.CPP,1].
+See [C:/Demo/Lectures/Spinning.CPP.Z,1].

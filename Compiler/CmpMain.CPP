@@ -364,12 +364,12 @@ I64 Cmp(U8 *filename,U8 *map_name=NULL,U8 *out_name=NULL,U8 mapfile_drv=0)
   if (tempx) {
     ex_U8s=tempx->ex_U8s;
     ptr=patch_table;
-    //See [C:/TempleOS/Kernel/Adam1a.HPP.Z,388] CBinFilePatchTableWithoutOrg
-    *ptr++=EIT_MODULE_ALIGNMENT; //See [C:/TempleOS/Kernel/Hash1a.CPP.Z,733] Load() and [C:/TempleOS/Adam/BinRep.CPP.Z,23] BinRep()
+    //See [C:/Kernel/Adam1a.HPP.Z,302] CBinFilePatchTableWithoutOrg
+    *ptr++=EIT_MODULE_ALIGNMENT; //See [C:/Kernel/Hash1b.CPP.Z,359] Load() and [C:/Adam/Utils/BinRep.CPP.Z,23] BinRep()
     *ptr(U32 *)++=tempx->max_align;
     *ptr++=0;
     if (tempx->module_org!=INVALID_PTR) {
-      //See [C:/TempleOS/Kernel/Adam1a.HPP.Z,399] CBinFilePatchTableWithOrg
+      //See [C:/Kernel/Adam1a.HPP.Z,313] CBinFilePatchTableWithOrg
       *ptr++=EIT_MODULE_ORG;
       *ptr(U32 *)++=tempx->module_org;
       *ptr++=0;
@@ -469,7 +469,7 @@ I64 Cmp(U8 *filename,U8 *map_name=NULL,U8 *out_name=NULL,U8 mapfile_drv=0)
     *ptr++=EIT_END;
     MemSet(ptr,0,16);
     i=ptr-patch_table;
-    //[C:/Kernel/KStart.CPP,1] TEMPLEOS_XSUM needs 16 ALIGN
+    //[C:/Kernel/KStart.CPP.Z,1] TEMPLEOS_XSUM needs 16 ALIGN
     size=(sizeof(CBinFile)+ex_U8s+i+15)&-16;
     bfh=MAlloc(size);
     bfh->jmp=0xEB+256*(sizeof(CBinFile)-2);

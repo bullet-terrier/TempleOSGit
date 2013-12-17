@@ -1,7 +1,7 @@
 /*
-This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point arithmetic
+This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point arithmetic
 because it used to be faster than floating
-point.	See [C:/Demo/Lectures/FixedPoint.CPP,1].
+point.	See [C:/Demo/Lectures/FixedPoint.CPP.Z,1].
 
 The decimal place is between
 bits 31 and 32.
@@ -154,7 +154,7 @@ U0 Init()
 
 U0 Collision()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Init;
   Fs->animate_task=Spawn(&AnimateTask,NULL,"Animate",,Fs);
   DocCursor;

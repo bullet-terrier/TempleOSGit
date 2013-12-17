@@ -113,7 +113,7 @@ U0 MassSpringDemo()
 	  "Right-Click and drag to\n"
 	  "connect with spring.\n\n"
 	  "Springs are 100 pixels long.\n");
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
 
 //This Preempt() eliminates a lot of hassles.

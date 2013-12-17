@@ -117,7 +117,7 @@ U0 SongTask(I64)
 
 U0 WaterFowl()
 {
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=LTGRAY<<4+BLACK;
   WinMax;
   Init;

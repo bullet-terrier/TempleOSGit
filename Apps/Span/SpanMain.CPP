@@ -280,7 +280,7 @@ U0 Span()
   U8 *src;
   CDC *dc=DCAlias;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=BROWN<<4+BLACK;
   WinMax;
   Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);

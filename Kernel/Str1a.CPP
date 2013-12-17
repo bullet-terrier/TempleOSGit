@@ -352,7 +352,7 @@ _extern _STRCAT U0 StrCat(U8 *dst,U8 *src);
 
 /*
 These bitmaps go to 0-511 so that
-[C:/TempleOS/Compiler/Lex.CPP.Z,789] Lex() can use them with [C:/TempleOS/Kernel/Adam1a.HPP.Z,2007] Token Codes.
+[C:/Compiler/Lex.CPP.Z,760] Lex() can use them with [C:/Kernel/Adam1a.HPP.Z,1884] Token Codes.
 */
 U32 chars_bitmap_alpha[16]=
 {0x0000000,0x00000000,0x87FFFFFF,0x07FFFFFE,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,0xFFFFFFFF,
@@ -528,7 +528,7 @@ I64 Spaces2Tabs(U8 *dst,U8 *src)
 }
 
 U8 *StrUtil(U8 *_src,I64 flags)
-{//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3499] flags
+{//See [C:/Kernel/Adam1a.HPP.Z,3353] flags
   U8 *src=_src,*dst=_src;
   I64 ch;
 

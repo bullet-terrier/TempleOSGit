@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 #define CO_PERSON	1
 #define CO_TENT	2
@@ -314,7 +314,7 @@ U0 Camp(I64 num_people=100)
 
   DocClear;
 
-  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush(Fs,TSF_SAME_SONG); //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=LTGREEN<<4+WHITE; //bk/fg
   try {
     WordStat;

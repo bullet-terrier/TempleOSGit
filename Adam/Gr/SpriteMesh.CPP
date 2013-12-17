@@ -386,7 +386,7 @@ U0 MPDrawIt(CGrMFrame *e) //Multiprocessing draw it, called by each core.
   CGrMTri *tempt=e->tri_root.next;
   I64 i,*old_r=dc->r;
 
-//[C:/TempleOS/Adam/Gr/GrDC.CPP.Z,23] DCAlias() allocates a new identity rotation matrix.
+//[C:/Adam/Gr/GrDC.CPP.Z,23] DCAlias() allocates a new identity rotation matrix.
 //We want e->dc's rotation matrix.
   dc->r=e->dc->r;
 
@@ -442,7 +442,7 @@ U0 MPDrawIt(CGrMFrame *e) //Multiprocessing draw it, called by each core.
   }
   dc->r=old_r;
 
-//e->dc's depth buf was copied but we don't want it freed during [C:/TempleOS/Adam/Gr/GrDC.CPP.Z,76] DCDel().
+//e->dc's depth buf was copied but we don't want it freed during [C:/Adam/Gr/GrDC.CPP.Z,63] DCDel().
   dc->depth_buf=NULL;
 
   DCDel(dc);
@@ -485,7 +485,7 @@ I64 *GrMSetW2S(CGrMFrame *e,CTask *task)
   e->w2s=GrMW2S(e,task);
   Free(e->s2w);
   e->s2w=GrMS2W(e,task);
-  return MAllocIdentical(e->w2s,task); //returned matrix is assigned to dc->r and will be freed by [C:/TempleOS/Adam/Gr/GrDC.CPP.Z,76] DCDel().
+  return MAllocIdentical(e->w2s,task); //returned matrix is assigned to dc->r and will be freed by [C:/Adam/Gr/GrDC.CPP.Z,63] DCDel().
 }
 
 U0 GrMCursorW(CGrMFrame *e,CTask *task,I64 *_x,I64 *_y,I64 *_z)
@@ -887,7 +887,7 @@ If root points to a mesh, it will load it.
 Returns a newly malloced mesh or NULL.
 
 
-See [C:/Demo/Graphics/SpritePlot3D.CPP,1].
+See [C:/Demo/Graphics/SpritePlot3D.CPP.Z,1].
 
 
 */
@@ -965,7 +965,7 @@ See [C:/Demo/Graphics/SpritePlot3D.CPP,1].
   "  FlipTri(,'F');"
   "}");
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WordStat;
   Preempt(OFF); //We don't really want window update while modifying links
   AcctOneTimePopUp(ARf_MESH_ED,

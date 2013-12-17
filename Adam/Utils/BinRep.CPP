@@ -23,7 +23,7 @@ DefineLstLoad("ST_BIN_FILE_TYPES",
 public Bool BinRep(U8 *filename)
 {//This reports imports, exports, etc
  //for a .BI* file.
-//See [C:/Compiler/CmpMain.CPP,1] Loader Patch Table Generation and [C:/TempleOS/Kernel/Hash1a.CPP.Z,733] Load().
+//See [C:/Compiler/CmpMain.CPP.Z,1] Loader Patch Table Generation and [C:/Kernel/Hash1b.CPP.Z,359] Load().
   U8 *fbuf,*ptr,etype,*sptr,*absname;
   I64 i,j,size;
   CBinFile *bfh,*bfh2;

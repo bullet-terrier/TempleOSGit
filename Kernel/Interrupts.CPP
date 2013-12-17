@@ -90,7 +90,7 @@ SYS_IRQ_FAULT::
 	PUSH	U64 CTask.fault_err_code[RSI]
 	PUSH	U64 CTask.fault_num[RSI]
 	MOV	RSI,CTask.rsi[RSI]
-	CALL	&Fault2 //See [C:/Kernel/Dbg1a.CPP,1] Fault2
+	CALL	&Fault2 //See [C:/Kernel/Dbg1a.CPP.Z,1] Fault2
 	JMP	I32 RESTORE_FS_TASK_WITH_KEY_CHECK
 
 SYS_FAULT_ERR_CODE_BITMAP::
@@ -111,9 +111,9 @@ U8 *IntEntryGet(I64 irq)
 
 U8 *IntEntrySet(I64 irq,U0 (*fp_new_handler)(),I64 type=IDTET_IRQ,I64 dpl=0)
 {
-//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,414] IDTET_IRQ
-//See [C:/Demo/Lectures/InterruptDemo.CPP,1]
-//See [C:/Demo/MultiCore/Interrupts.CPP,1]
+//See [C:/Kernel/Adam1a.HPP.Z,328] IDTET_IRQ
+//See [C:/Demo/Lectures/InterruptDemo.CPP.Z,1]
+//See [C:/Demo/MultiCore/Interrupts.CPP.Z,1]
   I64 fp=fp_new_handler;
   U8 *result,*dst;
   result=IntEntryGet(irq);
@@ -170,7 +170,7 @@ U0 IntInit1()
 { //Interrupt descriptor table part1
   I64 i,temp_ptr[2];
   U32 *ptr;
-  if (!Gs->num) { //Gs cur [C:/TempleOS/Kernel/Adam1a.HPP.Z,3618] CCPU struct
+  if (!Gs->num) { //Gs cur [C:/Kernel/Adam1a.HPP.Z,3470] CCPU struct
     sys_idt=CAlloc(16*256);
     for (i=0;i<256;i++)
       IntEntrySet(i,&IntNop);
@@ -194,7 +194,7 @@ U0 IntInit2()
 In theory, we use the PIC mask reg to insure we don't get
 anything but keyboard, mouse and timer IRQs.  In practice, I've
 gotten IRQ 0x27, perhaps because I didn't initialize the APIC.
-I go ahead and ACK PIC in [C:/TempleOS/Kernel/Interrupts.CPP.Z,154] IntNop().
+I go ahead and ACK PIC in [C:/Kernel/Interrupts.CPP.Z,148] IntNop().
 I have no idea why I got a IRQ 0x27.
 */
   IntEntrySet(I_NMI,_SYS_HLT);

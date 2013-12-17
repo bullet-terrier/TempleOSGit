@@ -3,7 +3,7 @@ class FDStruct
 //Use <CTRL-L> and select "Data" to generate the fmtstrs
 
 //The number is the field from after the ':' to the end.
-//  See [C:/Adam/Doc/DocPlain.CPP,1] Data Tag Width.
+//  See [C:/Adam/Doc/DocPlain.CPP.Z,1] Data Tag Width.
 
   F64 num1	fmtstr "$DA-T,32,\"F64   1:%12.8f\"$\n";
   F64 num2	fmtstr "$DA-T,32,\"F64   2:%12e\"$\n";
@@ -38,7 +38,7 @@ U0 FormDemo()
   "\n\nClassRep Example\n";
   ClassRep(&fds);
 
-//See also [C:/TempleOS/Adam/Dbg2a.CPP.Z,160] ClassRepD().
+//See also [C:/Adam/Dbg2a.CPP.Z,160] ClassRepD().
 }
 
 FormDemo;

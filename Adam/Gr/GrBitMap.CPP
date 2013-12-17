@@ -819,7 +819,7 @@ public I64 GrPutChar(CDC *dc,I64 x,I64 y,U8 ch)
 }
 
 I64 GrPutS(CDC *dc,I64 x,I64 y,U8 *_s)
-{ //Use [MN:GrPrint] GrPrint()
+{ //Use [C:/Adam/Gr/GrBitMap.CPP.Z,864] GrPrint()
   I64 x0,ch,result;
   if (!_s) return 0;
   x0=x;
@@ -839,7 +839,7 @@ I64 GrPutS(CDC *dc,I64 x,I64 y,U8 *_s)
 }
 
 I64 GrVPutS(CDC *dc,I64 x,I64 y,U8 *_s)
-{ //Vertical Text.  Use [MN:GrVPrint] GrVPrint()
+{ //Vertical Text.  Use [C:/Adam/Gr/GrBitMap.CPP.Z,873] GrVPrint()
   I64 y0,result;
   U8 buf[2];
   if (!_s) return 0;
@@ -1588,7 +1588,7 @@ gr_done:
 public I64 GrHLine(CDC *dc,I64 x1,I64 x2,I64 y,I64 z1=0,I64 z2=0)
 {  //No transformation or pen width
 //returns cnt of pixels changed
-  //This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+  //This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 dx,dz,z,result=0,i,j,d,dist;
   U8 *dst;
   CColorROPU32 c,c2,color=dc->color,bkcolor=dc->bkcolor,dither_colors;

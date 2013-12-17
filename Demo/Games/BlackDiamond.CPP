@@ -102,7 +102,7 @@ U0 BlackDiamond()
   "  Right(,,SC_CURSOR_RIGHT);"
       "}"
       );
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   DocCursor;
   DocClear;

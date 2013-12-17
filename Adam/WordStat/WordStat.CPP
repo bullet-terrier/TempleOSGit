@@ -1,7 +1,7 @@
 #help_index "WordStat"
 #help_file "::/Doc/WordStat"
 
-//See [C:/Doc/WordStat.TXT,1]
+//See [C:/Doc/WordStat.TXT.Z,1]
 
 class CWSSub
 {

@@ -45,6 +45,6 @@ Cartesian;
 
 /*
 For better performance, compile the expression entered by the user one time 
-with [MN:LexExpression2Bin] LexExpression2Bin() and use
-[C:/TempleOS/Kernel/Adam1b.HPP.Z,287] Call(). See [C:/Demo/CompileDemo.CPP,1].
+with [C:/Compiler/ExpParser.CPP.Z,1170] LexExpression2Bin() and use
+[C:/Kernel/Adam1b.HPP.Z,285] Call(). See [C:/Demo/CompileDemo.CPP.Z,1].
 */

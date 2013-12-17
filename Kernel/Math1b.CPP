@@ -70,7 +70,7 @@ I64 CeilI64(I64 num,I64 to)
   }
 }
 
-//See [C:/Doc/Acknowledgements.TXT,1].
+//See [C:/Doc/Acknowledgements.TXT.Z,1].
 U16 RandU16()
 {
   sys_rnd_seed.i32[0]=(1664525*sys_rnd_seed.i32[0]+1013904223)^GetTSC>>4;

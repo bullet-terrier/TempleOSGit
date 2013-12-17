@@ -1,5 +1,5 @@
 //The ball and men were generated
-//with [C:/Apps/GrModels/Run.CPP,1].
+//with [C:/Apps/GrModels/Run.CPP.Z,1].
 //They were cut-and-pasted here.
 
 
@@ -305,7 +305,7 @@ have to make all my men taller.
 This is a little simpler, and faster,
 but adds lots of factor 2 vals.
 
-I also didn't use the [C:/TempleOS/Kernel/Adam1a.HPP.Z,336] CMathODE feat,
+I also didn't use the [C:/Kernel/Adam1a.HPP.Z,250] CMathODE feat,
 just to be different.
 */
 
@@ -374,7 +374,7 @@ U0 DrawIt(CTask *task,CDC *dc)
       }
       if (tt>o->next_t0) {
 	if (o->has_ball && (ball->z+ball->radius*2>=o->z+HAND_Z_OFFSET || Abs(ball->DzDt)<30)) {
-	//This is an approximation.  My instinct tells me the viscosity term needs an [C:/TempleOS/Kernel/Adam1b.HPP.Z,247] Exp().
+	//This is an approximation.  My instinct tells me the viscosity term needs an [C:/Kernel/Adam1b.HPP.Z,245] Exp().
 	//However, we should be syncronized to img frames, so we don't have to be perfect.
 	  d_down=1.0;
 	  d_up	=1.0/COLLISION_DAMP; //Up bounce takes higher percentage because speed lost in collision.
@@ -667,7 +667,7 @@ U0 KeepAway()
     "$RED$Pass or hand-off to score points.$FG$\n\n"
     "Left-Click to pass.\n"
     "Right-Click to jump.\n");
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=BLACK+YELLOW<<4;
   WinMax;
   WinBorder;

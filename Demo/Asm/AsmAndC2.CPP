@@ -12,11 +12,11 @@ I64 glbl_hz=400,glbl_hz_step=100,glbl_hz_base=100;
 
 asm {
 //Opcodes are slightly different to make writing my x86_64 assembler easier.
-//See [C:/Compiler/OpCodes.TXT,1].
+//See [C:/Compiler/OpCodes.TXT.Z,1].
 USE64	//Defaults to 64, but this is a good habit.
 
 
-//See [C:/Kernel/Str1a.CPP,1] ::/Kernel/Str1a.CPP and [C:/Kernel/Utils1a.CPP,1].
+//See [C:/Kernel/Str1a.CPP.Z,1] ::/Kernel/Str1a.CPP and [C:/Kernel/Utils1a.CPP.Z,1].
 //These are asm syms and must be imported to work properly.
 //When in doubt, import syms.
 	IMPORT	PUT_STR,PUT_CHARS,PUT_HEX_U64;
@@ -27,7 +27,7 @@ _BEEPS2::
 //You can clobber RAX,RBX,RCX,RDX,R8,R9 in a pure asm subroutine.
 	PUSH	RBP
 	MOV	RBP,RSP
-	MOV	RCX,U64 SF_ARG1[RBP] //[C:/Kernel/Adam1a.HPP,1] SF_ARG1
+	MOV	RCX,U64 SF_ARG1[RBP] //[C:/Kernel/Adam1a.HPP.Z,1] SF_ARG1
 
 	PUSH	U64 [&sys_jiffies]
 
@@ -39,7 +39,7 @@ _BEEPS2::
 	POP	RCX
 	LOOP	@@05
 
-	PUSH	RSI	//See [MN:REG_VARS_MASK] REG_VARS_MASK & [MN:REG_NON_PTR_MASK] REG_NON_PTR_MASK
+	PUSH	RSI	//See [C:/Kernel/Adam1a.HPP.Z,3533] REG_VARS_MASK & [C:/Kernel/Adam1a.HPP.Z,3534] REG_NON_PTR_MASK
 	MOV	RSI,JIFFIES_MSG
 	CALL	PUT_STR
 	POP	RSI

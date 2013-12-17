@@ -598,7 +598,7 @@ U0 CmpFillTables()
     if (st[4]=='N')
       Bts(ic_bitmap_not_const,i);
     st+=StrLen(st)+1;
-    //See [C:/Compiler/ICLCC.CPP,1] ICPut.
+    //See [C:/Compiler/ICLCC.CPP.Z,1] ICPut.
   }
 
   to_reg_vars_map=CAlloc(NUM_REGS*sizeof(U8));

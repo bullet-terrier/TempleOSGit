@@ -67,15 +67,15 @@ U0 SysGlblsInit()
 
 U0 SysGrInit()
 {
-//See [D:/Kernel/KStart.CPP,2] SYS_BIOS_GR_MODE
-//See [C:/Adam/Gr/GrCfg.CPP,1]
+//See [D:/Kernel/KStart.CPP.Z,2] SYS_BIOS_GR_MODE
+//See [C:/Adam/Gr/GrCfg.CPP.Z,1]
   gr_font=sys_font_8x8;
   if (bios_gr_mode==0x12 || bios_gr_mode==0x6A) {
     text_mode=FALSE;
 
 /*
 Mode must be multiple of 32 wide
-[C:/TempleOS/Adam/Gr/GrAsm.CPP.Z,760] GrUpdateLine32().
+[C:/Adam/Gr/GrAsm.CPP.Z,771] GrUpdateLine32().
 */
 
     if (bios_gr_mode==0x6A) {
@@ -152,7 +152,7 @@ U0 Reboot()
 }
 
 U0 KernelMain()
-{ //Continued from [C:/Kernel/KStart.CPP,1] Kernel
+{ //Continued from [C:/Kernel/KStart.CPP.Z,1] Kernel
   adam_task=Fs;
   HeapsInit;
   LBts(&sys_run_level,RLf_FULL_HEAP);
@@ -173,8 +173,8 @@ U0 KernelMain()
   MPInit;
   IntInit1;
 
-//Before this point use [C:/TempleOS/Kernel/Misc1a.CPP.Z,189] Snd() and [C:/TempleOS/Kernel/Misc1a.CPP.Z,160] BusyWait()
-//to debug.  After this point, use [MN:RawPrint] RawPrint()
+//Before this point use [C:/Kernel/Misc1a.CPP.Z,194] Snd() and [C:/Kernel/Misc1a.CPP.Z,165] BusyWait()
+//to debug.  After this point, use [C:/Kernel/Dbg1a.CPP.Z,222] RawPrint()
   LBts(&sys_run_level,RLf_RAW);
   if (BIOSTotalMem<250*0x100000)
     Dbg("Requires 256 Meg of RAM Memory");
@@ -225,7 +225,7 @@ U0 KernelMain()
   time_stamp_freq_initial=TimeStampFreqCal;
   Cd("/Kernel");
   try
-    ExeFile("Adam1"); //Continues [D:/Kernel/Adam1.CPP,1] /Kernel/Adam1.CPP
+    ExeFile("Adam1"); //Continues [D:/Kernel/Adam1.CPP.Z,1] /Kernel/Adam1.CPP
   catch {
     Raw(ON);
     PutExcept;

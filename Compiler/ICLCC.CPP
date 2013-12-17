@@ -41,7 +41,7 @@ Bool Echo(Bool val) {
 
 U0 ImportHashTable(CHashTable *src)
 { //called from #exe {} in AOT modules
-  // See [C:/Kernel/AOT.HPP,1].
+  // See [C:/Kernel/AOT.HPP.Z,1].
   CLex *lx=Fs->last_lex;
   if (lx==&Fs->next_lex)
     PrintErr("Not Compiling\n");

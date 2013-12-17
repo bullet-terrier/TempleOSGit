@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 //This program can be AOT compiled to a .BIN.Z or JIT.
 //If AOT compiling, override the filename extention warning.
@@ -928,7 +928,7 @@ U0 EagleDive(I64 _mp_cnt=MP_MAX_PROCESSORS)
   I64 ch,sc;
   F64 pp,tt1,tt2;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   //We really can't afford to run at 60Hz.	This is how often VGA
   //memory is updated, not related to actual hardware refresh rates.
 

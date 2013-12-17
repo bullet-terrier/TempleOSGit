@@ -154,7 +154,7 @@ U0 RedSeaFSFmt(U8 drv_let,Bool quick=TRUE)
 }
 
 Bool RedSeaFSFileFind(CPrt *p,I64 cur_dir_cluster,U8 *name,CDirEntry *_result,I64 fuf_flags=0)
-{ //[C:/TempleOS/Kernel/Adam1a.HPP.Z,3595] FUF_JUST_DIRS, [C:/TempleOS/Kernel/Adam1a.HPP.Z,3596] FUF_JUST_FILES
+{ //[C:/Kernel/Adam1a.HPP.Z,3448] FUF_JUST_DIRS, [C:/Kernel/Adam1a.HPP.Z,3449] FUF_JUST_FILES
   CDirEntry *buf,*buf2,*ptr;
   U8 dname[CDIR_FILENAME_LEN];
   I64 ch;

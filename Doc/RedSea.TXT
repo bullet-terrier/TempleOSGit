@@ -9,13 +9,13 @@ Files are contiguous and cannot grow in size.
 
 public class CDirEntry //64-byte fixed-size
 {
-  U16 attr;	//See [C:/TempleOS/Kernel/Adam1a.HPP.Z,3528] _ATTR_DIR.  I would
-like to change these.
-  U8 name[CDIR_FILENAME_LEN]; //See [MN:chars_bitmap_filename]
-chars_bitmap_filename, [C:/TempleOS/Kernel/Dsk/DskStr.CPP.Z,298] FileNameChk
+  U16 attr;	//See [C:/Kernel/Adam1a.HPP.Z,3382] _ATTR_DIR.  I would like to
+change these.
+  U8 name[CDIR_FILENAME_LEN]; //See [C:/Kernel/Str1a.CPP.Z,370]
+chars_bitmap_filename, [C:/Kernel/Dsk/DskStr.CPP.Z,297] FileNameChk
   I64 cluster;	//One sector per cluster.  I might change origin, let's talk.
   I64 size;	//In bytes
-  CDate datetime; //See  [C:/Doc/TimeDate.TXT,1] DateTime,
+  CDate datetime; //See  [C:/Doc/TimeDate.TXT.Z,1] DateTime,
 [C:/Kernel/Date.CPP.Z,1] Implementation of DateTime
 };
 

@@ -120,7 +120,7 @@ U0 Rocket()
 {
   CMathODE *ode=ODENew(0,1e-2,ODEF_HAS_MASSES);
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->text_attr=YELLOW<<4+BLUE;
   DocCursor;
   WordStat;

@@ -274,7 +274,7 @@ U0 Pick3D()
 "  Restart(,'\n');"
 "}"
 );
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   WinBorder;
   DocClear;

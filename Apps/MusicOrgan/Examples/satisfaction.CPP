@@ -74,13 +74,13 @@ U0 Song()
   music_stacatto_factor= 0.900;
   try {
     task=PopUpViewStr(
-    "[C:/TempleOS/Misc/Bible.TXT.Z,56267] Ecclesiastes,2:24\n"
-	"[C:/TempleOS/Misc/Bible.TXT.Z,56267] Ecclesiastes,3:13\n"
+    "[C:/Misc/Bible.TXT.Z,56267] Ecclesiastes,2:24\n"
+	"[C:/Misc/Bible.TXT.Z,56267] Ecclesiastes,3:13\n"
 	);
     TaskWait(task);
     SetWinHorz(Fs->win_left,Fs->win_right,task);
     SetWinVert(Fs->win_bottom+3,Fs->win_bottom+15,task);
-    SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+    SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
     Fs->draw_it=&DrawIt;
     Fs->task_end_cb=&SndTaskEndCB;
     while (!ScanKey) {

@@ -37,12 +37,10 @@ operating systems.
 just right-side-up .BMP files with 8-bit pixels 4-bits of color and 
 transparency, with no palette.  Compression comes from the
 [C:/Doc/RedSea.TXT.Z,1] RedSea .Z LZW 
-compression.  (Let me know when you want it.) 
-[C:/TempleOS/Adam/Gr/GrDC.CPP.Z,154] DCSave(),
-[C:/TempleOS/Adam/Gr/GrDC.CPP.Z,234] GRAWrite(),
-[C:/TempleOS/Adam/Gr/GrDC.CPP.Z,197] DCLoad(), 
-and [C:/TempleOS/Adam/Gr/GrDC.CPP.Z,245] GRARead(). 
-[C:/Kernel/Compress.CPP.Z,1]
+compression.  (Let me know when you want it.)  [C:/Adam/Gr/GrDC.CPP.Z,139]
+DCSave(), [C:/Adam/Gr/GrDC.CPP.Z,208] GRAWrite(), [C:/Adam/Gr/GrDC.CPP.Z,178]
+DCLoad(), 
+and [C:/Adam/Gr/GrDC.CPP.Z,219] GRARead().  [C:/Kernel/Compress.CPP.Z,1]
 
 
 

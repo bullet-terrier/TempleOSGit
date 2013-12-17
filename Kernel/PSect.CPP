@@ -8,7 +8,7 @@ I64 HasLower(U8 *src)
 }
 
 CHash *PSectFind(U8 *add,I64 *_offset)
-{ //See [C:/Kernel/Hash1a.CPP,1] ::/Kernel/Hash1a.CPP
+{ //See [C:/Kernel/Hash1a.CPP.Z,1] ::/Kernel/Hash1a.CPP
   CHash *result=NULL;
   CHashExport *tempex;
   Bool has_lower=FALSE;

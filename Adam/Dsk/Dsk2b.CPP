@@ -254,7 +254,7 @@ U0 RedSeaFSDrvView(U8 drv_let=0)
   s=(p->size+p->spc-1)/p->spc;
  
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   DocCursor;
   DocClear;
@@ -298,7 +298,7 @@ U0 FAT32DrvView(U8 drv_let=0)
   s=(p->size+p->spc-1)/p->spc;
  
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   DocCursor;
   DocClear;
@@ -360,7 +360,7 @@ public U0 DskView(U8 drv_let=0)
   CDC *dc=DCAlias;
   F64 sect_start,sect_end;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   DocCursor;
   DocClear;
   DCFill;

@@ -106,7 +106,7 @@ public U0 ToTXT(U8 *_in_name,U8 *_out_name=NULL,I64 width=70)
   U8 *in_name,*out_name;
   CDoc *doc_in,*doc_out;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   SetWinHorz(0,width-1); //This sets doc width for word wrap
 
   in_name=DftExt(_in_name,"TXT.Z"),

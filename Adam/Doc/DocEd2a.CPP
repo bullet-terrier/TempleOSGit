@@ -2,7 +2,7 @@
 
 public I64 EdCurU8(CDoc *doc)
 {
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
+//See [C:/Adam/Doc/DocCodeTools.CPP.Z,333] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   CDocEntry *doc_ce=doc->cur_entry;
   I64 result=-1;
@@ -18,8 +18,8 @@ public I64 EdCurU8(CDoc *doc)
 }
 
 public U0 EdCursorLeft(CDoc *doc,I64 sc=MIN_I64)
-{//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
+{//You might need a call to [C:/Adam/Doc/DocRecalc2b.CPP.Z,248] DocRecalc().
+//See [C:/Adam/Doc/DocCodeTools.CPP.Z,333] EdRenumAsm for an example.
   U8 *dst;
   Bool unlock=DocLock(doc);
   CDocEntry *doc_ce=doc->cur_entry,*original_ce=doc_ce,*doc_ne;
@@ -90,8 +90,8 @@ public U0 EdCursorLeft(CDoc *doc,I64 sc=MIN_I64)
 }
 
 public U0 EdCursorRight(CDoc *doc,I64 sc=MIN_I64)
-{//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
+{//You might need a call to [C:/Adam/Doc/DocRecalc2b.CPP.Z,248] DocRecalc().
+//See [C:/Adam/Doc/DocCodeTools.CPP.Z,333] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   U8 *dst;
   CDocEntry *doc_ce=doc->cur_entry,*original_ce=doc_ce,*doc_ne;
@@ -166,8 +166,8 @@ public U0 EdCursorRight(CDoc *doc,I64 sc=MIN_I64)
 }
 
 public U0 EdLineUp(CDoc *doc,I64 sc=MIN_I64)
-{//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
+{//You might need a call to [C:/Adam/Doc/DocRecalc2b.CPP.Z,248] DocRecalc().
+//See [C:/Adam/Doc/DocCodeTools.CPP.Z,333] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   U8 *dst;
   I64 y,x;
@@ -280,8 +280,8 @@ public U0 EdLineUp(CDoc *doc,I64 sc=MIN_I64)
 }
 
 public U0 EdLineDown(CDoc *doc,I64 sc=MIN_I64)
-{//You might need a call to [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().
-//See [C:/TempleOS/Adam/Doc/DocCodeTools.CPP.Z,319] EdRenumAsm for an example.
+{//You might need a call to [C:/Adam/Doc/DocRecalc2b.CPP.Z,248] DocRecalc().
+//See [C:/Adam/Doc/DocCodeTools.CPP.Z,333] EdRenumAsm for an example.
   Bool unlock=DocLock(doc);
   U8 *dst;
   I64 y,x,old_flags1=0,old_color;

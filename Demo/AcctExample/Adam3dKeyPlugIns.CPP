@@ -12,11 +12,11 @@ Bool MyPutKey(I64 ch,I64 sc)
 {  //ch=ASCII; sc=scancode
 
 //See [Char,1] Char for definition of scan codes.
-//See [C:/Doc/KeyBoard.TXT,1] Keyboard Handling
+//See [C:/Doc/KeyBoard.TXT.Z,1] Keyboard Handling
 
 //You can customize keys.  This routine
 //is called before the main editor
-//key handler [C:/TempleOS/Adam/Doc/DocEd.CPP.Z,1503] DocPutKey().
+//key handler [C:/Adam/Doc/DocEd2b.CPP.Z,3] DocPutKey().
 //You can intercept any key.
 
 //Return TRUE if you completely
@@ -87,7 +87,7 @@ Bool MyPutKey(I64 ch,I64 sc)
 	  else
 	    SetKeyDesc("God Word");
 	} else {
-	  //[C:/Apps/HolySpirit/HSNotes.TXT,1]
+	  //[C:/Apps/HolySpirit/HSNotes.TXT.Z,1]
 	  DocRecalc(DocPut);
 	  if (DocPut->cur_entry->settings.cur_text_attr&0xF!=RED)
 	    "$RED$";
@@ -183,7 +183,7 @@ Bool MyPutKey(I64 ch,I64 sc)
 	  case 'b':
 	    if (sc&SCF_KEY_DESC)
 	      SetKeyDesc("Cmd/Jump to Bad Code");
-	    else //[C:/Apps/HolySpirit/HSNotes.TXT,1]
+	    else //[C:/Apps/HolySpirit/HSNotes.TXT.Z,1]
 	      BadCodeJump;
 	    return TRUE;
 
@@ -194,7 +194,7 @@ Bool MyPutKey(I64 ch,I64 sc)
 	      BlogScreenShot;
 	    return TRUE;
 
-	  case 'G': //[C:/Apps/HolySpirit/HSNotes.TXT,1]
+	  case 'G': //[C:/Apps/HolySpirit/HSNotes.TXT.Z,1]
 	    if (sc&SCF_KEY_DESC)
 	      SetKeyDesc("BlogGodle");
 	    else

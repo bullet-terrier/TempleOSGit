@@ -33,7 +33,7 @@ Advertizing
 -------------------------------------
 
 * We don't know why tS caused crash, perhaps, semaphores are broken.
-  (Hangs on 2nd ScreenUpdate, black almost. Perhaps bug from with [MN:gr_pan_text_x] gr_pan_text_x.)
+  (Hangs on 2nd ScreenUpdate, black almost. Perhaps bug from with [C:/Adam/Gr/GrScreen.CPP.Z,28] gr_pan_text_x.)
   Fixed with HPET in tS.
 
 * Maybe dither_probability_u16 is bad.
@@ -57,14 +57,14 @@ COMPILER
 
 * ATA/ATAPI ID in VMware, when not booted to CD?  I forgot.
 
-* I use fixed-point in [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,526] Circle(), [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,569] Ellipse(), [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,144] GrRot(), [C:/TempleOS/Adam/Gr/MathGr.CPP.Z,220] GrMulMat() and others.
+* I use fixed-point in [C:/Adam/Gr/MathGr.CPP.Z,610] Circle(), [C:/Adam/Gr/MathGr.CPP.Z,653] Ellipse(), [C:/Adam/Gr/MathGr.CPP.Z,228] GrRot(), [C:/Adam/Gr/MathGr.CPP.Z,304] GrMulMat() and others.
 God says I might want to change to float. 
-[C:/Demo/Lectures/FixedPoint.CPP,1].
-[C:/Demo/Lectures/FixedPointAdvanced.CPP,1].
+[C:/Demo/Lectures/FixedPoint.CPP.Z,1].
+[C:/Demo/Lectures/FixedPointAdvanced.CPP.Z,1].
 
 * DOCF_DBL_DOLLARS in reindention
 * # in reindention
-* reindent [C:/TempleOS/Adam/Doc/DocRecalc.CPP.Z,108] DocRecalc().skip_soft_cr
+* reindent [C:/Adam/Doc/DocRecalc2b.CPP.Z,248] DocRecalc().skip_soft_cr
 
 * HexEdit with odd size, ASCII cannot be edited.
 
@@ -76,11 +76,11 @@ God says I might want to change to float.
 
 * Why was wordstat so slow on "MasterBootOldWrite" for example.
 
-* [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,46] Plain() might be better not saving [C:/TempleOS/Kernel/Adam1a.HPP.Z,3215] CH_CURSOR.
+* [C:/Adam/Doc/DocMain.CPP.Z,46] Plain() might be better not saving [C:/Kernel/Adam1a.HPP.Z,3070] CH_CURSOR.
 
 * TRANSPARENT might not work with line ROPF_DITHER
 
-* It would be nice if [C:/TempleOS/Compiler/Unassembler.CPP.Z,866] U() NOP were better.
+* It would be nice if [C:/Compiler/Unassembler.CPP.Z,685] U() NOP were better.
 
 * unhandled exception on MP message gets overwritten by WinMgr
 
@@ -93,7 +93,7 @@ God says I might want to change to float.
 * GetS, crazy putkey code
 * editor page formatting is FUBAR
 
-* [C:/TempleOS/Adam/Gr/GrScreen.CPP.Z,2] gr_screen_image
+* [C:/Adam/Gr/GrScreen.CPP.Z,2] gr_screen_image
   >Might want to do ZOOM in U8 graphics and convert screen capture to U8
   >Might want to reverse bit order
 
@@ -112,8 +112,8 @@ God says I might want to change to float.
 * EIT_ABS_ADDR 64
 
 //After Egypt possible future ideas
-//[C:/TempleOS/Misc/Bible.TXT.Z,12005] Numbers,13:33 scouts
-//[C:/TempleOS/Misc/Bible.TXT.Z,12005] Numbers,21:8 snakes
+//[C:/Misc/Bible.TXT.Z,12005] Numbers,13:33 scouts
+//[C:/Misc/Bible.TXT.Z,12005] Numbers,21:8 snakes
 
 GrEdit: Move sidebar selected elems.
 	- Be careful of multipt elems.
@@ -127,17 +127,17 @@ extern of fun with dft arg of str?
 
 * FileMgr bad with lots of files.  
 
-* This [C:/Kernel/SrvCmd.CPP,1] Fs->catch_except=TRUE causes problems because it catches divide and out-of-mem.  Not sure what to do, yet.
-* [C:/TempleOS/Kernel/MultiProc.CPP.Z,400] MPStart() free old task memory. (Prolly never gonna do anything about this.)
-* [C:/TempleOS/Kernel/Adam1b.HPP.Z,129] sys_var_init_flag local vars.
+* This [C:/Kernel/SrvCmd.CPP.Z,1] Fs->catch_except=TRUE causes problems because it catches divide and out-of-mem.  Not sure what to do, yet.
+* [C:/Kernel/MultiProc.CPP.Z,313] MPStart() free old task memory. (Prolly never gonna do anything about this.)
+* [C:/Kernel/Adam1b.HPP.Z,129] sys_var_init_flag local vars.
 * sprite shift pts, ctrl pt for ellipse/polygon w,h is off when rotated.
 
-* Window mgr needs to do DOC operations on posted messages from mouse.  Works for [C:/TempleOS/Kernel/KbdMouse/InputPointer.CPP.Z,74] SetIP(), though.
+* Window mgr needs to do DOC operations on posted messages from mouse.  Works for [C:/Kernel/KbdMouse/InputPointer.CPP.Z,74] SetIP(), though.
 
-* Add local vars to sym table in [C:/TempleOS/Kernel/Dbg1a.CPP.Z,691] Dbg()?  (maybe)
+* Add local vars to sym table in [C:/Kernel/Dbg1a.CPP.Z,650] Dbg()?  (maybe)
 
-* [C:/Adam/Doc/DocRecalc2b.CPP,1] Bible sized nodes
-* Mouseinstall throws exceptions, doesn't work, investigate Mouse [C:/Kernel/KbdMouse/Mouse.CPP,1] 0x9FC30
+* [C:/Adam/Doc/DocRecalc2b.CPP.Z,1] Bible sized nodes
+* Mouseinstall throws exceptions, doesn't work, investigate Mouse [C:/Kernel/KbdMouse/Mouse.CPP.Z,1] 0x9FC30
 * get kbd lights working.
 * Might have issue with compiler exceptions and restoring lex.hash tables.
 * Generates two compiler error messages for expressions in statements.
@@ -150,7 +150,7 @@ extern of fun with dft arg of str?
   U0 (*fp_old_draw_input_ptr)(CDC *dc,I64 x,I64 y)=fp_draw_input_ptr;
 }
 
-* Demo [C:/TempleOS/Adam/ToHtml.CPP.Z,318] ToHtml().
+* Demo [C:/Adam/Utils/ToHtml.CPP.Z,272] ToHtml().
 
 * Del short name in FAT32--currently I do not check to see if I have generated a unique short name and one can delete multiple files accidentally.  Generating unique short names is a pain in the ass because you have to scan the whole directory.  I think I just truncate the name instead of "Program~1" or whatever. S081130-0001.BMP crashed windows--two identical short names.
 
@@ -158,7 +158,7 @@ extern of fun with dft arg of str?
 
 * lock{} warning on invalid modes.
 * Local array vars-->reg.
-* [C:/TempleOS/Kernel/Adam1a.HPP.Z,3324] DCF_SYMMETRY, before transformation? (Currently it's after) 
+* [C:/Kernel/Adam1a.HPP.Z,3181] DCF_SYMMETRY, before transformation? (Currently it's after) 
 * all graphics clipping -- screen y+top<0 for top<0
 * Maybe convert graphics to float
 * Warn unnecessary typecast
@@ -197,7 +197,7 @@ extern of fun with dft arg of str?
 * Look for mem leaks.
 * Move stuff out of Kernel module.
 
-* [C:/TempleOS/Kernel/Adam1a.HPP.Z,2771] ROP_XOR with pen_width>1 is broken.
+* [C:/Kernel/Adam1a.HPP.Z,2617] ROP_XOR with pen_width>1 is broken.
 
 * use width and height in line clipping for pen_width>1 or blot.
 * SIMD transformation
@@ -228,14 +228,14 @@ extern of fun with dft arg of str?
 * maybe inline functions?
 * Use of more floating-point stk?
 
-* More aggressive in this routine [C:/TempleOS/Compiler/OptPass3.CPP.Z,27] CmpF2PushPop() with types besides MOV and F64. 
+* More aggressive in this routine [C:/Compiler/OptLib.CPP.Z,554] CmpF2PushPop() with types besides MOV and F64. 
 * !dbl ~dbl
 * &=, |= can overflow with Bts Btr on small data types
 
 * num lock comes on with break key
 * sort options for findfiles
 * recalc_start could be more accurate before recalculating?
-* Maybe, get rid of [C:/Compiler/CmpMain.CPP,1] 0x20000 in compiler.
+* Maybe, get rid of [C:/Compiler/CmpMain.CPP.Z,1] 0x20000 in compiler.
 
 * WWW.OSDEV.ORG
 * HappyHappyJoyJoy

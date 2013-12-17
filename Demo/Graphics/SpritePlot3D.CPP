@@ -36,7 +36,7 @@ U0 SpritePlot3D()
   F64 theta=0,phi=0;
   dc=DCAlias(gr_dc2,Fs);
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
   Preempt(OFF); //We don't want update during matrix change
   dc->x=200;

@@ -7,7 +7,7 @@ each intermediate code's output code.
 However, intermediate codes must be
 coupled together based on the arg and
 result type specifications in the
-[C:/TempleOS/Kernel/Adam1a.HPP.Z,1664] CICArg.  RAX is the most common reg
+[C:/Kernel/Adam1a.HPP.Z,1539] CICArg.  RAX is the most common reg
 for coupling intermediate codes.
 
 Internal calculations take place on

@@ -41,7 +41,7 @@ public U0 MergeChk(
   U8 *dst_files_find_mask="/*",
   U8 *src_files_find_mask="/*",
   U8 *fu_flags=NULL)
-//"+d"=Do [C:/TempleOS/Adam/Diff.CPP.Z,222] Diff() on files
+//"+d"=Do [C:/Adam/Utils/Diff.CPP.Z,232] Diff() on files
 {
   I64 df_flags=0,fuf_flags=0;
   CDirEntry *tempde1=NULL,*tempde2=NULL;

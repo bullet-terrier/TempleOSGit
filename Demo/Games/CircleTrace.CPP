@@ -41,7 +41,7 @@ U0 CircleTrace()
   F64 rad,t0,total_distance;
   CDC *dc=DCAlias;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
   WordStat;
 
@@ -93,7 +93,7 @@ U0 CircleTrace()
 	  avg_error=total_error/total_distance;
 	  score=elapsed_time*avg_error;
 
-	  //This [C:/TempleOS/Kernel/Misc1a.CPP.Z,178] Sleep()s until the next time the
+	  //This [C:/Kernel/Misc1a.CPP.Z,183] Sleep()s until the next time the
 	  //window mgr task runs.  The
 	  //window mgr calls the UpdateWin() routine
 	  //and places msgs in the que, so there's

@@ -1,4 +1,4 @@
-//See [C:/Demo/Games/Stadium/StadiumGen.CPP,1].
+//See [C:/Demo/Games/Stadium/StadiumGen.CPP.Z,1].
 
 U0 ViewScreenCapture(U8 *filename)
 {

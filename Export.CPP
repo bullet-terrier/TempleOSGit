@@ -35,7 +35,7 @@ U0 ExportBinary(U8 *src_file,CDocBin *b)
   while (buf>buf1 && *buf!='.')
     buf--;
   *buf=0;
-  buf=MSPrintF("%s%d.DAT",buf1,b->num);
+  buf=MPrint("%s%d.DAT",buf1,b->num);
   Free(buf1);
   "%s\n",buf;
   FileWrite(buf,b->data,b->size);
@@ -43,15 +43,15 @@ U0 ExportBinary(U8 *src_file,CDocBin *b)
 }
 
 U8 *ResolveLink(U8 *link_st)
-{ //Adapted from [C:/TempleOS/Adam/Doc/DocMain.CPP.Z,3] Ed. Resolves stuff like MN:Func to the file
+{ //Adapted from [C:/Adam/Doc/DocMain.CPP.Z,3] Ed. Resolves stuff like MN:Func to the file
   U8 *res,*filename=NULL,*pattern=NULL;
   I64 num;
   if (EdLinkCvt(link_st,&filename,&pattern,&num,0)==-1)
     res=StrNew(link_st);
   else if (num!=0)
-    res=MSPrintF("%s,%d",filename,num);
+    res=MPrint("%s,%d",filename,num);
   else
-    res=MSPrintF("%s,%s",filename,pattern);
+    res=MPrint("%s,%s",filename,pattern);
   Free(filename);
   Free(pattern);
   return res;
@@ -65,12 +65,29 @@ U8 *IndentString(I64 n)
   return s;
 }
 
+U8 *StrAdd(U8 *base,U8 *addition) {
+  I64 base_len=StrLen(base);
+  I64 addition_len=StrLen(addition);
+  I64 required=base_len+addition_len+1;
+  I64 base_size=MSize(base);
+  U8 *res=base;
+  if (base_size<=required) {
+    while (base_size<=required)
+      base_size*=2;
+    res=MAlloc(base_size);
+    MemCpy(res,base,base_len);
+    Free(base);
+  }
+  MemCpy(res+base_len,addition,addition_len+1);
+  return res;
+}
+
 U8 *Wrap(U8 *base,U8 *s,I64 *line_len,I64 indent=0)
 { //Performs word wrapping on base, starting from s, line_len is state.
   //Also adds indent spaces to every soft and hard newline.
   //Returns new value for base.
   //This is supposed to also take tabs into account but fuck that shit
-  //NOTE: at this point I could use [C:/TempleOS/Adam/Window.CPP.Z,730] SetWinHorz and append to a CDoc
+  //NOTE: at this point I could use [C:/Adam/Win2a.CPP.Z,362] SetWinHorz and append to a CDoc
   I64 len;
   U8 *p,*buf;
   U8 *end;
@@ -310,12 +327,12 @@ Bool StrEqAny(U8 *s,...)
   return FALSE;
 }
 
-U8 *StrStrAny(U8 *s,...)
+U8 *StrMatchAny(U8 *s,...)
 { //Returns a pointer to the first substring matched
   U8 *res;
   I64 i;
   for (i=0;i<argc;i++) {
-    if (res=StrStr(s,argv[i]))
+    if (res=StrMatch(argv[i],s))
       break;
   }
   return res;
@@ -323,7 +340,7 @@ U8 *StrStrAny(U8 *s,...)
 
 U8 *UnZExtension(U8 *out_path)
 { //Changes out_path to a non-compressed extension, returns ptr to extension.
-  //See [C:/TempleOS/Doc/Glossary.TXT.Z,1] Filename Extention Types.
+  //See [C:/Doc/Glossary.TXT.Z,1] Filename Extention Types.
   U8 *ext=FileExtDot(out_path)+1;
   if (StrEqAny(ext,"TXT.Z","LOG.Z","CPP.Z","HPP.Z","PRJ.Z","MAP.Z","DAT.Z",
                    "BIN.Z","AUT.Z","GRA.Z"))
@@ -350,14 +367,14 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
   U8 *indents=StrNew("");
 
 //Windows stuff should just be passed through with the original extension
-  if (StrStrAny(out_path,"/Windows/","/Linux/")) {
+  if (StrMatchAny(out_path,"/Windows/","/Linux/")) {
     FilePassThrough(in_path,out_path);
     return;
   }
 
   ext=UnZExtension(out_path);
 
-  if (StrEqAny(ext,"BIN.C","BIN","DAT","GRA","ISO","BMP","html","log")) {
+  if (StrEqAny(ext,"BIN.C","BIN","DAT","GRA","ISO","BMP")) {
     FilePassThrough(in_path,out_path);
     return;
   }
@@ -425,31 +442,31 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
         break;
       case DOCT_INS_BINARY_TYPE:
         if (is_code)
-          buf=MSPrintF("%s__BIN_%d_TYPE",out,cl->bin_data->num);
+          buf=MPrint("%s__BIN_%d_TYPE",out,cl->bin_data->num);
         else
-          buf=MSPrintF("%s%d",out,cl->bin_data->type);
+          buf=MPrint("%s%d",out,cl->bin_data->type);
         Free(out); out=buf;
         break;
       case DOCT_INS_BINARY_SIZE:
         if (is_code)
-          buf=MSPrintF("%s__BIN_%d_SIZE",out,cl->bin_data->num);
+          buf=MPrint("%s__BIN_%d_SIZE",out,cl->bin_data->num);
         else
-          buf=MSPrintF("%s%d",out,cl->bin_data->size);
+          buf=MPrint("%s%d",out,cl->bin_data->size);
         Free(out); out=buf;
         break;
       case DOCT_INS_BINARY:
         if (is_code) {
-          buf=MSPrintF("%s__BIN_%d",out,cl->bin_data->num);
+          buf=MPrint("%s__BIN_%d",out,cl->bin_data->num);
           Free(out); out=buf;
         } else
           out=StrAdd(out,"(binary data)");
         break;
       case DOCT_SPRITE:
         if (is_code)
-          buf=MSPrintF("%s/* %s <%d> (image) */",
+          buf=MPrint("%s/* %s <%d> (image) */",
             out,cl->tag,cl->bin_data->num);
         else
-          buf=MSPrintF("%s%s <%d> (image)",out,cl->tag,
+          buf=MPrint("%s%s <%d> (image)",out,cl->tag,
             cl->bin_data->num);
         Free(out); out=buf;
         break;
@@ -460,21 +477,21 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
           out=StrAdd(out,"(macro)");
         out=StrAdd(out,"\n");
         if (cl->flags1 & DOCEF1_RIGHT_MACRO) {
-          buf=MSPrintF("%s`%s`\n",out,cl->right_macro);
+          buf=MPrint("%s`%s`\n",out,cl->right_macro);
           Free(out); out=buf;
         }
         if (cl->flags1 & DOCEF1_LEFT_MACRO) {
-          buf=MSPrintF("%s`%s`\n",out,cl->left_macro);
+          buf=MPrint("%s`%s`\n",out,cl->left_macro);
           Free(out); out=buf;
         }
         break;
       case DOCT_LINK:
         if (cl->aux_str) {
           lnk=ResolveLink(cl->aux_str);
-          buf=MSPrintF("%s[%s] %s",out,lnk,cl->tag);
+          buf=MPrint("%s[%s] %s",out,lnk,cl->tag);
         } else {
           lnk=ResolveLink(cl->tag);
-          buf=MSPrintF("%s[%s]",out,lnk);
+          buf=MPrint("%s[%s]",out,lnk);
         }
         Free(lnk);
         Free(out); out=buf;
@@ -503,12 +520,6 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
       case DOCT_UNDERLINE:
         out=StrAdd(out,"_");
         break;
-      case DOCT_HIDE_START:
-        out=StrAdd(out,"<-");
-        break;
-      case DOCT_HIDE_END:
-        out=StrAdd(out,">");
-        break;
       case DOCT_WORD_WRAP:
         if (cl->attr)
           flags|=DOCF_WORD_WRAP;
@@ -530,11 +541,6 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
         break;
       case DOCT_FOREGROUND:
       case DOCT_BACKGROUND:
-      case DOCT_LINK_FOREGROUND:
-      case DOCT_MACRO_FOREGROUND:
-      case DOCT_TREE_FOREGROUND:
-      case DOCT_BINARY_FOREGROUND:
-      case DOCT_USER_FOREGROUND:
       case DOCT_DFT_FOREGROUND:
       case DOCT_DFT_BACKGROUND:
       case DOCT_LEFT_MARGIN:
@@ -548,13 +554,11 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
       case DOCT_FOOTER:
       case DOCT_PAGE_BREAK:
       case DOCT_HTML_CODE:
-      case DOCT_HTML_IMG:
-      case DOCT_HTML_VIDEO:
       case DOCT_HIGHLIGHT:
       case DOCT_PAGE_LEN:
         break;
       default:
-        buf=MSPrintF("%s /* Unknown token: %d */ ",out,cl->type_u8);
+        buf=MPrint("%s /* Unknown token: %d */ ",out,cl->type_u8);
         Free(out); out=buf;
         "%s: Unknown token: %d\n",ST_WARN_ST,cl->type_u8;
         break;
@@ -564,7 +568,7 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
     prev_len=StrLen(out);
   }
 //Special case: this file just contains garbage because there's a hex view
-  if (!StrStr(out_path,"/TempleOS/Demo/MultiCore/RadixSort.CPP"))
+  if (!StrMatch("/Demo/MultiCore/RadixSort.CPP",out_path))
     out=StrToASCII(out);
 //Terry uses a mix of tabs and spaces all over the place and converting tabs
 //to 8 spaces is not good enough because some formatting relies on tabs align
@@ -575,7 +579,7 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
   Free(indents);
 }
 
-//Adapted from [C:/TempleOS/Adam/Dsk/Dsk2a.CPP.Z,128] PutCopyTree which is internally used by [C:/TempleOS/Adam/Dsk/Dsk2a.CPP.Z,148] CopyTree
+//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,127] PutCopyTree which is internally used by [C:/Adam/Dsk/Dsk2a.CPP.Z,146] CopyTree
 U0 PutExportTree(CDirEntry *ent,I64 src_dir_len,I64 dst_dir_len,
   U8 *dst_dir,Bool debug=FALSE)
 {
@@ -597,7 +601,7 @@ U0 PutExportTree(CDirEntry *ent,I64 src_dir_len,I64 dst_dir_len,
   }
 }
 
-//Adapted from [C:/TempleOS/Adam/Dsk/Dsk2a.CPP.Z,148] CopyTree
+//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,146] CopyTree
 U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="D:/Git",
   Bool debug=FALSE)
 {
@@ -621,7 +625,7 @@ U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="D:/Git",
       FileAccessDel(fa);
       Free(dst_dir);
     }
-    CDirLstDel(ent);
+    DirLstDel(ent);
   }
 }
 

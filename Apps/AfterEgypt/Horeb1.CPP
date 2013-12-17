@@ -68,7 +68,7 @@
 
 	/* <5> <5> (image) */
 
-//See [C:/Doc/Acknowledgements.TXT,1].
+//See [C:/Doc/Acknowledgements.TXT.Z,1].
 
 
 

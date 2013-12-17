@@ -1,6 +1,6 @@
 /*
 TempleOS runs exclusively in ring 0.
-Ring 0 is part of the [C:/Doc/Charter.TXT,1] Charter.
+Ring 0 is part of the [C:/Doc/Charter.TXT.Z,1] Charter.
 This demo is for you to play around
 with ring 3.  TempleOS is for
 recreational programming, after all.

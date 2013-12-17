@@ -555,7 +555,7 @@ public U8 *FileMgr(I64 mode=FM_NORMAL,CTask *mem_task=NULL)
   CDocEntry *doc_ce=NULL,*doc_e;
   Bool okay;
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   fp_old_final_screen_update=fp_final_screen_update;
   MenuFilePush("::/Doc/FileMgrPullDown.TXT");
   FMRebuildDoc(&doc,&root,mode);

@@ -407,7 +407,7 @@ U0 Wenceslas()
   "}"
   );
 
-  SettingsPush; //See [C:/TempleOS/Adam/TaskSettings.CPP.Z,3] SettingsPush
+  SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinMax;
   Preempt(OFF);
   Fs->song_task=Spawn(&SongTask,NULL,"Song",,Fs);
