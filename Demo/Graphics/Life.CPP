@@ -16,8 +16,8 @@ U0 AnimateTask(I64)
 start_over:
     restart=FALSE;
     DCClear(dc[next_dc]);
-    for (y=1;y<Fs->parent_task->win_pixel_height-1;y++) {
-      for (x=1;x<Fs->parent_task->win_pixel_width-1;x++) {
+    for (y=1;y<Fs->parent_task->pix_height-1;y++) {
+      for (x=1;x<Fs->parent_task->pix_width-1;x++) {
 	cnt=0;
 	for (y1=y-1;y1<=y+1;y1++)
 	  for (x1=x-1;x1<=x+1;x1++)

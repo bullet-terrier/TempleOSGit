@@ -13,9 +13,9 @@ OptOn(OPTf_WARN_PAREN);
 //Just in case the filesystem gets corrupted while I develop it
 U0 BackupExport()
 {
-  Copy("D:/Export.CPP","C:/Export.CPP");
-  Copy("D:/Export.CPP","D:/ExportB.CPP");
-  Copy("D:/Export.CPP","C:/ExportB.CPP");
+  Copy("E:/Export.CPP","D:/Export.CPP");
+  Copy("E:/Export.CPP","E:/ExportB.CPP");
+  Copy("E:/Export.CPP","D:/ExportB.CPP");
 }
 
 //Appears to hang on this version...
@@ -54,6 +54,9 @@ U8 *ResolveLink(U8 *link_st)
     res=MPrint("%s,%s",filename,pattern);
   Free(filename);
   Free(pattern);
+//Temporary hack to prevent pointless diffs on every link
+  if (!StrNCmp(res,"D:/",3))
+    *res='C';
   return res;
 }
 
@@ -87,7 +90,7 @@ U8 *Wrap(U8 *base,U8 *s,I64 *line_len,I64 indent=0)
   //Also adds indent spaces to every soft and hard newline.
   //Returns new value for base.
   //This is supposed to also take tabs into account but fuck that shit
-  //NOTE: at this point I could use [C:/Adam/Win2a.CPP.Z,362] SetWinHorz and append to a CDoc
+  //NOTE: at this point I could use [C:/Adam/Win2a.CPP.Z,349] SetWinHorz and append to a CDoc
   I64 len;
   U8 *p,*buf;
   U8 *end;
@@ -440,13 +443,6 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
         } else
           out=StrAdd(out,cl->tag);
         break;
-      case DOCT_INS_BINARY_TYPE:
-        if (is_code)
-          buf=MPrint("%s__BIN_%d_TYPE",out,cl->bin_data->num);
-        else
-          buf=MPrint("%s%d",out,cl->bin_data->type);
-        Free(out); out=buf;
-        break;
       case DOCT_INS_BINARY_SIZE:
         if (is_code)
           buf=MPrint("%s__BIN_%d_SIZE",out,cl->bin_data->num);
@@ -539,6 +535,12 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
         Free(indents); indents=IndentString(indent);
         out=StrAdd(out,indents);
         break;
+      case DOCT_HTML_CODE:
+        out=StrAdd(out,"```\n");
+        out=StrAdd(out,cl->tag);
+        out=StrAdd(out,"\n```");
+        break;
+      case DOCT_PMT: //Marks end of C:/User/Prompt> so you can't erase it
       case DOCT_FOREGROUND:
       case DOCT_BACKGROUND:
       case DOCT_DFT_FOREGROUND:
@@ -553,7 +555,6 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
       case DOCT_HEADER:
       case DOCT_FOOTER:
       case DOCT_PAGE_BREAK:
-      case DOCT_HTML_CODE:
       case DOCT_HIGHLIGHT:
       case DOCT_PAGE_LEN:
         break;
@@ -579,7 +580,7 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
   Free(indents);
 }
 
-//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,127] PutCopyTree which is internally used by [C:/Adam/Dsk/Dsk2a.CPP.Z,146] CopyTree
+//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,111] CopyTree which is internally used by [C:/Adam/Dsk/Dsk2a.CPP.Z,130] CopyTree
 U0 PutExportTree(CDirEntry *ent,I64 src_dir_len,I64 dst_dir_len,
   U8 *dst_dir,Bool debug=FALSE)
 {
@@ -601,8 +602,8 @@ U0 PutExportTree(CDirEntry *ent,I64 src_dir_len,I64 dst_dir_len,
   }
 }
 
-//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,146] CopyTree
-U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="D:/Git",
+//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,130] CopyTree
+U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="E:/Git",
   Bool debug=FALSE)
 {
   CFileAccess *fa;
@@ -634,9 +635,9 @@ U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="D:/Git",
 //to start the export.
 
 U0 ExportTree() {
-  CTask *task=SpawnUser("#include \"D:/Export.CPP\"
+  CTask *task=SpawnUser("#include \"E:/Export.CPP\"
 ExportTreeImpl;
-ExportSingle(\"D:/Export.CPP\",\"D:/Git/Export.CPP\");
+ExportSingle(\"E:/Export.CPP\",\"E:/Git/Export.CPP\");
 ");
   WinToTop(task);
 }

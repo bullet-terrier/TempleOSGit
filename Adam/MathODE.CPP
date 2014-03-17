@@ -13,29 +13,17 @@ U0 ODERstPtrs(CMathODE *ode)
 {
   I64 s=ode->n_internal*sizeof(F64);
   F64 *ptr=ode->array_base;
-
-  ode->state_internal=ptr;
-  ptr(I64)+=s;
-  ode->state_scale=ptr;
-  ptr(I64)+=s;
-  ode->DstateDt=ptr;
-  ptr(I64)+=s;
-  ode->initial_state=ptr;
-  ptr(I64)+=s;
-  ode->temp0=ptr;
-  ptr(I64)+=s;
-  ode->temp1=ptr;
-  ptr(I64)+=s;
-  ode->temp2=ptr;
-  ptr(I64)+=s;
-  ode->temp3=ptr;
-  ptr(I64)+=s;
-  ode->temp4=ptr;
-  ptr(I64)+=s;
-  ode->temp5=ptr;
-  ptr(I64)+=s;
-  ode->temp6=ptr;
-  ptr(I64)+=s;
+  ode->state_internal=ptr;	ptr(I64)+=s;
+  ode->state_scale=ptr;		ptr(I64)+=s;
+  ode->DstateDt=ptr;		ptr(I64)+=s;
+  ode->initial_state=ptr;	ptr(I64)+=s;
+  ode->temp0=ptr;	ptr(I64)+=s;
+  ode->temp1=ptr;	ptr(I64)+=s;
+  ode->temp2=ptr;	ptr(I64)+=s;
+  ode->temp3=ptr;	ptr(I64)+=s;
+  ode->temp4=ptr;	ptr(I64)+=s;
+  ode->temp5=ptr;	ptr(I64)+=s;
+  ode->temp6=ptr;	ptr(I64)+=s;
   ode->temp7=ptr;
 }
 
@@ -482,7 +470,7 @@ U0 ODERK5OneStep(CMathODE *ode)
   I64 i;
   F64 errmax,temp,*tempstate=ode->temp6,*stateerr=ode->temp7;
   while (TRUE) {
-    ode->h=Limit(ode->h,ode->h_min,ode->h_max);
+    ode->h=Clamp(ode->h,ode->h_min,ode->h_max);
     ODECashKarp(ode);
     errmax=0.0;
     for (i=0;i<ode->n_internal;i++) {
@@ -503,7 +491,7 @@ U0 ODERK5OneStep(CMathODE *ode)
     ode->h*=SAFETY*errmax`PGROW;
   else
     ode->h*=5.0;
-  ode->h=Limit(ode->h,ode->h_min,ode->h_max);
+  ode->h=Clamp(ode->h,ode->h_min,ode->h_max);
   MemCpy(ode->state_internal,tempstate,sizeof(F64)*ode->n_internal);
 }
 
@@ -530,7 +518,7 @@ it has a timeout.
   if (task->next_ode==&task->next_ode)
     task->last_ode_time=0;
   else {
-    //See [C:/Adam/Gr/GrScreen.CPP.Z,382] GrUpdateWins()
+    //See [C:/Adam/Gr/GrScreen.CPP.Z,3] GrUpdateWins()
     if (!Bt(&task->win_inhibit,WIf_ODE)) {
       //TODO: Being preempted here woulds be bad
       if (task!=Fs)
@@ -539,7 +527,7 @@ it has a timeout.
       //how busy the CPU is, what percent of the
       //last refresh cycle was spent on ODE's
       //and what the refresh cycle rate was.
-      start_time=tT;
+      start_time=tS;
       d=1.0/win_actual_refresh;
       timeout_time=start_time+
 	    (task->last_ode_time/d+0.1)/(last_refresh_ode_time/d+0.1)*
@@ -548,7 +536,7 @@ it has a timeout.
       while (ode!=&task->next_ode) {
 	if (ode->ode_signature==ODE_SIGNATURE_VAL) {
 	  t_initial=ode->t;
-	  d=tT;
+	  d=tS;
 	  if (!(ode->flags&ODEF_STARTED)) {
 	    ode->base_t=d;
 	    ode->flags|=ODEF_STARTED;
@@ -567,7 +555,7 @@ it has a timeout.
 		ode->state_scale[i]=Abs(ode->state_internal[i])+
 		      Abs(ode->DstateDt[i]*ode->h)+ode->tolerance_internal;
 	      ODERK5OneStep(ode);
-	      if (tT>timeout_time) {
+	      if (tS>timeout_time) {
 		ode->base_t+=t_desired-ode->t; //Slip
 		goto ode_done;
 
@@ -608,7 +596,7 @@ ode_done:
       //This algorithm is probably not stable or very good, but it's something.
 
       //Target is 75% of allocated time.
-      d=(tT-start_time)/(timeout_time-start_time)-0.75;
+      d=(tS-start_time)/(timeout_time-start_time)-0.75;
 
       ode=task->next_ode;
       while (ode!=&task->next_ode) {
@@ -620,12 +608,12 @@ ode_done:
 	    else
 	      ode->tolerance_internal*=2.0`d;
 	  }
-	  ode->tolerance_internal=Limit(ode->tolerance_internal,ode->min_tolerance,ode->max_tolerance);
+	  ode->tolerance_internal=Clamp(ode->tolerance_internal,ode->min_tolerance,ode->max_tolerance);
 	}
 	ode=ode->next;
       }
-      refresh_ode_time+=task->last_ode_time=tT-start_time;
-      //See [C:/Adam/Gr/GrScreen.CPP.Z,382] GrUpdateWins()
+      refresh_ode_time+=task->last_ode_time=tS-start_time;
+      //See [C:/Adam/Gr/GrScreen.CPP.Z,3] GrUpdateWins()
       if (task!=Fs)
 	Suspend(task,old_suspend);
     }

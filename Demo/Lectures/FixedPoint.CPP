@@ -27,16 +27,16 @@ U0 Main()
   I64 i ,i_sum=0,i_val;
 
   i_val= 2.0000002 *0x100000000;
-  t0=tT;
+  t0=tS;
   for (i=1000000000;i;i--)
     i_sum+=i_val;
-  "Integer Sum:%.9f Time:%7.3fs\n",i_sum/ToF64(0x100000000),tT-t0;
+  "Integer Sum:%.9f Time:%7.3fs\n",i_sum/ToF64(0x100000000),tS-t0;
 
   f_val= 2.0000002;
-  t0=tT;
+  t0=tS;
   for (i=1000000000;i;i--)
     f_sum+=f_val;
-  "Float   Sum:%.9f Time:%7.3fs\n",f_sum,tT-t0;
+  "Float   Sum:%.9f Time:%7.3fs\n",f_sum,tS-t0;
   NewLine;
 }
 

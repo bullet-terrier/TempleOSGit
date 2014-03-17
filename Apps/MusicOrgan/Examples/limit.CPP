@@ -12,7 +12,7 @@ U0 DrawIt(CTask *,CDC *dc)
   if (dt<21.5)
     GrPrint(dc,235,30,"- -");
   else {
-    SpritePlot3(dc,235,30,0,__BIN_1);
+    Sprite3(dc,235,30,0,__BIN_1);
     GrPrint(dc,235,30,"o o");
   }
 }

@@ -14,7 +14,7 @@ U0 Song()
       "$BG,BLACK$$WHITE$\n\n\n\n\nWait for the end...";
       NewLine(5);
       Spaces(17);
-      PutSprite(__BIN_1);
+      Sprite(__BIN_1);
       Play("3e.GsGe.GsFe.EsG4e.CsDe.EsEe.EsDqCe.CsB");
       NewLine;
       Play("e.AsAe.AsBe.CsBe.CsA3e.G4sA3e.GsEqGe.GsG");

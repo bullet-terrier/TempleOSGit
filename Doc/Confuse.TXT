@@ -1,6 +1,6 @@
                             Clearing-up Confusions
 
-* I, Terry A. Davis, wrote every one of the 121,584 lines of TempleOS over
+* I, Terry A. Davis, wrote every one of the 120,796 lines of TempleOS over
 the 
 past 15.5 years (full-time).  It runs on bare hardware with no layering, 
 libraries, tools, modules or anything from other sources.  It's 100% 
@@ -32,7 +32,7 @@ than "root" was!
 * [C:/Kernel/Adam1b.HPP.Z,57] Bt() is "bit test", like the x86 instruction,
 not "bit torrent".
 
-* [C:/Kernel/Adam1b.HPP.Z,282] Fs is a segment reg, not "file system".  (It
+* [C:/Kernel/Adam1b.HPP.Z,270] Fs is a segment reg, not "file system".  (It
 is kept pointing to the current 
 task's record.)  There is no memory segmentation -- FS and GS are used as 
 general purpose regs, more or less.
@@ -41,14 +41,14 @@ general purpose regs, more or less.
 is not PASCAL.  I altered 
 the syntax making parenthesis optional on function calls with no paramaters.
 
-* [C:/Kernel/Misc1a.CPP.Z,183] Sleep() makes a program pause.  It is not
+* [C:/Kernel/Misc1a.CPP.Z,154] Sleep() makes a program pause.  It is not
 hybernation for a laptop.
 
-* [C:/Kernel/Scheduler.CPP.Z,362] Yield() saves the current task's regs
+* [C:/Kernel/Scheduler.CPP.Z,345] Yield() saves the current task's regs
 (context) and loads in the next task.  
 When waiting, it's better to do this than check a condition in a loop until 
 you get preempted.  Checking a condition until you get preempted wastes CPU.  
-TempleOS does not use virtual memory, so [C:/Kernel/Scheduler.CPP.Z,362]
+TempleOS does not use virtual memory, so [C:/Kernel/Scheduler.CPP.Z,345]
 Yield() involves no disk activity.  A 
 swap takes half a microsecond.  See [C:/Demo/Lectures/Spinning.CPP.Z,1].
 
@@ -57,8 +57,8 @@ is compiled and executable
 code placed into mem, ready to be called.
 
 * Files with names ending in "Z" are compressed, not encrypted. 
-[C:/Adam/Dsk/Dsk2a.CPP.Z,90] Copy() or 
-rename them with [C:/Adam/Dsk/Dsk2a.CPP.Z,118] Move() to store them
+[C:/Adam/Dsk/Dsk2a.CPP.Z,74] Copy() or 
+rename them with [C:/Adam/Dsk/Dsk2a.CPP.Z,102] Move() to store them
 uncompressed.
 
 * TempleOS is open src and every bit of the src code is included in the 
@@ -67,11 +67,11 @@ compile the kernel and compiler.
 
 * TempleOS does not use object files or a linker.  You can link .BIN.Z
 modules 
-at [C:/Kernel/Hash1b.CPP.Z,359] Load() time, though. 
+at [C:/Kernel/Hash1b.CPP.Z,386] Load() time, though. 
 
 * The swap rate is high because tasks stay in the queue and poll conditions 
 and swap-out voluntarily.  Swaps also occur at 1000 Hz due to the timer 
-interrupt.  See [C:/Kernel/Adam1a.HPP.Z,526] JIFFY_FREQ.
+interrupt.  See [C:/Kernel/Adam1a.HPP.Z,530] JIFFY_FREQ.
 
 * Refresh rate is how often TempleOS updates screen mem.  It is not 
 syncronized to the hardware rate, having nothing to do with it.

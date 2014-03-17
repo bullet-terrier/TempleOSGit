@@ -42,14 +42,14 @@ U0 Song()
   }
   try {
     task=PopUpViewStr(
-    "[C:/Misc/Bible.TXT.Z,12005] Numbers,6:25\n"
-    "[C:/Misc/Bible.TXT.Z,46190] Psalms,31:16\n"
-    "[C:/Misc/Bible.TXT.Z,46190] Psalms,67:1\n"
-    "[C:/Misc/Bible.TXT.Z,46190] Psalms,80:3\n"
-    "[C:/Misc/Bible.TXT.Z,46190] Psalms,80:19\n"
-    "[C:/Misc/Bible.TXT.Z,46190] Psalms,119:135\n"
-    "[C:/Misc/Bible.TXT.Z,71804] Daniel,9:17\n"
-    );
+	  "[C:/Misc/Bible.TXT.Z,12005] Numbers,6:25\n"
+	  "[C:/Misc/Bible.TXT.Z,46190] Psalms,31:16\n"
+	  "[C:/Misc/Bible.TXT.Z,46190] Psalms,67:1\n"
+	  "[C:/Misc/Bible.TXT.Z,46190] Psalms,80:3\n"
+	  "[C:/Misc/Bible.TXT.Z,46190] Psalms,80:19\n"
+	  "[C:/Misc/Bible.TXT.Z,46190] Psalms,119:135\n"
+	  "[C:/Misc/Bible.TXT.Z,71804] Daniel,9:17\n"
+	  );
     TaskWait(task);
     SetWinHorz(Fs->win_left,Fs->win_right,task);
     SetWinVert(Fs->win_bottom+3,Fs->win_bottom+15,task);
@@ -57,16 +57,16 @@ U0 Song()
     while (!ScanKey) {
       "$WHITE$To God...\n$FG$";
       Play("3etCFEsDDDDD2G3D2G3qC2eG3EqEetAAF2qG",
-      "I \0am \0a\0biding \0 \0 \0 \0in \0 \0Your \0 \0presence.\n\0 \0 \0 \0 \0 \0 \0 \0");
+	    "I \0am \0a\0biding \0 \0 \0 \0in \0 \0Your \0 \0presence.\n\0 \0 \0 \0 \0 \0 \0 \0");
       Play("3etCFEsDDDDD2G3D2G3qC2eG3EqEetAAF2qG",
-      "I \0am \0a\0biding \0 \0 \0 \0in \0 \0Your \0 \0presence.\n\0 \0 \0 \0 \0 \0 \0 \0");
+	    "I \0am \0a\0biding \0 \0 \0 \0in \0 \0Your \0 \0presence.\n\0 \0 \0 \0 \0 \0 \0 \0");
       Play("3DBsFGFG2eG3FRDqEGeBE",
-      "What \0a \0joy!\n\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0");
+	    "What \0a \0joy!\n\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0");
       Play("qDBsFGFG2eG3FRDqEGeBE",
-      "I'm \0so \0coy!\n\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0");
+	    "I'm \0so \0coy!\n\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0");
     }
-    } catch
-      PutExcept;
+  } catch
+    PutExcept;
   SettingsPop;
 }
 

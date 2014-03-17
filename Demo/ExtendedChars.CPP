@@ -31,6 +31,6 @@ SrcExample;
 //[C:/Demo/Graphics/CharGraphics.CPP.Z,1],
 //and [C:/Demo/Graphics/FontEd.CPP.Z,1].
 
-//See [C:/Kernel/Str1a.CPP.Z,358] chars_bitmap_alpha, and
-//[C:/Kernel/Str1a.CPP.Z,361] chars_bitmap_alpha_numeric.
+//See [C:/Kernel/Str1a.CPP.Z,334] chars_bitmap_alpha, and
+//[C:/Kernel/Str1a.CPP.Z,337] chars_bitmap_alpha_numeric.
 

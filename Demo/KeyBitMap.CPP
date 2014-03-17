@@ -11,7 +11,7 @@ I64 x=0;
 
 U0 DrawIt(CTask *,CDC *dc)
 {
-  SpritePlot3(dc,x%100,100,0,__BIN_1);
+  Sprite3(dc,x%100,100,0,__BIN_1);
 }
 
 
@@ -31,7 +31,7 @@ U0 KeyDownBitMapDemo()
 //merged scan code.  (left shift and
 //right shift combined for example.)
 //[C:/Kernel/KGlbls.CPP.Z,123] key_down_bitmap2 is indexed with the
-//distinct scan code.  See [Char,1] Char and [C:/Kernel/Adam1a.HPP.Z,3130] Scan Codes.
+//distinct scan code.  See [Char,1] Char and [C:/Kernel/Adam1a.HPP.Z,3140] Scan Codes.
 
   while (Bt(key_down_bitmap,i_sc)) {
     x++;

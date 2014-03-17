@@ -217,7 +217,7 @@ public I64 ChkDsk(U8 drv_let=0,Bool fix=FALSE,Bool confirm=TRUE)
       errs=FAT32ChkDsk(drv_let,&fix,&confirm);
       break;
     default:
-      PrintErr("%S","ST_UNSUPPORTED_FILE_SYSTEM");
+      PrintErr("File System Not Supported\n");
   }
   if (errs) {
     if (fix)

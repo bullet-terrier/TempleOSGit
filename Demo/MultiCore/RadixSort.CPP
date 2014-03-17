@@ -77,18 +77,18 @@ U0 MPRadixSortDemo(I64 dummy=0)
   a2=MAlloc(NUM*sizeof(I32));
 
   "$GREEN$QSort$FG$\n";
-  t0=tT;
+  t0=tS;
   MemCpy(a2,a1,sizeof(I32)*NUM);
   QSort(a2,NUM,sizeof(I32),&Compare);
-  "Time:%9.6f\n",tT-t0;
+  "Time:%9.6f\n",tS-t0;
   D(a2+NUM/4);
 
 
   "$GREEN$QSortU32$FG$\n";
-  t0=tT;
+  t0=tS;
   MemCpy(a2,a1,sizeof(I32)*NUM);
   QSortU32(a2,NUM);
-  "Time:%9.6f\n",tT-t0;
+  "Time:%9.6f\n",tS-t0;
   D(a2+NUM/4);
 
   for (i=0;i<my_mp_cnt;i++) {
@@ -102,7 +102,7 @@ U0 MPRadixSortDemo(I64 dummy=0)
   if (my_mp_cnt<2) throw('MultCore');
 
   "$GREEN$MP Radix QSortU32$FG$\n";
-  t0=tT;
+  t0=tS;
   k1=32-Bsr(my_mp_cnt);
   k2=my_mp_cnt/2;
   for (i=0;i<NUM;i++) {
@@ -119,7 +119,7 @@ U0 MPRadixSortDemo(I64 dummy=0)
     MemCpy(&a2[j],b[i],bn[i]*sizeof(I32));
     j+=bn[i];
   }
-  "Time:%9.6f\n",tT-t0;
+  "Time:%9.6f\n",tS-t0;
   D(a2+NUM/4);
 
   Free(a1);

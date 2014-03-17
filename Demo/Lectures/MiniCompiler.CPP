@@ -2,20 +2,20 @@
 +] Main Compiler
   The mini compiler is like the main compiler, except the main compiler's
   lexical analyser removes comments and does
-  preprocessing.  [C:/Compiler/Lex.CPP.Z,760]
+  preprocessing.  [C:/Compiler/Lex.CPP.Z,742]
   Lex(),[C:/Compiler/ICLCC.CPP.Z,38] Echo(ON).
 
 The main compiler generates [C:/Compiler/CmpDefs.HPP.Z,1] Intermediate Code
   at the parser stage.  See [C:/Compiler/ExpParser.CPP.Z,298] PrsExpression(),
-  [C:/Compiler/StmtParser.CPP.Z,1694] PrsStatement().
+  [C:/Compiler/StmtParser.CPP.Z,1689] PrsStatement().
 
-The main compiler optimizes   See [D:/Compiler/CmpInit.CPP.Z,1] Intermediate
+The main compiler optimizes   See [C:/Compiler/CmpInit.CPP.Z,1] Intermediate
   Code Attributes, [C:/Compiler/OptPass012.CPP.Z,1] Combining Consts,
   [C:/Compiler/OptPass3.CPP.Z,1] Choosing Reg Vars.  Set
   [C:/Compiler/ICLCC.CPP.Z,21] OTrace(ON) to see the optimization stages.
 
 The main compiler makes machine code in the back end.  See
-  [C:/Kernel/Adam1a.HPP.Z,1561] IC Struct, [C:/Compiler/ICLCC.CPP.Z,377]
+  [C:/Kernel/Adam1a.HPP.Z,1564] IC Struct, [C:/Compiler/ICLCC.CPP.Z,376]
   LCCCompile and [C:/Compiler/OptPass789.CPP.Z,1]
   OptPass789(), [C:/Compiler/Back1a.CPP.Z,1] BackEnd.  Set
   [C:/Compiler/ICLCC.CPP.Z,33] CTrace(ON) to see the output of the backend.
@@ -46,7 +46,7 @@ It is okay in TempleOS to change RAX, RBX, RCX, RDX, R8 and R9 without
 #define OP_SUB		4
 
 I64 Lex(U8 **_src,I64 *num)
-{ //See [C:/Compiler/Lex.CPP.Z,760] Lex().
+{ //See [C:/Compiler/Lex.CPP.Z,742] Lex().
   U8 *src=*_src;
   I64 i;
   while (TRUE) {
@@ -234,8 +234,8 @@ U0 Main()
 	  throw;
 	"$RED$This code is not efficient, but the compiler is simple.$FG$\n";
 	Un(code,dst-code); //Unassemble the code we created.
-//[C:/Kernel/Adam1b.HPP.Z,285] Call() is a function.  See [C:/Kernel/Utils1a.CPP.Z,1] _CALL::
-//See also [C:/Kernel/Adam1b.HPP.Z,288] CallInd().  See [C:/Kernel/Utils1a.CPP.Z,1] _CALLIND::
+//[C:/Kernel/Adam1b.HPP.Z,273] Call() is a function.  See [C:/Kernel/Utils1a.CPP.Z,1] _CALL::
+//See also [C:/Kernel/Adam1b.HPP.Z,276] CallInd().  See [C:/Kernel/Utils1a.CPP.Z,1] _CALLIND::
 	"$LTBLUE$Answer:%d$FG$\n",Call(code);
       } catch {
 	"$RED$Error$FG$\n";

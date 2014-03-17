@@ -5,7 +5,7 @@ passed to routines.
 
 See [C:/Demo/Graphics/SpritePlot.CPP.Z,1],
 [C:/Demo/Graphics/SpritePlot3D.CPP.Z,1] and 
-[C:/Demo/Graphics/SpritePut.CPP.Z,1] and [C:/Adam/Gr/SpriteMesh.CPP.Z,874]
+[C:/Demo/Graphics/SpritePut.CPP.Z,1] and [C:/Adam/Gr/SpriteMesh.CPP.Z,871]
 SpriteMesh().
 
 Be aware that copying SP, IB, or IS entries with the clipboard results in 

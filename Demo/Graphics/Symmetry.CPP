@@ -14,7 +14,7 @@ U0 SymmetryDemo()
   DCFill;
   DocClear;
   dc->flags|=DCF_SYMMETRY;
-  GrSetSymmetry(dc,Fs->win_pixel_width/2,0,Fs->win_pixel_width/2,1);
+  GrSetSymmetry(dc,Fs->pix_width/2,0,Fs->pix_width/2,1);
   do {
     msg_code=GetMsg(&p1,&p2,
       1<<MSG_KEY_DOWN+1<<MSG_IP_L_DOWN+

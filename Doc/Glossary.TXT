@@ -1,7 +1,7 @@
 +] Abbreviations
   Abs	Absolute
 Acct	Account
-Add/Addr	Address
+Addr	Address
 AOT	Ahead-of-Time
 AP	Application Processor (CPU# > 0)
 Arg	Argument
@@ -20,9 +20,10 @@ Cmp	Compiler
 Cnt	Count
 Ctrl	Control.  The ctrl key is indicated with "^" in documentation.
 Cur	Current
+Cvt	Convert
 Dbg	Debug
 Dbl	Double
-CDC	Device Context
+DC	Device Context
 Del	Delete
 Desc	Descriptor or Description
 Dev	Device
@@ -45,7 +46,8 @@ Fun	Function
 Gen	Generate
 Glbl	Global
 Gr	Graphic
-IDE	Integrated Drive Electronics
+IDE	Integrated Drive Electronics, Integrated Development Environment
+Ident	Identifier, Identity
 IDT	Interrupt Descriptor Table
 Init	Initialize
 Ins	Insert
@@ -55,6 +57,7 @@ ip_	Input Pointer.  See [C:/Kernel/KbdMouse/InputPointer.CPP.Z,1]
 Irq	Interrupt (Request)
 JIT	Just-in-Time
 Kbd	Keyboard
+KD	Keyboard Device
 Len	Length
 Let	Letter
 Lex	Lexical Analyser
@@ -73,6 +76,7 @@ Obj	Object
 Occ	Occurrence
 CMathODE	Ordinary Differential Equation
 Paren	Parenthesis
+Pix	Pixel
 Pkg	Package
 Pmt	Prompt
 Poly	Polygon
@@ -98,6 +102,7 @@ Snd	Sound
 Src	Source
 Srv	Servant
 Stat	Status or Statistic
+Std	Standard
 Stk	Stack
 Str	String
 Sym	Symbol
@@ -117,7 +122,7 @@ WSD	WordStat Dictionary
 +] Task/Process/Thread
   There is no distinction between "task", "process" or "thread."  The Fs
   segment reg is kept pointing to the current task's
-  [C:/Kernel/Adam1a.HPP.Z,2866] CTask.  There is only one window per task.
+  [C:/Kernel/Adam1a.HPP.Z,2879] CTask.  There is only one window per task.
 
 +] Adam Task
   This is Adam, as in Adam and Eve, the parent of all tasks.  This task is
@@ -127,9 +132,9 @@ WSD	WordStat Dictionary
   Adam1.CPP.Z ends by #include [C:/Adam/Adam2.CPP.Z,1] where the remainder of
   the operating system is "#included".  When start-up is finished, the adam
   task enters a server mode where it accepts requests from other tasks.  The
-  [C:/Kernel/SrvCmd.CPP.Z,405] Adam("") routine will cause the adam task to
+  [C:/Kernel/SrvCmd.CPP.Z,404] Adam("") routine will cause the adam task to
   compile and run text src code.  "#include" statements can be sent to the
-  [C:/Kernel/SrvCmd.CPP.Z,405] Adam("") routine, creating system-wide code and
+  [C:/Kernel/SrvCmd.CPP.Z,404] Adam("") routine, creating system-wide code and
   data which don't disappear when any particular task ends.  (The Adam task is
   immortal.)
 
@@ -143,41 +148,40 @@ WSD	WordStat Dictionary
   calling routines +/-2 Gig from the current code location.  To prevent
   out-of-range issues, I decided to separate code and data, placing all code
   within the lowest 2 Gig of memory.  The compiler and
-  [C:/Kernel/Hash1b.CPP.Z,359] Load()er allocate memory from the code heap to
+  [C:/Kernel/Hash1b.CPP.Z,386] Load()er allocate memory from the code heap to
   store code and glbl vars, unless the compiler option
-  [C:/Kernel/Adam1a.HPP.Z,1471] OPTf_GLBLS_ON_DATA_HEAP is used.  When programs
+  [C:/Kernel/Adam1a.HPP.Z,1474] OPTf_GLBLS_ON_DATA_HEAP is used.  When programs
   call [C:/Kernel/Mem1b.CPP.Z,376] MAlloc() is comes from the data heap, which
   in not limited in size, except by how much physical RAM memory you have.  You
   can allocate from any heap you like, or even make independent heaps.
 
 +] Parent/Child Task
-  Often a task will [C:/Kernel/Task1a.CPP.Z,230] Spawn() or
-  [C:/Adam/Doc/DocPopUp.CPP.Z,393] PopUp() a task as a helper.  The helper is
+  Often a task will [C:/Kernel/Task1a.CPP.Z,225] Spawn() or
+  [C:/Adam/Doc/DocPopUp.CPP.Z,395] PopUp() a task as a helper.  The helper is
   known as a Child Task, though you can Spawn a task and assign it a different
   parent... like Adam.  Links are kept as to who spawned what so when one task
   is [C:/Kernel/Task1a.CPP.Z,28] Kill()ed the helper tasks disappear, too.  You
-  can get a report on current system tasks with [C:/Adam/Utils2a.CPP.Z,428]
+  can get a report on current system tasks with [C:/Adam/Utils2a.CPP.Z,413]
   TaskRep().  There is just one possible window per task, so child tasks are
   needed.
 
 +] HolyC
-  The language used by TempleOS is more than C and less than C++.  See
-  [C:/Doc/HolyC.TXT.Z,1] HolyC.  It has the default arg feature of C++ and uses
-  class in place of struct.  It uses U0,U8,U16,U32,I64 and I0,I8,I16,I32,I64
-  for signed and unsigned integers.  It has a slightly different operator
-  precedence.  See [C:/Doc/HolyC.TXT.Z,1] OP_precedence  It has the PASCAL-like
-  feature of function calls with no parens, but requires an "&" when referring
-  to function addresses.
+  [C:/Doc/HolyC.TXT.Z,1] HolyC is more than C and less than C++.  It has the
+  default args of C++ and uses class in place of struct.  It uses
+  U0,U8,U16,U32,I64 and I0,I8,I16,I32,I64 for signed and unsigned integers.  It
+  has different [C:/Doc/HolyC.TXT.Z,1] operator precedence.  It has PASCAL-like
+  function calls with no parens, but requires an "&" when referring to function
+  addresses.
 
 +] AOT Compile Mode
   This term to refers to conventional compilation mode.  It is not the
   preferred mode for this operating system and is discouraged.  .PRJ files are
   compiled to .BIN files, skipping .OBJ files.  After compiling, you do a
-  [C:/Kernel/Hash1b.CPP.Z,359] Load() cmd which is available by right-clicking
-  on a link (like from [C:/Kernel/Dsk/Dsk1b.CPP.Z,237] Dir()).  There is no
+  [C:/Kernel/Hash1b.CPP.Z,386] Load() cmd which is available by right-clicking
+  on a link (like from [C:/Kernel/Dsk/Dsk1b.CPP.Z,243] Dir()).  There is no
   main() routine.  Instead, statements outside functions are automatically
   executed upon loading.  There is no way to unload except by killing the task.
-   To invoke AOT Compiled Mode, use the [C:/Compiler/CmpMain.CPP.Z,346] Cmp()
+   To invoke AOT Compiled Mode, use the [C:/Compiler/CmpMain.CPP.Z,448] Cmp()
   routine or right-click on a link.  The Kernel modules and compiler are made
   in AOT compiled mode and stored in Kernel.BIN.C and Compiler.BIN.Z,
   respectively.
@@ -188,9 +192,9 @@ See [C:/Demo/Games/EagleDive.CPP.Z,1] for an example of an AOT module.
   In just-in-time mode, the compiler allocates objects, code and data, from
   the heap, incrementally.  This mode is used during cmd line operations.  When
   you #include a file, it is compiled function by function and objects are
-  placed all over in mem.  The [C:/Compiler/CmpMain.CPP.Z,548] ExeFile()
+  placed all over in mem.  The [C:/Compiler/CmpMain.CPP.Z,649] ExeFile()
   routine is the same as #include but can be placed in programs. 
-  [C:/Compiler/CmpMain.CPP.Z,539] ExePrint() routine will compile and run a
+  [C:/Compiler/CmpMain.CPP.Z,640] ExePrint() routine will compile and run a
   string.
 
 +] Compiler Intermediate Code
@@ -200,7 +204,7 @@ See [C:/Demo/Games/EagleDive.CPP.Z,1] for an example of an AOT module.
   not "interpret" code, except in the process of optimization.  The assembly
   language can be viewed when it is compiled with the
   [C:/Compiler/ICLCC.CPP.Z,33] CTrace() routine, or afterward with
-  [C:/Compiler/Unassembler.CPP.Z,685] U().
+  [C:/Compiler/Unassembler.CPP.Z,647] U().
 
 +] Partition/Drive
   There is no distinction between "partition" or "drive."  They are specified
@@ -213,18 +217,18 @@ For commands taking a drive letter as an argument, 0 is the current drive.
 [AutoFile,1] AutoFile
 [Char/Define,1] Define
 [Hash,1] Hash Table
-[C:/Adam/Doc/Doc.CPP.Z,92] Link Types
+[C:/Adam/Doc/Doc.CPP.Z,37] Editor Link Types
 [C:/Doc/RedSea.TXT.Z,1] RedSea File System
-[Graphics/CSprite,1] Sprite
+[Graphics/Sprite,1] Sprite
 +] files_find_mask
   [C:/Kernel/Dsk/DskStr.CPP.Z,40] FilesFindMatch().  An optional directory
-  plus a list of file name masks, as in /Demo/*.TXT.Z;*.CPP.Z
+  plus a list of filename masks, as in /Demo/*.TXT.Z;*.CPP.Z
 
-See [C:/Kernel/Adam1a.HPP.Z,3440] FUF_RECURSE, [C:/Kernel/Define1b.CPP.Z,32]
-  ST_FILE_UTIL_FLAGS, [C:/Kernel/Adam1a.HPP.Z,2084] FILEMASK_TXT,
-  [C:/Kernel/Adam1a.HPP.Z,2083] FILEMASK_SRC, [C:/Kernel/Adam1a.HPP.Z,2082]
-  FILEMASK_AOT, [C:/Kernel/Adam1a.HPP.Z,2081] FILEMASK_JIT, and
-  [C:/Kernel/Adam1a.HPP.Z,2085] FILEMASK_GRA.
+See [C:/Kernel/Adam1a.HPP.Z,3454] FUF_RECURSE, [C:/Kernel/Define1a.CPP.Z,112]
+  ST_FILE_UTIL_FLAGS, [C:/Kernel/Adam1a.HPP.Z,2089] FILEMASK_TXT,
+  [C:/Kernel/Adam1a.HPP.Z,2088] FILEMASK_SRC, [C:/Kernel/Adam1a.HPP.Z,2087]
+  FILEMASK_AOT, [C:/Kernel/Adam1a.HPP.Z,2086] FILEMASK_JIT, and
+  [C:/Kernel/Adam1a.HPP.Z,2090] FILEMASK_GRA.
 
 +] Filename Extention Types
   
@@ -244,23 +248,23 @@ See [C:/Kernel/Adam1a.HPP.Z,3440] FUF_RECURSE, [C:/Kernel/Define1b.CPP.Z,32]
 *.MAP.Z;*.MAP
   Compiler "map" files
 *.BIN.Z;*.BIN.C;*.BIN
-  Binary executable files, created by [C:/Compiler/CmpMain.CPP.Z,346] Cmp()
-  and read by [C:/Kernel/Hash1b.CPP.Z,359] Load().
+  Binary executable files, created by [C:/Compiler/CmpMain.CPP.Z,448] Cmp()
+  and read by [C:/Kernel/Hash1b.CPP.Z,386] Load().
 *.DAT.Z;*.DAT
   Data files
 *.ISO
   CD-ROM image file--ISO9660.
 *.AUT.Z;*.AUT
   "AutoFile" Basically a HolyC program who's stdout goes to the input of a
-  task when [C:/Kernel/SrvCmd.CPP.Z,485] AutoFile() is called.
+  task when [C:/Kernel/SrvCmd.CPP.Z,484] AutoFile() is called.
 *.GRA.Z;*.GRA
   Graphics file
 
-[C:/Kernel/Adam1a.HPP.Z,2084] FILEMASK_TXT
-[C:/Kernel/Adam1a.HPP.Z,2083] FILEMASK_SRC
-[C:/Kernel/Adam1a.HPP.Z,2082] FILEMASK_AOT
-[C:/Kernel/Adam1a.HPP.Z,2081] FILEMASK_JIT
-[C:/Kernel/Adam1a.HPP.Z,2085] FILEMASK_GRA
+[C:/Kernel/Adam1a.HPP.Z,2089] FILEMASK_TXT
+[C:/Kernel/Adam1a.HPP.Z,2088] FILEMASK_SRC
+[C:/Kernel/Adam1a.HPP.Z,2087] FILEMASK_AOT
+[C:/Kernel/Adam1a.HPP.Z,2086] FILEMASK_JIT
+[C:/Kernel/Adam1a.HPP.Z,2090] FILEMASK_GRA
 
 +] Naming Convention
   The following are rules I stick to.  If you work on the operating system,
@@ -303,11 +307,11 @@ DOCG_????
 
 +] Fs
   The CPU FS segment reg.  This reg points to the current task's
-  [C:/Kernel/Adam1a.HPP.Z,2866] CTask.
+  [C:/Kernel/Adam1a.HPP.Z,2879] CTask.
 
 +] Gs
   The CPU GS segment reg.  This reg points to the
-  [C:/Kernel/Adam1a.HPP.Z,3470] CCPU.
+  [C:/Kernel/Adam1a.HPP.Z,3488] CCPU.
 
 +] Bt,Bts,Btr,Btc,LBts,LBtr,LBtc
   These are bit manipulation functions named after x86 instructions.  They

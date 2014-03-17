@@ -54,8 +54,8 @@ U0 DumpStruct(U8 *_d,U8 *class_name=lastclass)
 
 //This corrects for the ambiguity, allowing zero percentile.
     if (MemberMetaFind("percentile",ml)) { //check if it exists
-//We could use the [C:/Kernel/Adam1a.HPP.Z,749] CMemberLstMeta structure returned by
-//[C:/Compiler/Lex.CPP.Z,476] MemberMetaFind() and save a search.
+//We could use the [C:/Kernel/Adam1a.HPP.Z,756] CMemberLstMeta structure returned by
+//[C:/Compiler/Lex.CPP.Z,458] MemberMetaFind() and save a search.
       percentile=MemberMetaData("percentile",ml)(F64);
       " percentile: %5.2f",percentile;
     }

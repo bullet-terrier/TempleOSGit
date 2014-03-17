@@ -31,7 +31,7 @@ U0 DrawIt(CTask *,CDC *dc)
     GrRotZEqu(dc->r,5*pi/4);
   GrRotXEqu(dc->r,-5*pi/4);
   GrScaleEqu(dc->r,0.75);
-  SpritePlot3(dc,0,0,0,__BIN_1);
+  Sprite3(dc,0,0,0,__BIN_1);
   if (dt>=16) {
     dc->color=GREEN;
     dt=0.5*(dt-16);

@@ -18,7 +18,7 @@ U0 DrawIt(CTask *,CDC *dc)
     GrScaleEqu(dc->r,(15+Sin(pi*(dt-26)))/15);
     dc->x=330;
     dc->y=35;
-    SpritePlot3(dc,0,0,0,__BIN_1);
+    Sprite3(dc,0,0,0,__BIN_1);
   }
 }
 

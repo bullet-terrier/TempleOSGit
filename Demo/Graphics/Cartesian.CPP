@@ -16,8 +16,8 @@ U0 Cartesian()
     "y=";
     if (st=MGetS) {
       if (*st) {
-	h=Fs->win_pixel_width/2;
-	v=Fs->win_pixel_height/2;
+	h=Fs->pix_width/2;
+	v=Fs->pix_height/2;
 	dc->color=RED;
 	GrLine(dc,h,0,h,2*v+1);
 	GrLine(dc,0,v,2*h+1,v);
@@ -45,6 +45,6 @@ Cartesian;
 
 /*
 For better performance, compile the expression entered by the user one time 
-with [C:/Compiler/ExpParser.CPP.Z,1170] LexExpression2Bin() and use
-[C:/Kernel/Adam1b.HPP.Z,285] Call(). See [C:/Demo/CompileDemo.CPP.Z,1].
+with [C:/Compiler/ExpParser.CPP.Z,1136] LexExpression2Bin() and use
+[C:/Kernel/Adam1b.HPP.Z,273] Call(). See [C:/Demo/CompileDemo.CPP.Z,1].
 */

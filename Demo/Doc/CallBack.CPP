@@ -34,15 +34,15 @@ U0 DoIt()
   DocBottom(bdoc);  //Ins at the bottom
   DocPrint(bdoc,"$RED$$CM+BY+LX,5,-3$");
 
-//The [C:/Adam/Doc/DocPlain.CPP.Z,658] DocPrint() routine returns the addr of the last entry.
+//The [C:/Adam/Doc/DocPlain.CPP.Z,679] DocPrint() routine returns the addr of the last entry.
   doc_e=DocPrint(bdoc,"$TX+TC,\" \"$");
 //The TC flag is "has tag callback".
 
 //Flags are explained here:
 // [C:/Doc/Widget.TXT.Z,1]
 // [C:/Doc/Dollar.TXT.Z,1]
-// [C:/Kernel/Adam1a.HPP.Z,1092] Dollar Flags
-// [C:/Adam/Doc/Doc.CPP.Z,1] ST_DOC_FLAGS
+// [C:/Kernel/Adam1a.HPP.Z,1102] Dollar Flags
+// [C:/Adam/Doc/DocInit.CPP.Z,1] ST_DOC_FLAGS
 
   doc_e->tag_cb=&tSCB;
   DocPrint(bdoc,"$FG$");

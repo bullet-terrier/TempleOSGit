@@ -11,7 +11,7 @@ the routine executing, but the routines which called it, as well.
 
 When done collecting statistics, use [C:/Adam/Utils/Profiler.CPP.Z,109]
 ProfRep() for a report.  You might need a 
-[C:/Adam/Doc/DocNew.CPP.Z,652] DocMax() to expand the command line window
+[C:/Adam/Doc/DocNew.CPP.Z,569] DocMax() to expand the command line window
 buffer to fit it all.
 
 You can set the CPU to monitor with [C:/Adam/Utils/Profiler.CPP.Z,68]

@@ -18,7 +18,7 @@ by [C:/Apps/MusicOrgan/JukeBox.CPP.Z,1] JukeBox().  The categories are "no
 nothing", "has words", "has graphics", 
 or "special".  The third character in the comment is a digit rating number.
 
-* You can take the [C:/Adam/Snd/Music.CPP.Z,91] Play() statements out of a
+* You can take the [C:/Adam/Snd/Music.CPP.Z,93] Play() statements out of a
 song file and place them in your 
 programs.  You can also add a song to a document with <CTRL-L>, but you
 should 
@@ -35,9 +35,9 @@ the Bool [C:/Kernel/KGlbls.CPP.Z,72] snd_record to TRUE, play music, and set
 it to FALSE.  Then, call 
 [C:/Adam/Snd/SndFile.CPP.Z,20] SndFileCreate().  You might wish to make a
 <CTRL-ALT-key> to toggle this 
-system level recording feat.  See [C:/Kernel/Misc1a.CPP.Z,194] Snd().  Add
+system level recording feat.  See [C:/Kernel/Misc1a.CPP.Z,165] Snd().  Add
 this code to your 
-[C:/Accts/TAD/Adam3dKeyPlugIns.CPP,1] file.
+[C:/Accts/TS/TAD/Adam3cKeyPlugIns.CPP,1] file.
 
 
 U0 CtrlAltR(I64)

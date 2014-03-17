@@ -22,9 +22,9 @@ U0 DrawIt(CTask *task,CDC *dc)
   GrScaleEqu(dc->r,1.5+0.5*Sin(dt/3));
   GrSetRotMat(dc,dc->r);
   if (ToI64(dt)&1)
-    SpritePlot3B(dc,12.0*dt%task->win_pixel_width,20,0,__BIN_1);
+    Sprite3B(dc,12.0*dt%task->pix_width,20,0,__BIN_1);
   else
-    SpritePlot3B(dc,12.0*dt%task->win_pixel_width,20,0,__BIN_2);
+    Sprite3B(dc,12.0*dt%task->pix_width,20,0,__BIN_2);
 }
 
 U0 Song()

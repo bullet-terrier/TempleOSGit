@@ -2,7 +2,7 @@
 
 U0 ViewScreenCapture(U8 *filename)
 {
-  CDC	*dc=DCAlias(gr_dc,Fs),
+  CDC	*dc=DCAlias(,Fs),
 	*dc2=GRARead(filename);
   GrBlot(dc,0,0,dc2);
   DCDel(dc2);

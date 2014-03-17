@@ -13,8 +13,8 @@ code in the lowest 2 Gig memory addresses including what would normally be
 called "the kernel".  Two Gig is plenty, don't worry.
 
 You can create new, independent heaps by first allocating mem with 
-[C:/Kernel/Mem1a.CPP.Z,428] MemBlksUncachedAlloc() or
-[C:/Kernel/Mem1a.CPP.Z,215] MemBlksIndependentAlloc(), then calling 
+[C:/Kernel/Mem1a.CPP.Z,408] MemBlksUncachedAlloc() or
+[C:/Kernel/Mem1a.CPP.Z,195] MemBlksIndependentAlloc(), then calling 
 [C:/Kernel/Mem1c.CPP.Z,42] HeapCtrlBPInit() and, then, using
 [C:/Kernel/Mem1b.CPP.Z,376] MAlloc().
 
@@ -22,23 +22,23 @@ Memory allocated by a task will be freed when the task is killed.
 
 Eventually, memory will become fragmented, requiring a reboot.
 
-See [C:/Adam/Utils/MemRep.CPP.Z,197] MemRep().
+See [C:/Adam/Utils/MemRep.CPP.Z,198] MemRep().
 
                           Single System-wide Mem Map
 
  0x0000000000- 0x0000006FFF
   Pages marked not present so NULL ptr dereference causes a fault.
 
- 0x0000007C00- 0x000003861F
-  Kernel module, placed here by the boot-loader, [C:/Kernel/BootDefs.HPP.Z,6]
-  BOOT_RAM_BASE.
+ 0x0000007C00- 0x0000035F9F
+  Kernel module, placed here by the boot-loader,
+  [C:/Kernel/Adam1a.HPP.Z,3618] BOOT_RAM_BASE.
 
  0x0000096600- 0x0000096FFF
   Boot block relocated here before loading the Kernel module,
   [C:/Adam/Boot/BootCD.CPP.Z,1] BootCD & [C:/Adam/Boot/BootHD.CPP.Z,1] BootHD.
 
  0x0000097000- 0x000009702E
-  Multicore start-up vect code, [C:/Kernel/Adam1a.HPP.Z,490] MPN_VECT.
+  Multicore start-up vect code, [C:/Kernel/Adam1a.HPP.Z,494] MPN_VECT.
 
 ~0x000009F000- 0x000009FFFF
   Extended BIOS data area.
@@ -46,10 +46,10 @@ See [C:/Adam/Utils/MemRep.CPP.Z,197] MemRep().
  0x00000A0000- 0x00000BFFFF
   VGA graphics mem, marked as write-through cache.
 
- 0x0000100000- 0x0000182FFF
-  Page tables, 128 Gig of address space
+ 0x0000100000- 0x00001845FF
+  SYS_FIXED_AREA for page tables and misc.  128 Gig of address space mapped.
 
- 0x0000183000- 0x007FFDFFFF
+ 0x0000184600- 0x007FFDFFFF
   Code Heap mem.
 
  0x00E0000000- 0x00FFFFFFFF
@@ -68,7 +68,7 @@ are supported, so [C:/Kernel/Mem1c.CPP.Z,165] Mem32DevAlloc() flaws are not
 128 Gig, but no PCI devices are actually supported.
   
 
-				      [C:/Kernel/Adam1a.HPP.Z,2588] CBlkPools [C:/Kernel/Adam1a.HPP.Z,2603] CHeapCtrls
+				      [C:/Kernel/Adam1a.HPP.Z,2594] CBlkPools [C:/Kernel/Adam1a.HPP.Z,2608] CHeapCtrls
  <1> (image)
 
 
@@ -77,11 +77,11 @@ are supported, so [C:/Kernel/Mem1c.CPP.Z,165] Mem32DevAlloc() flaws are not
 0000,0000,0000,6FFF		      Core 0
 
 0000,0000,0000,7C00 Kernel
-0000,0000,0003,861F 
+0000,0000,0003,5F9F 
 
-0000,0000,0010,0000 Page_Tables			   AdamTask
+0000,0000,0010,0000 FIXED_AREA			   AdamTask
 
-0000,0000,0018,3000
+0000,0000,0018,4600
 
 		    sys_code_bp
 

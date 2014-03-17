@@ -7,7 +7,7 @@
 	"Link     : $LK,\"Genesis,1:1\",\"BF:Genesis,1:1\"$\n\n\n"
 
 
-	"Button   :     $BT-X,\"OKAY\",1$\n\n\n\n";
+	"Button   :     $BT-X,\"OKAY\",LE=1$\n\n\n\n";
 
 //You can do it this way if you like.
 	"\nSuper    : 32=9\n\n"

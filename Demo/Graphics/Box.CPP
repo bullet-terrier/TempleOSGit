@@ -2,7 +2,7 @@ CDC *dc;
 
 U0 DrawIt(CTask *,CDC *)
 {//This technique is weird, but clever.  In Box() we
- //created an alias of the system [C:/Adam/Gr/GrScreen.CPP.Z,7] gr_dc2.
+ //created an alias of the system [C:/Adam/Gr/GrGlbls.CPP.Z,5] gr_dc2.
   dc->pen_width=2;
   dc->color=RED;
   GrLine3(dc,-100,-100,-100, -100, 100,-100);

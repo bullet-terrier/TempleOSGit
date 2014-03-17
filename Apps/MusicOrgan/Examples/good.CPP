@@ -11,7 +11,7 @@ F64 t0=Beat;
 U0 DrawIt(CTask *,CDC *dc)
 {
   F64 dt=Beat-t0,tt;
-  U8 *temps;
+  CSprite *temps;
   if (dt<16.0)
     tt=0;
   else if (dt<18.0)
@@ -19,7 +19,7 @@ U0 DrawIt(CTask *,CDC *dc)
   else
     tt=1.0;
   temps=SpriteInterpolate(__BIN_1,__BIN_2,tt);
-  SpritePlot3(dc,180,40,0,temps);
+  Sprite3(dc,180,40,0,temps);
   Free(temps);
 }
 

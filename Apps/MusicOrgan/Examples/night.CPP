@@ -17,7 +17,7 @@ U0 DrawIt(CTask *,CDC *dc)
 {
   I64 i;
   F64 x,y,dt=Beat-t0;
-  SpritePlot3(dc,X,Y,0,__BIN_1);
+  Sprite3(dc,X,Y,0,__BIN_1);
   if (Beat-t0<24) {
     if (Rand<0.7) {
       dc->color=YELLOW;

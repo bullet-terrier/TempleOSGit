@@ -1,10 +1,10 @@
-F64 Limit(F64 p,F64 lo,F64 hi)
+F64 Clamp(F64 num,F64 lo,F64 hi)
 {
-  if (p<lo)
+  if (num<lo)
     return lo;
-  if (p>hi)
+  if (num>hi)
     return hi;
-  return p;
+  return num;
 }
 
 F64 Min(F64 n1,F64 n2)

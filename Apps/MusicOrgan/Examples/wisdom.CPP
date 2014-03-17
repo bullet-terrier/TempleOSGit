@@ -14,9 +14,9 @@ F64 t0=Beat;
 U0 DrawIt(CTask *,CDC *dc)
 {
   F64 dt=Beat-t0;
-  SpritePlot3(dc,20,8,0,__BIN_1);
+  Sprite3(dc,20,8,0,__BIN_1);
   if (8<dt<8.5) {
-    SpritePlot3(dc,20,24,0,__BIN_2);
+    Sprite3(dc,20,24,0,__BIN_2);
     Snd((dt-8)*100);
   }
 }

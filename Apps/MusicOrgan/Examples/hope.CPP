@@ -16,7 +16,7 @@ U0 DrawIt(CTask *,CDC *dc)
   I64 i,x,y;
   x=30+200*(Saw(Beat-t0,8.0));
   y=40;
-  SpritePlot3(dc,x,y,0,__BIN_1);
+  Sprite3(dc,x,y,0,__BIN_1);
   dc->color=YELLOW;
   for (i=0;i<5;i++)
     GrLine(dc,x,y,x+RandI16%100,y+RandI16%50+50);

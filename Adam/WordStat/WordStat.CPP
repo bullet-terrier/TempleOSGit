@@ -55,6 +55,10 @@ I64 ws_num_fillins=0,ws_fillin_scores[WS_MAX_FILLINS+1],ws_fillin_hits[WS_MAX_FI
 #define WSD_DEF_FILENAME	"/Adam/WordStat/WSDefs.DAT"
 #define WSD_DEF_FILENAME_Z	"/Adam/WordStat/WSDefs.DAT.Z"
 
+Bool	wsd_has_words=FileFind(WSD_WORD_FILENAME),
+	wsd_has_defs =FileFind(WSD_DEF_FILENAME)||FileFind(WSD_DEF_FILENAME_Z);
+
+
 #define WSD_H1			0
 #define WSD_H1_END		1
 #define WSD_DEF			2

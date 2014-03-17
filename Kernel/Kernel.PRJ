@@ -10,7 +10,6 @@ CKernelCfg *kernel_cfg;
 kernel_cfg=KernelCfgNew;
 };
 
-#include "BootDefs.HPP"
 #include "Adam1a.HPP"
 #include "KStart"
 #include "Utils1a"
@@ -36,7 +35,6 @@ kernel_cfg=KernelCfgNew;
 #include "StrPrint"
 #include "StrScan"
 #include "Define1a"
-#include "Define1b"
 #include "Display"
 #include "Misc1a"
 #include "Dbg1a"

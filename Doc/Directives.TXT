@@ -71,10 +71,11 @@ ALIGN num, fill_byte
   Align to num boundary and fill with fill_byte.
 
 MODULE_ORG num
-  Set code addr for JIT or set module [C:/Kernel/Hash1b.CPP.Z,359] Load()
+  Set code addr for JIT or set module [C:/Kernel/Hash1b.CPP.Z,386] Load()
 addr -- has 16-byte [C:/Kernel/Adam1a.HPP.Z,285] CBinFile 
 header and patch table trailing.
 
 BINFILE "FileName.BIN";
 
-See [C:/Demo/Asm/AsmAndC.CPP.Z,1] and [C:/Demo/Asm/AsmAndC2.CPP.Z,1].
+See [C:/Demo/Asm/AsmAndC1.CPP.Z,1], [C:/Demo/Asm/AsmAndC2.CPP.Z,1] and 
+[C:/Demo/Asm/AsmAndC3.CPP.Z,1].
