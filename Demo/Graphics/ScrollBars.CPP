@@ -4,9 +4,7 @@
 
 
 
-
 /* <1> <1> (image) */
-
 
 #define MAP_HEIGHT	2048
 #define MAP_WIDTH	2048

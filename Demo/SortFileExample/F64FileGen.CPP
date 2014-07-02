@@ -1,5 +1,5 @@
 //This makes a file of N random double values.
-//[E:/Demo/SortFileExample/UnsortedF64.TXT.Z,1]
+//[D:/Demo/SortFileExample/UnsortedF64.TXT.Z,1]
 
 U0 F64FileGenTXT(U8 *filename,I64 n)
 {
@@ -14,7 +14,7 @@ U0 F64FileGenTXT(U8 *filename,I64 n)
 F64FileGenTXT("/Demo/SortFileExample/UnsortedF64.TXT.Z",10);
 
 U0 F64FileGenDAT(U8 *filename,I64 n)
-{//[File/Program Routines/CFile,1] File/Program Routines/CFile, [C:/Demo/Dsk/DataBase.CPP.Z,1]
+{//[File/CFile,1] File/CFile, [C:/Demo/Dsk/DataBase.CPP.Z,1]
   I64 i;
   F64 *a=MAlloc(n*sizeof(F64));
   for (i=0;i<n;i++)

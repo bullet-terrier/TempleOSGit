@@ -1,12 +1,10 @@
-/*
-This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point arithmetic
+/*Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point arithmetic
 because it used to be faster than floating
 point.	See [C:/Demo/Lectures/FixedPoint.CPP.Z,1].
 
 The decimal place is between
 bits 31 and 32.
 */
-
 
 #define NUM_BALLS	64
 #define BALL_RADIUS	5
@@ -22,16 +20,10 @@ U0 DrawIt(CTask *,CDC *dc)
     GrCircle(dc,ball_x[i].i32[1],ball_y[i].i32[1],BALL_RADIUS);
 }
 
-
-
-
 /****
 
 
-
 /*  <1> (image) */
-
-
 
 
 
@@ -41,20 +33,15 @@ with normal and tangential components.
 All masses are identical, so they
 have been dropped from the equations.
 
-
 Conservation of Momentum:
 
 V1it+V2it=V1ft+V2ft
 
 V1in+V2in=V1fn+V2fn
 
-
-
 Conservation of Energy:
 
 |V1i|2+|V2i|2=|V1f|2+|V2f|2
-
-
 ****/
 
 U0 AnimateTask(I64)

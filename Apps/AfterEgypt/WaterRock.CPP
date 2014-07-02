@@ -27,9 +27,7 @@
 
 
 
-
 	/* <2> <2> (image) */
-
 
 
 
@@ -54,7 +52,6 @@
 
 
 
-
 	/* <5> <5> (image) */
 
 
@@ -68,7 +65,6 @@ CSprite *imgs[FRAMES]={__BIN_1,__BIN_2,__BIN_3,__BIN_4};
 
 F64 t0_down,t0_up;
 Bool down_stroke;
-
 
 U0 DrawWaterRock(CTask *task,CDC *dc)
 {
@@ -114,7 +110,7 @@ U0 WaterRock()
     "$BG,YELLOW$";
 
     BibleVerse(,"Exodus,17:6",4);
-    "\n$BK,1$<SPACE BAR>$BK,0$\n";
+    "\n$BK,1$<SPACE>$BK,0$\n";
 
     t0_down=t0_up=0;
     down_stroke=FALSE;
@@ -125,7 +121,7 @@ U0 WaterRock()
 	if (msg_code==MSG_KEY_DOWN) {
 	  t0_down=tS;
 	  down_stroke=TRUE;
-	} else if (t0_down) { //Ignore extra key_up from start-up
+	} else if (t0_down) {//Ignore extra key_up from start-up
 	  t0_up=tS;
 	  down_stroke=FALSE;
 	}

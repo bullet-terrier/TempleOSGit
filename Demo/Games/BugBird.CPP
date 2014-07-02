@@ -1,26 +1,18 @@
 AcctRegSetDftEntry("TempleOS/BugBird","F64 best_score=9999;\n");
 AcctRegExeBranch("TempleOS/BugBird");
 
-
   /* <1> <1> (image) */
-
-
 
 
 
   /* <2> <2> (image) */
 
 
-
-
   /* <3> <3> (image) */
 
 
 
-
-
   /* <4> <4> (image) */
-
 
 #define EAT_TIME	0.5
 
@@ -37,18 +29,18 @@ U0 DrawIt(CTask *task,CDC *dc)
   I64 i,y,x,
     h=task->pix_width-10,
     v=task->pix_height-10;
-  CSprite *temps,*inter2,*inter3;
+  CSprite *temps,*temps2,*temps3;
   F64 tt;
   if (h<1) h=1;
   if (v<1) v=1;
   tt=t_flap*t_flap*t_flap;
   temps=SpriteInterpolate(__BIN_1,__BIN_2,tt);
   if (eat_timeout && tS<eat_timeout) {
-    inter2=SpriteInterpolate(__BIN_3,__BIN_4,tt);
-    inter3=SpriteInterpolate(inter2,temps,1.0-(eat_timeout-tS)/EAT_TIME);
+    temps2=SpriteInterpolate(__BIN_3,__BIN_4,tt);
+    temps3=SpriteInterpolate(temps2,temps,1.0-(eat_timeout-tS)/EAT_TIME);
     Free(temps);
-    Free(inter2);
-    temps=inter3;
+    Free(temps2);
+    temps=temps3;
   }
   Sprite3(dc,xx,yy,0,temps);
   Free(temps);
@@ -59,7 +51,7 @@ U0 DrawIt(CTask *task,CDC *dc)
       dc->color=BLACK;
       GrPlot(dc,x,y);
       GrPlot(dc,x+1,y);
-      dc->color=RED;
+      dc->color=LTPURPLE;
       GrPlot(dc,x,y-1);
     }
   if (tf) {
@@ -134,9 +126,8 @@ U0 Init(CTask *song_task)
   t0=tS;
 }
 
-
 U0 SongTask(I64)
-{ //Song by Terry A. Davis
+{//Song by Terry A. Davis
   Fs->task_end_cb=&SndTaskEndCB;
   MusicSettingsRst;
   while (TRUE) {
@@ -145,7 +136,6 @@ U0 SongTask(I64)
     Play("EsEDqE");
   }
 }
-
 
 U0 AnimateTask(I64)
 {
@@ -177,7 +167,7 @@ U0 AnimateTask(I64)
 U0 BugBird()
 {
   Bool rst_space=TRUE;
-  I64 p1,p2;
+  I64 a1,a2;
 
   MenuPush(
   "File {"
@@ -190,7 +180,7 @@ U0 BugBird()
       "}"
       );
 
-  PopUpOk("Use $GREEN$<SPACE BAR>$FG$ to flap.\nHold down to glide.");
+  PopUpOk("Use $GREEN$<SPACE>$FG$ to flap.\nHold down to glide.");
 
   SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   WinBorder(ON);
@@ -206,9 +196,9 @@ U0 BugBird()
   Fs->draw_it=&DrawIt;
   try {
     while (TRUE) {
-      switch (GetMsg(&p1,&p2,1<<MSG_KEY_DOWN+1<<MSG_KEY_UP)) {
+      switch (GetMsg(&a1,&a2,1<<MSG_KEY_DOWN+1<<MSG_KEY_UP)) {
 	case MSG_KEY_DOWN:
-	  switch (p1) {
+	  switch (a1) {
 	    case CH_SPACE:
 	      if (rst_space) {
 		flap_down=TRUE;
@@ -224,7 +214,7 @@ U0 BugBird()
 	  }
 	  break;
 	case MSG_KEY_UP:
-	  switch (p1) {
+	  switch (a1) {
 	    case CH_SPACE:
 	      flap_up=TRUE;
 	      rst_space=TRUE;

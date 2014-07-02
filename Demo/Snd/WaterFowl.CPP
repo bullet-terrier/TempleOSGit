@@ -47,10 +47,7 @@ To a Waterfowl;
 #define POEM_COLS	53
 #define POEM_TIME	80.0
 
-
 /* <1> <1> (image) */
-
-
 
 
 /* <2> <2> (image) */
@@ -103,7 +100,7 @@ U0 AnimateTask(I64)
 }
 
 U0 SongTask(I64)
-{ //Song by Terry A. Davis
+{//Song by Terry A. Davis
 //This specifies a callback routine
 //to be called when the task dies.
   Fs->task_end_cb=&SndTaskEndCB;
@@ -129,7 +126,7 @@ U0 WaterFowl()
   Fs->draw_it=&DrawIt;
 
   t0=tS;
-  try //This catches <CTRL-ALT-C> exits
+  try //This catches <CTRL-ALT-c> exits
     GetChar;
   catch
     PutExcept;

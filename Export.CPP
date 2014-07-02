@@ -13,9 +13,9 @@ OptOn(OPTf_WARN_PAREN);
 //Just in case the filesystem gets corrupted while I develop it
 U0 BackupExport()
 {
-  Copy("E:/Export.CPP","D:/Export.CPP");
-  Copy("E:/Export.CPP","E:/ExportB.CPP");
-  Copy("E:/Export.CPP","D:/ExportB.CPP");
+  Copy("D:/Export.CPP","C:/Export.CPP");
+  Copy("D:/Export.CPP","D:/ExportB.CPP");
+  Copy("D:/Export.CPP","C:/ExportB.CPP");
 }
 
 //Appears to hang on this version...
@@ -35,7 +35,7 @@ U0 ExportBinary(U8 *src_file,CDocBin *b)
   while (buf>buf1 && *buf!='.')
     buf--;
   *buf=0;
-  buf=MPrint("%s%d.DAT",buf1,b->num);
+  buf=MStrPrint("%s%d.DAT",buf1,b->num);
   Free(buf1);
   "%s\n",buf;
   FileWrite(buf,b->data,b->size);
@@ -43,20 +43,17 @@ U0 ExportBinary(U8 *src_file,CDocBin *b)
 }
 
 U8 *ResolveLink(U8 *link_st)
-{ //Adapted from [C:/Adam/Doc/DocMain.CPP.Z,3] Ed. Resolves stuff like MN:Func to the file
+{ //Adapted from [C:/Adam/DolDoc/DocMain.CPP.Z,3] Ed. Resolves stuff like MN:Func to the file
   U8 *res,*filename=NULL,*pattern=NULL;
   I64 num;
   if (EdLinkCvt(link_st,&filename,&pattern,&num,0)==-1)
     res=StrNew(link_st);
   else if (num!=0)
-    res=MPrint("%s,%d",filename,num);
+    res=MStrPrint("%s,%d",filename,num);
   else
-    res=MPrint("%s,%s",filename,pattern);
+    res=MStrPrint("%s,%s",filename,pattern);
   Free(filename);
   Free(pattern);
-//Temporary hack to prevent pointless diffs on every link
-  if (!StrNCmp(res,"D:/",3))
-    *res='C';
   return res;
 }
 
@@ -90,7 +87,7 @@ U8 *Wrap(U8 *base,U8 *s,I64 *line_len,I64 indent=0)
   //Also adds indent spaces to every soft and hard newline.
   //Returns new value for base.
   //This is supposed to also take tabs into account but fuck that shit
-  //NOTE: at this point I could use [C:/Adam/Win2a.CPP.Z,349] SetWinHorz and append to a CDoc
+  //NOTE: at this point I could use [C:/Adam/Win2a.CPP.Z,327] SetWinHorz and append to a CDoc
   I64 len;
   U8 *p,*buf;
   U8 *end;
@@ -420,9 +417,9 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
       case DOCT_BUTTON:
         if (!cl->tag)
           break;
-        if (cl->flags1 & DOCEF1_CENTER_X)
+        if (cl->de_flags & DOCEF_CENTER_X)
           buf=IndentString((EXPORT_W-StrLen(cl->tag))/2);
-        else if (cl->flags1 & DOCEF1_RIGHT_X)
+        else if (cl->de_flags & DOCEF_RIGHT_X)
           buf=IndentString(EXPORT_W-StrLen(cl->tag));
         else
           buf=NULL;
@@ -445,24 +442,24 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
         break;
       case DOCT_INS_BINARY_SIZE:
         if (is_code)
-          buf=MPrint("%s__BIN_%d_SIZE",out,cl->bin_data->num);
+          buf=MStrPrint("%s__BIN_%d_SIZE",out,cl->bin_data->num);
         else
-          buf=MPrint("%s%d",out,cl->bin_data->size);
+          buf=MStrPrint("%s%d",out,cl->bin_data->size);
         Free(out); out=buf;
         break;
       case DOCT_INS_BINARY:
         if (is_code) {
-          buf=MPrint("%s__BIN_%d",out,cl->bin_data->num);
+          buf=MStrPrint("%s__BIN_%d",out,cl->bin_data->num);
           Free(out); out=buf;
         } else
           out=StrAdd(out,"(binary data)");
         break;
       case DOCT_SPRITE:
         if (is_code)
-          buf=MPrint("%s/* %s <%d> (image) */",
+          buf=MStrPrint("%s/* %s <%d> (image) */",
             out,cl->tag,cl->bin_data->num);
         else
-          buf=MPrint("%s%s <%d> (image)",out,cl->tag,
+          buf=MStrPrint("%s%s <%d> (image)",out,cl->tag,
             cl->bin_data->num);
         Free(out); out=buf;
         break;
@@ -472,22 +469,22 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
         else
           out=StrAdd(out,"(macro)");
         out=StrAdd(out,"\n");
-        if (cl->flags1 & DOCEF1_RIGHT_MACRO) {
-          buf=MPrint("%s`%s`\n",out,cl->right_macro);
+        if (cl->de_flags & DOCEF_RIGHT_MACRO) {
+          buf=MStrPrint("%s`%s`\n",out,cl->right_macro);
           Free(out); out=buf;
         }
-        if (cl->flags1 & DOCEF1_LEFT_MACRO) {
-          buf=MPrint("%s`%s`\n",out,cl->left_macro);
+        if (cl->de_flags & DOCEF_LEFT_MACRO) {
+          buf=MStrPrint("%s`%s`\n",out,cl->left_macro);
           Free(out); out=buf;
         }
         break;
       case DOCT_LINK:
         if (cl->aux_str) {
           lnk=ResolveLink(cl->aux_str);
-          buf=MPrint("%s[%s] %s",out,lnk,cl->tag);
+          buf=MStrPrint("%s[%s] %s",out,lnk,cl->tag);
         } else {
           lnk=ResolveLink(cl->tag);
-          buf=MPrint("%s[%s]",out,lnk);
+          buf=MStrPrint("%s[%s]",out,lnk);
         }
         Free(lnk);
         Free(out); out=buf;
@@ -559,7 +556,7 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
       case DOCT_PAGE_LEN:
         break;
       default:
-        buf=MPrint("%s /* Unknown token: %d */ ",out,cl->type_u8);
+        buf=MStrPrint("%s /* Unknown token: %d */ ",out,cl->type_u8);
         Free(out); out=buf;
         "%s: Unknown token: %d\n",ST_WARN_ST,cl->type_u8;
         break;
@@ -580,7 +577,7 @@ U0 ExportSingle(U8 *in_path,U8 *out_path,Bool debug=FALSE)
   Free(indents);
 }
 
-//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,111] CopyTree which is internally used by [C:/Adam/Dsk/Dsk2a.CPP.Z,130] CopyTree
+//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,116] CopyTree2 which is internally used by [C:/Adam/Dsk/Dsk2a.CPP.Z,135] CopyTree
 U0 PutExportTree(CDirEntry *ent,I64 src_dir_len,I64 dst_dir_len,
   U8 *dst_dir,Bool debug=FALSE)
 {
@@ -591,7 +588,7 @@ U0 PutExportTree(CDirEntry *ent,I64 src_dir_len,I64 dst_dir_len,
     path[dst_dir_len]='/';
     StrCpy(path+dst_dir_len+1,ent->full_name+src_dir_len);
     "%s\n",path;
-    if (ent->attr & _ATTR_DIR) {
+    if (ent->attr & RS_ATTR_DIR) {
       MkDir(path);
       if (ent->sub)
         PutExportTree(ent->sub,src_dir_len,dst_dir_len,dst_dir,debug);
@@ -602,8 +599,8 @@ U0 PutExportTree(CDirEntry *ent,I64 src_dir_len,I64 dst_dir_len,
   }
 }
 
-//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,130] CopyTree
-U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="E:/Git",
+//Adapted from [C:/Adam/Dsk/Dsk2a.CPP.Z,135] CopyTree
+U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="D:/Git",
   Bool debug=FALSE)
 {
   CFileAccess *fa;
@@ -626,7 +623,7 @@ U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="E:/Git",
       FileAccessDel(fa);
       Free(dst_dir);
     }
-    DirLstDel(ent);
+    DirTreeDel(ent);
   }
 }
 
@@ -635,9 +632,9 @@ U0 ExportTreeImpl(U8 *src_mask="T:/*",U8 *dst_mask="E:/Git",
 //to start the export.
 
 U0 ExportTree() {
-  CTask *task=SpawnUser("#include \"E:/Export.CPP\"
+  CTask *task=SpawnUser("#include \"D:/Export.CPP\"
 ExportTreeImpl;
-ExportSingle(\"E:/Export.CPP\",\"E:/Git/Export.CPP\");
+ExportSingle(\"D:/Export.CPP\",\"D:/Git/Export.CPP\");
 ");
   WinToTop(task);
 }

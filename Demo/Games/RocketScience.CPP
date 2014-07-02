@@ -1,8 +1,5 @@
-/*
-
-If you find this interesting, you might want to check-out
+/*If you find this interesting, you might want to check-out
 SimStructure, a simulation program I wrote you can downlload.
-
 
 http://www.templeos.org/files/SimStrSetUp.zip
 
@@ -13,24 +10,21 @@ control theory.  I just like to appy a PID ctrller
 and fiddle intelligently with the feedback coefficients.
 
 Real rockets have dynamics like fuel slosh to consider!
-
 */
 
 #define THRUST	1000
 
-Bool blast_off,plane_hit;
+Bool	blast_off,plane_hit;
 
-CMass m1, //Bottom of rocket
-	   m2, //Top of rocket
-	   m3; //Plane
+CMass	m1, //Bottom of rocket
+	m2, //Top of rocket
+	m3; //Plane
 CSpring s;
 
 #define PT_SPAN	40
 
 
-
    /* <1> <1> (image) */
-
 
 
 
@@ -40,15 +34,15 @@ CSpring s;
 
   /* <3> <3> (image) */
  
-CDC *dc2;
+CDC	*dc2;
 CMathODE *ode;
 
 #define STATE_NOZZLE_ANGLE		0
 #define STATE_NOZZLE_ANGLE_VELOCITY	1
 #define STATE_NUM			2
 
-CD3 target;
-F64 dbg,antispin_coefficient;
+CD3	target;
+F64	my_dbg,antispin_coefficient;
 
 U0 DrawIt(CTask *task,CDC *dc)
 {
@@ -59,7 +53,7 @@ U0 DrawIt(CTask *task,CDC *dc)
     x=m1.x-10*Cos(theta+nozzle_angle);
     y=m1.y-10*Sin(theta+nozzle_angle);
     for (i=0;i<6;i++) {
-      if ((i^win_updates)&1)
+      if ((i^winmgr.updates)&1)
 	dc->color=YELLOW;
       else
 	dc->color=RED;
@@ -110,9 +104,8 @@ U0 DrawIt(CTask *task,CDC *dc)
   GrCircle(dc,cx+m3.x,cy-m3.y,5);
 
   dc->color=BLACK;
-  GrPrint(dc,0,FONT_HEIGHT,"%12.6f",dbg);
+  GrPrint(dc,0,FONT_HEIGHT,"%12.6f",my_dbg);
 }
-
 
 U0 MyDerivative(CMathODE *,F64,F64 *state,F64 *DstateDt)
 {
@@ -135,7 +128,6 @@ U0 MyDerivative(CMathODE *,F64,F64 *state,F64 *DstateDt)
   //p_target is vect from top of rocket to plane.
   D3Sub(&m3.state->x,&m2.state->x,&p_target);
 
-
   //d=0.5at^2+vt
   d=D3Norm(&p_target);
  
@@ -151,7 +143,7 @@ U0 MyDerivative(CMathODE *,F64,F64 *state,F64 *DstateDt)
     collision_estimate_t=(-v+Sqrt(discriminant))/a;
   else
     collision_estimate_t=0;
-  dbg=collision_estimate_t;
+  my_dbg=collision_estimate_t;
 
   //Aim for projected pos of plane at time of impact.
   D3Copy(&p,&m3.state->DxDt);
@@ -183,7 +175,7 @@ U0 MyDerivative(CMathODE *,F64,F64 *state,F64 *DstateDt)
   //You might also factor-in fuel slosh in the tank.
 
   //To do this, you would have to set-up state vars for mass and
-  //do A=F/m manually instead of relyin on [C:/Adam/MathODE.CPP.Z,324] ODECallDerivative() to divide
+  //do A=F/m manually instead of relyin on [C:/Adam/MathODE.CPP.Z,323] ODECallDerivative() to divide
   //by mass.
 }
 
@@ -255,7 +247,7 @@ U0 RocketScience()
   Fs->task_end_cb=&TaskEndCB;
 
   DocClear;
-  "$BG,LTCYAN$"; NewLine(Fs->win_height-4);
+  "$BG,LTCYAN$%h*c",Fs->win_height-4,'\n';
  
   ode=ODENew(STATE_NUM,1e-6,ODEF_HAS_MASSES);
   ode->derivative=&MyDerivative;

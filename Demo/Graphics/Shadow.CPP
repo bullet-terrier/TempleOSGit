@@ -8,12 +8,7 @@ CDC *dc0,*dc1;
 
 
 
-
 		 /* <1> <1> (image) */
-
-
-
-
 
 
 
@@ -43,11 +38,11 @@ U0 DrawShadow(CTask *task)
 
   MemSet(r,0,sizeof(r));
 
-  r[0][0]=gr_scale;
-  r[1][1]=gr_scale/2; //Pick a plane for the shadow, to suit your taste.
-  r[1][2]=gr_scale/2; //It doesn't have to have a norm of 1.0.
-  r[2][2]=gr_scale;
-  r[3][3]=gr_scale;
+  r[0][0]=GR_SCALE;
+  r[1][1]=GR_SCALE/2; //Pick a plane for the shadow, to suit your taste.
+  r[1][2]=GR_SCALE/2; //It doesn't have to have a norm of 1.0.
+  r[2][2]=GR_SCALE;
+  r[3][3]=GR_SCALE;
 
   GrSetTranslation(r,0,-2200,1000);
   r2=GrMulMat(r,dc1->r,task);
@@ -77,9 +72,9 @@ U0 DrawIt(CTask *task,CDC *)
 }
 
 U0 Shadow()
-{
-  dc0=DCAlias(gr_dc2,Fs);
-  dc1=DCAlias(gr_dc2,Fs);
+{//I bull-shitted the shadow image.  Any is plausible.
+  dc0=DCAlias(gr.dc2,Fs);
+  dc1=DCAlias(gr.dc2,Fs);
   DCAllocDepthBuf(dc0);
   dc1->depth_buf=dc0->depth_buf;
 

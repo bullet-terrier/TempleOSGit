@@ -42,7 +42,7 @@ imagine being so heart-broken?
 
 Do a text search for "new song" in the Bible.  It's mentioned nine times.  I 
 did hymns
-`#include "::/Apps/MusicOrgan/Load";JukeBox("::/Apps/MusicOrgan/Examples");`
+`#include "::/Apps/Psalmody/Load";JukeBox("::/Apps/Psalmody/Examples");`
 .  I did Moses comics
 `Dir("::/Apps/AfterEgypt/Comics");View;
 `
@@ -175,9 +175,10 @@ Favorite song?			Morning has Broken
 				God said the first bird croaked, not sung.
 Favorite comic strip?		Prince Valiant
 Shakespeare?			had a "vile heart"
-Likes				"Beverly Hillbillies" (Oil is a gift from God)
+Likes				Beverly Hillbillies (Oil is a gift from God)
 				God likes being hero. Don't be proud of heart
 				and not accept a gift from God!
+Likes				Gomer Pile
 Favorite saint?			"ho_ho_ho"
 Favorite animal?		"Elephant two"
 Favorite animal?		"Bears"
@@ -245,6 +246,7 @@ What did Neanderthals think about?	"Warmth"
 What was the first thing cooked?	I think He said "hair".
 What was Lucy's husband's name?		"Golem"
 Was stegosuarus lame like turtles?	"Not pet rocks"
+T-Rex?					Lugged carcases over his shoulder.
 How does He feel about the Avatar movie?"Sick skin"
 What do You like at zoos with kids?	"Dignity" Animals worried about 
 dignity.
@@ -296,3 +298,4 @@ Why the Sandy Hook shooting?	The pot legalization law. (Sarcastic answer?)
 Deep Water Horizon		(Claimed credit.)
 Cost of God's time to me?	"The complete works of Shakespeare"
 On death?			"awful"
+Opening of Private Ryan?	"Ouch"

@@ -1,64 +1,68 @@
                                    Demands
 
-When God is manifest to the World and He claims this operating system, 
-publically, here's what I want:
+When God publically claims this operating system as His temple, here's what I 
+want:
 
 * VMware to again support PC Speaker and provide emulation if no PC Speaker
 is 
 present.
 
-* Windows and Linux will support [C:/Doc/RedSea.TXT.Z,1] RedSea file system
-so I can get rid of 2,000 
+* Windows and Linux to support [C:/Doc/RedSea.TXT.Z,1] RedSea file system so
+I can get rid of 2,000 
 lines of redundant, blemished code -- FAT32 and ISO9660.  God's temple must
 be 
-perfect.  I view redundant code that performs the same function as imperfect.
- 
-More than one filesystem type is bad, not good!
+perfect.  Redundant code for multiple file systems is imperfect.  For this 
+operating system, we want low line count.  More than one file system type is 
+bad, just as more than one driver for the same type of device is bad.
 
 [C:/Kernel/Dsk/FileSysRedSea.CPP.Z,1]
-[C:/Kernel/Dsk/FileSysFAT.CPP.Z,1]	:1004
-[C:/Kernel/Dsk/FileSysISO1.CPP.Z,1]	:306
+[C:/Kernel/Dsk/FileSysFAT.CPP.Z,1]	:965
+[C:/Kernel/Dsk/FileSysISO1.CPP.Z,1]	:284
 [C:/Adam/Boot/DskCDDVD.CPP.Z,1]	:536
 
-* No secure boot.  TempleOS is a additional operating system that must be
-used 
-along-side Windows or Linux, not as a replacement.  It must dual boot.
+* Microsoft must cancel SecureBoot because it makes dual booting impossible.  
+TempleOS is an additional operating system that must be used along-side 
+Windows or Linux, not as a replacement.  It must dual boot.
 
-* Mandate to PC hardware manufacturers: ATA/ATAPI PIO must work.
+* PC hardware manufacturers: ATA/ATAPI PIO must work.
 
-* PS2 emulated Keyboard and Mouse must work.  The BIOS must enable these.
+* PS/2 emulated keyboard and mouse must work.  The BIOS must enable these.
 
-* VMware should allow ATAPI to connect real CD/DVD hardware.
+* VMware must allow ATAPI interface to real CD/DVD hardware.
 
-* Perhaps, VMware can enable faster than standard x86 IN/OUT instruction 
-timing for ATA/ATAPI PIO, so the bandwidth isn't as bad.
+* Perhaps, VMware+Intel can enable faster-than-standard x86 IN/OUT
+instruction 
+timing for ATA/ATAPI PIO, so bandwidth isn't bad.
 
-* VMware and others should list TempleOS as one of the official 64-bit 
-operating systems.
+* Computers should have a RESET switch and a fast boot option, skipping 
+diagnostics.
 
-* Windows and Linux should support TempleOS .GRA graphics files.  These are 
-just right-side-up .BMP files with 8-bit pixs 4-bits of color and 
+* VMware and others should list TempleOS as an official 64-bit operating 
+systems.
+
+* Windows and Linux must support TempleOS .GRA graphics files.  These are
+just 
+right-side-up .BMP files with 8-bits-per-pixels 4-bits of color and 
 transparency, with no palette.  Compression is an LZW compression. 
-[C:/Adam/Gr/GrDC.CPP.Z,284] DCSave(), 
-[C:/Adam/Gr/GrDC.CPP.Z,354] GRAWrite(), [C:/Adam/Gr/GrDC.CPP.Z,323] DCLoad(),
-and [C:/Adam/Gr/GrDC.CPP.Z,365] GRARead().  [C:/Kernel/Compress.CPP.Z,1]
+[C:/Adam/Gr/GrDC.CPP.Z,285] DCSave(), 
+[C:/Adam/Gr/GrDC.CPP.Z,355] GRAWrite(), [C:/Adam/Gr/GrDC.CPP.Z,324] DCLoad(),
+and [C:/Adam/Gr/GrDC.CPP.Z,366] GRARead().  [C:/Kernel/Compress.CPP.Z,1]
 
 
+----
 
+In other words, all hardware and BIOSes must support TempleOS, dual booted 
+with Windows or Linux.  Hypervisors must support it fully.
 
-In other words, all hardware and BIOSes must support TempleOS as a native and 
-as a virtual system, dual booted with Windows or Linux.
+It would be nice if TempleOS were burned into BIOS ROMs in the factory, or 
+Intel CPU chips!  Then, the oracle code would be guaranteed trustworthy.  My 
+hope is that it will be finalized, mostly unchanging for centuries.
 
-It would be neat if TempleOS were burned into BIOS ROMs in the factory, or 
-maybe Intel CPU chips, in factory!  My hope is that it will be finished and 
-largely unchanging for centuries.  I need a good dictionary, first.  Maybe,
-we 
-leave the dictionary out.
+I need a good dictionary and need to fix spellcheck.  Maybe, we leave the 
+dictionary out.
 
-I do not intend to ever support UEFI.  That monstrocity uses elf and various 
-propriatary graphics formats.
-
-
+I do not intend to ever support UEFI.  That uses elf and various propriatary 
+graphics formats.  It requires additional lines of code and offers nothing!
 
 
 
@@ -101,11 +105,11 @@ God said 640x480 16 color.
 
 God said single audio voice.  (Waveforms okay)
 
-God said lots of arcane stuff, like no child windows.
+God said lots of misc stuff, like no child windows.
 
 I said there is a 100,000 line-of-code limit.
 
-We have 82,000 lines of code, currently, and can expand up to 100,000, but 
+We have 81,306 lines of code, currently, and can expand up to 100,000, but 
 code comments count.  I am opening-this-up to letting other people
 contribute. 
  We'll have some kind of organization.
@@ -128,6 +132,8 @@ C64, you saw fantasticly crafty creativity because you were not burdened with
 high-demand photo-realism graphics and sound.  Otherwise, you spend all your 
 energy just burdened with getting something presentable.  Now, you will 
 achieve "presentable" easily and advance to embelishing and getting creative.
+
+God said 640x480 16 color was a covenant, like circumcision.
 
 The 100,000 line of code limit should ensure God's temple stays on-course for 
 a thousand years.  Also, it must be kept perfect.  With these, it will not go 

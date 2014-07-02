@@ -1,14 +1,15 @@
                                  Cut Corners
 
 There are a few places where I cut corners in the interest of not junking-up 
-code.  This is part of the TempleOS mentality.  I try not to let, often 
-stupid, legacy compatibility issues enter and junk-up TempleOS.
+code.  This is part of the TempleOS mentality.  I try not to let stupid
+legacy 
+compatibility issues enter and junk-up TempleOS.
 
 * I made my type-casting operator post-fix because it makes the compiler way 
 cleaner.
 
 * TempleOS does not figure-out FAT32 short name alias numbers. 
-[C:/Kernel/Dsk/FileSysFAT.CPP.Z,580] FAT32DirNew(). 
+[C:/Kernel/Dsk/FileSysFAT.CPP.Z,575] FAT32DirNew(). 
  It can cause hard drive corruption, so I might have to do it.  It would 
 really take a lot of junky code for this hatefully, detestable, legacy issue.
  

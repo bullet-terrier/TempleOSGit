@@ -8,7 +8,6 @@
 
 
 
-
 	/* <1> <1> (image) */
 
 
@@ -31,7 +30,6 @@
 
 
 
-
 	/* <3> <3> (image) */
 
 
@@ -40,10 +38,7 @@
 
 
 
-
-
 	/* <4> <4> (image) */
-
 
 F64 t0,xx,t_last;
 Bool held_up;
@@ -108,7 +103,7 @@ U0 Battle()
     "$BG,YELLOW$";
 
     BibleVerse(,"Exodus,17:11",8);
-    "\n$BK,1$Hold <SPACE BAR>$BK,0$\n";
+    "\n$BK,1$Hold <SPACE>$BK,0$\n";
 
     held_up=FALSE;
     t0=tS;

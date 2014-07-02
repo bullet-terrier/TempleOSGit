@@ -3,8 +3,6 @@
 //They were cut-and-pasted here.
 
 
-
-
 		/* <1> <1> (image) */
 
 
@@ -18,11 +16,7 @@
 
 
 
-
-
 		/* <3> <3> (image) */
-
-
 
 
 
@@ -36,11 +30,7 @@
 
 
 
-
-
 		/* <5> <5> (image) */
-
-
 
 
 
@@ -54,11 +44,7 @@
 
 
 
-
-
 		/* <7> <7> (image) */
-
-
 
 
 
@@ -72,11 +58,7 @@
 
 
 
-
-
 		/* <9> <9> (image) */
-
-
 
 
 
@@ -90,12 +72,7 @@
 
 
 
-
-
 		/* <11> <11> (image) */
-
-
-
 
 
 
@@ -108,13 +85,7 @@
 
 
 
-
-
-
-
 		/* <13> <13> (image) */
-
-
 
 
 
@@ -127,19 +98,13 @@
 
 
 
-
-
 		/* <15> <15> (image) */
 
 
 
 
 
-
-
 		/* <16> <16> (image) */
-
-
 
 
 
@@ -153,11 +118,7 @@
 
 
 
-
-
 		/* <18> <18> (image) */
-
-
 
 
 
@@ -171,11 +132,7 @@
 
 
 
-
-
 		/* <20> <20> (image) */
-
-
 
 
 
@@ -189,8 +146,6 @@
 
 
 
-
-
 		/* <22> <22> (image) */
 
 
@@ -198,13 +153,7 @@
 
 
 
-
-
 		/* <23> <23> (image) */
-
-
-
-
 
 
 
@@ -217,7 +166,7 @@ class Frame
 #define COURT_BORDER		10
 #define COLLISION_DAMP		0.8
 
-/* This viscosity is way bigger than
+/* Viscosity is way bigger than
 real air viscosity.  In reality
 air is approximated by V and V2
 terms and is smaller.  However, I use
@@ -294,9 +243,7 @@ class Obj
   Bool stopped,shooting,has_ball,pad[5];
 } objs[NUM_OBJS],*ball,*human;
 
-
-/*
-Just to be different, I didn't use the built-in
+/*Just to be different, I didn't use the built-in
 DCF_TRANSFORMATION flag in this game.
 Instead, I chose a 45 degree angle
 between Y and Z as the view point.
@@ -305,7 +252,7 @@ have to make all my men taller.
 This is a little simpler, and faster,
 but adds lots of factor 2 vals.
 
-I also didn't use the [C:/Kernel/Adam1a.HPP.Z,250] CMathODE feat,
+I also didn't use the [C:/Kernel/Adam1a.HPP.Z,241] CMathODE feat,
 just to be different.
 */
 
@@ -337,7 +284,6 @@ I64 ObjCompare(Obj *o1,Obj *o2)
   return o1->y-o2->y;
 }
 
-
 U0 DrawIt(CTask *task,CDC *dc)
 {
   F64 tt=tS,d,d_down,d_up;
@@ -355,7 +301,7 @@ U0 DrawIt(CTask *task,CDC *dc)
 
   dc->pen_width=2;
   dc->color=RED;
-  GrLineRect4(dc,COURT_BORDER,COURT_BORDER,
+  GrBorder(dc,COURT_BORDER,COURT_BORDER,
       task->pix_width -1-COURT_BORDER,
       task->pix_height-1-COURT_BORDER);
   for (i=0;i<NUM_OBJS;i++) {
@@ -374,7 +320,7 @@ U0 DrawIt(CTask *task,CDC *dc)
       }
       if (tt>o->next_t0) {
 	if (o->has_ball && (ball->z+ball->radius*2>=o->z+HAND_Z_OFFSET || Abs(ball->DzDt)<30)) {
-	//This is an approximation.  My instinct tells me the viscosity term needs an [C:/Kernel/Adam1b.HPP.Z,234] Exp().
+	//This is an approximation.  My instinct tells me the viscosity term needs an [C:/Kernel/Adam1b.HPP.Z,98] Exp().
 	//However, we should be syncronized to img frames, so we don't have to be perfect.
 	  d_down=1.0;
 	  d_up	=1.0/COLLISION_DAMP; //Up bounce takes higher percentage because speed lost in collision.
@@ -457,7 +403,6 @@ U0 DrawIt(CTask *task,CDC *dc)
   GrPrint(dc,FONT_WIDTH*42,0,"%02d",best_score1);
 }
 
-
 U0 Shoot(Obj *o)
 {
   if (!someone_shooting && o->has_ball) {
@@ -465,7 +410,6 @@ U0 Shoot(Obj *o)
     o->has_ball=FALSE;
   }
 }
-
 
 U0 AnimateTask(CTask *parent_task)
 {
@@ -538,8 +482,8 @@ U0 AnimateTask(CTask *parent_task)
 	    Shoot(o);
 	  if (!o->shooting) {
 	    if (o==human) {
-	      dx=(ipx-parent_task->pix_left-parent_task->scroll_x)-o->x;
-	      dy=(ipy-parent_task->pix_top-parent_task->scroll_y)*2-o->y;
+	      dx=(ip.pos.x-parent_task->pix_left-parent_task->scroll_x)-o->x;
+	      dy=(ip.pos.y-parent_task->pix_top-parent_task->scroll_y)*2-o->y;
 	    } else {
 	      dx=o->DxDt+=RANDOM_MAN_ACCELERATION/sqrt2*RandI16/MAX_I16*dt;
 	      dy=o->DyDt+=RANDOM_MAN_ACCELERATION/sqrt2*RandI16/MAX_I16*dt;
@@ -661,7 +605,7 @@ U0 CleanUp()
 
 U0 KeepAway()
 {
-  I64 msg_code,p1,p2;
+  I64 msg_code,a1,a2;
 
   PopUpOk(
     "$RED$Pass or hand-off to score points.$FG$\n\n"
@@ -696,7 +640,7 @@ U0 KeepAway()
 
   try {
     while (TRUE) {
-      msg_code=GetMsg(&p1,&p2,1<<MSG_IP_L_DOWN|1<<MSG_IP_R_DOWN|1<<MSG_KEY_DOWN);
+      msg_code=GetMsg(&a1,&a2,1<<MSG_IP_L_DOWN|1<<MSG_IP_R_DOWN|1<<MSG_KEY_DOWN);
       switch (msg_code) {
 	case MSG_IP_L_DOWN:
 ka_shoot:
@@ -707,7 +651,7 @@ ka_jump:
 	  human->DzDt=JUMP_VELOCITY;
 	  break;
 	case MSG_KEY_DOWN:
-	  switch (p1) {
+	  switch (a1) {
 	    case '\n':
 	      CleanUp;
 	      Init;

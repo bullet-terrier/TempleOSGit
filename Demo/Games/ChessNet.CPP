@@ -15,12 +15,9 @@ Bool show_start;
 
 
 
-
 /* <1> <1> (image) */  /* <2> <2> (image) */
 
-
 /* <3> <3> (image) */  /* <4> <4> (image) */
-
 
 
 CSprite *pawn_imgs[2]={__BIN_1,__BIN_2};
@@ -176,11 +173,9 @@ U0 Init()
   num_alive[1]=NUM_UNITS/2;
 }
 
-
-
 U0 ChessNet()
 {
-  I64 msg_code,p1,p2,ch,sc;
+  I64 msg_code,a1,a2,ch,sc;
   Unit *tempu,saved_u;
 
   SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
@@ -203,7 +198,7 @@ U0 ChessNet()
   PopUpOk("Step on the link mid points.\n"
 	  "Make a computer player or\n"
 	  "modify the rules.\n");
-  Fs->win_inhibit=WIG_TASK_DFT-WIF_FOCUS-WIF_BORDER-WIF_MENU;
+  Fs->win_inhibit=WIG_TASK_DFT-WIF_SELF_FOCUS-WIF_SELF_BORDER-WIF_FOCUS_TASK_MENU;
   DocCursor;
   DocClear;
   Fs->draw_it=&DrawIt;
@@ -215,15 +210,15 @@ U0 ChessNet()
       cur_player=0;
       show_start=FALSE;
       do {
-	msg_code=GetMsg(&p1,&p2,1<<MSG_KEY_DOWN+1<<MSG_IP_L_DOWN+1<<MSG_IP_L_UP+1<<MSG_IP_MOVE);
+	msg_code=GetMsg(&a1,&a2,1<<MSG_KEY_DOWN+1<<MSG_IP_L_DOWN+1<<MSG_IP_L_UP+1<<MSG_IP_MOVE);
 	switch (msg_code) {
 	  case MSG_KEY_DOWN:
-	    ch=p1;
-	    sc=p2;
+	    ch=a1;
+	    sc=a2;
 	    break;
 	  case MSG_IP_L_DOWN:
 	    if (num_alive[0]>1 && num_alive[1]>1) {
-	      tempu=FindUnit(p1,p2,cur_player);
+	      tempu=FindUnit(a1,a2,cur_player);
 	      MemCpy(&saved_u,tempu,sizeof(Unit));
 	      end_x=start_x=tempu->x;
 	      end_y=start_y=tempu->y;
@@ -233,12 +228,12 @@ U0 ChessNet()
 	  case MSG_IP_MOVE:
 	    if (tempu) {
 	      MemCpy(tempu,&saved_u,sizeof(Unit));
-	      MoveUnit(tempu,p1,p2);
+	      MoveUnit(tempu,a1,a2);
 	    }
 	    break;
 	  case MSG_IP_L_UP:
 	    MemCpy(tempu,&saved_u,sizeof(Unit));
-	    MoveUnit(tempu,p1,p2);
+	    MoveUnit(tempu,a1,a2);
 	    CheckForKills(tempu->x,tempu->y,cur_player);
 	    show_start=FALSE;
 	    tempu=NULL;

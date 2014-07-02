@@ -7,7 +7,7 @@ VMware Player for Linux or Windows and point the CDROM at the TempleOSCD.ISO.
 (The VMware web page takes a whole minute to load.  They hide the free version.)
 
 Purchase VMware WorkStation or download WinImage if you wish to transfer files
-in and out.  The VMWare Workstation will stretch to full-screen and make drives
+in and out.  The VMware Workstation will stretch to full-screen and make drives
 accessible from Windows.
 
 */

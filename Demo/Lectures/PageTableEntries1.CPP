@@ -1,12 +1,12 @@
-//What's funner than page tables for programmers to play with!!
+/*What's funner than page tables for programmers to play with!!
 
-//This changes a page table entry for VGA graphics memory.
-//TempleOS keeps a cached copy of VGA memory in
-//[C:/Adam/Gr/GrGlbls.CPP.Z,2] gr_screen_image.  See [C:/Adam/Gr/GrScreen.CPP.Z,390] GrUpdateVGAGraphics.
+This changes a page table entry for VGA graphics memory.
+TempleOS keeps a cached copy of VGA memory in
+[C:/Adam/Gr/GrGlbls.CPP.Z,3] gr.screen_image.  See [C:/Adam/Gr/GrScreen.CPP.Z,380] GrUpdateVGAGraphics.
 
-//TempleOS used 4096 size pages for memory below addr 2 Meg
-//and 2 Meg pages above two Meg.  See [C:/Kernel/Mem1a.CPP.Z,166] MemPageSize() and [C:/Kernel/Mem1a.CPP.Z,1] INIT_MEMORY.
-
+TempleOS used 4096 size pages for memory below addr 2 Meg
+and 2 Meg pages above two Meg.  See [C:/Kernel/Mem1a.CPP.Z,163] MemPageSize() and [C:/Kernel/Mem1a.CPP.Z,1] INIT_MEMORY.
+*/
 
 U0 PageTableDemo1()
 {
@@ -28,7 +28,7 @@ U0 PageTableDemo1()
 //  SetRAX(0x100000+0x1000*(MEM_NUM_PML1+MEM_NUM_PML2+MEM_NUM_PML3));
 //  MOV_CR3_EAX
 
-//<CTRL-ALT-F> will flush screen VGA cache.
+//<CTRL-ALT-f> will flush screen VGA cache.
   VGAFlush;
   PressAKey;
 
@@ -37,12 +37,12 @@ U0 PageTableDemo1()
   InvlPg(VGA_GRAPHIC_MEM_BASE);
   InvlPg(VGA_GRAPHIC_MEM_BASE+0x1000);
 
-//<CTRL-ALT-F> will flush screen VGA cache.
+//<CTRL-ALT-f> will flush screen VGA cache.
   VGAFlush;
 }
 
 PageTableDemo1;
 
-//See [C:/Kernel/Mem1a.CPP.Z,301] MemBlks2MegAlloc(), [C:/Kernel/Mem1a.CPP.Z,460] MemBlks2MegFree() for page aligned allocations.
-//See [C:/Kernel/Adam1a.HPP.Z,2594] CBlkPool, [C:/Kernel/Adam1a.HPP.Z,2608] CHeapCtrl, [C:/Kernel/Adam1b.HPP.Z,120] sys_code_bp, [C:/Kernel/Adam1b.HPP.Z,121] sys_data_bp.
-//See [Memory,1] Memory
+//See [C:/Kernel/Mem1a.CPP.Z,295] MemBlks2MegAlloc(), [C:/Kernel/Mem1a.CPP.Z,448] MemBlks2MegFree() for page aligned allocations.
+//See [C:/Kernel/Adam1a.HPP.Z,2784] CBlkPool, [C:/Kernel/Adam1a.HPP.Z,2797] CHeapCtrl, [C:/Kernel/Adam1b.HPP.Z,153] sys_code_bp and [C:/Kernel/Adam1b.HPP.Z,154] sys_data_bp.
+//See [C:/Doc/MemOverview.TXT.Z,1] Memory Overview and [Memory,1] Memory Routines.

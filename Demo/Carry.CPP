@@ -1,7 +1,5 @@
-//This shows the [C:/Kernel/Adam1b.HPP.Z,146] Carry function.
-//It holds the CPU carry flag.
-//[C:/Compiler/Unassembler.CPP.Z,647] U() Unassemble to make sure it is
-//right.
+//Shows the [C:/Kernel/Adam1b.HPP.Z,197] Carry function.  It holds the CPU carry flag.
+//[C:/Compiler/Unassembler.CPP.Z,643] U() Unassemble to make sure it is right.
 
 U0 BigCnt()
 {

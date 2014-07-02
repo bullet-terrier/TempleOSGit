@@ -1,14 +1,14 @@
-//This highlights the 4th dimension
-//of the transformation matrix which
-//is used for storing translations (shifts)
-//in matricies so they can be combined
-//with a matrix multiplication.
+/*This highlights the 4th dimension
+of the transformation matrix which
+is used for storing translations (shifts)
+in matricies so they can be combined
+with a matrix multiplication.
 
-//Scroll bar works.
+Scroll bar works.
 
-//The multiplication takes place in the
-//[C:/Adam/Gr/GrSpritePlot.CPP.Z,298] SpriteZ3B routine.
-
+The multiplication takes place in the
+[C:/Adam/Gr/GrSpritePlot.CPP.Z,296] SpriteZ3B routine.
+*/
 
 #define SLIDER_SPACING 20
 #define SLIDER_RANGE   30
@@ -117,8 +117,6 @@ U0 SliderDel(CCtrl *c)
 
 /* <1> <1> (image) */
 
-
-
 #define MAP_HEIGHT	2048
 #define MAP_WIDTH	2048
 
@@ -132,12 +130,11 @@ class MPCtrl {
   F64 a;
 } mp;
 
-
 I64 mp_not_done_flags;
 
 U0 MPDrawIt(CTask *task)
 {
-  CDC *dc=DCAlias(gr_dc2,task);
+  CDC *dc=DCAlias(gr.dc2,task);
   I64 i,lo=Gs->num*NUM_TREES/mp.mp_cnt,hi=(Gs->num+1)*NUM_TREES/mp.mp_cnt;
   MemCpy(dc->r,mp.r,sizeof(I64)*16);
   dc->flags|=DCF_TRANSFORMATION;
@@ -182,7 +179,6 @@ U0 DrawIt(CTask *task,CDC *dc)
   GrLine3(dc,MAP_WIDTH-3,2,0,MAP_WIDTH-3,MAP_HEIGHT-3,0);
 }
 
-
 U0 Init()
 {
   I64 i;
@@ -196,7 +192,7 @@ U0 TransformDemo(I64 _mp_cnt=mp_cnt)
 {
   SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Init;
-  Fs->win_inhibit=WIG_TASK_DFT-WIF_FOCUS-WIF_BORDER-WIF_GRAB_SCROLL-WIF_MENU-WIF_CTRLS;
+  Fs->win_inhibit=WIG_TASK_DFT-WIF_SELF_FOCUS-WIF_SELF_BORDER-WIF_SELF_GRAB_SCROLL-WIF_FOCUS_TASK_MENU-WIF_SELF_CTRLS;
   DocCursor;
   DocClear;
   DocScroll;
@@ -216,9 +212,7 @@ U0 TransformDemo(I64 _mp_cnt=mp_cnt)
   View;
   SliderDel(c);
   SettingsPop;
-  //If you care, you might want to
-  //save the original state of the
-  //scroll bars.
+  //You might want to save the original state of the scroll bars.
 }
 
 TransformDemo;

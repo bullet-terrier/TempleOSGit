@@ -44,12 +44,12 @@ BHD_GET_IP:
 
 BHD_BIOS_DRV_NUM: DU8	0;
 
-//Gets patched by [C:/Adam/Boot/InsBoot.CPP.Z,141] MakeOSPrtBootInstall().
+//Gets patched by [C:/Adam/Boot/InsBoot.CPP.Z,135] MakeOSPrtBootInstall().
 BHD_BLK_CNT::	DU16	0;
 
 BHD_DAP:	DU8	16,0,1,0; //One blk at a time
 BHD_DAP_BUF:	DU16	0,0;
-//Gets patched by [C:/Adam/Boot/InsBoot.CPP.Z,141] MakeOSPrtBootInstall().
+//Gets patched by [C:/Adam/Boot/InsBoot.CPP.Z,135] MakeOSPrtBootInstall().
 BHD_DAP_BLK::	//64-bit
 BHD_DAP_BLK_LO:	DU32	0;
 BHD_DAP_BLK_HI:	DU32	0;

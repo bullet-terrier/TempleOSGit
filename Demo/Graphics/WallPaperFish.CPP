@@ -1,15 +1,10 @@
-/*
+/* You "Adam include" this because you want the wallpaper
+routine to stay in mem even if this task is killed.
 
-  You "Adam include" this because you want the wallpaper routine to stay in 
-mem even if this task is killed.
+  <CTRL-t> to see the hidden text needed for graphic elements.
 
-  <CTRL-T> to see the hidden text needed for graphic elements.
-
-  <CTRL-R> to add a sprite to a document.
-
+  <CTRL-r> to add a sprite to a document.
 */
-
-
 
 //Fishothos
 
@@ -45,8 +40,6 @@ mem even if this task is killed.
 /* <9> <9> (image) */
 
 
-
-
 #define TYPES_OF_CRITTERS	3
 #define FRAMES_PER_CRITTER	4
 
@@ -65,11 +58,11 @@ U0 (*old_wall_paper)(CTask *task);
 U0 WallPaperFish(CTask *task)
 {
   I64 i,j,x,y;
-  CDC *dc=DCAlias(gr_dc2,task);
+  CDC *dc=DCAlias(gr.dc2,task);
   Critter *c=wall_crits;
  
   task->text_attr=CYAN<<4+WHITE;
-  dc->color=YELLOW;
+  dc->color=BROWN;
   for (i=0;i<GR_HEIGHT;i+=20) {
     j=16*Tri(tS*10,20);
     GrLine(dc,0,GR_HEIGHT-i-j,GR_HEIGHT-i-j,GR_HEIGHT);
@@ -97,8 +90,14 @@ U0 WallPaperFish(CTask *task)
 U0 WallInit()
 {
   I64 i;
-  Critter *c=wall_crits;
-  old_wall_paper=fp_wall_paper;
+  Critter *c;
+  if (Fs!=adam_task) {
+    "Must be Adam Included with SHIFT-F5.\n"
+    "(Would crash when code mem was freed.)\n";
+    return;
+  }
+  old_wall_paper=gr.fp_wall_paper;
+  c=wall_crits;
   for (i=0;i<NUM_CRITTERS;i++,c++) {
     c->x=(RandU16%GR_WIDTH)<<16;
     c->y=(RandU16%GR_HEIGHT)<<16;
@@ -111,7 +110,7 @@ U0 WallInit()
     c->dy=RandI16;
     c->t_offset=Rand*FRAMES_PER_CRITTER;
   }
-  fp_wall_paper=&WallPaperFish;
+  gr.fp_wall_paper=&WallPaperFish;
 }
 
 WallInit;

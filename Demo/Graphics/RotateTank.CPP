@@ -10,19 +10,7 @@
 
 
 
-
-
-
-
-
-
 		/* <1> <1> (image) */
-
-
-
-
-
-
 
 
 
@@ -54,8 +42,8 @@ U0 RotateTank()
 
       dc->x=Fs->pix_width/2;
       dc->y=Fs->pix_height/2;
-//This offsets the image Z so that no parts are
-//not drawn because they are in front of the screen.
+	//Offsets the image Z so that no parts are clipped by
+	//the conceptual plane of the screen.
       dc->z=GR_Z_ALL;
  
       Sprite3(dc,0,0,0,__BIN_1);

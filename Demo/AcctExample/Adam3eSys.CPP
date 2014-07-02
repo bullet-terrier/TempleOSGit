@@ -1,5 +1,5 @@
 U0 UserStartUp()
-{ //Run each time a user a spawned
+{//Run each time a user a spawned
   DocTermNew;
   Type("::/Doc/Start.TXT");
   LBts(&Fs->display_flags,DISPLAYf_SHOW);
@@ -18,12 +18,12 @@ U0 UserStartUp()
       "$PURPLE$DFT$FG$:";
       break;
   }
-  "81,488LOC:";
+  "81,306LOC:";
   CPURep;
 }
 
 U0 SrvStartUp()
-{ //Run each time a srv task is spawned.
+{//Run each time a srv task is spawned.
   DocTermNew;
   LBts(&Fs->display_flags,DISPLAYf_SHOW);
   WinToTop;

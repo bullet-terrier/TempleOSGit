@@ -1,12 +1,11 @@
-//These sprites were created with <CTRL-R>
-//and can be edited by moving the
-//cursor on top and pressing <CTRL-R>
-//again.
+/*Sprites were created with <CTRL-r>
+and can be edited by moving the
+cursor on top and pressing <CTRL-r>.
 
-//<CTRL-T> to see the num of
-//the image and <CTRL-T> again to get back.
-//Nums are assigned by the editor.
-
+<CTRL-t> to see the num of the sprite
+and <CTRL-t> again to get back.  Nums
+are assigned by the editor.
+*/
 
 
 
@@ -22,14 +21,14 @@
 
 
 
-
-
-
-
-
-
-
 	/* <2> <2> (image) */
+
+
+
+
+
+
+
 
 
 
@@ -39,15 +38,15 @@
 
 
 
-
-
-
-
-
-
 	/* <4> <4> (image) */
 
 
+
+
+
+
+
+	/* <5> <5> (image) */
 
 AcctRegSetDftEntry("TempleOS/BlackDiamond","I64 best_score=9999;\n");
 AcctRegExeBranch("TempleOS/BlackDiamond");
@@ -57,14 +56,14 @@ AcctRegExeBranch("TempleOS/BlackDiamond");
 
 I64 x,y,screen_top_y,penalty;
 I64 obj_x[NUM_OBJS],obj_y[NUM_OBJS],obj_types[NUM_OBJS];
-CSprite *imgs[3]={__BIN_2,__BIN_3,__BIN_4};
+CSprite *imgs[3]={__BIN_3,__BIN_4,__BIN_5};
 Bool game_over;
 
 U0 DrawIt(CTask *task,CDC *dc)
 {
   U8 buf[128];
   I64 i;
-  //<CTLR-T> to see the syntax of the
+  //<CTLR-t> to see the syntax of the
   //"Insert Binary" statement in the following.
   for (i=0;i<NUM_OBJS;i++)
     Sprite3(dc,obj_x[i],obj_y[i]-screen_top_y,0,imgs[obj_types[i]]);
@@ -82,7 +81,10 @@ U0 DrawIt(CTask *task,CDC *dc)
   }
 
   dc->color=ROP_EQU;
-  Sprite3(dc,x,y-screen_top_y,0,__BIN_1);
+  if(dc->collision_cnt)
+    Sprite3(dc,x,y-screen_top_y,0,__BIN_2); //Red man
+  else
+    Sprite3(dc,x,y-screen_top_y,0,__BIN_1); //Normal man
 
   dc->color=BLACK;
   GrPrint(dc,0,0,"Penalty:%d Best:%d",penalty,best_score);
@@ -108,7 +110,6 @@ U0 Init()
   }
   QSortI64(obj_y,NUM_OBJS,&Compare); //We break associations.  Doesn't matter.
 }
-
 
 U0 BlackDiamond()
 {
@@ -177,7 +178,7 @@ bd_restart:
 
 	    case CH_SPACE:
 	      game_over=TRUE;
-	      while (screen_top_y>0||y>0) { //Animate going back to top.
+	      while (screen_top_y>0||y>0) {//Animate going back to top.
 		screen_top_y=MaxI64(0,screen_top_y-4);
 		y=MaxI64(0,y-4);
 		x+=SignI64(Fs->pix_width>>1-x);
@@ -192,7 +193,7 @@ bd_restart:
 	if (!game_over) {
 	  y+=2;
 	  screen_top_y++;
-	  if (y-screen_top_y>Fs->pix_height) { //Animate scrolling screen.
+	  if (y-screen_top_y>Fs->pix_height) {//Animate scrolling screen.
 	    while (y-screen_top_y>Fs->pix_height>>1) {
 	      screen_top_y+=2;
 	      Sleep(1);
@@ -218,5 +219,4 @@ bd_done:
   AcctRegWriteBranch("TempleOS/BlackDiamond","I64 best_score=%d;\n",best_score);
 }
 
-//Start game when #included.
-BlackDiamond;
+BlackDiamond; //Start game when #included.

@@ -1,3 +1,4 @@
+//Scroll Down
 
 
 
@@ -119,14 +120,15 @@
 
 /* <2> <2> (image) */
 
+
+
+
+
     /* <3> <3> (image) */
 
 
 
-
     /* <4> <4> (image) */
-
-
 
 
 
@@ -155,9 +157,7 @@
 
 
 
-
     /* <6> <6> (image) */
-
 
 U0 DrawIt(CTask *task,CDC *dc)
 {
@@ -172,7 +172,7 @@ U0 DrawIt(CTask *task,CDC *dc)
 }
 
 U0 SongTask(I64)
-{ //Randomly generate (by God :-)
+{//Randomly generate (by God :-)
   Fs->task_end_cb=&SndTaskEndCB;
   MusicSettingsRst;
   while (TRUE) {
@@ -193,7 +193,7 @@ U0 Main()
   WordStat;
   DocClear;
   Fs->text_attr=YELLOW<<4+BLACK;
-  "$BG,LTCYAN$"; NewLine(31);
+  "$BG,LTCYAN$%h31c",'\n';
   View;
   SettingsPop;
 }

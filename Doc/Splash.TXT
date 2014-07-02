@@ -1,5 +1,5 @@
 
-                                TempleOS V2.03
+                                TempleOS V2.11
 
 
 
@@ -23,12 +23,12 @@
 
 
           
-               God on Tap!
+                                 God on Tap!
 
-		  <F7> Word
-	    <SHIFT-F7> Passage
-		  <F6> Song
-	    <SHIFT-F6> Doodle
+      <F7> Word
+<SHIFT-F7> Passage
+      <F6> Song
+<SHIFT-F6> Doodle
 
 [C:/Doc/TrivialSolutions.TXT.Z,1] Trivial Solutions
 

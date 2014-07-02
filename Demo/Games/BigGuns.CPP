@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+//Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 class MyMass:CMass
 {
@@ -19,20 +19,10 @@ I64 dust_x[NUM_DUST],dust_y[NUM_DUST];
 
 CMathODE *ode=NULL;
 
-
-
-
     /* <1> <1> (image) */
 
 
-
-
     /* <2> <2> (image) */
-
-
-
-
-
 
 U0 DrawIt(CTask *task,CDC *dc)
 {
@@ -117,7 +107,7 @@ U0 DrawMap()
 }
 
 U0 FireTask(I64)
-{ //by default preempt is off on new tasks
+{//by default preempt is off on new tasks
   MyMass *tempm;
   I64 i;
   if (gun_recoil) return;
@@ -183,7 +173,6 @@ U0 MoveTask(I64)
     quit_time=0;
   }
 }
-
 
 U0 Init()
 {

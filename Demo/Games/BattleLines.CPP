@@ -1,4 +1,4 @@
-//This uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+//Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
 
 
 
@@ -18,9 +18,7 @@
 
 
 
-
 /* <5> <5> (image) */
-
 
 
 #define FRAMES 6
@@ -113,9 +111,9 @@ U0 DrawIt(CTask *task,CDC *dc)
 {
   Trooper *tempt=tr;
   I64 i,j,cnt[2],
-      x=ipx-task->pix_left-task->scroll_x,y=ipy-task->pix_top-task->scroll_y;
-  Bool repulsive=ip_throttle>0 ^^ ip_rb,
-	 active=!win_grab_scroll && (ip_lb||ip_rb);
+      x=ip.pos.x-task->pix_left-task->scroll_x,y=ip.pos.y-task->pix_top-task->scroll_y;
+  Bool repulsive=ip.throttle>0 ^^ ip.rb,
+	 active=!winmgr.grab_scroll && (ip.lb||ip.rb);
 
   for (j=0;j<2;j++) {
     cnt[j]=0;
@@ -141,7 +139,7 @@ U0 DrawIt(CTask *task,CDC *dc)
       else
 	dc->color=BLUE;
     }
-    GrCircle(dc,x,y,AbsI64(64*ip_throttle/(MAX_I32+1)));
+    GrCircle(dc,x,y,AbsI64(64*ip.throttle/(MAX_I32+1)));
   }
   dc->color=LTCYAN;
   GrPrint(dc,(task->win_right-8)*FONT_WIDTH,0,"%03d",cnt[0]);
@@ -221,8 +219,8 @@ U0 ResolveFiring()
 U0 UpdateHumanVelocities()
 {
   F64 intensity;
-  I64 i,j,x=ipx-Fs->pix_left-Fs->scroll_x,y=ipy-Fs->pix_top-Fs->scroll_y,dx,dy,d;
-  Bool active=!win_grab_scroll&&(ip_lb||ip_rb);
+  I64 i,j,x=ip.pos.x-Fs->pix_left-Fs->scroll_x,y=ip.pos.y-Fs->pix_top-Fs->scroll_y,dx,dy,d;
+  Bool active=!winmgr.grab_scroll&&(ip.lb||ip.rb);
   Trooper *tempt=&tr[0][0];
   if (tap_mode) {
     for (i=0;i<NUM_TROOPERS;i++,tempt++) {
@@ -240,8 +238,8 @@ U0 UpdateHumanVelocities()
       }
     }
   } else if (active) {
-    j=8*ip_throttle;
-    if (ip_rb)
+    j=8*ip.throttle;
+    if (ip.rb)
       j=-j;
     for (i=0;i<NUM_TROOPERS;i++,tempt++) {
       dx=x- tempt->x.i32[1];
@@ -260,8 +258,8 @@ U0 Init()
 {
   I64 i,j,dx,dy;
   Trooper *tempt;
-  ip_throttle=MAX_I32;
-  ip_throttle_step=(MAX_I32+1)>>2;
+  ip.throttle=MAX_I32;
+  ip.throttle_step=(MAX_I32+1)>>2;
   tap_mode=FALSE;
   time_lapse=FALSE;
   fire_end_time=0;
@@ -330,7 +328,7 @@ U0 BattleLines()
 	"Attract or repel with\n"
 	"left or right button.\n\n");
 
-  Fs->win_inhibit=WIG_TASK_DFT-WIF_FOCUS-WIF_BORDER-WIF_MENU;
+  Fs->win_inhibit=WIG_TASK_DFT-WIF_SELF_FOCUS-WIF_SELF_BORDER-WIF_FOCUS_TASK_MENU;
   try {
     while (TRUE) {
       switch (ScanChar) {

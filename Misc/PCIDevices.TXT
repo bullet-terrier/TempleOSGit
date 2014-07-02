@@ -7005,10 +7005,10 @@
 15AB	Bluesteel Networks Inc
 15AC	North Atlantic Instruments
 15AD	VMware Inc.
-	0405	9500MGS VMWare Player 3.1.6 Software Driver
+	0405	9500MGS VMware Player 3.1.6 Software Driver
 	0710	0740 Virtual SVGA
 	0720	VMXNET VMware PCI Ethernet Adapter
-	0740	0X0880 VMWare VMCI Bus Device
+	0740	0X0880 VMware VMCI Bus Device
 	0770	n/a Standard Enhanced PCI to USB Host Controller
 	0778	0778 Sabrent USB-to-Parallel Adapter
 	07B0	VMXNET 3 VMware vSphere 4 PCI Ethernet Adapter

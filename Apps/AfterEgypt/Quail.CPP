@@ -3,10 +3,7 @@
 
 
 
-
-
 	/* <2> <2> (image) */
-
 
 
 
@@ -26,9 +23,7 @@
 
 
 
-
-
-/* <4> <4> (image) */ //Pointer to sprite in Camp.CPP.Z file
+/* <4> <4> (image) */ //Pointer to sprite in [C:/Demo/Graphics/Mountain.CPP.Z,1] Mountain.CPP file
 
 #define NUM_QUAIL	128
 #define SKY_HEIGHT	(0.6*GR_HEIGHT)
@@ -95,8 +90,8 @@ U0 Quail()
 	"$GREEN$<SHIFT-ESC>$FG$ when done.");
   View;
   DocClear;
-  "$BG,LTCYAN$"; NewLine(SKY_HEIGHT/FONT_HEIGHT);
-  "$BG,YELLOW$"; NewLine(5);
+  "$BG,LTCYAN$%h*c",ToI64(SKY_HEIGHT/FONT_HEIGHT),'\n';
+  "$BG,YELLOW$%h5c",'\n';
 
   t0=tS;
   t_last=0;

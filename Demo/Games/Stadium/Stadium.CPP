@@ -1,18 +1,11 @@
-/*
-This shows how you can make a
+/*This shows how you can make a
 background very easily.
 */
 
 
-
-
 /* <1> <1> (image) */
 
-
-
- 
 /* <2> <2> (image) */
-
 
 CDC *background;
 
@@ -80,7 +73,6 @@ U0 AnimateTask(I64)
   }
 }
 
-
 U0 Init()
 {
   I64 i;
@@ -94,7 +86,7 @@ U0 Init()
 
 U0 Stadium()
 {
-  I64 msg_code,p1,p2,ch=0;
+  I64 msg_code,a1,a2,ch=0;
 
   SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->win_inhibit|=WIG_DBL_CLICK;
@@ -120,13 +112,13 @@ U0 Stadium()
   DocClear;
   Fs->draw_it=&DrawIt;
   do {
-    msg_code=GetMsg(&p1,&p2,1<<MSG_KEY_DOWN+1<<MSG_IP_L_DOWN);
+    msg_code=GetMsg(&a1,&a2,1<<MSG_KEY_DOWN+1<<MSG_IP_L_DOWN);
     if (msg_code==MSG_KEY_DOWN) {
-      ch=p1;
+      ch=a1;
       if (ch=='\n')
 	Init;
     } else {
-      target_x=p1; target_y=p2;
+      target_x=a1; target_y=a2;
       pitcher_x=GR_WIDTH/2; pitcher_y=GR_HEIGHT;
       ball_t=tS;
     }

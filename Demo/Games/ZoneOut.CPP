@@ -10,19 +10,7 @@ AcctRegExeBranch("TempleOS/ZoneOut");
 
 
 
-
-
-
-
-
-
 		/* <1> <1> (image) */
-
-
-
-
-
-
 
 
 
@@ -61,12 +49,7 @@ AcctRegExeBranch("TempleOS/ZoneOut");
 
 
 
-
-
-
-
 		   /* <3> <3> (image) */
-
 
 /*  <4> (image) */
 
@@ -79,10 +62,7 @@ AcctRegExeBranch("TempleOS/ZoneOut");
 
 
 
-
-
-
-#define NUM_THEM	16
+#define NUM_THEM	10
 
 class Obj
 {
@@ -199,7 +179,7 @@ U0 MoveUs(F64 theta)
 }
 
 U0 AnimateTask(I64)
-{ //Preemption is off after Spawn
+{//Preemption is off after Spawn
   I64 i;
   Obj *tempo,*tempo1;
   while (TRUE) {
@@ -228,7 +208,7 @@ U0 Init()
 {
   I64 i;
   DocClear;
-  "$BG,DKGRAY$"; NewLine(12);
+  "$BG,DKGRAY$%h12c",'\n';
   QueInit(&shots);
   MemSet(&us,0,sizeof(us));
   MemSet(them,0,sizeof(them));
@@ -249,7 +229,7 @@ U0 CleanUp()
 }
 
 U0 SongTask(I64)
-{ //Randomly generate (by God :-)
+{//Randomly generate (by God :-)
   Fs->task_end_cb=&SndTaskEndCB;
   MusicSettingsRst;
   while (TRUE) {
@@ -279,7 +259,7 @@ U0 ZoneOut()
   "Play {"
   "  Restart(,'\n');"
   "  Fwd(,,SC_CURSOR_UP);"
-  "  Backward(,,SC_CURSOR_DOWN);"
+  "  Bwd(,,SC_CURSOR_DOWN);"
   "  Left(,,SC_CURSOR_LEFT);"
   "  Right(,,SC_CURSOR_RIGHT);"
   "  Fire(,CH_SPACE);"

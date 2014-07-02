@@ -9,10 +9,10 @@ are stored in contiguous blocks and cannot grow in size.
 
 public class CDirEntry //64-byte fixed-size
 {
-  U16 attr;	//See [C:/Kernel/Adam1a.HPP.Z,3393] _ATTR_DIR.  I would like to
+  U16 attr;	//See [C:/Kernel/Adam1a.HPP.Z,2428] RS_ATTR_DIR.  I would like to
 change these.
-  U8 name[CDIR_FILENAME_LEN]; //See [C:/Kernel/Str1a.CPP.Z,346]
-chars_bitmap_filename, [C:/Kernel/Dsk/DskStr.CPP.Z,291] FileNameChk
+  U8 name[CDIR_FILENAME_LEN]; //See [C:/Kernel/Str1a.CPP.Z,336]
+chars_bitmap_filename, [C:/Kernel/Dsk/DskStr.CPP.Z,294] FileNameChk
   I64 cluster;	//One sector per cluster.  I might change origin, let's talk.
   I64 size;	//In bytes
   CDate datetime; //See  [C:/Doc/TimeDate.TXT.Z,1] DateTime,

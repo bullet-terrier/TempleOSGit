@@ -1,6 +1,3 @@
-//I recently added bitmaps based on scan codes
-//and haven't made use of them, yet.
-
 
 /* <1> <1> (image) */
 
@@ -14,26 +11,25 @@ U0 DrawIt(CTask *,CDC *dc)
   Sprite3(dc,x%100,100,0,__BIN_1);
 }
 
-
 U0 KeyDownBitMapDemo()
 {
   //This conversion routine is slow.
-  I64 i_sc=A2ScanCode('i');
+  I64 i_sc=Char2ScanCode('i');
 
   "Press and hold $GREEN$'i'$FG$.\n";
-  while (!Bt(key_down_bitmap,i_sc))
+  while (!Bt(kbd.down_bitmap,i_sc))
     Yield;
 
   SettingsPush; //See [C:/Adam/TaskSettings.CPP.Z,3] SettingsPush
   Fs->draw_it=&DrawIt;
 
-//[C:/Kernel/KGlbls.CPP.Z,121] key_down_bitmap is indexed with the
+//[C:/Kernel/Adam1a.HPP.Z,2891] kbd.down_bitmap is indexed with the
 //merged scan code.  (left shift and
 //right shift combined for example.)
-//[C:/Kernel/KGlbls.CPP.Z,123] key_down_bitmap2 is indexed with the
-//distinct scan code.  See [Char,1] Char and [C:/Kernel/Adam1a.HPP.Z,3140] Scan Codes.
+//[C:/Kernel/Adam1a.HPP.Z,2891] kbd.down_bitmap2 is indexed with the
+//distinct scan code.  See [Char,1] Char and [C:/Kernel/Adam1a.HPP.Z,3470] Scan Codes.
 
-  while (Bt(key_down_bitmap,i_sc)) {
+  while (Bt(kbd.down_bitmap,i_sc)) {
     x++;
     Sleep(10);
   }

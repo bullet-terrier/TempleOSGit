@@ -1,9 +1,8 @@
-#help_index "Char/Define"
+#help_index "Define;Char/Define"
 
 U0 LoadDocDefines()
-{
-//These are used in documents such as [C:/Doc/TrivialSolutions.TXT.Z,1]
-//The [C:/Kernel/Adam1a.HPP.Z,1401] CDoc framework will search the sym table for define string
+{//These are used in documents such as [C:/Doc/TrivialSolutions.TXT.Z,1]
+//The [C:/Kernel/Adam1a.HPP.Z,1317] CDoc framework will search the sym table for define string
 //consts if you specify that.
   CBinFile *bfh=sys_boot_base-sizeof(CBinFile);
 
@@ -32,13 +31,13 @@ U0 LoadDocDefines()
   DefinePrint(
     "DD_OS_NAME_VERSION","TempleOS V%0.2f",os_version);
   DefinePrint(
-    "DD_TEMPLEOS_AGE","%0.1f",(Now-A2Date("8/1/2003"))/ToF64(1<<32)/CDATE_YEAR_DAYS);
+    "DD_TEMPLEOS_AGE","%0.1f",(Now-Str2Date("8/1/2003"))/ToF64(1<<32)/CDATE_YEAR_DAYS);
 
   //This is cut and replaced when I generate a distro.
   //See [C:/Demo/AcctExample/TSDistro.CPP.Z,1] DD_TEMPLEOS_LOC.
   -] LineRep
-    DefinePrint("DD_TEMPLEOS_LOC","120,796");
-    DefinePrint("DD_TEMPLEOS_LOC_OFFICIAL","81,488");
+    DefinePrint("DD_TEMPLEOS_LOC","121,463");
+    DefinePrint("DD_TEMPLEOS_LOC_OFFICIAL","81,306");
     
   DefinePrint(
     "DD_FIXED_AREA_BASE","%08X",SYS_FIXED_AREA);
@@ -63,7 +62,9 @@ U0 LoadDocDefines()
     "DD_MAPPED_MEM_SPACE_END","%010X",MEM_MAPPED_SPACE-1);
   DefinePrint(
     "DD_MAPPED_MEM_SPACE_END2","%014,X",MEM_MAPPED_SPACE-1);
+
+  DefinePrint(
+    "DD_JIFFY_HZ","%d Hz",JIFFY_FREQ);
 }
 
 LoadDocDefines;
-#help_index ""
