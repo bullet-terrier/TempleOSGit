@@ -189,7 +189,7 @@ U0 MacroTask(I64)
   sys_macro_repeat_n=1;
   do {
     i=PopUpMacroMenu;
-    WinRefocus;
+    WinRefocus(sys_focus_task);
     switch (i) {
       case SM_RECORD:
 	LBtr(&sys_semas[SYS_SEMA_RECORD_MACRO],0);

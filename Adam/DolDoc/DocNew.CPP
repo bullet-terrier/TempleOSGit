@@ -265,8 +265,9 @@ U0 DocFormFwd(CDoc *doc,Bool giveup=FALSE)
   CDocEntry *doc_e=doc->cur_entry,*doc_e2=doc_e;
   if (doc->flags & DOCF_FORM) {
     if (doc_e==doc) goto ff_recover;
-    while (!Bt(doldoc.type_flags_form,doc_e->type_u8) ||
-       doc_e->de_flags&DOCEF_SKIP_IN_FORM) {
+    while (!Bt(doldoc.type_flags_form,doc_e->type_u8) &&
+	!(doc_e->de_flags&DOCEF_LINK) ||
+	doc_e->de_flags&DOCEF_SKIP_IN_FORM) {
       doc_e=doc_e->next;
       if (doc_e==doc) {
 ff_recover:
@@ -292,8 +293,9 @@ U0 DocFormBwd(CDoc *doc,Bool giveup=FALSE)
 {
   CDocEntry *doc_e=doc->cur_entry,*doc_e2=doc_e;
   if (doc->flags & DOCF_FORM) {
-    while (!Bt(doldoc.type_flags_form,doc_e->type_u8) ||
-       doc_e->de_flags&DOCEF_SKIP_IN_FORM) {
+    while (!Bt(doldoc.type_flags_form,doc_e->type_u8) &&
+	!(doc_e->de_flags&DOCEF_LINK) ||
+	doc_e->de_flags&DOCEF_SKIP_IN_FORM) {
       doc_e=doc_e->last;
       if (doc_e==doc) {
 	doc->cur_data_col=0;
@@ -681,7 +683,7 @@ public CDoc *DocBorder(CTask *task=NULL)
 }
 
 public CDoc *DocDblBufStart(CTask *task=NULL)
-{//See [C:/Demo/Spy.CPP,1]
+{//See [C:/Demo/Spy.CPP.Z,1]
   Bool unlock_ddoc,old_preempt=Preempt(OFF);
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task),*result;
   if (!pdoc || !ddoc || pdoc!=ddoc)
@@ -712,7 +714,7 @@ public CDoc *DocDblBufStart(CTask *task=NULL)
 }
 
 public Bool DocDblBufEnd(CTask *task=NULL)
-{//See [C:/Demo/Spy.CPP,1]
+{//See [C:/Demo/Spy.CPP.Z,1]
   Bool result=FALSE,old_preempt=Preempt(OFF);
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task);
   if (pdoc && ddoc && pdoc!=ddoc) {//Double buffering?
@@ -730,7 +732,7 @@ public Bool DocDblBufEnd(CTask *task=NULL)
 }
 
 public Bool DocDblBufSwap(CTask *task=NULL)
-{//See [C:/Demo/Spy.CPP,1]
+{//See [C:/Demo/Spy.CPP.Z,1]
   Bool result=FALSE,old_preempt=Preempt(OFF);
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task);
   if (pdoc && ddoc && pdoc!=ddoc) {//Double buffering?

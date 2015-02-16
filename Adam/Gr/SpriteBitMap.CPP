@@ -231,10 +231,13 @@ I64 SpriteBitMapEd(CDoc *,CDocEntry *doc_e,CDC *dc,I64 *_xx1,I64 *_yy1,I64 *_xx2
 	    case CH_ESC:
 	      result=GE_CONT;
 	      goto bm_key_up_done;
-	    case 'c': //EyeDropper
+	    case 'c': //eye-dropper
 	      dc2=DCCaptureScreen(FALSE);
 	      color=GrPeek(dc2,ip.pos.x,ip.pos.y)^15;//Mouse cursor is XORed.
 	      DCDel(dc2);
+	      break;
+	    case 't': //Set to transparent color
+	      color=TRANSPARENT;
 	      break;
 	  }
 	  break;

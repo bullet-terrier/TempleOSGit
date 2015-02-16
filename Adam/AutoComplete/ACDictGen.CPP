@@ -10,7 +10,7 @@ and #include this file.
 
 I ran [C:/Misc/ToDolDoc.CPP.Z,1] on it, first.
 
-See [C:/Doc/Acknowledgements.TXT.Z,1].
+See [C:/Doc/Credits.TXT.Z,1].
 */
 
 I64 ACDNextCmd(U8 **_ptr)

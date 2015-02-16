@@ -302,8 +302,8 @@ public Bool DocDo(CDoc *doc,I64 dof_flags=0)
   Free(old_task_title);
   DocDel(bdoc);
   if (dof_flags&DOF_MIN_SIZE) {
-    SetWinHorz(old_left,old_right);
-    SetWinVert(old_top,old_bottom);
+    WinHorz(old_left,old_right);
+    WinVert(old_top,old_bottom);
   }
   Preempt(old_preempt);
   return result;
@@ -314,7 +314,7 @@ public Bool DocFormDo(U8 *_d,U8 *class_name=lastclass,
     I64 dof_flags=0,U8 *header=NULL,U8 *footer=NULL)
 {//Supply a class name that has fmtstr definitions.
 //and this routine will allow user input.
-//See [C:/Demo/DolDoc/Form.CPP,1] and [C:/Demo/LastClass.CPP,1].
+//See [C:/Demo/DolDoc/Form.CPP.Z,1] and [C:/Demo/LastClass.CPP.Z,1].
   CMemberLst *ml;
   CDocEntry *doc_e;
   U8 *fmtstr;
@@ -450,7 +450,7 @@ public I64 PopUpMenu(CDoc *doc,I64 dof_flags=0)
 
 public Bool PopUpForm(U8 *_d,U8 *class_name=lastclass,I64 dof_flags=DOF_MIN_SIZE,
     U8 *header=NULL,U8 *footer=NULL)
-{//See [C:/Demo/DolDoc/Form.CPP,1] and [C:/Demo/LastClass.CPP,1].
+{//See [C:/Demo/DolDoc/Form.CPP.Z,1] and [C:/Demo/LastClass.CPP.Z,1].
   return PopUpPrint("DocFormDo(0x%X,0x%X,0x%X,0x%X,0x%X);",_d,class_name,
     dof_flags,header,footer);
 }
@@ -850,8 +850,8 @@ U0 DrawIt(CTask *task,CDC *dc)
     }
   i=(17*PU_SPACING+FONT_WIDTH-1)/FONT_WIDTH;
   if (doc->max_x>i) i=doc->max_x;
-  SetWinHorz(task->win_left,task->win_left+i,task);
-  SetWinVert(task->win_top,task->win_top+doc->max_y+(17*PU_SPACING+FONT_WIDTH-1)/FONT_WIDTH,task);
+  WinHorz(task->win_left,task->win_left+i,task);
+  WinVert(task->win_top,task->win_top+doc->max_y+(17*PU_SPACING+FONT_WIDTH-1)/FONT_WIDTH,task);
 }
 
 I64 DitherColorDo(U8 *header=NULL)

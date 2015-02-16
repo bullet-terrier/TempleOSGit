@@ -1,5 +1,5 @@
-//See [C:/Doc/Acknowledgements.TXT.Z,1].
-//See [C:/Kernel/Adam1a.HPP.Z,3670] CArcCompress, [C:/Kernel/Adam1a.HPP.Z,3643] CArcEntry, and [C:/Kernel/Adam1a.HPP.Z,3651] CArcCtrl
+//See [C:/Doc/Credits.TXT.Z,1].
+//See [C:/Kernel/KernelA.HPP.Z,3667] CArcCompress, [C:/Kernel/KernelA.HPP.Z,3640] CArcEntry, and [C:/Kernel/KernelA.HPP.Z,3648] CArcCtrl
 
 asm {
 USE64
@@ -249,7 +249,7 @@ U0 ArcCtrlDel(CArcCtrl *c)
 }
 
 U8 *ExpandBuf(CArcCompress *r,CTask *mem_task=NULL)
-{//See [C:/Demo/Dsk/SerializeTree.CPP,1].
+{//See [C:/Demo/Dsk/SerializeTree.CPP.Z,1].
   CArcCtrl *c;
   U8 *result=MAlloc(r->expanded_size+1,mem_task);
   result[r->expanded_size]=0; //terminate
@@ -276,7 +276,7 @@ U8 *ExpandBuf(CArcCompress *r,CTask *mem_task=NULL)
 }
 
 CArcCompress *CompressBuf(U8 *src,I64 size,CTask *mem_task=NULL)
-{//See [C:/Demo/Dsk/SerializeTree.CPP,1].
+{//See [C:/Demo/Dsk/SerializeTree.CPP.Z,1].
   CArcCompress *result;
   I64 size_out,compression_type=ArcDetermineCompressionType(src,size);
   CArcCtrl *c=ArcCtrlNew(FALSE,compression_type);

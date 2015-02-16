@@ -3,7 +3,7 @@ asm {
 USE16
 //See [C:/Doc/MultiCore.TXT.Z,1] TempleOS MultiCore.
 
-//This code gets copied to [C:/Kernel/Adam1a.HPP.Z,503] MP_VECT_ADDR.
+//This code gets copied to [C:/Kernel/KernelA.HPP.Z,499] MP_VECT_ADDR.
 //See [C:/Kernel/MultiProc.CPP.Z,2] MemCpy(MP_VECT_ADDR.
 AP_16BIT_INIT::
 	JMP	@@05
@@ -69,7 +69,7 @@ USE64
 }
 
 U0 TSSBusy(I64 tr,Bool val=OFF)
-{//See [C:/Demo/Lectures/Ring3.CPP,1].
+{//See [C:/Demo/Lectures/Ring3.CPP.Z,1].
   LBEqu((&sys_gdt)(U8 *)+tr+4,9,val);
 }
 
@@ -234,7 +234,7 @@ CSrvCmd *JobQue(I64 (*fp_addr)(U8 *data),U8 *data=NULL,
        I64 cmd_code=SVCT_CALL,U8 *aux_str=NULL,I64 aux1=0,I64 aux2=0)
 {//Queue multicore jobs, handled by Seth tasks.
 //Set flags to zero if you wish to get the result.
-//See [C:/Demo/MultiCore/Lock.CPP,1]
+//See [C:/Demo/MultiCore/Lock.CPP.Z,1]
   CSrvCtrl *ctrl;
   CSrvCmd *tempc;
   if (!(0<=target_cpu<mp_cnt))
@@ -326,15 +326,15 @@ U0 BSPStartMP()
   MemSet(&cpu_structs[1],0,sizeof(CCPU)*(MP_MAX_PROCESSORS-1));
 
 //When you start-up other cores, they jump to an addr
-//specified by a byte vect number, [C:/Kernel/Adam1a.HPP.Z,502] MPN_VECT which corresponds
-//to a location 4096*vect number, [C:/Kernel/Adam1a.HPP.Z,503] MP_VECT_ADDR.
+//specified by a byte vect number, [C:/Kernel/KernelA.HPP.Z,498] MPN_VECT which corresponds
+//to a location 4096*vect number, [C:/Kernel/KernelA.HPP.Z,499] MP_VECT_ADDR.
   MemCpy(mp,AP_16BIT_INIT,AP_16BIT_INIT_END-AP_16BIT_INIT);
   MemCpy(&mp->ap_gdt_ptr,SYS_GDT_PTR,sizeof(CSysLimitBase));
   mp_cnt_initial=mp_cnt=1;
   mp_cnt_lock=0;
 
   *LAPIC_LVT_ERR(U32 *)=*LAPIC_LVT_ERR(U32 *)&0xFFFFFF00+MPN_VECT;
-  WBINVD //Not sure why this is needed.	Might just need delay. [C:/Kernel/Adam1b.HPP.Z,135] MemCpy above?
+  WBINVD //Not sure why this is needed.	Might just need delay. [C:/Kernel/KernelB.HPP.Z,135] MemCpy above?
 
   *LAPIC_ICR_LOW(U32 *)=0xC4500; //assert init IPI
   BusyWait(10000);
@@ -355,7 +355,7 @@ U0 BSPStartMP()
     StrPrint(buf,"Seth Task CPU#%d",i);
     task=Spawn(&APSethInit,NULL,buf,,,SETH_STK,0);
     task->rflags=SYS_START_RFLAGS;
-    //[C:/Kernel/Adam1a.HPP.Z,3216] CTask allocated off this core's seth_task's heap (Which is Adam)
+    //[C:/Kernel/KernelA.HPP.Z,3212] CTask alloced off this core's seth_task's heap (Which is Adam)
     task->task_in_que_signature=TASK_IN_QUE_SIGNATURE_VAL;
     CPUStructInit(i,&cpu_structs[i],task);
     WBINVD //Not sure why this is needed.  Might just need delay.

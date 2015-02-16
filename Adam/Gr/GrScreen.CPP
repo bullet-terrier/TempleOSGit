@@ -90,7 +90,7 @@ U0 GrUpdateWins()
     Dbg("Exception in WinMgr");
   }
   winmgr.last_ode_time=winmgr.ode_time;
-  ode_allocated_factor=LowPass1(0.1,ode_allocated_factor,
+  ode_alloced_factor=LowPass1(0.1,ode_alloced_factor,
       Clamp(Gs->idle_factor-0.1,0.2,0.8),1/winmgr.fps);
   sys_task_being_screen_updated=NULL;
 }
@@ -404,7 +404,7 @@ U0 GrUpdateVGAGraphics()
 }
 
 U0 GrUpdateScreen()
-{//Called by the Window Manager [C:/Adam/Win2b.CPP.Z,1] HERE, 60 times a second.
+{//Called by the Window Manager [C:/Adam/WinB.CPP.Z,1] HERE, 60 times a second.
   CDC *dc;
   Preempt(ON);
   if (!Bt(&sys_run_level,RLf_VGA)) //if text mode

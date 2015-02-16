@@ -80,7 +80,7 @@ U0 KbdMouseCmdAck(U8 val)
     throw;
 }
 
-U0 SetTypeMatic(U8 delay)
+U0 KbdTypeMatic(U8 delay)
 {//Set speed of repeated keys.
   try {
     KbdCmdSend(KBD_CTRL,0xA7); //Disable Mouse
@@ -398,7 +398,7 @@ interrupt U0 KbdIntHandler()
   KbdPktRead;
 }
 
-U0 SetCtrlAltLetCB(U8 ch,U0 (*fp_handler)(I64 sc),U8 *desc,Bool in_irq=FALSE)
+U0 CtrlAltLetCBSet(U8 ch,U0 (*fp_handler)(I64 sc),U8 *desc,Bool in_irq=FALSE)
 {//Set callback for <CTRL-ALT-letter>.
   ch=ToUpper(ch)-'A';
   if (ch<26) {
@@ -425,13 +425,13 @@ U0 KbdInit()
   IntEntrySet(0x21,&KbdIntHandler);
   OutU8(0x21,InU8(0x21)&~2);
 
-  SetCtrlAltLetCB('C',&CtrlAltC,"Sys/Break Execution",TRUE);
-  SetCtrlAltLetCB('D',&CtrlAltD,"Sys/Enter Debugger",TRUE);
-  SetCtrlAltLetCB('E',&CtrlAltE,"Sys/Spawn New User Task");
-  SetCtrlAltLetCB('F',&CtrlAltF,"Sys/VGA Flush",TRUE);
-  SetCtrlAltLetCB('M',&CtrlAltM,"Sys/Toggle Mute");
-  SetCtrlAltLetCB('T',&CtrlAltT,"Sys/Switch Focus to Next Task",TRUE);
-  SetCtrlAltLetCB('X',&CtrlAltX,"Sys/Kill Focused Task",TRUE);
+  CtrlAltLetCBSet('C',&CtrlAltC,"Sys/Break Execution",TRUE);
+  CtrlAltLetCBSet('D',&CtrlAltD,"Sys/Enter Debugger",TRUE);
+  CtrlAltLetCBSet('E',&CtrlAltE,"Sys/Spawn New User Task");
+  CtrlAltLetCBSet('F',&CtrlAltF,"Sys/VGA Flush",TRUE);
+  CtrlAltLetCBSet('M',&CtrlAltM,"Sys/Toggle Mute");
+  CtrlAltLetCBSet('T',&CtrlAltT,"Sys/Switch Focus to Next Task",TRUE);
+  CtrlAltLetCBSet('X',&CtrlAltX,"Sys/Kill Focused Task",TRUE);
 }
 
 U0 KbdHandler()

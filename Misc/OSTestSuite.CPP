@@ -6,7 +6,7 @@ U0 TSStart()
 U0 TS()
 {
   progress4=ts_num++;
-  progress4_max=155;
+  progress4_max=159;
   *progress4_desc=0;
 }
 U0 TSEnd()
@@ -69,10 +69,36 @@ U0 DoSpriteText()
   XTalk(task,"Exit;\n");
 }
 
+U0 DoSpriteRaw()
+{
+  CTask *task=User;
+  XTalkWait(task,"#include \"::/Demo/Graphics/SpriteRaw\";\n");
+  Sleep(750);
+  XTalk(task,"Exit;\n");
+}
+
 U0 DoCarry()
 {
   CTask *task=User;
   XTalkWait(task,"#include \"::/Demo/Carry\";\n");
+  Sleep(750);
+  XTalk(task,"Exit;\n");
+}
+
+U0 DoDirectives()
+{
+  CTask *task=User;
+  XTalkWait(task,"#include \"::/Demo/Directives\";\n");
+  Sleep(750);
+  XTalk(task,"Exit;\n");
+}
+
+U0 DoRandDemo()
+{
+  CTask *task=User;
+  XTalkWait(task,"#include \"::/Demo/RandDemo\";\n");
+  XTalkWait(task," ");
+  XTalkWait(task," ");
   Sleep(750);
   XTalk(task,"Exit;\n");
 }
@@ -330,7 +356,7 @@ U0 DoCaptureScreen()
   Sleep(750);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalk(task,"Exit;\n");
-  Del("HOME/ScreenShot.GRA.Z");
+  Del("/Home/ScreenShot.GRA.Z");
 }
 
 /*
@@ -514,10 +540,10 @@ U0 DoWenceslas()
   XTalk(task,"Exit;\n");
 }
 
-U0 DoChessNet()
+U0 DoTreeCheckers()
 {
   CTask *task=User;
-  XTalk(task,"#include \"::/Demo/Games/ChessNet\";\n");
+  XTalk(task,"#include \"::/Demo/Games/TreeCheckers\";\n");
   while (!TaskValidate(task->popup_task))
     Yield;
   TaskWait(task->popup_task);
@@ -578,7 +604,7 @@ U0 DoPixCollision()
   XTalkWait(task,"#include \"::/Demo/Graphics/Collision\";\n");
   w=task->pix_width>>1 +task->pix_left+task->scroll_x;
   h=task->pix_height>>1+task->pix_top +task->scroll_y;
-  SetIP(w-35,h-35);
+  IPSet(w-35,h-35);
   AFSetIP(10,w+35,w+35);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalk(task,"Exit;\n");
@@ -838,6 +864,30 @@ U0 DoFontEd()
   XTalk(task,"Exit;\n");
 }
 
+U0 DoLattice()
+{
+  I64 i;
+  CTask *task=User;
+  XTalkWait(task,"#include \"::/Demo/Graphics/Lattice\";\n");
+  for (i=0;i<20;i++)
+    SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_UP);
+  for (i=0;i<6;i++) {
+    SendMsg(task,MSG_KEY_DOWN_UP,'+',0);
+    SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_LEFT);
+  }
+  for (i=0;i<6;i++) {
+    SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
+    SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_LEFT);
+  }
+  for (i=0;i<16;i++) {
+    SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
+    SendMsg(task,MSG_KEY_DOWN_UP,0,SC_CURSOR_RIGHT);
+  }
+  Sleep(500);
+  SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
+  XTalk(task,"Exit;\n");
+}
+
 U0 DoTimeIns()
 {
   CTask *task=User;
@@ -973,7 +1023,7 @@ U0 DoClouds()
 U0 Do()
 {
   CTask *task=User;
-  XTalkWait(task,"#include \"::/Demo/Graphics/SliderCtrl\";\n");
+  XTalkWait(task,"#include \"::/Demo/Graphics/Slider\";\n");
   Sleep(500);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   XTalk(task,"Exit;\n");
@@ -1028,9 +1078,9 @@ U0 DoBattleLines()
   SendMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   while (TaskValidate(task->popup_task))
     Yield;
-  SetIP(430,300,,TRUE);
+  IPSet(430,300,,TRUE);
   AFSetIP(10,530,400);
-  SetIP(,,,FALSE);
+  IPSet(,,,FALSE);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
   XTalk(task,"Exit;\n");
 }
@@ -1187,61 +1237,61 @@ U0 DoStrut()
 
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
 
-  SetIP(200,200,,TRUE);
+  IPSet(200,200,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
   WinMgrSync(2);
 
-  SetIP(GR_WIDTH-200,200,,TRUE);
+  IPSet(GR_WIDTH-200,200,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
 
-  SetIP(GR_WIDTH/2,400,,TRUE);
+  IPSet(GR_WIDTH/2,400,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
 
   SendMsg(task,MSG_KEY_DOWN_UP,'s',0);
 
-  SetIP(200,200,,TRUE);
+  IPSet(200,200,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(GR_WIDTH-200,200,,TRUE);
+  IPSet(GR_WIDTH-200,200,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
-  SetIP(200,200,,TRUE);
+  IPSet(200,200,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(GR_WIDTH/2,400,,TRUE);
+  IPSet(GR_WIDTH/2,400,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
-  SetIP(GR_WIDTH-200,200,,TRUE);
+  IPSet(GR_WIDTH-200,200,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(GR_WIDTH/2,400,,TRUE);
+  IPSet(GR_WIDTH/2,400,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
-  SetIP(GR_WIDTH/2,GR_HEIGHT/2,,TRUE);
+  IPSet(GR_WIDTH/2,GR_HEIGHT/2,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(GR_WIDTH-200,200,,TRUE);
+  IPSet(GR_WIDTH-200,200,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
-  SetIP(GR_WIDTH/2,GR_HEIGHT/2,,TRUE);
+  IPSet(GR_WIDTH/2,GR_HEIGHT/2,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(GR_WIDTH/2,400,,TRUE);
+  IPSet(GR_WIDTH/2,400,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
-  SetIP(GR_WIDTH/2,GR_HEIGHT/2,,TRUE);
+  IPSet(GR_WIDTH/2,GR_HEIGHT/2,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(200,200,,TRUE);
+  IPSet(200,200,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
   SendMsg(task,MSG_KEY_DOWN_UP,'t',0);
 
-  SetIP(GR_WIDTH/2,400,,TRUE);
+  IPSet(GR_WIDTH/2,400,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(GR_WIDTH-200,200,,TRUE);
+  IPSet(GR_WIDTH-200,200,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
-  SetIP(GR_WIDTH/2,400,,TRUE);
+  IPSet(GR_WIDTH/2,400,,TRUE);
   SendMsg(task,MSG_IP_L_DOWN,0,0);
-  SetIP(200,200,,TRUE);
+  IPSet(200,200,,TRUE);
   SendMsg(task,MSG_IP_L_UP,0,0);
 
-  SetIP(,,,FALSE);
+  IPSet(,,,FALSE);
 
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SPACE,0);
   LBts(kbd.down_bitmap,Char2ScanCode('1'));
@@ -1322,7 +1372,7 @@ U0 DoWhap()
 {
   CTask *task=User;
   XTalkWait(task,"#include \"::/Demo/Games/Whap\";\n");
-  SetIP(300,200);
+  IPSet(300,200);
   Sleep(500);
   AFSetIP(3,350,300);
   Sleep(500);
@@ -1336,11 +1386,11 @@ U0 DoPick()
 {
   CTask *task=User;
   XTalkWait(task,"#include \"::/Demo/Graphics/Pick\";\n");
-  SetIP(200,200);
+  IPSet(200,200);
   Sleep(500);
-  SetIP(,,,TRUE);
+  IPSet(,,,TRUE);
   AFSetIP(4,400,400);
-  SetIP(,,,FALSE);
+  IPSet(,,,FALSE);
   Sleep(500);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
   XTalk(task,"Exit;\n");
@@ -1350,11 +1400,11 @@ U0 DoPick3D()
 {
   CTask *task=User;
   XTalkWait(task,"#include \"::/Demo/Graphics/Pick3D\";\n");
-  SetIP(200,200);
+  IPSet(200,200);
   Sleep(500);
-  SetIP(,,,TRUE);
+  IPSet(,,,TRUE);
   AFSetIP(4,400,400);
-  SetIP(,,,FALSE);
+  IPSet(,,,FALSE);
   Sleep(500);
   SendMsg(task,MSG_KEY_DOWN_UP,CH_SHIFT_ESC,0);
   XTalk(task,"Exit;\n");
@@ -1410,7 +1460,7 @@ U0 DoKeepAway()
     Yield;
   TaskWait(task->popup_task);
   SendMsg(task->popup_task,MSG_KEY_DOWN_UP,CH_SPACE,0);
-  SetIP(100,100);
+  IPSet(100,100);
   Sleep(1500);
   SendMsg(task,MSG_IP_R_DOWN_UP,ip.pos.x,ip.pos.y);
   Sleep(1000);
@@ -2145,7 +2195,7 @@ U0 OSTestSuite()
   TS; DoWenceslas;
   TS; DoBomberGolf;
   TS; DoTheDead;
-  TS; DoChessNet;
+  TS; DoTreeCheckers;
   TS; DoMPAdd;
   TS; DoPrimes;
   TS; if (FileFind(BIBLE_FILENAME)) DoPalindrome;
@@ -2161,9 +2211,12 @@ U0 OSTestSuite()
   TS; DoSpritePut;
   TS; DoSpritePutExt;
   TS; DoSpriteText;
+  TS; DoSpriteRaw;
   TS; DoEdCSprite;
   TS; DoBalloon;
   TS; DoCarry;
+  TS; DoDirectives;
+  TS; DoRandDemo;
   TS; DoExtents;
   TS; DoDotNet;
   TS; DoSunMoon;
@@ -2205,6 +2258,7 @@ U0 OSTestSuite()
   TS; DoHalogen;
   TS; DoMaze;
   TS; DoFontEd;
+  TS; DoLattice;
   TS; DoCtrlR1;
   TS; DoSubIntAccess;
   TS; DoDemoDoc;
@@ -2270,5 +2324,5 @@ U0 OSTestSuite()
 
 OSTestSuite;
 
-//[C:/Demo/Dsk/DskRaw.CPP,1]
-//[C:/Demo/Graphics/InputPointer.CPP,1]
+//[C:/Demo/Dsk/DskRaw.CPP.Z,1]
+//[C:/Demo/Graphics/InputPointer.CPP.Z,1]

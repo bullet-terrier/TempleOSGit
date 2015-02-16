@@ -51,7 +51,7 @@ public Bool GrPlot0(CDC *dc=gr.dc,I64 x,I64 y)
       break;
     case ROPB_COLLISION:
       c=*dst;
-      if (c!=TRANSPARENT&&c!=bkcolor.c0.color)
+      if (c!=TRANSPARENT && c!=bkcolor.c0.color)
 	dc->collision_cnt++;
       break;
     case ROPB_XOR:
@@ -678,7 +678,7 @@ public I64 GrPutChar(CDC *dc=gr.dc,I64 x,I64 y,U8 ch)
       leading_pixel_mask|=trailing_pixel_mask;
       trailing_pixels=0;
     }
-    font_ptr=&text.font[(FONT_WIDTH*(FONT_HEIGHT*ch+h1))>>3];
+    font_ptr=&text.font(U8 *)[FONT_HEIGHT*ch+h1];
     if (color.c0.rop==ROPB_COLLISION) {
       m=w1&(FONT_WIDTH-1);
 #assert FONT_WIDTH==8
@@ -1589,7 +1589,7 @@ gr_done:
 public I64 GrHLine(CDC *dc=gr.dc,I64 x1,I64 x2,I64 y,I64 z1=0,I64 z2=0)
 {//3D. No transformation or pen width.
 //Returns cnt of pixs changed
-//Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
+//Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
   I64 dx,dz,z,result=0,i,j,d,dist;
   U8 *dst;
   CColorROPU32 c,c2,color=dc->color,bkcolor=dc->bkcolor,dither_colors;

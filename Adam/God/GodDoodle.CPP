@@ -6,8 +6,10 @@ U0 GodDoodleDraw(CTask *task,CDC *dc)
   if (Blink) {
     if (god.doodle_done) {
       dc->color=RED;
-      GrPrint(dc,(task->pix_width-FONT_WIDTH*27)>>1,(task->pix_height-FONT_HEIGHT)>>1,
-	"Press <ESC> or <SHIFT-ESC>.");
+      GrPrint(dc,(task->pix_width-FONT_WIDTH*29)>>1,(task->pix_height-3*FONT_HEIGHT)>>1,
+	"Press <ESC> to insert sprite.");
+      GrPrint(dc,(task->pix_width-FONT_WIDTH*39)>>1,(task->pix_height-3*FONT_HEIGHT)>>1+2*FONT_HEIGHT,
+	"Press <SHIFT-ESC> to throw-away sprite.");
     } else {
       dc->color=GREEN;
       GrPrint(dc,(task->pix_width-FONT_WIDTH*25)>>1,(task->pix_height-FONT_HEIGHT)>>1,
