@@ -35,4 +35,4 @@ the msg a2 value which is the
 
 Press <CTRL-SHIFT-l> and "Insert ASCII/ScanCode".
 
-See [C:/Demo/PullDownMenu.CPP.Z,1].
+See [C:/Demo/PullDownMenu.CPP,1].

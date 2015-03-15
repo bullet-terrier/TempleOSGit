@@ -199,7 +199,7 @@ Bool ScanResult(CSrvCmd *rqst=NULL,I64 *_result=NULL)
 }
 
 I64 GetResult(CSrvCmd *rqst=NULL)
-{//See [C:/Demo/MultiCore/Lock.CPP.Z,1]
+{//See [C:/Demo/MultiCore/Lock.CPP,1]
   I64 result;
   CSrvCmd *tempc1;
   if (!rqst) {
@@ -456,7 +456,7 @@ U0 AdamErr(U8 *fmt,...)
 }
 
 U0 XTalk(CTask *task,U8 *fmt,...)
-{//Sends text to other task. See [C:/Misc/OSTestSuite.CPP.Z,1].
+{//Sends text to other task. See [C:/Misc/OSTestSuite.CPP,1].
   U8 *buf=StrPrintJoin(NULL,fmt,argc,argv),*st=AStrNew(buf),
      *st2=MStrPrint("\"%%s\",%d;Free(%d);",st,st);
   TaskText(task,NULL,st2,0);
@@ -493,7 +493,7 @@ U0 AutoFile(U8 *filename)
 }
 
 U0 Auto(U8 *fmt,...)
-{//Send text to own input buffer. See [C:/Demo/AcctExample/TOSDistro.CPP.Z,1].
+{//Send text to own input buffer. See [C:/Demo/AcctExample/TOSDistro.CPP,1].
   U8 *buf=StrPrintJoin(NULL,fmt,argc,argv),*st=AStrNew(buf);
   AutoStr("\"%%s\",%d;Free(%d);",st,st);
   Free(buf);

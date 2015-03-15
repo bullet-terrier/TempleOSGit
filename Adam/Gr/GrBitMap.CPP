@@ -1589,7 +1589,7 @@ gr_done:
 public I64 GrHLine(CDC *dc=gr.dc,I64 x1,I64 x2,I64 y,I64 z1=0,I64 z2=0)
 {//3D. No transformation or pen width.
 //Returns cnt of pixs changed
-//Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+//Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   I64 dx,dz,z,result=0,i,j,d,dist;
   U8 *dst;
   CColorROPU32 c,c2,color=dc->color,bkcolor=dc->bkcolor,dither_colors;

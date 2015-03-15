@@ -192,7 +192,7 @@ clobbered.
 }
 
 * interrupt, haserrcode, public, argpop or noargpop are function flags. See 
-[C:/Demo/Lectures/PageTableEntries2.CPP.Z,1].
+[C:/Demo/Lectures/PageTableEntries2.CPP,1].
 
 * A single quote can encompass multiple characters.  'ABC' is equal to 0x43424
 1.  [C:/Kernel/KeyDev.CPP.Z,20] PutChars() takes multiple characters.
@@ -266,21 +266,21 @@ after you define it.  Some common unions are declared in
 [C:/Kernel/KernelA.HPP.Z,64] KernelA.HPP for 1,2,4 
 and 8 byte objects.  If you place a type in front of a union declaration,
 that 
-is the type when used by itself.  See [C:/Demo/SubIntAccess.CPP.Z,1]. 
+is the type when used by itself.  See [C:/Demo/SubIntAccess.CPP,1]. 
 
 * class member vars can have meta data. fmtstr and fmtdata are two meta data 
 types now used.  All compiler structures are saved and you can access the 
-compiler's info about classes and vars.  See [C:/Demo/ClassMeta.CPP.Z,1] and  
+compiler's info about classes and vars.  See [C:/Demo/ClassMeta.CPP,1] and  
 [C:/Adam/DolDoc/DocPopUp.CPP.Z,313] DocFormDo().
 
 * There is a keyword lastclass you use as a dft arg.  It is set to the class 
-name of the previous arg.  See [C:/Demo/LastClass.CPP.Z,1],
+name of the previous arg.  See [C:/Demo/LastClass.CPP,1],
 [C:/Adam/ADbg.CPP.Z,152] ClassRep(), [C:/Adam/DolDoc/DocPopUp.CPP.Z,313]
 DocFormDo()  
-and [C:/Demo/Dsk/BlkDevRep.CPP.Z,1].
+and [C:/Demo/Dsk/BlkDevRep.CPP,1].
 
-* See [C:/Demo/Exceptions.CPP.Z,1].  try{} catch{} and throw are different
-from C++. 
+* See [C:/Demo/Exceptions.CPP,1].  try{} catch{} and throw are different from
+C++. 
 throw is a function with an 8-byte or less char arg.  The char string passed 
 in throw() can be accessed from within a catch{} using the Fs->except_ch.  
 Within a catch {} blk, set the var Fs->catch_except to TRUE if you want to 
@@ -299,7 +299,7 @@ you can't do sizeof(classname.membername.submembername).
 * lock{} can be used to apply asm LOCK prefixes to code for safe multicore 
 read-modify-write accesses.  The code bracked with have LOCK asm prefix's 
 applied to relevant instructions within.  It's a little shoddy.  See 
-[C:/Demo/MultiCore/Lock.CPP.Z,1].
+[C:/Demo/MultiCore/Lock.CPP,1].
 
 * There is a function called [C:/Kernel/MemB.CPP.Z,370] MSize() which gives
 the size of an object alloced 
@@ -322,7 +322,7 @@ allocating large local vars from the heap.  You can change
 recompile Kernel or request more when doing a [C:/Kernel/Task.CPP.Z,207]
 Spawn().  You can use 
 [C:/Kernel/Task.CPP.Z,82] CallStkGrow(), but it's odd.  See
-[C:/Demo/StkGrow.CPP.Z,1]. 
+[C:/Demo/StkGrow.CPP,1]. 
 
 * Only one base class is allowed.
 

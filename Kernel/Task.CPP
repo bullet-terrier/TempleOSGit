@@ -81,7 +81,7 @@ CTaskStk *TaskStkNew(I64 stk_size,CTask *task)
 #exe {OptOn(OPTf_NO_REG_VAR);};
 argpop I64 CallStkGrow(I64 stk_size_threshold,I64 stk_size,/*argpop*/I64 (*fp_addr)(...),...)
 {//Grow stk in call with any fixed num of args.
-//See [C:/Demo/StkGrow.CPP.Z,1].
+//See [C:/Demo/StkGrow.CPP,1].
   CTaskStk *temps,*temps2,**_stk;
   I64 result,*rsp,*rsp2,*old_stk;
 
@@ -206,7 +206,7 @@ I64 TaskInit(CTask *task,I64 stk_size)
 
 CTask *Spawn(U0 (*fp_start_addr)(U8 *data),U8 *data=NULL,
 		U8 *task_name=NULL,
-		I64 target_cpu=-1,	//-1 means current CPU. See [C:/Demo/MultiCore/LoadTest.CPP.Z,1] multi-core.
+		I64 target_cpu=-1,	//-1 means current CPU. See [C:/Demo/MultiCore/LoadTest.CPP,1] multi-core.
 		CTask *parent=NULL,	//NULL means adam
 		I64 stk_size=0,		//0=default
 		I64 flags=1<<SVCf_ADD_TO_QUE)

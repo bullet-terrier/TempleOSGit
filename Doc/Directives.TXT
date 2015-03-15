@@ -5,4 +5,4 @@
 #define __FILE__ #exe{StreamPrint("\"%s\"",Fs->last_lex->cur_lfn->full_name);}
 #define __DIR__  #exe{StreamDir;}
 
-See [C:/Demo/Directives.CPP.Z,1].
+See [C:/Demo/Directives.CPP,1].

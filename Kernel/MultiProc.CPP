@@ -69,7 +69,7 @@ USE64
 }
 
 U0 TSSBusy(I64 tr,Bool val=OFF)
-{//See [C:/Demo/Lectures/Ring3.CPP.Z,1].
+{//See [C:/Demo/Lectures/Ring3.CPP,1].
   LBEqu((&sys_gdt)(U8 *)+tr+4,9,val);
 }
 
@@ -234,7 +234,7 @@ CSrvCmd *JobQue(I64 (*fp_addr)(U8 *data),U8 *data=NULL,
        I64 cmd_code=SVCT_CALL,U8 *aux_str=NULL,I64 aux1=0,I64 aux2=0)
 {//Queue multicore jobs, handled by Seth tasks.
 //Set flags to zero if you wish to get the result.
-//See [C:/Demo/MultiCore/Lock.CPP.Z,1]
+//See [C:/Demo/MultiCore/Lock.CPP,1]
   CSrvCtrl *ctrl;
   CSrvCmd *tempc;
   if (!(0<=target_cpu<mp_cnt))

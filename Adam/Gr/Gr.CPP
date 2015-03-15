@@ -171,7 +171,7 @@ public class CSpritePtMeshU8s : CSpriteBase
 #define SPT_TEXT_DIAMOND	29	//[C:/Adam/Gr/Gr.CPP.Z,114] CSpritePtStr
 #define SPT_NUM_TYPES		30
 //See [Sprites,1] Sprites.  See [C:/Adam/Gr/GrSpritePlot.CPP.Z,1] ::/Adam/Gr/GrSpritePlot.CPP and
-//[C:/Demo/Graphics/SpriteRaw.CPP.Z,1] for how CSprite are stored.
+//[C:/Demo/Graphics/SpriteRaw.CPP,1] for how CSprite are stored.
 public class CSprite
 {
   CSprite *next,*last;

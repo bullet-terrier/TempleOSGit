@@ -346,7 +346,7 @@ U0 LeftClickViewAngles(CCtrl *c,I64 x,I64 y,Bool)
 }
 
 public CCtrl *ViewAnglesNew(CTask *task=NULL)
-{//Create view angle ctrl. See [C:/Demo/Graphics/Shading.CPP.Z,1].
+{//Create view angle ctrl. See [C:/Demo/Graphics/Shading.CPP,1].
   Bool old_preempt;
   CCtrl *c;
   CViewAngles *s;

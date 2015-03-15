@@ -39,7 +39,7 @@ CLex *LexNew(U8 *buf=NULL,I64 flags=0,U8 *filename=NULL)
 {//MAlloc new lex ctrl node.
 //Frees buf in [C:/Compiler/Lex.CPP.Z,69] LexDel unless [C:/Kernel/KernelA.HPP.Z,2010] LF_DONT_FREE_BUF flag is set.
 //FileName is for error reporting.  If files are #included, new names are used.
-//See [C:/Apps/Psalmody/PsalmodyFile.CPP.Z,1] Psalmody LexNew.
+//See [C:/Apps/Psalmody/PsalmodyFile.CPP,1] Psalmody LexNew.
   CLex *lx=MAlloc(sizeof(CLex));
   CLexFile *tempf=&lx->lfns[0];
   MemSet(lx,0,offset(CLex.end_zeroed)+sizeof(CLexFile));
@@ -459,7 +459,7 @@ U0 LexPop(CLex *lx)
 }
 
 I64 MemberMetaData(U8 *needle_str,CMemberLst *haystack_member_lst)
-{//Find meta data name, return meta data val. See [C:/Demo/ClassMeta.CPP.Z,1].
+{//Find meta data name, return meta data val. See [C:/Demo/ClassMeta.CPP,1].
   CMemberLstMeta *meta=haystack_member_lst->meta;
   while (meta) {
     if (!StrCmp(meta->str,needle_str))
@@ -470,7 +470,7 @@ I64 MemberMetaData(U8 *needle_str,CMemberLst *haystack_member_lst)
 }
 
 CMemberLstMeta *MemberMetaFind(U8 *needle_str,CMemberLst *haystack_member_lst)
-{//Find meta data name, return meta data struct. See [C:/Demo/ClassMeta.CPP.Z,1].
+{//Find meta data name, return meta data struct. See [C:/Demo/ClassMeta.CPP,1].
   CMemberLstMeta *meta=haystack_member_lst->meta;
   while (meta) {
     if (!StrCmp(meta->str,needle_str))

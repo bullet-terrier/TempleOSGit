@@ -28,7 +28,7 @@ The upper 4-bytes are copied from lower 4-bytes.
   Byte 4   is the code.  Left, Right and NumPad keys distinct.
   Byte 5-7 are [C:/Kernel/KernelA.HPP.Z,3422] flags
 
-Run the program [C:/Demo/MsgLoop.CPP.Z,1] to examine scan code.  Press
+Run the program [C:/Demo/MsgLoop.CPP,1] to examine scan code.  Press
 <CTRL-SHIFT-l
 > and "Insert ASCII/ScanCode".
 

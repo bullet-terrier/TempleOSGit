@@ -73,7 +73,7 @@ system.
 much cleaner than .BMP files.
 
 * I want a nice dictionary.  Someone needs to do a
-[C:/Demo/SuggestSpelling.CPP.Z,1] Spell Checker.
+[C:/Demo/SuggestSpelling.CPP,1] Spell Checker.
 
 * We want the ultimate Bible search engine.
 

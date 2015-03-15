@@ -121,7 +121,7 @@ U0 SpriteSetSettings(CDC *dc,CSprite *root,I64 cur_elem_num,CColorROPU32 *_color
 
 U0 SpriteScreenInit(CDC *dc,I64,I64)
 {
-//Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+//Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   I64 xx,yy,old_pen_width=dc->pen_width;
   CColorROPU32 old_color=dc->color;
   WinMgrSync;

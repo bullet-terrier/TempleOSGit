@@ -4,7 +4,7 @@ public U8 *DBlk(I64 blk,Bool write=FALSE)
 {//Dump disk block. Optionally, write.
 //If you set write to TRUE, the block will
 //be written when you press <ESC>.
-//See [C:/Demo/Dsk/DskRaw.CPP.Z,1].
+//See [C:/Demo/Dsk/DskRaw.CPP,1].
   U8 *buf=MAlloc(BLK_SIZE);
 
   RBlks(Fs->cur_dv,buf,blk,1);
@@ -23,7 +23,7 @@ public U8 *DCluster(I64 c,Bool write=FALSE,I64 num=0)
 {//Dump disk cluster. Optionally, write.
 //If you set write to TRUE, the cluster will
 //be written when you press <ESC>.
-//See [C:/Demo/Dsk/DskRaw.CPP.Z,1].
+//See [C:/Demo/Dsk/DskRaw.CPP,1].
 //Do [C:/Kernel/Dsk/DskB.CPP.Z,226] Dir("*",TRUE); to get cluster numbers of files.
   U8 *buf=MAlloc(Fs->cur_dv->spc<<BLK_SIZE_BITS);
   c=ClusterNumNext(Fs->cur_dv,c,num);

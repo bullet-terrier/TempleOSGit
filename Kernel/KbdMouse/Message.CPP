@@ -97,7 +97,7 @@ I64 FlushMsgs(CTask *task=NULL)
 I64 GetMsg(I64 *_a1=NULL,I64 *_a2=NULL,I64 mask=~1,CTask *task=NULL)
 {//Wait for a message of type specified by a one in the mask.
 //Throw-out all messages not in mask.
-//Returns [C:/Kernel/KernelA.HPP.Z,3113] msg_code. See [C:/Demo/MsgLoop.CPP.Z,1].
+//Returns [C:/Kernel/KernelA.HPP.Z,3113] msg_code. See [C:/Demo/MsgLoop.CPP,1].
   I64 result;
   Bool old_preempt=Preempt;
   if (!task) task=Fs;

@@ -32,7 +32,7 @@ public Bool MakeOSDrvBootInstall(U8 src_drv=0,U8 dst_drv=0)
 
 //See [C:/Doc/Install.TXT.Z,1] Install Documentation
 
-//Study my account examples my technique: [C:/Demo/AcctExample/TOSCfg.CPP.Z,1] Cfg Strs, [C:/Demo/AcctExample/TOSDistro.CPP.Z,1] Update Funs
+//Study my account examples my technique: [C:/Demo/AcctExample/TOSCfg.CPP,1] Cfg Strs, [C:/Demo/AcctExample/TOSDistro.CPP,1] Update Funs
 
   CBlkDev *bd;
   CDrv *dv;

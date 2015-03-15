@@ -249,7 +249,7 @@ U0 ArcCtrlDel(CArcCtrl *c)
 }
 
 U8 *ExpandBuf(CArcCompress *r,CTask *mem_task=NULL)
-{//See [C:/Demo/Dsk/SerializeTree.CPP.Z,1].
+{//See [C:/Demo/Dsk/SerializeTree.CPP,1].
   CArcCtrl *c;
   U8 *result=MAlloc(r->expanded_size+1,mem_task);
   result[r->expanded_size]=0; //terminate
@@ -276,7 +276,7 @@ U8 *ExpandBuf(CArcCompress *r,CTask *mem_task=NULL)
 }
 
 CArcCompress *CompressBuf(U8 *src,I64 size,CTask *mem_task=NULL)
-{//See [C:/Demo/Dsk/SerializeTree.CPP.Z,1].
+{//See [C:/Demo/Dsk/SerializeTree.CPP,1].
   CArcCompress *result;
   I64 size_out,compression_type=ArcDetermineCompressionType(src,size);
   CArcCtrl *c=ArcCtrlNew(FALSE,compression_type);

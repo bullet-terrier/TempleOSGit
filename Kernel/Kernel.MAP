@@ -281,51 +281,51 @@ BREAK_FOCUS_USER    0000005719    0000            ExportSysSym
 [C:/Kernel/BIOS32.CPP.Z,64] C32_EFLAGS          0000016717    0003            ExportSysSym Export 
 [C:/Kernel/BIOS32.CPP.Z,62] C32_ESI             000001670F    0003            ExportSysSym Export 
 [C:/Kernel/BIOS32.CPP.Z,66] C32_RSP             000001671B    0002            ExportSysSym Export 
-[C:/Kernel/KernelB.HPP.Z,9] C:/Doc/Bit.TXT.Z    01192BC538    0000            HelpFile Public 
-[C:/Kernel/KernelB.HPP.Z,114] C:/Doc/D3.TXT.Z     011A3E5908    0000            HelpFile Public 
-[C:/Kernel/KernelB.HPP.Z,181] C:/Doc/MultiCore.TXT.Z01192D51C8    0000            HelpFile Public 
-[C:/Kernel/KernelB.HPP.Z,47] C:/Doc/Que.TXT.Z    01192BC0A0    0000            HelpFile Public 
-[C:/Kernel/KernelB.HPP.Z,236] C:/Doc/TimeHPET.TXT.Z011918F1A0    0000            HelpFile Public 
-[C:/Kernel/KernelA.HPP.Z,1944] CAOTCtrl            007FD870F0    0001 0000000139 Class 
-[C:/Kernel/KernelA.HPP.Z,518] CAP16BitInit        007FD7A260    0002 000000000E Class 
-[C:/Kernel/KernelA.HPP.Z,2323] CATAPITrack         007FD85180    0008 0000000030 Class 
-[C:/Kernel/KernelA.HPP.Z,2153] CATARep             007FD7AF50    000E 0000000038 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1707] CAbsCntsI64         007FD88100    0002 0000000008 Class 
+[C:/Kernel/KernelB.HPP.Z,9] C:/Doc/Bit.TXT.Z    011A5B0FC0    0000            HelpFile Public 
+[C:/Kernel/KernelB.HPP.Z,114] C:/Doc/D3.TXT.Z     01199C91C8    0000            HelpFile Public 
+[C:/Kernel/KernelB.HPP.Z,181] C:/Doc/MultiCore.TXT.Z011A5ABD10    0000            HelpFile Public 
+[C:/Kernel/KernelB.HPP.Z,47] C:/Doc/Que.TXT.Z    011A5B16F0    0000            HelpFile Public 
+[C:/Kernel/KernelB.HPP.Z,236] C:/Doc/TimeHPET.TXT.Z011A3FBC28    0000            HelpFile Public 
+[C:/Kernel/KernelA.HPP.Z,1944] CAOTCtrl            007FD8C990    0001 0000000139 Class 
+[C:/Kernel/KernelA.HPP.Z,518] CAP16BitInit        007FD947E0    0002 000000000E Class 
+[C:/Kernel/KernelA.HPP.Z,2323] CATAPITrack         007FD84EF0    0008 0000000030 Class 
+[C:/Kernel/KernelA.HPP.Z,2153] CATARep             007FDA0158    000E 0000000038 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1707] CAbsCntsI64         007FD942C0    0002 0000000008 Class 
 [C:/Kernel/MemB.CPP.Z,381] CAlloc              0000004D42    0033 0000000033 Funct Export Res 
 [C:/Kernel/MemB.CPP.Z,419] CAllocAligned       0000004E7A    0000 0000000079 Funct Export Res 
-[C:/Kernel/KernelA.HPP.Z,3668] CArcCompress        007FD8DCF8    000A 0000000011 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3649] CArcCtrl            007FD8A300    001C 0000018098 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3641] CArcEntry           007FD827D0    000A 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,770] CArrayDim           007FD942C0    0004 0000000018 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1747] CAsmArg             007FD959D0    0001 0000000060 Class 
-[C:/Kernel/KernelA.HPP.Z,1701] CAsmCodeBlk         007FCDF580    0002 0000010008 Class 
-[C:/Kernel/KernelA.HPP.Z,1735] CAsmIns             007FD8EEB0    0000 00000000AA Class 
-[C:/Kernel/KernelA.HPP.Z,1720] CAsmNum             007FD927A8    0002 0000000028 Class 
-[C:/Kernel/KernelA.HPP.Z,1728] CAsmNum2            007FD8BCC0    0001 0000000039 Class 
-[C:/Kernel/KernelA.HPP.Z,1755] CAsmUnresolvedRef   007FD892F0    0002 000000004A Class 
-[C:/Kernel/KernelA.HPP.Z,2882] CBGR                007FD82540    0001 0000000004 Class Public 
-[C:/Kernel/KernelA.HPP.Z,369] CBinFile            007FD7C628    000E 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,2559] CBlkDev             007FD9F9A8    0048 0000000064 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2783] CBlkPool            007FDA0B98    0017 00000009E0 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3045] CBpt                007FD854C0    000D 0000000018 Class 
-[C:/Kernel/KernelA.HPP.Z,3338] CCPU                007FD800E8    001C 00000000F0 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2638] CCacheBlk           007FD95C60    0010 0000000230 Class 
-[C:/Kernel/KernelA.HPP.Z,2117] CCmpGlbls           007FD954B0    0001 00000001E1 Class Public 
-[C:/Kernel/KernelA.HPP.Z,530] CCntsGlbls          007FD90150    0001 0000000041 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2867] CColorROPU16        007FD8F660    0003 0000000002 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2871] CColorROPU32        007FD93478    0006 0000000004 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3001] CCtrl               007FD7F6A8    0008 00000000A0 Class Public 
-[C:/Kernel/KernelA.HPP.Z,147] CD2                 007FD96C70    0000 0000000010 Class Public 
-[C:/Kernel/KernelA.HPP.Z,135] CD2I32              007FDA03E8    0002 0000000008 Class Public 
-[C:/Kernel/KernelA.HPP.Z,139] CD2I64              007FD7D5A8    0000 0000000010 Class Public 
-[C:/Kernel/KernelA.HPP.Z,153] CD3                 007FD89B50    002F 0000000018 Class Public 
-[C:/Kernel/KernelA.HPP.Z,125] CD3I32              007FD93998    0007 000000000C Class Public 
-[C:/Kernel/KernelA.HPP.Z,143] CD3I64              007FD85750    0002 0000000018 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3668] CArcCompress        007FD91AF0    000A 0000000011 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3649] CArcCtrl            007FD88DD0    001C 0000018098 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3641] CArcEntry           007FD7A260    000A 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,770] CArrayDim           007FD8DF88    0004 0000000018 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1747] CAsmArg             007FD892F0    0001 0000000060 Class 
+[C:/Kernel/KernelA.HPP.Z,1701] CAsmCodeBlk         007FD89B50    0002 0000010008 Class 
+[C:/Kernel/KernelA.HPP.Z,1735] CAsmIns             007FD97190    0000 00000000AA Class 
+[C:/Kernel/KernelA.HPP.Z,1720] CAsmNum             007FD87380    0002 0000000028 Class 
+[C:/Kernel/KernelA.HPP.Z,1728] CAsmNum2            007FD84220    0001 0000000039 Class 
+[C:/Kernel/KernelA.HPP.Z,1755] CAsmUnresolvedRef   007FD976B0    0002 000000004A Class 
+[C:/Kernel/KernelA.HPP.Z,2882] CBGR                007FDA10B8    0001 0000000004 Class Public 
+[C:/Kernel/KernelA.HPP.Z,369] CBinFile            007FD81D90    000E 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,2559] CBlkDev             007FD927A8    0048 0000000064 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2783] CBlkPool            007FD837E0    0017 00000009E0 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3045] CBpt                007FD7F0C0    000D 0000000018 Class 
+[C:/Kernel/KernelA.HPP.Z,3338] CCPU                007FD8A070    001C 00000000F0 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2638] CCacheBlk           007FD84740    0010 0000000230 Class 
+[C:/Kernel/KernelA.HPP.Z,2117] CCmpGlbls           007FD97E60    0001 00000001E1 Class Public 
+[C:/Kernel/KernelA.HPP.Z,530] CCntsGlbls          007FD96F00    0001 0000000041 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2867] CColorROPU16        007FD86BD0    0003 0000000002 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2871] CColorROPU32        007FD7A4F0    0006 0000000004 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3001] CCtrl               007FD7FBC8    0008 00000000A0 Class Public 
+[C:/Kernel/KernelA.HPP.Z,147] CD2                 007FD8F660    0000 0000000010 Class Public 
+[C:/Kernel/KernelA.HPP.Z,135] CD2I32              007FD8AD40    0002 0000000008 Class Public 
+[C:/Kernel/KernelA.HPP.Z,139] CD2I64              007FD7DB90    0000 0000000010 Class Public 
+[C:/Kernel/KernelA.HPP.Z,153] CD3                 007FD8F3D0    002F 0000000018 Class Public 
+[C:/Kernel/KernelA.HPP.Z,125] CD3I32              007FD7A780    0007 000000000C Class Public 
+[C:/Kernel/KernelA.HPP.Z,143] CD3I64              007FD822B0    0002 0000000018 Class Public 
 [C:/Kernel/KernelA.HPP.Z,182] CDATE_BASE_DAY_OF_WEEK0             0001 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,544] CDATE_FREQ          49710         0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,180] CDATE_YEAR_DAYS     365.24225     0000 0000000010 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,181] CDATE_YEAR_DAYS_INT 36524225      0001 0000000010 DefineStr 
-[C:/Kernel/KernelA.HPP.Z,3548] CDC                 007FD7A4F0    0004 0000000118 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3548] CDC                 007FD85180    0004 0000000118 Class Public 
 [C:/Kernel/KernelA.HPP.Z,2453] CDIR_FILENAME_LEN   38            000C 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,2466] CDIR_SIZE           (sizeof(CD    0011 0000000030 DefineStr 
 [C:/Kernel/Dsk/DskC.CPP.Z,179] CDImageRead         0000025B31    0000 00000001D6 Funct Export Res 
@@ -333,46 +333,46 @@ BREAK_FOCUS_USER    0000005719    0000            ExportSysSym
 [C:/Kernel/Dsk/DskC.CPP.Z,227] CDImageWriteTask    0000025D09    0001 00000000E2 Funct Export Res 
 [C:/Kernel/KernelA.HPP.Z,2200] CD_BLK_SIZE         (4*BLK_SIZ    0004 0000000010 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,2201] CD_FILE_OFFSET      80            0000 0000000008 DefineStr 
-[C:/Kernel/KernelA.HPP.Z,183] CDate               007FD82A60    0019 0000000008 Class Public 
+[C:/Kernel/KernelA.HPP.Z,183] CDate               007FD910B0    0019 0000000008 Class Public 
 [C:/Kernel/Dsk/FileSysFAT.CPP.Z,1] CDate2Dos           00000205F4    0001 000000007E Funct Export Res 
-[C:/Kernel/KernelA.HPP.Z,190] CDateStruct         007FD83A70    0014 000000000C Class Public 
-[C:/Kernel/KernelA.HPP.Z,3760] CDbgGlbls           007FD9FEC8    0001 0000000040 Class Public 
-[C:/Kernel/KernelA.HPP.Z,681] CDbgInfo            007FD7BE78    0004 000000000C Class 
-[C:/Kernel/KernelA.HPP.Z,2809] CDevGlbls           007FD8A820    0001 00000000F0 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2454] CDirEntry           007FD8FEC0    009D 0000000070 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1321] CDoc                007FCDA0C8    000E 0000000310 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1088] CDocBin             007FD7DB90    0003 0000000038 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1156] CDocEntry           007FD8F3D0    0009 00000000D0 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1136] CDocEntryBase       007FD85C70    0003 0000000058 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1124] CDocSettings        007FD97940    0002 0000000018 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1304] CDocUndo            007FCBE580    0002 0000000030 Class 
-[C:/Kernel/KernelA.HPP.Z,2611] CDrv                007FD866B0    0068 0000000098 Class Public 
+[C:/Kernel/KernelA.HPP.Z,190] CDateStruct         007FD79FD0    0014 000000000C Class Public 
+[C:/Kernel/KernelA.HPP.Z,3760] CDbgGlbls           007FD84C60    0001 0000000040 Class Public 
+[C:/Kernel/KernelA.HPP.Z,681] CDbgInfo            007FD7ACC0    0004 000000000C Class 
+[C:/Kernel/KernelA.HPP.Z,2809] CDevGlbls           007FCDF580    0001 00000000F0 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2454] CDirEntry           007FD90900    009D 0000000070 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1321] CDoc                007FD964C0    000E 0000000310 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1088] CDocBin             007FD83550    0003 0000000038 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1156] CDocEntry           007FD8B780    0009 00000000D0 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1136] CDocEntryBase       007FD8CC20    0003 0000000058 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1124] CDocSettings        007FD83F90    0002 0000000018 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1304] CDocUndo            007FCBCD88    0002 0000000030 Class 
+[C:/Kernel/KernelA.HPP.Z,2611] CDrv                007FD92CC8    0068 0000000098 Class Public 
 [C:/Kernel/KernelA.HPP.Z,2648] CDskGlbls           007FD89DE0    0001 00000001DD Class Public 
-[C:/Kernel/Dsk/DskC.CPP.Z,219] CDualBuf            007FD97190    0003 0000000038 Class 
-[C:/Kernel/KernelA.HPP.Z,1213] CEdFileName         007FD82CF0    0001 0000000100 Class 
-[C:/Kernel/KernelA.HPP.Z,1199] CEdFindText         007FD96180    0001 0000000120 Class 
-[C:/Kernel/KernelA.HPP.Z,3052] CExcept             007FD86420    001C 0000000078 Class 
-[C:/Kernel/KernelA.HPP.Z,1896] CExe                007FD7E4D0    0003 0000000068 Class 
-[C:/Kernel/KernelA.HPP.Z,1875] CExeAbsAddr         007FD84740    0003 0000000018 Class 
-[C:/Kernel/KernelA.HPP.Z,1888] CExeHeapGlbl        007FD8E218    0003 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,1882] CExeHeapGlblRef     007FCD7818    0002 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,1857] CExeImportExport    007FD86940    0002 0000000040 Class 
-[C:/Kernel/KernelA.HPP.Z,805] CExternUsage        007FDA0908    0002 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,2238] CFAT32Boot          007FD86E60    0004 0000000200 Class 
-[C:/Kernel/KernelA.HPP.Z,2282] CFAT32DirEntry      007FD8DF88    002F 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,2298] CFAT32DirEntryLong  007FD822B0    0011 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,2271] CFAT32FileInfoSect  007FD96F00    0002 0000000200 Class 
-[C:/Kernel/KernelA.HPP.Z,3059] CFPU                007FD859E0    0006 0000000200 Class 
-[C:/Kernel/KernelA.HPP.Z,173] CFifoI64            007FCD7588    000A 0000000020 Class Public 
-[C:/Kernel/KernelA.HPP.Z,168] CFifoU8             007FD84220    000B 0000000020 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2678] CFile               007FD97420    000C 00000000A8 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2662] CFileAccess         007FD947E0    000F 0000000020 Class Public 
+[C:/Kernel/Dsk/DskC.CPP.Z,219] CDualBuf            007FCD7818    0003 0000000038 Class 
+[C:/Kernel/KernelA.HPP.Z,1213] CEdFileName         007FD898C0    0001 0000000100 Class 
+[C:/Kernel/KernelA.HPP.Z,1199] CEdFindText         007FD800E8    0001 0000000120 Class 
+[C:/Kernel/KernelA.HPP.Z,3052] CExcept             007FD94F90    001C 0000000078 Class 
+[C:/Kernel/KernelA.HPP.Z,1896] CExe                007FD91D80    0003 0000000068 Class 
+[C:/Kernel/KernelA.HPP.Z,1875] CExeAbsAddr         007FD7D318    0003 0000000018 Class 
+[C:/Kernel/KernelA.HPP.Z,1888] CExeHeapGlbl        007FDA0B98    0003 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,1882] CExeHeapGlblRef     007FD94550    0002 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,1857] CExeImportExport    007FD82020    0002 0000000040 Class 
+[C:/Kernel/KernelA.HPP.Z,805] CExternUsage        007FD88390    0002 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,2238] CFAT32Boot          007FDA0678    0004 0000000200 Class 
+[C:/Kernel/KernelA.HPP.Z,2282] CFAT32DirEntry      007FD827D0    002F 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,2298] CFAT32DirEntryLong  007FD82A60    0011 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,2271] CFAT32FileInfoSect  007FD8E218    0002 0000000200 Class 
+[C:/Kernel/KernelA.HPP.Z,3059] CFPU                007FD86420    0006 0000000200 Class 
+[C:/Kernel/KernelA.HPP.Z,173] CFifoI64            007FD82CF0    000A 0000000020 Class Public 
+[C:/Kernel/KernelA.HPP.Z,168] CFifoU8             007FD8EEB0    000B 0000000020 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2678] CFile               007FD7C398    000C 00000000A8 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2662] CFileAccess         007FD86E60    000F 0000000020 Class Public 
 [C:/Kernel/Dsk/DskA.CPP.Z,574] CFileNameTo         000001BC94    0004 0000000038 Funct Export Res 
-[C:/Kernel/KernelA.HPP.Z,2602] CFreeLst            007FD88620    0008 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,332] CGDT                007FD7F938    0019 0000001080 Class 
-[C:/Kernel/KernelA.HPP.Z,327] CGDTEntry           007FD87BE0    000A 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,3541] CGrSym              007FD9FC38    0001 0000000028 Class 
-[C:/Kernel/KernelA.HPP.Z,2957] CGridGlbls          007FD93708    0001 0000000050 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2602] CFreeLst            007FD93708    0008 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,332] CGDT                007FD980F0    0019 0000001080 Class 
+[C:/Kernel/KernelA.HPP.Z,327] CGDTEntry           007FD85C70    000A 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,3541] CGrSym              007FD87E70    0001 0000000028 Class 
+[C:/Kernel/KernelA.HPP.Z,2957] CGridGlbls          007FD82F80    0001 0000000050 Class Public 
 [C:/Kernel/KernelA.HPP.Z,3410] CH_BACKSPACE        0x08          000A 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3383] CH_CTRLA            0x01          0001 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3384] CH_CTRLB            0x02          0001 0000000008 DefineStr 
@@ -406,51 +406,51 @@ BREAK_FOCUS_USER    0000005719    0000            ExportSysSym
 [C:/Kernel/KernelA.HPP.Z,3413] CH_SHIFT_ESC        0x1C          0004 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3414] CH_SHIFT_SPACE      0x1F          0007 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3415] CH_SPACE            0x20          001D 0000000008 DefineStr 
-[C:/Kernel/KernelA.HPP.Z,687] CHash               007FD7D088    001D 0000000018 Class Public 
-[C:/Kernel/KernelA.HPP.Z,741] CHashAC             007FD88DD0    0000 0000000020 Class Public 
-[C:/Kernel/KernelA.HPP.Z,821] CHashClass          007FD7ACC0    0010 0000000080 Class Public 
-[C:/Kernel/KernelA.HPP.Z,812] CHashDefineStr      007FD92288    000B 0000000058 Class Public 
-[C:/Kernel/KernelA.HPP.Z,747] CHashExport         007FD915D0    000A 0000000048 Class Public 
-[C:/Kernel/KernelA.HPP.Z,843] CHashFun            007FD79AB0    000A 00000000A8 Class Public 
-[C:/Kernel/KernelA.HPP.Z,715] CHashGeneric        007FD7FE58    0010 0000000030 Class Public 
-[C:/Kernel/KernelA.HPP.Z,860] CHashGlblVar        007FD98380    000B 0000000088 Class Public 
-[C:/Kernel/KernelA.HPP.Z,752] CHashImport         007FD88390    0004 0000000050 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1848] CHashOpcode         007FD90E20    0000 0000000030 Class Public 
-[C:/Kernel/KernelA.HPP.Z,729] CHashReg            007FD910B0    0002 000000001A Class Public 
-[C:/Kernel/KernelA.HPP.Z,706] CHashSrcSym         007FD92F58    000E 0000000040 Class Public 
-[C:/Kernel/KernelA.HPP.Z,734] CHashTable          007FDA10B8    0018 0000000020 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2796] CHeapCtrl           007FD95220    0024 0000000458 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1537] CICArg              007FD903E0    0001 000000000C Class 
-[C:/Kernel/KernelA.HPP.Z,1544] CICTreeLinks        007FD93C28    0001 0000000028 Class 
-[C:/Kernel/KernelA.HPP.Z,2932] CIPStateGlbls       007FD849D0    0003 00000000C0 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2355] CISO1Date           007FD92518    0003 0000000007 Class 
-[C:/Kernel/KernelA.HPP.Z,2360] CISO1DirEntry       007FD7F0C0    0005 0000000022 Class 
-[C:/Kernel/KernelA.HPP.Z,2371] CISO1PathEntry      007FD7D318    0000 000000000A Class 
-[C:/Kernel/KernelA.HPP.Z,2386] CISO1PriDesc        007FDA0678    0001 0000000800 Class 
-[C:/Kernel/KernelA.HPP.Z,1650] CInstruction        007FD83F90    0003 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,1560] CIntermediateCode   007FD8F140    0002 00000000E0 Class 
-[C:/Kernel/KernelA.HPP.Z,1551] CIntermediateCodeBase007FD87380    0002 0000000018 Class 
-[C:/Compiler/CompilerA.HPP.Z,12] CIntermediateStruct 007FD91860    0000 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,2890] CKbdStateGlbls      007FD8BF50    0002 000000007A Class Public 
-[C:/Kernel/KernelA.HPP.Z,414] CKernel             007FD8F8F0    0002 000000148C Class 
-[C:/Kernel/KernelA.HPP.Z,3706] CKeyDevEntry        007FD7FBC8    0009 0000000030 Class 
-[C:/Kernel/KernelA.HPP.Z,3714] CKeyDevGlbls        007FD964C0    0001 00000000D8 Class 
+[C:/Kernel/KernelA.HPP.Z,687] CHash               007FD8C700    001D 0000000018 Class Public 
+[C:/Kernel/KernelA.HPP.Z,741] CHashAC             007FD96C70    0000 0000000020 Class Public 
+[C:/Kernel/KernelA.HPP.Z,821] CHashClass          007FCC3178    0010 0000000080 Class Public 
+[C:/Kernel/KernelA.HPP.Z,812] CHashDefineStr      007FD7AF50    000B 0000000058 Class Public 
+[C:/Kernel/KernelA.HPP.Z,747] CHashExport         007FD859E0    000A 0000000048 Class Public 
+[C:/Kernel/KernelA.HPP.Z,843] CHashFun            007FD90B90    000A 00000000A8 Class Public 
+[C:/Kernel/KernelA.HPP.Z,715] CHashGeneric        007FD854C0    0010 0000000030 Class Public 
+[C:/Kernel/KernelA.HPP.Z,860] CHashGlblVar        007FD866B0    000B 0000000088 Class Public 
+[C:/Kernel/KernelA.HPP.Z,752] CHashImport         007FD7D5A8    0004 0000000050 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1848] CHashOpcode         007FD959D0    0000 0000000030 Class Public 
+[C:/Kernel/KernelA.HPP.Z,729] CHashReg            007FD91340    0002 000000001A Class Public 
+[C:/Kernel/KernelA.HPP.Z,706] CHashSrcSym         007FD8DCF8    000E 0000000040 Class Public 
+[C:/Kernel/KernelA.HPP.Z,734] CHashTable          007FD85F00    0018 0000000020 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2796] CHeapCtrl           007FD8AAB0    0024 0000000458 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1537] CICArg              007FD94D00    0001 000000000C Class 
+[C:/Kernel/KernelA.HPP.Z,1544] CICTreeLinks        007FD97BD0    0001 0000000028 Class 
+[C:/Kernel/KernelA.HPP.Z,2932] CIPStateGlbls       007FD8BF50    0003 00000000C0 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2355] CISO1Date           007FD8F8F0    0003 0000000007 Class 
+[C:/Kernel/KernelA.HPP.Z,2360] CISO1DirEntry       007FD969E0    0005 0000000022 Class 
+[C:/Kernel/KernelA.HPP.Z,2371] CISO1PathEntry      007FD81B00    0000 000000000A Class 
+[C:/Kernel/KernelA.HPP.Z,2386] CISO1PriDesc        007FD7F6A8    0001 0000000800 Class 
+[C:/Kernel/KernelA.HPP.Z,1650] CInstruction        007FD97940    0003 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,1560] CIntermediateCode   007FD870F0    0002 00000000E0 Class 
+[C:/Kernel/KernelA.HPP.Z,1551] CIntermediateCodeBase007FD7C628    0002 0000000018 Class 
+[C:/Compiler/CompilerA.HPP.Z,12] CIntermediateStruct 007FD7C108    0000 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,2890] CKbdStateGlbls      007FD91860    0002 000000007A Class Public 
+[C:/Kernel/KernelA.HPP.Z,414] CKernel             007FD9FC38    0002 000000148C Class 
+[C:/Kernel/KernelA.HPP.Z,3706] CKeyDevEntry        007FD7FE58    0009 0000000030 Class 
+[C:/Kernel/KernelA.HPP.Z,3714] CKeyDevGlbls        007FD86940    0001 00000000D8 Class 
 [C:/Kernel/KernelB.HPP.Z,220] CLFlush             0000000065    0000            Funct Public 
-[C:/Kernel/KernelA.HPP.Z,2065] CLex                007FD85F00    001E 0000000D08 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1915] CLexCodeCtrl        007FD888B0    0002 0000000030 Class 
-[C:/Kernel/KernelA.HPP.Z,1611] CLexCodeMisc        007FD92A38    0004 0000000058 Class 
-[C:/Kernel/KernelA.HPP.Z,1932] CLexFile            007FD94A70    0006 0000000048 Class 
-[C:/Kernel/KernelA.HPP.Z,2053] CLexHashTableContext007FD976B0    0003 0000000048 Class 
-[C:/Kernel/KernelA.HPP.Z,1714] CLexUndef           007FD97E60    0004 0000000010 Class 
-[C:/Kernel/EdLite.CPP.Z,1] CLine               007FD8AD40    0008 0000000018 Class 
-[C:/Kernel/KernelA.HPP.Z,2204] CMBRPrt             007FD86BD0    0001 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,2065] CLex                007FD85750    001E 0000000D08 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1915] CLexCodeCtrl        007FD83D00    0002 0000000030 Class 
+[C:/Kernel/KernelA.HPP.Z,1611] CLexCodeMisc        007FD88B40    0004 0000000058 Class 
+[C:/Kernel/KernelA.HPP.Z,1932] CLexFile            007FD92F58    0006 0000000048 Class 
+[C:/Kernel/KernelA.HPP.Z,2053] CLexHashTableContext007FD94A70    0003 0000000048 Class 
+[C:/Kernel/KernelA.HPP.Z,1714] CLexUndef           007FD92A38    0004 0000000010 Class 
+[C:/Kernel/EdLite.CPP.Z,1] CLine               007FD93C28    0008 0000000018 Class 
+[C:/Kernel/KernelA.HPP.Z,2204] CMBRPrt             007FD89060    0001 0000000010 Class 
 [C:/Kernel/KernelA.HPP.Z,1603] CMF_DEFINED         0x02          0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,1606] CMF_I16_JMP_TABLE   0x10          0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,1604] CMF_I8_JMP_TABLE    0x04          0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,1602] CMF_POP_CMP         0x01          0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,1607] CMF_U16_JMP_TABLE   0x20          0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,1605] CMF_U8_JMP_TABLE    0x08          0000 0000000008 DefineStr 
-[C:/Kernel/KernelA.HPP.Z,3752] CMPCrash            007FD832C0    0002 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,3752] CMPCrash            007FD7B538    0002 0000000020 Class 
 [C:/Compiler/CompilerA.HPP.Z,401] CMPF_ASM_BLK        1             0000 0000000008 DefineStr 
 [C:/Compiler/CompilerA.HPP.Z,403] CMPF_LEX_FIRST      4             0000 0000000008 DefineStr 
 [C:/Compiler/CompilerA.HPP.Z,402] CMPF_ONE_ASM_INS    2             0000 0000000008 DefineStr 
@@ -484,19 +484,19 @@ BREAK_FOCUS_USER    0000005719    0000            ExportSysSym
 [C:/Kernel/KernelA.HPP.Z,1593] CMT_LABEL           0             0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,1596] CMT_STR_CONST       3             0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,1609] CM_MAX_CONSTS       16            0000 0000000008 DefineStr 
-[C:/Kernel/KernelA.HPP.Z,206] CMass               007FD8CC20    0003 0000000068 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2216] CMasterBoot         007FD8C990    0002 0000000200 Class 
-[C:/Kernel/KernelA.HPP.Z,241] CMathODE            007FD81D90    0003 0000000140 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2750] CMemBlk             007FD90670    001B 0000000018 Class 
-[C:/Kernel/KernelA.HPP.Z,355] CMemE820            007FD92CC8    0005 0000000014 Class 
-[C:/Kernel/KernelA.HPP.Z,2760] CMemRange           007FD89580    000B 0000000028 Class 
-[C:/Kernel/KernelA.HPP.Z,2707] CMemUnused          007FD8AFD0    0018 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,2714] CMemUsed            007FD97BD0    0027 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,785] CMemberLst          007FD84C60    0008 0000000090 Class Public 
-[C:/Kernel/KernelA.HPP.Z,777] CMemberLstMeta      007FD8C470    0003 0000000020 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3035] CMenu               007FD79D40    0002 0000000028 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3026] CMenuEntry          007FD8A590    0003 0000000050 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2910] CMouseStateGlbls    007FD8B260    0004 0000000083 Class Public 
+[C:/Kernel/KernelA.HPP.Z,206] CMass               007FD8F140    0003 0000000068 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2216] CMasterBoot         007FD9F9A8    0002 0000000200 Class 
+[C:/Kernel/KernelA.HPP.Z,241] CMathODE            007FD98380    0003 0000000140 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2750] CMemBlk             007FD92288    001B 0000000018 Class 
+[C:/Kernel/KernelA.HPP.Z,355] CMemE820            007FD7D088    0005 0000000014 Class 
+[C:/Kernel/KernelA.HPP.Z,2760] CMemRange           007FD87BE0    000B 0000000028 Class 
+[C:/Kernel/KernelA.HPP.Z,2707] CMemUnused          007FD8A820    0018 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,2714] CMemUsed            007FD888B0    0027 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,785] CMemberLst          007FD876C0    0008 0000000090 Class Public 
+[C:/Kernel/KernelA.HPP.Z,777] CMemberLstMeta      007FD79AB0    0003 0000000020 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3035] CMenu               007FD97420    0002 0000000028 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3026] CMenuEntry          007FD90E20    0003 0000000050 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2910] CMouseStateGlbls    007FD93478    0004 0000000083 Class Public 
 [C:/Kernel/KernelA.HPP.Z,2877] COLORROP_BITS       16            0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,2875] COLORROP_COLORS_MASK0x00FF00FF    0000 0000000010 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,2876] COLORROP_NO_ROP0_MASK0xFFFF00FF    0000 0000000010 DefineStr 
@@ -504,36 +504,36 @@ BREAK_FOCUS_USER    0000005719    0000            ExportSysSym
 [C:/Kernel/KernelA.HPP.Z,2865] COLOR_MONO          0xFF          0000 0000000008 DefineStr 
 [C:/Kernel/MemA.CPP.Z,125] CONSERVATIVE_16MEG_SIZE0xF00000      0001 0000000010 DefineStr 
 [C:/Kernel/Dsk/DskC.CPP.Z,22] COPY_BUF_BLKS       0x80          000C 0000000008 DefineStr 
-[C:/Compiler/CompilerA.HPP.Z,395] COptReg             007FD94550    0000 0000000010 Class 
-[C:/Kernel/KernelA.HPP.Z,198] COrder2D3           007FD8B4F0    0001 0000000030 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2143] CPCIDev             007FD844B0    0002 0000000030 Class 
-[C:/Kernel/KernelA.HPP.Z,3742] CPSectCache         007FD980F0    0006 0000000040 Class 
+[C:/Compiler/CompilerA.HPP.Z,395] COptReg             007FD82540    0000 0000000010 Class 
+[C:/Kernel/KernelA.HPP.Z,198] COrder2D3           007FD8BCC0    0001 0000000030 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2143] CPCIDev             007FD89580    0002 0000000030 Class 
+[C:/Kernel/KernelA.HPP.Z,3742] CPSectCache         007FD8FEC0    0006 0000000040 Class 
 [C:/Kernel/KernelB.HPP.Z,205] CPUId               0000002111    0003            Funct Public Res 
 CPUStructInit       0000026482    0001            ExportSysSym 
 [C:/Kernel/MultiProc.CPP.Z,116] CPUStructInit       0000026482    0003 000000008D Funct Export Res 
 [C:/Kernel/KernelA.HPP.Z,3334] CPU_WALLPAPER_DATA_SIZE128           0001 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3335] CPUf_RAN_A_TASK     0             0002 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3336] CPUf_SETH_SLEEP     1             0005 0000000008 DefineStr 
-[C:/Kernel/KernelA.HPP.Z,2313] CPalindromeU16      007FD8C1E0    0004 0000000004 Class 
-[C:/Kernel/KernelA.HPP.Z,2318] CPalindromeU32      007FD931E8    0004 0000000008 Class 
-[C:/Kernel/KernelA.HPP.Z,380] CPatchTableAbsAddr  007FCC3178    0002 000000000A Class 
-[C:/Kernel/KernelA.HPP.Z,3800] CProgress           007FD837E0    0002 0000000040 Class 
-[C:/Kernel/KernelA.HPP.Z,1585] CPrsStk             007FD7C398    0001 0000001000 Class 
-[C:/Kernel/KernelA.HPP.Z,119] CQue                007FDA0E28    0010 0000000010 Class Public 
-[C:/Kernel/KernelA.HPP.Z,129] CQueD3I32           007FD81B00    0001 000000001C Class Public 
-[C:/Kernel/KernelA.HPP.Z,160] CQueVectU8          007FD96750    000A 0000000228 Class Public 
-[C:/Kernel/KernelA.HPP.Z,561] CRAXRBCRCXRDX       007FD8C700    0004 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,2878] CRGB                007FD87950    0000 0000000004 Class Public 
-[C:/Kernel/KernelA.HPP.Z,2225] CRedSeaBoot         007FD8A070    0005 0000000200 Class 
-[C:/Kernel/KernelA.HPP.Z,579] CSema               007FD82F80    0001 0000000040 Class 
-[C:/Kernel/KernelA.HPP.Z,3726] CSndData            007FD8FB80    0004 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,3733] CSndGlbls           007FD91AF0    0001 0000000029 Class Public 
-[C:/Kernel/KernelA.HPP.Z,223] CSpring             007FD91340    0002 0000000050 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3083] CSrvCmd             007FD80378    0022 0000000080 Class 
-[C:/Kernel/KernelA.HPP.Z,3103] CSrvCtrl            007FD969E0    0009 0000000028 Class 
-[C:/Kernel/KernelA.HPP.Z,1909] CStreamBlk          007FD876C0    0002 0000000018 Class 
-[C:/Kernel/KernelA.HPP.Z,3369] CSysFixedArea       007FD89060    001C 0000084600 Class Public 
-[C:/Kernel/KernelA.HPP.Z,346] CSysLimitBase       007FDA0158    0005 000000000A Class 
+[C:/Kernel/KernelA.HPP.Z,2313] CPalindromeU16      007FD7E4D0    0004 0000000004 Class 
+[C:/Kernel/KernelA.HPP.Z,2318] CPalindromeU32      007FD90150    0004 0000000008 Class 
+[C:/Kernel/KernelA.HPP.Z,380] CPatchTableAbsAddr  007FCBE580    0002 000000000A Class 
+[C:/Kernel/KernelA.HPP.Z,3800] CProgress           007FD93998    0002 0000000040 Class 
+[C:/Kernel/KernelA.HPP.Z,1585] CPrsStk             007FCD7588    0001 0000001000 Class 
+[C:/Kernel/KernelA.HPP.Z,119] CQue                007FD80378    0010 0000000010 Class Public 
+[C:/Kernel/KernelA.HPP.Z,129] CQueD3I32           007FD8C1E0    0001 000000001C Class Public 
+[C:/Kernel/KernelA.HPP.Z,160] CQueVectU8          007FD8AFD0    000A 0000000228 Class Public 
+[C:/Kernel/KernelA.HPP.Z,561] CRAXRBCRCXRDX       007FD931E8    0004 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,2878] CRGB                007FDA03E8    0000 0000000004 Class Public 
+[C:/Kernel/KernelA.HPP.Z,2225] CRedSeaBoot         007FD83A70    0005 0000000200 Class 
+[C:/Kernel/KernelA.HPP.Z,579] CSema               007FD8FB80    0001 0000000040 Class 
+[C:/Kernel/KernelA.HPP.Z,3726] CSndData            007FD88100    0004 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,3733] CSndGlbls           007FD92518    0001 0000000029 Class Public 
+[C:/Kernel/KernelA.HPP.Z,223] CSpring             007FD849D0    0002 0000000050 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3083] CSrvCmd             007FD8C470    0022 0000000080 Class 
+[C:/Kernel/KernelA.HPP.Z,3103] CSrvCtrl            007FCDA0C8    0009 0000000028 Class 
+[C:/Kernel/KernelA.HPP.Z,1909] CStreamBlk          007FD9FEC8    0002 0000000018 Class 
+[C:/Kernel/KernelA.HPP.Z,3369] CSysFixedArea       007FD903E0    001C 0000084600 Class Public 
+[C:/Kernel/KernelA.HPP.Z,346] CSysLimitBase       007FD87950    0005 000000000A Class 
 [C:/Kernel/KernelA.HPP.Z,2980] CTRLF_BORDER        2             0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,2981] CTRLF_CAPTURE_LEFT_IP4             0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,2982] CTRLF_CAPTURE_RIGHT_IP8             0000 0000000008 DefineStr 
@@ -544,20 +544,20 @@ CPUStructInit       0000026482    0001            ExportSysSym
 [C:/Kernel/KernelA.HPP.Z,2975] CTRLT_WIN_HSCROLL   1             0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,2976] CTRLT_WIN_VSCROLL   2             0000 0000000008 DefineStr 
 [C:/Kernel/KbdMouse/Keyboard.CPP.Z,15] CTRL_KEY_SCAN_DECODE_TABLE00000110FB    0003            ExportSysSym Export 
-[C:/Kernel/KernelA.HPP.Z,3301] CTSS                007FD83550    0005 0000002084 Class 
+[C:/Kernel/KernelA.HPP.Z,3301] CTSS                007FD954B0    0005 0000002084 Class 
 [C:/Kernel/KernelA.HPP.Z,3639] CT_7_BIT            2             0003 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3640] CT_8_BIT            3             0003 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,3638] CT_NONE             1             0002 0000000008 DefineStr 
-[C:/Kernel/KernelA.HPP.Z,3212] CTask               007FD94D00    00D5 00000004A8 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3142] CTaskSettings       007FD90900    0002 0000000138 Class Public 
-[C:/Kernel/KernelA.HPP.Z,3205] CTaskStk            007FD83D00    0009 0000000018 Class 
-[C:/Kernel/KernelA.HPP.Z,3497] CTextGlbls          007FD82020    0001 0000000030 Class Public 
-[C:/Kernel/Except.CPP.Z,54] CTryStk             007FD7A780    0001 0000000020 Class 
-[C:/Kernel/KernelA.HPP.Z,2133] CUasmGlbls          007FD7B538    0001 0000000028 Class 
-[C:/Kernel/KernelA.HPP.Z,2994] CViewAngles         007FD87E70    0000 0000000048 Class Public 
-[C:/Kernel/KernelA.HPP.Z,1433] CWinMgrGlbls        007FD94F90    0000 000000003B Class Public 
-[C:/Kernel/KernelA.HPP.Z,1422] CWinMgrTimingGlbls  007FD88B40    0001 0000000820 Class 
-[C:/Kernel/KernelA.HPP.Z,2987] CWinScroll          007FD84EF0    0001 0000000020 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3212] CTask               007FD8A590    00D5 00000004A8 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3142] CTaskSettings       007FD7BE78    0002 0000000138 Class Public 
+[C:/Kernel/KernelA.HPP.Z,3205] CTaskStk            007FD96750    0009 0000000018 Class 
+[C:/Kernel/KernelA.HPP.Z,3497] CTextGlbls          007FD832C0    0001 0000000030 Class Public 
+[C:/Kernel/Except.CPP.Z,54] CTryStk             007FD915D0    0001 0000000020 Class 
+[C:/Kernel/KernelA.HPP.Z,2133] CUasmGlbls          007FDA0E28    0001 0000000028 Class 
+[C:/Kernel/KernelA.HPP.Z,2994] CViewAngles         007FD86190    0000 0000000048 Class Public 
+[C:/Kernel/KernelA.HPP.Z,1433] CWinMgrGlbls        007FD88620    0000 000000003B Class Public 
+[C:/Kernel/KernelA.HPP.Z,1422] CWinMgrTimingGlbls  007FD8B260    0001 0000000820 Class 
+[C:/Kernel/KernelA.HPP.Z,2987] CWinScroll          007FD95C60    0001 0000000020 Class Public 
 [C:/Kernel/KernelA.HPP.Z,2849] CYAN                3             0000 0000000008 DefineStr 
 [C:/Kernel/KernelB.HPP.Z,30] Call                0000001F7B    0002            Funct Public Res 
 [C:/Kernel/KernelB.HPP.Z,37] CallExtNum          000000216F    0001            Funct Public Res 
@@ -589,7 +589,7 @@ CPUStructInit       0000026482    0001            ExportSysSym
 [C:/Kernel/Dsk/DskA.CPP.Z,483] ClusterNumNext      000001B904    000B 0000000125 Funct Export Res 
 [C:/Kernel/Dsk/DskA.CPP.Z,714] ClustersAlloc       000001C25C    000F 0000000092 Funct Export Res 
 [C:/Kernel/KDefine.CPP.Z,127] Color2Str           000000D30E    0000 000000019E Funct Export Res 
-[C:/Kernel/KernelA.HPP.Z,113] Complex             007FD86190    0000 0000000010 Class Public 
+[C:/Kernel/KernelA.HPP.Z,113] Complex             007FD79D40    0000 0000000010 Class Public 
 [C:/Kernel/Compress.CPP.Z,278] CompressBuf         00000083D5    0001 0000000109 Funct Export Res 
 [C:/Kernel/Dsk/DskC.CPP.Z,23] CopySingle          00000254F9    0000 0000000274 Funct Export Res 
 [C:/Kernel/Dsk/DskC.CPP.Z,1] CopySingleZ         00000253E9    0001 000000010D Funct Export Res 
@@ -1337,9 +1337,9 @@ HashDel             00000085ED    0001            ExportSysSym
 [C:/Kernel/MemC.CPP.Z,29] HeapCtrlInit        00000059E1    0004 000000005A Funct Export Res 
 [C:/Kernel/MemC.CPP.Z,261] HeapsInit           00000060A1    0001 000000014E Funct Export Res 
 [C:/Kernel/StrB.CPP.Z,115] Help                000000703D    0000 000000004F Funct Export Res 
-[C:/Kernel/KernelA.HPP.Z,70] I16                 007FD8B780    0007 0000000002 Class 
-[C:/Kernel/KernelA.HPP.Z,84] I32                 007FD8AAB0    0037 0000000004 Class 
-[C:/Kernel/KernelA.HPP.Z,102] I64                 007FD79FD0    04BA 0000000008 Class 
+[C:/Kernel/KernelA.HPP.Z,70] I16                 007FD90670    0007 0000000002 Class 
+[C:/Kernel/KernelA.HPP.Z,84] I32                 007FD8A300    0037 0000000004 Class 
+[C:/Kernel/KernelA.HPP.Z,102] I64                 007FD96180    04BA 0000000008 Class 
 [C:/Kernel/KernelA.HPP.Z,512] IA32F_LME           0x100         0001 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,511] IA32F_SCE           0x001         0000 0000000008 DefineStr 
 [C:/Kernel/KernelA.HPP.Z,514] IA32_EFER           0xC0000080    0003 0000000010 DefineStr 
@@ -2782,9 +2782,9 @@ TaskRstAwaitingMsg  0000015433    0000            ExportSysSym
 [C:/Kernel/KernelB.HPP.Z,40] ToUpper             000000001E    0013            Funct Public 
 [C:/Kernel/Dsk/DskStr.CPP.Z,352] ToggleZorNotZ       0000017A14    0002 0000000067 Funct Export Res 
 [C:/Kernel/KernelB.HPP.Z,110] Trunc               0000002608    0005            Funct Public Res 
-[C:/Kernel/KernelA.HPP.Z,64] U16                 007FD91D80    008E 0000000002 Class 
-[C:/Kernel/KernelA.HPP.Z,76] U32                 007FD7C108    010B 0000000004 Class 
-[C:/Kernel/KernelA.HPP.Z,92] U64                 007FD90B90    0281 0000000008 Class 
+[C:/Kernel/KernelA.HPP.Z,64] U16                 007FDA0908    008E 0000000002 Class 
+[C:/Kernel/KernelA.HPP.Z,76] U32                 007FD8B4F0    010B 0000000004 Class 
+[C:/Kernel/KernelA.HPP.Z,92] U64                 007FD7F938    0281 0000000008 Class 
 [C:/Kernel/KDefine.CPP.Z,43] UndefinedDefine     000000CC2E    0003 0000000068 Funct Export Res 
 [C:/Kernel/KDbg.CPP.Z,45] UnusedStk           000000EC6E    0001 0000000067 Funct Export Res 
 [C:/Kernel/Task.CPP.Z,365] User                0000014FA3    0000 0000000074 Funct Export Res 
