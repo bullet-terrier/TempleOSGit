@@ -59,15 +59,15 @@ Directives
 +] DolDoc
     [C:/Doc/DolDocOverview.TXT.Z,1] DolDoc is the TempleOS document type. 
     The editor, compiler, assembler and whole operating system seamlessly handle
-    DolDocs.  Cmds like [C:/Kernel/Dsk/DskB.CPP.Z,226] Dir() and
-    [C:/Adam/Utils/Find.CPP.Z,143] Find() can output links to the cmd line.
+    DolDocs.  Cmds like [C:/Kernel/Dsk/DskB.CPP.Z,228] Dir() and
+    [C:/Adam/Utils/Find.CPP.Z,145] Find() can output links to the cmd line.
   +] Burning CD/DVDs
     * Prepare a directory with the files you wish to burn.
 
-* Use [C:/Adam/Boot/DskCDDVD.CPP.Z,326] CDFileCreate() to make an ISO image
+* Use [C:/Adam/Boot/DskCDDVD.CPP.Z,331] CDFileCreate() to make an ISO image
     file.
 
-* Use [C:/Kernel/Dsk/DskC.CPP.Z,258] CDImageWrite() to burn an ISO file onto
+* Use [C:/Kernel/Dsk/DskC.CPP.Z,259] CDImageWrite() to burn an ISO file onto
     a CD or DVD.
 
 * See [C:/Misc/MakeDistro.CPP.Z,1] Making a Distro ISO.
@@ -88,29 +88,29 @@ You recompile the kernel with [C:/Adam/Boot/BootIns.CPP.Z,24]
 [C:/Doc/HolyC.TXT.Z,1] HolyC
 [C:/Doc/GraphicsOverview.TXT.Z,1] Graphics
 [C:/Doc/MultiTasking.TXT.Z,1] Multitasking
-[C:/Demo/DolDoc/FileRead.CPP,1] DolDoc Documents
-[C:/Demo/Lectures/AndNotMod.CPP,1] Lectures/AndNotMod.CPP
-[C:/Demo/Lectures/FixedPoint.CPP,1] Lectures/FixedPoint.CPP
-[C:/Demo/Lectures/NegDisp.CPP,1] Lectures/NegDisp.CPP
-[C:/Demo/Lectures/Uncached.CPP,1] Lectures/Uncached.CPP
-[C:/Demo/Lectures/Optimization.CPP,1] Lectures/Optimization.CPP
-[C:/Demo/Lectures/ScreenMemory.CPP,1] Lectures/ScreenMemory.CPP
-[C:/Demo/Lectures/GraphicsCPULoad.CPP,1] Lectures/GraphicsCPULoad.CPP
-[C:/Demo/Lectures/InterruptDemo.CPP,1] Lectures/InterruptDemo.CPP
-[C:/Demo/Lectures/Spinning.CPP,1] Lectures/Spinning.CPP
+[C:/Demo/DolDoc/FileRead.CPP.Z,1] DolDoc Documents
+[C:/Demo/Lectures/AndNotMod.CPP.Z,1] Lectures/AndNotMod.CPP
+[C:/Demo/Lectures/FixedPoint.CPP.Z,1] Lectures/FixedPoint.CPP
+[C:/Demo/Lectures/NegDisp.CPP.Z,1] Lectures/NegDisp.CPP
+[C:/Demo/Lectures/Uncached.CPP.Z,1] Lectures/Uncached.CPP
+[C:/Demo/Lectures/Optimization.CPP.Z,1] Lectures/Optimization.CPP
+[C:/Demo/Lectures/ScreenMemory.CPP.Z,1] Lectures/ScreenMemory.CPP
+[C:/Demo/Lectures/GraphicsCPULoad.CPP.Z,1] Lectures/GraphicsCPULoad.CPP
+[C:/Demo/Lectures/InterruptDemo.CPP.Z,1] Lectures/InterruptDemo.CPP
+[C:/Demo/Lectures/Spinning.CPP.Z,1] Lectures/Spinning.CPP
 +] System Programmer Help
-  [C:/Demo/Lectures/64BitAsmQuiz.TXT,1] 64BitAsmQuiz
+  [C:/Demo/Lectures/64BitAsmQuiz.TXT.Z,1] 64BitAsmQuiz
 [C:/Kernel/KHashA.CPP.Z,1] Hash Tables
 [Keyboard Devices/System,1] Keyboard Devices
-[C:/Demo/Lectures/PageTableEntries1.CPP,1] Page Table Entries 1
-[C:/Demo/Lectures/PageTableEntries2.CPP,1] Page Table Entries 2
-[C:/Demo/Lectures/PCIInterrupts.CPP,1] PCIInterrupts.CPP
-[C:/Adam/Utils/MemRep.CPP.Z,189] MemRep
+[C:/Demo/Lectures/PageTableEntries1.CPP.Z,1] Page Table Entries 1
+[C:/Demo/Lectures/PageTableEntries2.CPP.Z,1] Page Table Entries 2
+[C:/Demo/Lectures/PCIInterrupts.CPP.Z,1] PCIInterrupts.CPP
+[C:/Adam/Utils/MemRep.CPP.Z,191] MemRep
 [C:/Adam/WallPaper.CPP.Z,1] WallPaper
 [C:/Kernel/Sched.CPP.Z,1] Scheduler
 [C:/Adam/DolDoc/Doc.CPP.Z,1] Doc
-[C:/Demo/Lectures/MiniGrLib.CPP,1] MiniGrLib
-[C:/Demo/Lectures/MiniCompiler.CPP,1] MiniCompiler
+[C:/Demo/Lectures/MiniGrLib.CPP.Z,1] MiniGrLib
+[C:/Demo/Lectures/MiniCompiler.CPP.Z,1] MiniCompiler
 [C:/Compiler/BackLib.CPP.Z,1] Backend
 
                                     Index
@@ -176,7 +176,7 @@ You recompile the kernel with [C:/Adam/Boot/BootIns.CPP.Z,24]
 [Task,1] Task
 [TextBase Layer,1] TextBase Layer
 [Time,1] Time
-[Training,1] Training
+[Help System/Training,1] Training
 [C:/Doc/TOSZ.TXT.Z,1] TOSZ
 [Cmd Line (Typically),1] Utils
 [Windows,1] Windows
