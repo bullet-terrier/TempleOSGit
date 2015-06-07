@@ -73,7 +73,7 @@ Takes affect next boot.
 
 * Place user data in a subdirectory of /Home, preferably naming the 
 subdirectory the same as the /Apps subdirectory.  Or, place data in the Regist
-ry.CPP.Z file.  See [C:/Demo/RegistryDemo.CPP.Z,1].
+ry.CPP.Z file.  See [C:/Demo/RegistryDemo.CPP,1].
 
 * If the app needs files in the /Home directory, make an /Apps file called Ins
 tall.CPP.Z or Install.AUT.Z to create the /Home subdirectory.

@@ -50,7 +50,7 @@ When waiting, it's better to do this than check a condition in a loop until
 you get preempted.  Checking a condition until you get preempted wastes CPU.  
 TempleOS does not use virtual memory, so [C:/Kernel/Sched.CPP.Z,344] Yield()
 involves no disk activity.  A 
-swap takes half a microsecond.  See [C:/Demo/Lectures/Spinning.CPP.Z,1].
+swap takes half a microsecond.  See [C:/Demo/Lectures/Spinning.CPP,1].
 
 * I use the term [C:/Doc/Glossary.TXT.Z,1] JIT Compile Mode.  This means it
 is compiled and executable 

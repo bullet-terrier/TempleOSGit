@@ -11,7 +11,7 @@ public Bool Line(U8 *aux_data,
 		 Bool (*fp_plot)(U8 *aux,I64 x,I64 y,I64 z),
 		 I64 step=1,I64 start=0)
 {//Step through line segment calling callback.
-//Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+//Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   I64 i,j,d,dx=x2-x1,dy=y2-y1,dz=z2-z1,_x,_y,_z,
 	adx=AbsI64(dx),ady=AbsI64(dy),adz=AbsI64(dz);
   Bool first=TRUE;
@@ -81,7 +81,7 @@ public Bool Line(U8 *aux_data,
 
 #help_index "Graphics/Math/3D Transformation"
 public I64 *Mat4x4MulMat4x4Equ(I64 *dst,I64 *m1,I64 *m2)
-{//Multiply 4x4 matrices and store in dst. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Multiply 4x4 matrices and store in dst. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
 //Conceptually, the transform m1 is applied after m2
   I64 i,j,k;
   F64 sum;
@@ -97,7 +97,7 @@ public I64 *Mat4x4MulMat4x4Equ(I64 *dst,I64 *m1,I64 *m2)
 }
 
 public I64 *Mat4x4MulMat4x4New(I64 *m1,I64 *m2,CTask *mem_task=NULL)
-{//Multiply 4x4 matrices. Return MAlloced matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Multiply 4x4 matrices. Return MAlloced matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
 //Conceptually, the transform m1 is applied after m2
   return Mat4x4MulMat4x4Equ(MAlloc(sizeof(I64)*16,mem_task),m1,m2);
 }
@@ -114,7 +114,7 @@ public I64 *Mat4x4New(I64 *src,CTask *mem_task=NULL)
 }
 
 public I64 *Mat4x4RotX(I64 *m1,F64 phi)
-{//Rot matrix about X axis. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Rot matrix about X axis. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   F64 my_cos=Cos(phi)*GR_SCALE,
 	my_sin=Sin(phi)*GR_SCALE;
   I64 r[16],r2[16];
@@ -129,7 +129,7 @@ public I64 *Mat4x4RotX(I64 *m1,F64 phi)
 }
 
 public I64 *Mat4x4RotY(I64 *m1,F64 omega)
-{//Rot matrix about Y axis. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Rot matrix about Y axis. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   F64 my_cos=Cos(omega)*GR_SCALE,
 	my_sin=Sin(omega)*GR_SCALE;
   I64 r[16],r2[16];
@@ -144,7 +144,7 @@ public I64 *Mat4x4RotY(I64 *m1,F64 omega)
 }
 
 public I64 *Mat4x4RotZ(I64 *m1,F64 theta)
-{//Rot matrix about Z axis. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Rot matrix about Z axis. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   F64 my_cos=Cos(theta)*GR_SCALE,
 	my_sin=Sin(theta)*GR_SCALE;
   I64 r[16],r2[16];
@@ -180,7 +180,7 @@ public U0 DCPenWidthScale(CDC *dc=gr.dc)
 }
 
 public I64 *Mat4x4TranslationEqu(I64 r[4][4],I64 x,I64 y,I64 z)
-{//Set translation values in 4x4 matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Set translation values in 4x4 matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   r[0][3]=x<<32;
   r[1][3]=y<<32;
   r[2][3]=z<<32;
@@ -189,7 +189,7 @@ public I64 *Mat4x4TranslationEqu(I64 r[4][4],I64 x,I64 y,I64 z)
 }
 
 public I64 *Mat4x4TranslationAdd(I64 r[4][4],I64 x,I64 y,I64 z)
-{//Add translation to 4x4 matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Add translation to 4x4 matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   r[0][3]+=x<<32;
   r[1][3]+=y<<32;
   r[2][3]+=z<<32;
@@ -256,7 +256,7 @@ public Bool DCSymmetry3Set(CDC *dc=gr.dc,I64 x1,I64 y1,I64 z1,
 }
 
 public U0 DCReflect(CDC *dc,I64 *_x,I64 *_y,I64 *_z)
-{//Reflect 3D point about device context's symmetry. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Reflect 3D point about device context's symmetry. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   I64 x=*_x<<32,y=*_y<<32,z=*_z<<32,
 	xx=*_x-dc->sym.sx,yy=*_y-dc->sym.sy,zz=*_z-dc->sym.sz,
 	d=(xx*dc->sym.snx+yy*dc->sym.sny+zz*dc->sym.snz)>>16,

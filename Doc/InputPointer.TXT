@@ -10,7 +10,7 @@ the wheel.
 [C:/Kernel/KernelA.HPP.Z,2941] ip.pos_text.x and
 [C:/Kernel/KernelA.HPP.Z,2941] ip.pos_text.y are the text column and row of
 the input ptr.  
-See [C:/Demo/Games/Maze.CPP.Z,1].
+See [C:/Demo/Games/Maze.CPP,1].
 
 See [C:/Kernel/KernelA.HPP.Z,2941] CIPStateGlbls and
 [C:/Kernel/KernelA.HPP.Z,2919] CMouseStateGlbls.

@@ -51,4 +51,4 @@ tasks asking for service.  It is much simpler, though, the way it is.
 The disk code does not break-up large requests in pieces, if you are curious 
 why one task must wait until another finishes an operation.
 
-See [C:/Demo/Lectures/Spinning.CPP.Z,1].
+See [C:/Demo/Lectures/Spinning.CPP,1].

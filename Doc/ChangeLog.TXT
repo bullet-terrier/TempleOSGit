@@ -204,7 +204,7 @@ Mat4x4MulMat4x4New").
 * **TempleOS version 3.03 Released**
 
 ----02/12/15 16:10:14----
-* Overhauled [C:/Demo/WebLogExample/WebLogRep.CPP.Z,1].
+* Overhauled [C:/Demo/WebLogExample/WebLogRep.CPP,1].
 * Added [C:/Kernel/KernelA.HPP.Z,1224] EDF_WAS_WRITE.
 
 ----02/12/15 03:48:28----
@@ -221,10 +221,10 @@ directory.
 * Fixed minor compiler bug relating to dead code elimination.
 
 ----02/02/15 14:03:28----
-* Added [C:/Demo/Graphics/Lattice.CPP.Z,1].
+* Added [C:/Demo/Graphics/Lattice.CPP,1].
 
 ----01/29/15 02:58:45----
-* Added [C:/Demo/Directives.CPP.Z,1].
+* Added [C:/Demo/Directives.CPP,1].
 #define __DATE__ #exe{StreamPrint("\"%D\"",Now);}
 #define __TIME__ #exe{StreamPrint("\"%T\"",Now);}
 #define __LINE__ #exe{StreamPrint("%d",Fs->last_lex->lex_include_stk->line_num);}
@@ -273,7 +273,7 @@ editor.
 .
 
 ----01/04/15 02:20:50----
-* Added [C:/Demo/Graphics/SpriteRaw.CPP.Z,1].
+* Added [C:/Demo/Graphics/SpriteRaw.CPP,1].
 
 ----01/02/15 04:46:36----
 * Changed Sprite format.  Download Cvt300.CPP.Z from
@@ -284,23 +284,23 @@ http://www.templeos.org/Wb/Home/Wb2/Files.
 * **TempleOS version 3.00 Released**
 
 ----12/30/14 21:18:04----
-* Added [C:/Demo/RandDemo.CPP.Z,1].
+* Added [C:/Demo/RandDemo.CPP,1].
 
 ----12/30/14 00:38:42----
 * [C:/Home/AdamWrappers.CPP.Z,13] R("ptr_cnt","ptr_stars_cnt");
 * Moved [C:/Kernel/KernelA.HPP.Z,999] DOCEF_UPDATE_DATA to be next to
 [C:/Kernel/KernelA.HPP.Z,998] DOCEF_REFRESH_DATA.
-* Refreshed the [C:/Misc/PCIDevices.TXT.Z,1] PCI Device File.
+* Refreshed the [C:/Misc/PCIDevices.TXT,1] PCI Device File.
 
 ----12/27/14 18:59:16----
 * Improved [C:/Adam/Gr/GrDC.CPP.Z,412] DCScreenCapture().
 
 ----12/26/14 22:13:51----
-* Improved [C:/Demo/Games/RawHide.CPP.Z,1].
+* Improved [C:/Demo/Games/RawHide.CPP,1].
 
 ----12/25/14 21:08:51----
-* Improved [C:/Demo/Games/BlackDiamond.CPP.Z,1].
-* Improved [C:/Demo/Games/DunGen.CPP.Z,1].
+* Improved [C:/Demo/Games/BlackDiamond.CPP,1].
+* Improved [C:/Demo/Games/DunGen.CPP,1].
 
 ----12/23/14 15:00:28----
 * Changed from many /Accts subdirectories to just one directory named /Home 
@@ -360,7 +360,7 @@ turned-off.
 
 ----11/21/14 08:25:38----
 * **TempleOS version 2.18 Released**
-* Improved [C:/Demo/Games/TreeCheckers.CPP.Z,1].
+* Improved [C:/Demo/Games/TreeCheckers.CPP,1].
 
 ----11/19/14 22:25:28----
 * Fixed reindent bug.
@@ -375,7 +375,7 @@ R("ST_BIBLE_FILE","[C:/Adam/DolDoc/Doc.CPP.Z,84] BIBLE_FILENAME");
 ----11/09/14 21:37:49----
 * Changed default plug-in for <ALT-F4> and <ALT-SHIFT-F4>.
 * Added <ALT-F8> and <ALT-SHIFT-F8> on my personal version  
-[C:/Demo/AcctExample/AdamKeyPlugIns.CPP.Z,1].
+[C:/Demo/AcctExample/AdamKeyPlugIns.CPP,1].
 
 ----11/07/14 08:02:04----
 * Improved [C:/Compiler/UAsm.CPP.Z,253] Ui().
@@ -393,7 +393,7 @@ ICF_NO_DEPEND_RESULT
 
 ----10/19/14 11:42:47----
 * Updated [C:/Doc/Charter.TXT.Z,1].
-* Improved [C:/Demo/Games/FlatTops.CPP.Z,1].
+* Improved [C:/Demo/Games/FlatTops.CPP,1].
 
 ----10/09/14 21:04:25----
 * Added dither_probability to [C:/Adam/Utils/FileBMP.CPP.Z,326] DocBMP() and
@@ -410,9 +410,9 @@ a name without .Z.  Then, recompress with the new version of TempleOS.
 [C:/Adam/Gr/GrDC.CPP.Z,432] GRAScreenCapture() and 
 [C:/Adam/Utils/FileBMP.CPP.Z,337] BMPScreenCapture().
 * Added eye-dropper to sprite <CTRL-r> editor.  Press 'c'.
-* Improved [C:/Demo/Games/Wenceslas.CPP.Z,1], made it 3D.
-* Added pebbles to [C:/Apps/AfterEgypt/HorebBMP.CPP.Z,1] and 
-[C:/Apps/AfterEgypt/HorebBSP.CPP.Z,1].
+* Improved [C:/Demo/Games/Wenceslas.CPP,1], made it 3D.
+* Added pebbles to [C:/Apps/AfterEgypt/HorebBMP.CPP,1] and 
+[C:/Apps/AfterEgypt/HorebBSP.CPP,1].
 
 ----09/21/14 13:07:09----
 * Changed "bit" to "pixel" in [C:/Adam/Gr/GrBitMap.CPP.Z,1].
@@ -464,13 +464,13 @@ have to specify size.
 
 ----08/10/14 11:54:16----
 * Added [C:/Adam/Gr/GrDC.CPP.Z,39] Mat4x4NormSqr65536().
-* Improved [C:/Demo/Games/BugBird.CPP.Z,1].
+* Improved [C:/Demo/Games/BugBird.CPP,1].
 
 ----08/08/14 18:02:04----
 * Added ::/Apps/Psalmody/Examples/lob.CPP"
 
 ----08/08/14 11:03:13----
-* Improved [C:/Demo/Snd/WaterFowl.CPP.Z,1].
+* Improved [C:/Demo/Snd/WaterFowl.CPP,1].
 * Added 24-Bit to [C:/Adam/Utils/FileBMP.CPP.Z,238] BMPRead().
 
 ----08/06/14 05:14:23----

@@ -243,7 +243,7 @@ public _intern IC_GS CCPU *Gs(); //GS points to current [C:/Kernel/KernelA.HPP.Z
 public _extern SYS_PCI_BUSSES U16 sys_pci_busses; //Number of PCI busses.
 
 #help_index "Processor"
-public _intern IC_CARRY I64 Carry(); //See [C:/Demo/Carry.CPP.Z,1]
+public _intern IC_CARRY I64 Carry(); //See [C:/Demo/Carry.CPP,1]
 public _intern IC_GET_RAX I64 GetRAX(); //Get RAX register value.
 public _intern IC_GET_RBP U8 *GetRBP(); //Get RBP register value.
 public _intern IC_GET_RFLAGS I64 GetRFlags(); //Get RFlags register value.

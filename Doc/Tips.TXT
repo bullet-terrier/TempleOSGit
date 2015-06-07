@@ -74,8 +74,8 @@ C>.
 You'll probably want to make a function for recompiling that uses the
 [C:/Kernel/SrvCmd.CPP.Z,496] Auto() 
 function to answer the cfg questions.  See my technique
-[C:/Demo/AcctExample/TOSCfg.CPP.Z,1] Cfg Strs,
-[C:/Demo/AcctExample/TOSDistro.CPP.Z,1] Update Funs.
+[C:/Demo/AcctExample/TOSCfg.CPP,1] Cfg Strs,
+[C:/Demo/AcctExample/TOSDistro.CPP,1] Update Funs.
 
 * [C:/Kernel/MemC.CPP.Z,306] Scale2Mem(min,max,limit=2*1024*1024*1024) can be
 used for cfg questions when 
@@ -98,7 +98,7 @@ They're just global vars that are shown on the wallpaper.  The original
 intent 
 was to indicate how far along operations were.  There's no coordination, so 
 different apps might interfere.  I use them most for debugging--just values 
-easily viewed.  See [C:/Demo/Progress.CPP.Z,1].
+easily viewed.  See [C:/Demo/Progress.CPP,1].
 
 * Use [C:/Adam/DolDoc/DocNew.CPP.Z,612] DocMax() to adjust the size of the
 cmd line buf.  It counts [C:/Kernel/KernelA.HPP.Z,1323] CDoc 
@@ -228,7 +228,7 @@ to this in [C:/Home/AdamLocalize.CPP,1].
 
 * <CTRL-SHIFT-T> to toggle to/from plain text just the
 [C:/Kernel/KernelA.HPP.Z,1323] CDoc cmd under the 
-cursor.  See [C:/Demo/DolDoc/TextDemo.CPP.Z,1].
+cursor.  See [C:/Demo/DolDoc/TextDemo.CPP,1].
  
 * If you toggle to plain text when you are working with graphics in a 
 document, you can add duplicate entries for sprites by entering a $SP...$ cmd 
@@ -259,7 +259,7 @@ fills work well.  If you are doing interpolation, however, they must be vect.
 [C:/Adam/Gr/GrBitMap.CPP.Z,910] GrRect() is fast.
 
 * You can customize the wallpaper.  See
-[C:/Demo/Graphics/WallPaperFish.CPP.Z,1].
+[C:/Demo/Graphics/WallPaperFish.CPP,1].
 
 * Your RAM disks will not be reformated when you reboot if the memory
 location 
@@ -321,11 +321,11 @@ leading code is slow.
 `#include "::/Apps/Psalmody/Run"
 `
  [C:/Doc/HolyC.TXT.Z,1] HolyC song files is a comment with a category 
-recognized by [C:/Apps/Psalmody/JukeBox.CPP.Z,1] JukeBox().  The categories
-are "no nothing", "has words", "has 
+recognized by [C:/Apps/Psalmody/JukeBox.CPP,1] JukeBox().  The categories are
+"no nothing", "has words", "has 
 graphics", or "special".  The third character in the song comment is a digit 
-rating number, shown in [C:/Apps/Psalmody/JukeBox.CPP.Z,1] JukeBox().  You
-can set the song rating in [C:/Apps/Psalmody/JukeBox.CPP.Z,1] JukeBox() 
+rating number, shown in [C:/Apps/Psalmody/JukeBox.CPP,1] JukeBox().  You can
+set the song rating in [C:/Apps/Psalmody/JukeBox.CPP,1] JukeBox() 
 by pressing 0-9.  You can press <DELETE> to delete songs.
 
 

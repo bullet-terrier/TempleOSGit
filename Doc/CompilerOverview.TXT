@@ -26,7 +26,7 @@ defined()	Is a function that can be used in expressions.
 #define __FILE__ #exe{StreamPrint("\"%s\"",Fs->last_lex->lex_include_stk->full_name);}
 #define __DIR__  #exe{StreamDir;}
 
-See [C:/Demo/Directives.CPP.Z,1], [C:/Doc/ImportExports.TXT.Z,1] Scoping and
+See [C:/Demo/Directives.CPP,1], [C:/Doc/ImportExports.TXT.Z,1] Scoping and
 Linkages, [C:/Compiler/Lex.CPP.Z,1] preprocessor and 
 [C:/Doc/Options.TXT.Z,1] Compiler Options.
 
@@ -86,5 +86,5 @@ header and patch table trailing.
 
 BINFILE "FileName.BIN";
 
-See [C:/Demo/Asm/AsmAndC1.CPP.Z,1], [C:/Demo/Asm/AsmAndC2.CPP.Z,1] and 
-[C:/Demo/Asm/AsmAndC3.CPP.Z,1].
+See [C:/Demo/Asm/AsmAndC1.CPP,1], [C:/Demo/Asm/AsmAndC2.CPP,1] and 
+[C:/Demo/Asm/AsmAndC3.CPP,1].

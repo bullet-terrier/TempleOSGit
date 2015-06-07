@@ -888,7 +888,7 @@ If root points to a mesh, it will load it.
 
 Returns a newly malloced mesh or NULL.
 
-See [C:/Demo/Graphics/SpritePlot3D.CPP.Z,1].
+See [C:/Demo/Graphics/SpritePlot3D.CPP,1].
 */
   CCtrl *c=CtrlFindUnique(Fs,CTRLT_VIEWING_ANGLES);
   CViewAngles *s,*old_s;

@@ -3,10 +3,9 @@ A [C:/Adam/Gr/Gr.CPP.Z,174] CSprite is an ordered list of
 Normally, they are packed together in a list and the address of the first is 
 passed to routines.
 
-See [C:/Demo/Graphics/SpritePlot.CPP.Z,1],
-[C:/Demo/Graphics/SpritePlot3D.CPP.Z,1], 
-[C:/Demo/Graphics/SpritePut.CPP.Z,1], [C:/Demo/Graphics/SpriteRaw.CPP.Z,1]
-and 
+See [C:/Demo/Graphics/SpritePlot.CPP,1],
+[C:/Demo/Graphics/SpritePlot3D.CPP,1], 
+[C:/Demo/Graphics/SpritePut.CPP,1], [C:/Demo/Graphics/SpriteRaw.CPP,1] and 
 [C:/Adam/Gr/SpriteMesh.CPP.Z,878] SpriteMeshEd().
 
 Be aware that copying SP, IB, or IS entries with the clipboard results in 

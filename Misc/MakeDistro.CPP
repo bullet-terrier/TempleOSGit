@@ -38,4 +38,4 @@ U0 MakeMyISO(U8 *out_iso_filename)
 
 MakeMyISO("/MyDistro.ISO");
 
-// Study my account examples [C:/Demo/AcctExample/TOSCfg.CPP.Z,1] Cfg Strs, [C:/Demo/AcctExample/TOSDistro.CPP.Z,1] Update Funs.
+// Study my account examples [C:/Demo/AcctExample/TOSCfg.CPP,1] Cfg Strs, [C:/Demo/AcctExample/TOSDistro.CPP,1] Update Funs.

@@ -4,7 +4,7 @@
 #define	GR_SCALE	(1<<32)
 
 public U0 Mat4x4MulXYZ(I64 r[4][4],I64 *_x,I64 *_y,I64 *_z)
-{//Rotate 3D point using 4x4 matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Rotate 3D point using 4x4 matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   I64 x1,y1,z1,xx=*_x,yy=*_y,zz=*_z;
   x1=(r[0][0]*xx+r[0][1]*yy+r[0][2]*zz+r[0][3])>>32;
   y1=(r[1][0]*xx+r[1][1]*yy+r[1][2]*zz+r[1][3])>>32;
@@ -14,7 +14,7 @@ public U0 Mat4x4MulXYZ(I64 r[4][4],I64 *_x,I64 *_y,I64 *_z)
 
 public U0 DCTransform(CDC *dc,I64 *_x,I64 *_y,I64 *_z)
 {//This is the dft dc->transform() callback.
-//Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+//Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   Mat4x4MulXYZ(dc->r,_x,_y,_z);
   *_x+=dc->x;
   *_y+=dc->y;
@@ -22,7 +22,7 @@ public U0 DCTransform(CDC *dc,I64 *_x,I64 *_y,I64 *_z)
 }
 
 public I64 *Mat4x4IdentEqu(I64 r[4][4])
-{//Set matrix to identity. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Set matrix to identity. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   MemSet(r,0,sizeof(I64)*16);
   r[0][0].i32[1]=1;
   r[1][1].i32[1]=1;
@@ -32,7 +32,7 @@ public I64 *Mat4x4IdentEqu(I64 r[4][4])
 }
 
 public I64 *Mat4x4IdentNew(CTask *mem_task=NULL)
-{//MAlloc an identity matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//MAlloc an identity matrix. Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
   return Mat4x4IdentEqu(MAlloc(sizeof(I64)*16,mem_task));
 }
 
@@ -45,7 +45,7 @@ public I64 Mat4x4NormSqr65536(I64 r[4][4])
 }
 
 public U0 DCMat4x4Set(CDC *dc=NULL,I64 r[4][4])
-{//Set device context's rot matrix. Will be [C:/Kernel/MemB.CPP.Z,368] Freed() in [C:/Adam/Gr/GrDC.CPP.Z,208] DCDel().Uses [C:/Demo/Lectures/FixedPoint.CPP.Z,1] fixed-point.
+{//Set device context's rot matrix. Will be [C:/Kernel/MemB.CPP.Z,368] Freed() in [C:/Adam/Gr/GrDC.CPP.Z,208] DCDel().Uses [C:/Demo/Lectures/FixedPoint.CPP,1] fixed-point.
 //The main purpose is to set matrix norm for pen width scaling.
   //NULL as dc means gr.dc
   if (!dc)   dc=gr.dc;
@@ -155,7 +155,7 @@ public U0 DCRst(CDC *dc)
 public U0 DCExtentsInit(CDC *dc=NULL)
 {//Init markers for extent of next newly drawn graphics.
 //NULL means gr.dc
-  //See [C:/Demo/Graphics/Extents.CPP.Z,1]
+  //See [C:/Demo/Graphics/Extents.CPP,1]
   //You should clear the record flag yourself
   if (!dc)   dc=gr.dc;
   dc->flags|=DCF_RECORD_EXTENTS;

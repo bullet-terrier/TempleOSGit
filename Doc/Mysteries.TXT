@@ -167,7 +167,7 @@ a bootloader when I tricked it to use it's recovery partition feature.
 swapping-out.  You can do other, non-disk activity during disk operations 
 because it swaps-out a lot and task swaps take only half a microsecond, 
 probably a hundred times faster than a typical OS.  See 
-[C:/Demo/Lectures/Spinning.CPP.Z,1] Cooperative Multitasking.  It does not
+[C:/Demo/Lectures/Spinning.CPP,1] Cooperative Multitasking.  It does not
 break-up disk operations into small 
 pieces for sharing, however, so the disk is lock onto that one task.
 

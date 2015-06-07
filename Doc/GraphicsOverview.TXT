@@ -60,7 +60,7 @@ pen width.  Free it with [C:/Adam/Gr/GrDC.CPP.Z,208] DCDel() when finished.
 * gr.dc is a device context for persistent data on the screen, not needing to 
 be redrawn.  You create an alias for this by using
 [C:/Adam/Gr/GrDC.CPP.Z,168] DCAlias() and work with 
-that.  See [C:/Demo/Graphics/NetOfDots.CPP.Z,1].
+that.  See [C:/Demo/Graphics/NetOfDots.CPP,1].
 
 * There are various flavors of line and point plotting routines. 
 [C:/Adam/Gr/GrPrimatives.CPP.Z,437] GrLine() and 
@@ -72,7 +72,7 @@ allow 3D graphics and rotations.
 * You change the Fs->draw_it var to point to your DrawIt() function which
 gets 
 called each screen refresh (30 fps).  You draw everything in the window over 
-and over again.  See [C:/Demo/Graphics/Box.CPP.Z,1].
+and over again.  See [C:/Demo/Graphics/Box.CPP,1].
 
 * Use the resource editor, <CTRL-r>, to create a sprite that can be plotted 
 with [C:/Adam/Gr/GrSpritePlot.CPP.Z,18] Sprite3() or output to the cmd line
@@ -82,9 +82,9 @@ the numbers work, after creating a sprite with <CTRL-r>, toggle to plain text
 with <CTRL-t> and check its num.  Make an assignment to a ptr var or pass to 
 [C:/Adam/Gr/GrSpritePlot.CPP.Z,18] Sprite3() with $IB,"",BI=n$.  Use
 <CTRL-r>'s "Pointer to Sprite" to make a $IB
-...$ entry.  See [C:/Demo/Graphics/SpritePlot.CPP.Z,1] and 
-[C:/Demo/Graphics/SpritePlot3D.CPP.Z,1].  The origin (zero point) for a
-sprite is 
+...$ entry.  See [C:/Demo/Graphics/SpritePlot.CPP,1] and 
+[C:/Demo/Graphics/SpritePlot3D.CPP,1].  The origin (zero point) for a sprite
+is 
 defined by the cursor location when you pressed <CTRL-r> to make it.  You can 
 edit a sprite by clicking the cursor on it and pressing <CTRL-r> again.
 
@@ -106,7 +106,7 @@ set brush member of CDC to
 another CDC, all the graphic routines will [C:/Adam/Gr/GrBitMap.CPP.Z,66]
 GrBlot() the brush instead of 
 [C:/Adam/Gr/GrPrimatives.CPP.Z,51] GrPlot().  See
-[C:/Demo/Graphics/Blot.CPP.Z,1].
+[C:/Demo/Graphics/Blot.CPP,1].
 
 * There are a few [C:/Kernel/KernelA.HPP.Z,2839] raster operations available.
  They go in bits 8-11 of the dc
@@ -121,14 +121,14 @@ count or convert your [C:/Adam/Gr/Gr.CPP.Z,174] CSprite to a bitmap if your
 subelements draw on top of 
 each other.  Be sure to set ->bkcolor before using
 [C:/Kernel/KernelA.HPP.Z,2841] ROP_COLLISION.  See 
-[C:/Demo/Graphics/Collision.CPP.Z,1] and [C:/Apps/TimeOut/TimeOut.CPP.Z,1]
+[C:/Demo/Graphics/Collision.CPP,1] and [C:/Apps/TimeOut/TimeOut.CPP,1]
 TimeOut.
  
 * The ->dither_probability_u16 member of [C:/Kernel/KernelA.HPP.Z,3559] CDC
 is a U16 used to statistically 
 select between two colors to get something resembling more shades of color.  
-See [C:/Demo/Graphics/SunMoon.CPP.Z,1] and
-[C:/Demo/Graphics/Shading.CPP.Z,1].  It works 
+See [C:/Demo/Graphics/SunMoon.CPP,1] and [C:/Demo/Graphics/Shading.CPP,1]. 
+It works 
 with many graphic routines, but not those with pens.
 
 * There is a mechanism built-in for generating motion based on differential 
@@ -148,4 +148,4 @@ mass in the state vect.  Six elements in the state vect are required for each
 mass.
 
 See [Math/CMathODE,1] Math/CMathODE.
-See [C:/Demo/Games/Rocket.CPP.Z,1].
+See [C:/Demo/Games/Rocket.CPP,1].

@@ -52,7 +52,7 @@ structures.
 
 * [C:/Adam/Utils/Profiler.CPP.Z,27] Prof() and
 [C:/Adam/Utils/Profiler.CPP.Z,57] ProfRep() provide code profiling.  See 
-[C:/Demo/AutoFile/AFProfile.AUT.Z,1] (This is an [C:/Doc/Glossary.TXT.Z,1]
+[C:/Demo/AutoFile/AFProfile.AUT,1] (This is an [C:/Doc/Glossary.TXT.Z,1]
 AutoFile.)
 
 * Use [C:/Kernel/KDbg.CPP.Z,217] RawPrint() to print debug info bypassing the

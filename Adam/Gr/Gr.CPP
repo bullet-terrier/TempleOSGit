@@ -176,7 +176,7 @@ public class CSpritePtMeshU8s : CSpriteBase
 #help_index "Graphics/Sprite;Sprites;Sprites/Binary"
 
 //See [Sprites,1] Sprites.  See [C:/Adam/Gr/GrSpritePlot.CPP.Z,1] ::/Adam/Gr/GrSpritePlot.CPP and
-//[C:/Demo/Graphics/SpriteRaw.CPP.Z,1] for how CSprite are stored.
+//[C:/Demo/Graphics/SpriteRaw.CPP,1] for how CSprite are stored.
 public class CSprite
 {
   CSprite *next,*last;

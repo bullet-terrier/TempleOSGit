@@ -683,7 +683,7 @@ public CDoc *DocBorder(CTask *task=NULL)
 }
 
 public CDoc *DocDblBufStart(CTask *task=NULL)
-{//See [C:/Demo/Spy.CPP.Z,1]
+{//See [C:/Demo/Spy.CPP,1]
   Bool unlock_ddoc,old_preempt=Preempt;
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task),*result;
   if (!pdoc || !ddoc || pdoc!=ddoc)
@@ -714,7 +714,7 @@ public CDoc *DocDblBufStart(CTask *task=NULL)
 }
 
 public Bool DocDblBufEnd(CTask *task=NULL)
-{//See [C:/Demo/Spy.CPP.Z,1]
+{//See [C:/Demo/Spy.CPP,1]
   Bool result=FALSE,old_preempt=Preempt;
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task);
   if (pdoc && ddoc && pdoc!=ddoc) {//Double buffering?
@@ -732,7 +732,7 @@ public Bool DocDblBufEnd(CTask *task=NULL)
 }
 
 public Bool DocDblBufSwap(CTask *task=NULL)
-{//See [C:/Demo/Spy.CPP.Z,1]
+{//See [C:/Demo/Spy.CPP,1]
   Bool result=FALSE,old_preempt=Preempt;
   CDoc *pdoc=DocPut(task),*ddoc=DocDisplay(task);
   if (pdoc && ddoc && pdoc!=ddoc) {//Double buffering?

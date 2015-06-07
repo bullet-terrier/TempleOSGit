@@ -30,7 +30,7 @@ there.  I took watermarked photos and converted to 16 color.
 command-line.  There is a lot of MSDOS , Windows, VAXTMOS (VAX Ticketmaster 
 O.S.) and Unix inspiration, too, such as drive letters, command names, etc.
 
-10) I included [C:/Misc/PCIDevices.TXT.Z,1] PCIDevice Lst File.
+10) I included [C:/Misc/PCIDevices.TXT,1] PCIDevice Lst File.
 
 11) Thanks to whoever wrote this CppHtml.CPP.Z.  I'm a novice on web stuff
 and 

@@ -59,7 +59,7 @@ extern class CIntermediateCode;
 whole if no member is specified,
 similar to bit fields.
 
-See [C:/Kernel/KMisc.CPP.Z,25] EndianI64() and [C:/Demo/SubIntAccess.CPP.Z,1].
+See [C:/Kernel/KMisc.CPP.Z,25] EndianI64() and [C:/Demo/SubIntAccess.CPP,1].
 */
 U16i union U16
 {
@@ -336,7 +336,7 @@ class CGDT
   CGDTEntry boot_cs;
   CGDTEntry cs32;
   CGDTEntry cs64;	//The [C:/Doc/Charter.TXT.Z,1] Charter says just ring-0.
-  CGDTEntry cs64_ring3;	//[C:/Demo/Lectures/Ring3.CPP.Z,1] Ring3, in case you want to play around.
+  CGDTEntry cs64_ring3;	//[C:/Demo/Lectures/Ring3.CPP,1] Ring3, in case you want to play around.
   CGDTEntry ds;
   CGDTEntry ds_ring3;
   CGDTEntry tr[MP_MAX_PROCESSORS];
@@ -1352,7 +1352,7 @@ public class CDoc //Linked Text File header
   I64	(*left_click_link)(CDoc *doc,CDocEntry *doc_e);
   I64	(*right_click_link)(CDoc *doc,CDocEntry *doc_e);
 
-  //See [C:/Apps/Psalmody/JukeBox.CPP.Z,1]
+  //See [C:/Apps/Psalmody/JukeBox.CPP,1]
   U8	*user_put_data; //Passed to user_put_key() and user_put_s()
   Bool	(*user_put_key)(CDoc *doc,U8 *data,I64 ch,I64 sc);
   Bool	(*user_put_s)(CDoc *doc,U8 *data,U8 *st);
@@ -3117,7 +3117,7 @@ class CSrvCtrl
 };
 
 #help_index "Messages"
-//See [C:/Demo/MsgLoop.CPP.Z,1]
+//See [C:/Demo/MsgLoop.CPP,1]
 #define MSG_NULL		0
 #define MSG_CMD			1
 #define MSG_KEY_DOWN		2  //([C:/Kernel/KernelA.HPP.Z,3389] ASCII,[C:/Doc/CharOverview.TXT.Z,1] scan code) Press <CTRL-SHIFT-L>
@@ -3532,7 +3532,7 @@ public class CTextGlbls
 #define DCF_SYMMETRY		0x200
 
 //Must be used with DCF_SYMMETRY set also.
-//See [C:/Demo/Games/BigGuns.CPP.Z,1]
+//See [C:/Demo/Games/BigGuns.CPP,1]
 #define DCF_JUST_MIRROR		0x400
 
 #define DCF_LOCATE_NEAREST	0x800
@@ -3576,7 +3576,7 @@ public class CDC
   //0x0000 =100% color.c0
   //0x8000 =50%  color.c0   50% color.c1
   //0x10000=100% color.c1
-  //See [C:/Demo/Graphics/SunMoon.CPP.Z,1] and	[C:/Demo/Graphics/Shading.CPP.Z,1].
+  //See [C:/Demo/Graphics/SunMoon.CPP,1] and	[C:/Demo/Graphics/Shading.CPP,1].
   U64 dither_probability_u16;
 
   CDC *brush;

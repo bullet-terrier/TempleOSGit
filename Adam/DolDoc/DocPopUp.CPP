@@ -316,7 +316,7 @@ public Bool DocEd(CDoc *doc,I64 dof_flags=0)
 public Bool DocForm(U8 *_d,U8 *class_name=lastclass,
     I64 dof_flags=0,U8 *header=NULL,U8 *footer=NULL)
 {//User input. Supply a class name that has fmtstr definitions.
-//See [C:/Demo/DolDoc/Form.CPP.Z,1] and [C:/Demo/LastClass.CPP.Z,1].
+//See [C:/Demo/DolDoc/Form.CPP,1] and [C:/Demo/LastClass.CPP,1].
   CMemberLst *ml;
   CDocEntry *doc_e;
   U8 *fmtstr;
@@ -452,7 +452,7 @@ public I64 PopUpMenu(CDoc *doc,I64 dof_flags=0)
 
 public Bool PopUpForm(U8 *_d,U8 *class_name=lastclass,
 	I64 dof_flags=DOF_MIN_SIZE,U8 *header=NULL,U8 *footer=NULL)
-{//See [C:/Demo/DolDoc/Form.CPP.Z,1] and [C:/Demo/LastClass.CPP.Z,1].
+{//See [C:/Demo/DolDoc/Form.CPP,1] and [C:/Demo/LastClass.CPP,1].
   return PopUpPrint("DocForm(0x%X,0x%X,0x%X,0x%X,0x%X);",_d,class_name,
 	dof_flags,header,footer);
 }

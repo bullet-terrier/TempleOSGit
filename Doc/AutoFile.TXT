@@ -14,7 +14,7 @@ filtered and sent back to the parent task.  Unless you are driving functions
 which prompt for data, you can probably use an #include file in place of an Au
 toFile.
 
-See [C:/Demo/AutoFile/AFDir.AUT.Z,1].
+See [C:/Demo/AutoFile/AFDir.AUT,1].
 
 Note: [C:/Kernel/SrvCmd.CPP.Z,496] Auto("") can be used if all you need is to
 send ASCII characters.  It 

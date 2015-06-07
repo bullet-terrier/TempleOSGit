@@ -43,7 +43,7 @@ U0 LexPopNoRestore(CCmpCtrl *cc)
 }
 
 I64 MemberMetaData(U8 *needle_str,CMemberLst *haystack_member_lst)
-{//Find meta data name, return meta data val. See [C:/Demo/ClassMeta.CPP.Z,1].
+{//Find meta data name, return meta data val. See [C:/Demo/ClassMeta.CPP,1].
   CMemberLstMeta *meta=haystack_member_lst->meta;
   while (meta) {
     if (!StrCmp(meta->str,needle_str))
@@ -54,7 +54,7 @@ I64 MemberMetaData(U8 *needle_str,CMemberLst *haystack_member_lst)
 }
 
 CMemberLstMeta *MemberMetaFind(U8 *needle_str,CMemberLst *haystack_member_lst)
-{//Find meta data name, return meta data struct. See [C:/Demo/ClassMeta.CPP.Z,1].
+{//Find meta data name, return meta data struct. See [C:/Demo/ClassMeta.CPP,1].
   CMemberLstMeta *meta=haystack_member_lst->meta;
   while (meta) {
     if (!StrCmp(meta->str,needle_str))

@@ -9,7 +9,7 @@ U0 LoadDocDefines()
 	(Now-Str2Date("8/1/2003"))/ToF64(1<<32)/CDATE_YEAR_DAYS);
 
   //This is cut and replaced when I generate a distro.
-  //See [C:/Demo/AcctExample/TOSDistro.CPP.Z,1] DD_TEMPLEOS_LOC.
+  //See [C:/Demo/AcctExample/TOSDistro.CPP,1] DD_TEMPLEOS_LOC.
   -] LineRep
       DefinePrint("DD_TEMPLEOS_LOC","122,806");
     DefinePrint("DD_TEMPLEOS_LOC_OFFICIAL","80,870");
